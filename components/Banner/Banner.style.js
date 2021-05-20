@@ -5,11 +5,12 @@ export const Banner = styled.div`
   width: 100vw;
   height: auto;
   overflow: hidden;
+  cursor: pointer;
 
   .container{
     align-items: center;
     height: auto;
-    justify-content: space-between;
+    justify-content: space-evenly;
     flex-direction: ${({isPair}) => {
       return isPair ? 'column' : 'column-reverse'}};
 

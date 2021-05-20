@@ -12,20 +12,20 @@ export default function PartnerPageEdit(props){
   return isLoggedIn ? <PartnerForm {...props} partner={partner} /> : <PageJustForAdmin />
 }
 
-export async function getStaticPaths(){
-  await mongoose.connect(process.env.NEXT_PUBLIC_MONGO_DB_URL, { useUnifiedTopology: true, useFindAndModify: false, useCreateIndex: true, useNewUrlParser: true });
-  const partners = await Partner.find();
-  const paths = partners.map((partner) => ({ params: { id: `${partner._id}` } }))
-  return { paths, fallback: true }
-}
+// export async function getStaticPaths(){
+//   await mongoose.connect(process.env.NEXT_PUBLIC_MONGO_DB_URL, { useUnifiedTopology: true, useFindAndModify: false, useCreateIndex: true, useNewUrlParser: true });
+//   const partners = await Partner.find();
+//   const paths = partners.map((partner) => ({ params: { id: `${partner._id}` } }))
+//   return { paths, fallback: true }
+// }
 
-export async function getStaticProps({ params: { id } }) {
+export async function getServerSideProps({ params: { id } }) {
   await mongoose.connect(process.env.NEXT_PUBLIC_MONGO_DB_URL, { useUnifiedTopology: true, useFindAndModify: false, useCreateIndex: true, useNewUrlParser: true });
   if(!!id) {
     const partnerArray = await Partner.findById(id).populate('books');
     const partner = partnerArray ? JSON.stringify(partnerArray) : {}
-    return { props: { partner }, revalidate: 1  }
+    return { props: { partner } }
   } else {
-    return { props: { partner: {} }, revalidate: 1  }
+    return { props: { partner: {} } }
   }
 }

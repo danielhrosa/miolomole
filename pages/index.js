@@ -13,23 +13,21 @@ import SpotlightBooksJumbotron from "../components/SpotlightBooksJumbotron";
 
 export default function Home(props) {
   const t = pt;
-  const { isLoggedIn } = useAppProvider();
+  const teste = [1,2,3,4]
+  // const { isLoggedIn } = useAppProvider();
   return (
     <>
       <SpotlightBooksJumbotron {...props} />
       <HomeApresentation {...props}/>
-      <Banner {...props} index={1}/>
-      <Banner {...props} index={2}/>
-      <Banner {...props} index={3}/>
-      <Banner {...props} index={4}/>
-      { isLoggedIn && <LatestArticles items={t.BLOG_ARTICLES}/> }
+      { teste.map((index) => <Banner {...props} index={index} /> )}
+      {/* { isLoggedIn && <LatestArticles items={t.BLOG_ARTICLES}/> } */}
       <AboutUsSlider {...props} />
       <HomeLatestArticles/>
     </>
   )
 }
 
-export async function getStaticProps() {
+export async function getServerSideProps() {
   await mongoose.connect(process.env.NEXT_PUBLIC_MONGO_DB_URL, { useUnifiedTopology: true, useFindAndModify: false, useCreateIndex: true, useNewUrlParser: true });
   const page = 'home';
   const textsArray = await Text.find({ page });
@@ -39,5 +37,5 @@ export async function getStaticProps() {
   const items = itemsArray ? JSON.stringify(itemsArray) : {}
   const highlightsArray = await Highlight.find({ isActive: true });
   const highlights = !!highlightsArray.length ? JSON.stringify(highlightsArray) : '[]';
-  return { props: { texts, page, items, highlights }, revalidate: 1 }
+  return { props: { texts, page, items, highlights } }
 }

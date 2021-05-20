@@ -86,5 +86,5 @@ export const SectionOneImageOne = styled.img`
 `
 
 export const ImageName = styled.p`
-
+  font-weight: bolder;
 `

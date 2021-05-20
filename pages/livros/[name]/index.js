@@ -2,19 +2,20 @@ import mongoose from 'mongoose';
 import Book from '../../../models/book';
 import Text from '../../../models/text';
 
-export async function getStaticPaths(){
-  await mongoose.connect(process.env.NEXT_PUBLIC_MONGO_DB_URL, { useUnifiedTopology: true, useFindAndModify: false, useCreateIndex: true, useNewUrlParser: true });
-  const books = await Book.find();
-  const paths = [
-    ...books.map((book) => ({ params: { name: `${book.name}` } })),
-    ...books.map((book) => ({ params: { name: `${book.name}-audiovisual` } })),
-    ...books.map((book) => ({ params: { name: `${book.name}-audioacessivel` } })),
-    ...books.map((book) => ({ params: { name: `${book.name}-versao-audiovisual` } }))
-  ]
-  return { paths, fallback: true }
-}
+// export async function getStaticPaths(){
+//   await mongoose.connect(process.env.NEXT_PUBLIC_MONGO_DB_URL, { useUnifiedTopology: true, useFindAndModify: false, useCreateIndex: true, useNewUrlParser: true });
+//   const books = await Book.find();
+//   const paths = [ 
+//     ...books.map((book) => ({ params: { name: `${book.name}` } })), 
+//     ...books.map((book) => ({ params: { name: `${book.name}-audiovisual` } })), 
+//     ...books.map((book) => ({ params: { name: `${book.name}-versao-audiovisual` } })) 
+//     ...books.map((book) => ({ params: { name: `${book.name}-versao-audiovisual` } }))
 
-export async function getStaticProps({ params: { name } }) {
+//   ]
+//   return { paths, fallback: true }
+// }
+
+export async function getServerSideProps({ params: { name } }) {
   await mongoose.connect(process.env.NEXT_PUBLIC_MONGO_DB_URL, { useUnifiedTopology: true, useFindAndModify: false, useCreateIndex: true, useNewUrlParser: true });
   if(!!name) {
     const splittedId = name?.split('-');
@@ -32,9 +33,9 @@ export async function getStaticProps({ params: { name } }) {
     const page = 'books';
     const textsArray = await Text.find({ page });
     const texts = textsArray.reduce((object, text) => Object.assign(object, {[text.textKey]: text.text}), {});
-    return { props: { book, books, texts, acessivel }, revalidate: 1  }
+    return { props: { book, books, texts, hasAudiovisual } }
   } else {
-    return { props: { book: {}, books: [], texts: [], acessivel }, revalidate: 1  }
+    return { props: { book: {}, books: [], texts: [], hasAudiovisual } }
   }
 }
 
