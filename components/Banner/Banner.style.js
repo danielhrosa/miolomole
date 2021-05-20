@@ -10,7 +10,7 @@ export const Banner = styled.div`
   .container{
     align-items: center;
     height: auto;
-    justify-content: space-between;
+    justify-content: space-evenly;
     flex-direction: ${({isPair}) => {
       return isPair ? 'column' : 'column-reverse'}};
 
