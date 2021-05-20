@@ -49,7 +49,7 @@ export default function UserForm(props){
 
   return(
     <S.UsuariosWrapper>
-      <Button variation="primary" onClick={() => router.push('/elenco')}>Voltar</Button>
+      <Button variation="primary" onClick={() => router.push('/autores')}>Voltar</Button>
       <h1>Adicionar usuário</h1>
       <Form {...formProps} />
       <Toaster position="bottom-right" reverseOrder={false}/>

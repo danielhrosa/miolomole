@@ -32,16 +32,16 @@ export default function UsersList(props) {
           <b>Login</b>
           <b>Nome</b>
           <b>Função</b>
-          <S.AddUserButton onClick={() => router.push('/elenco/novo')}><span>+</span></S.AddUserButton>
+          <S.AddUserButton onClick={() => router.push('/autores/novo')}><span>+</span></S.AddUserButton>
         </S.UserHeader>
         {users.map((user) => (
-          <S.UsersListItem key={user._id} onClick={() => router.push(`/elenco/${user._id}`)}>
+          <S.UsersListItem key={user._id} onClick={() => router.push(`/autores/${user._id}`)}>
             <S.UserAvatar img={user ? user.avatar ? `${user?.avatar}` : Profile : Profile}/>
             <S.UserName>{user.userName}</S.UserName>
             <S.UserFullName>{user.userFullName}</S.UserFullName>
             <S.UserOccupation>{user.occupation.join(', ')}</S.UserOccupation>
             <S.ButtonDelete type="delete" onClick={(e) => { e.stopPropagation() ;handleDeleteUser(user)} }/>
-            <S.ButtonDelete type="edit" onClick={(e) => {e.stopPropagation(); router.push(`/elenco/${user._id}`)}} />
+            <S.ButtonDelete type="edit" onClick={(e) => {e.stopPropagation(); router.push(`/autores/${user._id}`)}} />
           </S.UsersListItem>
         ))}
       </S.UsersList>

@@ -7,8 +7,13 @@ import toast, { Toaster } from 'react-hot-toast';
 import mapFieldsToData from '../../utils/mapFieldsToData';
 import mapDataToFields from '../../utils/mapDataToFields';
 import { bookFilesFieldsState, bookFilesFieldsFunction, gridTemplate } from './BookFiles.constants.js';
+import { useRouter } from 'next/router';
+import { useAppProvider } from '../../store/appProvider';
 
 export default function BookFiles(props){
+  const router = useRouter();
+  const { name } = router.query;
+  const { isLoggedIn } = useAppProvider();
   const [book, setBook] = useState(); 
   const [fields, setFields] = useState(bookFilesFieldsState);
   const bookFilesFields = bookFilesFieldsFunction({ fields, setFields });
@@ -52,7 +57,7 @@ export default function BookFiles(props){
     <S.BookFiles>
       <h1>Acessibilidade</h1>
       <Form {...formProps} />
-      <Button {...saveButon} />
+      { isLoggedIn && name && <Button {...saveButon} />}
       <Toaster position="bottom-right" reverseOrder={false} />
     </S.BookFiles>
   )

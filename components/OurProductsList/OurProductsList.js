@@ -44,10 +44,10 @@ export default function OurProductsList(props){
             className="my-masonry-grid"
             columnClassName="my-masonry-grid_column">
             {books && books.map((book) => (
-              <S.ProductCard key={book._id} onClick={() => router.push(`/livros/${urlNameFormatter(book.name)}`)}>
+              <S.ProductCard key={book._id} onClick={() => router.push(`/livros/${urlNameFormatter(book.name)}`) }>
                 <S.ProductCardImage src={book?.image ? book?.image : 'https://placekitten.com/400/400'}/>
                 <S.ProductCardTitle>{book.title}</S.ProductCardTitle>
-                {isLoggedIn && <Button onClick={() => handleDeleteBook(book)} type="delete"/>}
+                {isLoggedIn && <Button onClick={(e) => { e.stopPropagation(); handleDeleteBook(book) }} type="delete"/>}
               </S.ProductCard>
             ))}
           </Masonry>

@@ -42,17 +42,15 @@ export const BookInfoFieldsFunction = ({ fields, isLoggedIn, users }) => ({
     label: 'Autoria: ',
     placeholder: 'Autoria...',
     variation: 'simple',
-    loadEmpty: true,
-    isLoggedIn: isLoggedIn,
     isMulti: true,
+    isLoggedIn: isLoggedIn,
     styledLabel: <S.BookItemLabel isLoggedIn={isLoggedIn} />,
     styledItem: <S.BookInfoItemSelect isLoggedIn={isLoggedIn} />,
-    loadOptions: (query, callback) => {
-      callback(users.sort((a, b) => {if(a.userFullName < b.userFullName) { return -1; }if(a.userFullName > b.userFullName) { return 1; }return 0})
-        // .filter((option) => option?.userFullName?.includes(query.toLoweCase()))
-        .map((option) => ({ _id: option._id, label: option.userFullName || option.userName, value: option._id }))
-      )
-    }
+    options: users.sort((a, b) => {
+      if(a.userFullName < b.userFullName) { return -1; }
+      if(a.userFullName > b.userFullName) { return 1; }
+      return 0;
+    }).map((option) => ({ _id: option._id, label: option.userFullName || option.userName, value: option._id }))
   },
   illustrators: {
     ...fields.illustrators,

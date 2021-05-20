@@ -8,10 +8,10 @@ import SpotlightBooksJumbotron from "../../components/SpotlightBooksJumbotron";
 import { useAppProvider } from "../../store/appProvider";
 
 export default function BooksList(props){
-  const router = useRouter();
-  const { isLoggedIn } = useAppProvider();
-  const { id } = router.query;
   const t = pt;
+  const router = useRouter();
+  const { id } = router.query;
+  const { isLoggedIn } = useAppProvider();
 
   return(
     <div>

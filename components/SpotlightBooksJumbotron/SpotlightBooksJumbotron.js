@@ -11,6 +11,7 @@ const settings = (items) => ({
   speed: 500,
   fade: true,
   arrows: false,
+  pauseOnHover: true,
   slidesToShow: 1,
   autoplay: true,
   autoplaySpeed: '30',

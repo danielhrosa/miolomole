@@ -79,7 +79,7 @@ export const ImaginationImgTwo = styled.img`
   object-fit: cover;
 
 `
-export const ImaginationTextThree = styled.div`
+export const ImaginationTextThree = styled.p`
   grid-area: 'textThree';
   width: 100%;
   font-family: Montserrat;

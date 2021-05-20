@@ -1,4 +1,6 @@
 import styled from 'styled-components';
+import { darken } from 'polished'
+
 
 export const HeaderNav = styled.ul`
   grid-area: headerNav;
@@ -14,7 +16,6 @@ export const HeaderNav = styled.ul`
   padding: 0;
   top: 90px;
   position: relative;
-  color: #474747;
   @media screen {
     @media (min-width: 1024px) {
       height: unset;
@@ -34,6 +35,14 @@ export const NavItem = styled.li`
   cursor: pointer;
   margin-bottom: 10px;
   transition: all 0.3s;
-  :hover{ color: #00A79D }
+  color: ${({isActive}) => isActive ? '#00A79D' : '#474747'};
+  background: ${({isActive}) => isActive ? '#E4E4E480' : 'none'};
+  border-radius: 8px;
+  padding: 4px 8px;
+
+  :hover { 
+    color: #0f3f66;
+  }
+
   @media (min-width: 1024px) { margin-bottom: 0 }
 `

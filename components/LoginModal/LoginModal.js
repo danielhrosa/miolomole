@@ -66,8 +66,8 @@ export default function LoginModal(){
 
   return(
     <S.LoginModalContainer>
-      <Toaster position="bottom-right" reverseOrder={false}/>      
-        <S.LoginModalBody>
+      <Toaster position="bottom-right" reverseOrder={false}/>    
+      <S.LoginModalBody>
         <S.Close className="unselectable" onClick={() => router.push('/')}>+</S.Close>
         <S.FormWrapper>
           <S.FormTitleWrapper>

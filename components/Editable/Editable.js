@@ -4,7 +4,7 @@ import axios from 'axios';
 import Button from '../../Elements/Button';
 import { useAppProvider } from '../../store/appProvider';
 
-export default function Editable ({ children, page, texts, textKey }) {
+export default function Editable ({ children, page, texts, textKey, onClick }) {
   const { isLoggedIn } = useAppProvider()
   const [edit, setEdit] = useState(false);
   const initialText = (!!texts && !!textKey) && !!texts[textKey] ? texts[textKey] : 'Insira um conteúdo';
@@ -33,7 +33,7 @@ export default function Editable ({ children, page, texts, textKey }) {
   const inputProps = { value: newText, ref, edit, onChange, onBlur, styles: children.type.componentStyle.rules }
 
   return (
-    <S.Editable isLoggedIn={isLoggedIn}>
+    <S.Editable isLoggedIn={isLoggedIn} onClick={onClick}>
       { isLoggedIn && (
         <S.EditableButtons>
           <S.EditButton onClick={() => edit ? saveText() : setEdit(true)}>

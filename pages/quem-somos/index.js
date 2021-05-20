@@ -10,7 +10,7 @@ export async function getServerSideProps() {
   const items = itemsArray ? JSON.stringify(itemsArray) : {}
   const textsArray = await Text.find({ page });
   const texts = textsArray.reduce((object, text) => Object.assign(object, {[text.textKey]: text.text}), {});
-  return { props: { texts, page } }
+  return { props: { texts, page, items } }
 }
 
 export { default } from './AboutUs';

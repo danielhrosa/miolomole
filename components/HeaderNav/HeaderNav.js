@@ -4,6 +4,7 @@ import { useAppProvider } from '../../store/appProvider';
 import * as S from './HeaderNav.style'
 
 export default function HeaderNav({isOpen, toggle}){
+  const { asPath } = useRouter();
   const { isLoggedIn } = useAppProvider();
   let navMenuItems = [
     { name: 'Home', path: '/' },
@@ -11,15 +12,18 @@ export default function HeaderNav({isOpen, toggle}){
     { name: 'Loja', path: '/loja' },
     { name: 'Quem somos', path: '/quem-somos' },
     { name: 'Contato', path: '/contato' },
-    { name: 'Elenco', path: '/elenco'}
   ];
 
-  if(isLoggedIn) { navMenuItems = navMenuItems.concat({ name: 'Destaques', path: '/destaques'}, { name: 'Blog', path: '/blog' }) };
+  if(isLoggedIn) { navMenuItems = navMenuItems.concat(
+    { name: 'Destaques', path: '/destaques'},
+    { name: 'Blog', path: '/blog' },
+    { name: 'Usuários', path: '/autores'}
+  )};
 
   return (
     <S.HeaderNav>
       {navMenuItems.map((item) => 
-        <S.NavItem key={item.name} key={item.name} onClick={() => toggle(!isOpen)}>
+        <S.NavItem isActive={asPath === item.path} key={item.name} key={item.name} onClick={() => toggle(!isOpen)}>
           <Link href={item.path}>
             {item.name}
           </Link>

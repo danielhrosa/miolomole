@@ -27,6 +27,7 @@ export default function BookInfo({ book }){
       .then((res) => setUsers(res.data))
       .catch((err) => console.log(err))
   }, [])
+
   
   useEffect(() => {
     if(book) {
@@ -47,9 +48,16 @@ export default function BookInfo({ book }){
     const variables = mapFieldsToData({ ...bookFields, priceField});
     if(!name) {
       try{
-        const res = await axios.post('/api/livros', { ...variables })
-        if(res.status === 200){ toast.success('Cadastro realizado com sucesso!'); } 
-        else { console.log(res); }
+        if(variables.title === '') { 
+          toast.error('Por favor preencha o titulo')
+        } else {
+          const res = await axios.post('/api/livros', { ...variables })
+          if(res.status === 200){
+            router.push(`/livros/${res.data.bookCreated.name}`)
+            toast.success('Cadastro realizado com sucesso!');
+          } 
+          else { console.log(res); }
+        }
       } catch (err) { console.log(err.response) }
     } else {
       try{

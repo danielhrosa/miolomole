@@ -5,6 +5,9 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import Editable from '../Editable';
 import { useEffect, useState } from 'react';
+import Link from 'next/link';
+import { useAppProvider } from '../../store/appProvider';
+import { useRouter } from 'next/router';
 
 export default function AboutUsSlider(props){
   const settings = {
@@ -51,6 +54,8 @@ export default function AboutUsSlider(props){
   }
 
   const [items, setItems] = useState([]);
+  const router = useRouter();
+  const { isLoggedIn } = useAppProvider();
 
   useEffect(() => props.items && setItems(JSON.parse(props.items)), [])
 
@@ -58,7 +63,7 @@ export default function AboutUsSlider(props){
     <S.AboutUsSlider id='AboutUsSlider'>
       <S.AboutUsSliderContainer>
         <S.SliderInfo>
-          <Editable {...props} textKey="homeAuthorsListTitle"><S.SliderTitle /></Editable>
+          <Editable {...props} textKey="homeAuthorsListTitle" onClick={() => !isLoggedIn && router.push('/autores')}><S.SliderTitle /></Editable>
           <Editable {...props} textKey="homeAuthorsListDesc"><S.SliderDescription/></Editable>
         </S.SliderInfo>
         <S.SliderCards>

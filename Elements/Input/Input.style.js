@@ -111,6 +111,41 @@ export const InputPreview = styled.div`
 
 `
 
+export const Loading = styled.div`
+  width: 100%;
+  padding: 40px;
+  display: grid;
+  grid-template-columns: 1fr;
+  align-items: center;
+  justify-items: center;
+  grid-gap: 20px;
+`;
+
+export const ProgressBar = styled.div`
+  height: 18px;
+	background-color: #ee303c;
+  border-radius: 4px;
+  transition: 0.4s linear;
+  transition-property: width, background-color;
+  background-color: ${({ theme: { color: { brand }}}) => brand };;
+  width: ${({ progress }) => `${progress}%` };
+  background-image: linear-gradient(
+        45deg, #8AC2BF 25%,
+        transparent 25%, transparent 50%,
+        #8AC2BF 50%, #8AC2BF 75%,
+        transparent 75%, transparent);
+  /* Só não coloquei cor global porq não aceitou no linear gradient hahaha */
+  animation: progressAnimationStrike 6s;
+`;
+
+export const Progress = styled.div`
+  width: 100%;
+  padding: 6px;
+  background: rgba(0, 0, 0, 0.25);
+  border-radius: 6px;
+  box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.25), 0 1px rgba(255, 255, 255, 0.08);
+`;
+
 export const InputRadio = styled.input`
   position: absolute;
   opacity: 0;

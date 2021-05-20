@@ -7,7 +7,7 @@ export default function CastList(props){
   useEffect(() => props.casts && setCasts(JSON.parse(props.casts)), [])
   return(
     <S.CastContainer>
-      <S.CastTitle>Elenco</S.CastTitle>
+      <S.CastTitle>Autores e Ilustradores</S.CastTitle>
       <S.CastList>
         {casts.map((item, i) => (
           <S.SliderCard key={item._id + i}>

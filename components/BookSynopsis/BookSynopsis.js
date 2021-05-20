@@ -50,7 +50,7 @@ export default function BookSynopsis({ book, ...props }){
         </S.SynopsisInfo>
         <S.SynopsisVideo><Input {...synopsisInput.video} isLoggedIn={isLoggedIn} setFields={setFields} /></S.SynopsisVideo>
         <Toaster position="bottom-right" reverseOrder={false}/>      
-        { isLoggedIn && <Button id="save" variation="primary" onClick={() => saveInfos()} label="Salvar Sinopse" />}
+        { isLoggedIn && name && <Button id="save" variation="primary" onClick={() => saveInfos()} label="Salvar Sinopse" />}
       </Container>
     </S.BookSynopsis>
   )

@@ -227,6 +227,7 @@ export const SliderTitle = styled.h1`
     text-align: unset;
     font-size: 50px;
     margin-bottom: 30px;
+    cursor: pointer;
   }
 
 `

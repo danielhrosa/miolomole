@@ -1,6 +1,7 @@
 export const bookFilesFieldsState = () => ({
   visual: { value: '' },
   description: { value: '' },
+  video: { value: '' },
 })
   
 export const bookFilesFieldsFunction = ({ fields }) => ({
@@ -16,12 +17,19 @@ export const bookFilesFieldsFunction = ({ fields }) => ({
     label: 'Audio Descritivo',
     type: 'audio',
   },
+  video: {
+    ...fields.video,
+    name: 'video',
+    label: 'Video',
+    type: 'audio',
+  },
 })
 
 export const gridTemplate = () => `
   grid-template-areas: ${`
     "visual"
     "descritivo"
+    "video"
   ;
   `}
 `

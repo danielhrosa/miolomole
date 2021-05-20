@@ -8,9 +8,11 @@ import * as S from './Input.style';
 import Player from '../../components/Player';
 import { useAppProvider } from '../../store/appProvider';
 import Button from '../Button';
+import Spinner from '../../components/Spinner';
 
 export default function InputFile({ placeholder, name, onChange, value, setFields, type, className }) {
   const [loading, setLoading] = useState(false);
+  const [progress, setProgress] = useState(0);
   const { isLoggedIn } = useAppProvider();
   const onDrop = useCallback((acceptedFiles) => {
     setLoading(true);
@@ -30,6 +32,7 @@ export default function InputFile({ placeholder, name, onChange, value, setField
       file,
       name: fileName, 
       contentType: file.type,
+      progress: progressValue => setProgress((progressValue * 100).toFixed(2)),
       complete: (xhr) => { 
         const location = xhr.responseURL.split('?')[0]; 
         onChange ? onChange({ target: { name, value: location }, setFields }) : inputChange({target: { name, value: location }, setFields})        
@@ -59,7 +62,18 @@ export default function InputFile({ placeholder, name, onChange, value, setField
 
   return (
     <S.InputFile>
-      <S.InputPreview className={className} type={type} >{value && contentRender()}</S.InputPreview>
+      <S.InputPreview className={className} type={type} >
+        {value 
+          ? contentRender() 
+          : loading && (
+            <S.Loading>
+              <Spinner color="#0677d5" />
+              <S.Progress><S.ProgressBar progress={progress} /></S.Progress>
+              <h1>{progress}%</h1>
+            </S.Loading>
+          ) 
+        }
+      </S.InputPreview>
       { isLoggedIn && (
         <S.ActionButtonWrapper>
           <S.DropArea {...getRootProps()}>
