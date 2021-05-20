@@ -61,9 +61,9 @@ export default function AboutUsSlider(props){
 
   return(
     <S.AboutUsSlider id='AboutUsSlider'>
-      <S.AboutUsSliderContainer>
+      <S.AboutUsSliderContainer onClick={() => !isLoggedIn && router.push('/autores')}>
         <S.SliderInfo>
-          <Editable {...props} textKey="homeAuthorsListTitle" onClick={() => !isLoggedIn && router.push('/autores')}><S.SliderTitle /></Editable>
+          <Editable {...props} textKey="homeAuthorsListTitle"><S.SliderTitle /></Editable>
           <Editable {...props} textKey="homeAuthorsListDesc"><S.SliderDescription/></Editable>
         </S.SliderInfo>
         <S.SliderCards>

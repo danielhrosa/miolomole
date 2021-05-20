@@ -71,17 +71,16 @@ export const AboutUsSlider = styled.div`
   }
 
   .slick-dots{
-    bottom: -10px;
+    bottom: -26px;
     z-index: 3;
-    width: 49%;
+    width: 59%;
     left: 24vw;
 
     @media screen{
-      @media (min-width: 768px){bottom: 0px;}
       @media (min-width: 1024px){
-        top: 229px;
+        top: 217px;
         left: -318px;
-        width: 40%;
+        width: 35%;
       }
     }
 
@@ -172,7 +171,8 @@ export const AboutUsSliderContainer = styled.div`
   max-width: unset;
   width: 100vw;
   max-width: 1024px;
-
+  cursor: pointer;
+  
   @media screen{
     @media (min-width: 1024px){
       max-width: 1024px;
@@ -346,21 +346,18 @@ export const CardDescription = styled.div`
   font-size: ${({ theme: { fontSize: { fontSizeXXS }}}) => fontSizeXXS };
   line-height: 19px;
   position: relative;
-  margin-top: 35px;
-  height: 98px;
+  margin-top: 20px;
+  height: 118px;
   width: 100%;
   color: #071825;
-  display: -webkit-box;
-  -webkit-line-clamp: 8;
-  -webkit-box-orient: vertical;
-  overflow: hidden;
-  text-overflow: ellipsis;
+  overflow-Y: scroll;
+
   
   @media screen{
     @media (min-width: 1024px){
       font-size: ${({ theme: { fontSize: { fontSizeXXS }}}) => fontSizeXXS };
       height: 150px;
-      /* width: 350px; */
+      margin-top: 30px;
     }
     @media (min-width: 1205px){
       /* width: 400px; */
