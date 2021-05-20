@@ -27,7 +27,9 @@ export const ImaginationWrapper = styled.div`
     'textThree'
     'imgThree';
   grid-column-gap: 30px;
-  grid-row-gap: 50px;
+  grid-row-gap: 30px;
+  align-items: center;
+
   @media screen{
     @media (min-width: 768px){
       grid-template-columns: 1fr 1fr;
@@ -40,10 +42,11 @@ export const ImaginationWrapper = styled.div`
 `
 
 export const ImaginationTextOne = styled.p`
-  grid-area: 'textOne';
+  grid-area: textOne;
   width: 100%;
   font-family: Montserrat;
   font-weight: 500;
+  text-align: right;
   font-size: ${({ theme: { fontSize: { fontSizeSM }}}) => fontSizeSM };
   line-height: 30px;
   color: #071825;
@@ -51,7 +54,7 @@ export const ImaginationTextOne = styled.p`
 `
 
 export const ImaginationImgOne = styled.img`
-  grid-area: 'imgOne';
+  grid-area: imgOne;
   width: 100%;
   height: 364px;
   background: #C4C4C4;
@@ -61,7 +64,7 @@ export const ImaginationImgOne = styled.img`
 `
 
 export const ImaginationTextTwo = styled.p`
-  grid-area: 'textTwo';
+  grid-area: textTwo;
   width: 100%;
   font-family: Montserrat;
   font-weight: 500;
@@ -71,7 +74,7 @@ export const ImaginationTextTwo = styled.p`
 `
 
 export const ImaginationImgTwo = styled.img`
-  grid-area: 'imgTwo';
+  grid-area: imgTwo;
   width: 100%;
   height: 364px;
   background: #C4C4C4;
@@ -80,9 +83,10 @@ export const ImaginationImgTwo = styled.img`
 
 `
 export const ImaginationTextThree = styled.p`
-  grid-area: 'textThree';
+  grid-area: textThree;
   width: 100%;
   font-family: Montserrat;
+  text-align: right;
   font-weight: 500;
   font-size: ${({ theme: { fontSize: { fontSizeSM }}}) => fontSizeSM };
   line-height: 30px;
@@ -91,7 +95,7 @@ export const ImaginationTextThree = styled.p`
 `
 
 export const ImaginationImgThree = styled.img`
-  grid-area: 'imgThree';
+  grid-area: imgThree;
   width: 100%;
   height: 364px;
   background: #C4C4C4;
