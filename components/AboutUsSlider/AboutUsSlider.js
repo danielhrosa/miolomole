@@ -58,7 +58,7 @@ export default function AboutUsSlider(props){
   const { isLoggedIn } = useAppProvider();
 
   useEffect(() => props.items && setItems(JSON.parse(props.items)), [])
-
+  
   return(
     <S.AboutUsSlider id='AboutUsSlider'>
       <S.AboutUsSliderContainer onClick={() => !isLoggedIn && router.push('/autores')}>
@@ -68,7 +68,7 @@ export default function AboutUsSlider(props){
         </S.SliderInfo>
         <S.SliderCards>
           <Slider {...settings}>
-            {items.map((item, i) => (
+            {items.filter((item) => !item?.hideFromList ).map((item, i) => (
               <S.SliderCard key={item._id + i}>
                 <S.CardPicture src={item.avatar} />
                 <S.SliderCardContainer>
