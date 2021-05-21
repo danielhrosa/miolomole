@@ -6,16 +6,17 @@ export const StoreJumbotronContainer = styled.div`
   width: 100vw;
   background-repeat: no-repeat;
   background-size: cover;
-  height: 100vh;
   background-position: right;
+  height: 500px;
   @media screen{
     @media (min-width: 1024px){
-      height: 54vw;
       background-position: center;
+      height: 400px;
     }
   }
   .container{
     align-items: flex-start;
+    padding: 0 40px;
   }
 `
 export const JumbotronWraper = styled.div`
@@ -51,7 +52,7 @@ export const StoreJumbotronTitle = styled.h1`
   font-weight: 500;
   font-size: 80px;
   /* identical to box height */
-  margin-bottom: 30px;
+  margin-bottom: 0px;
   display: flex;
   align-items: flex-end;
   letter-spacing: 2.4px;
@@ -61,6 +62,8 @@ export const StoreJumbotronTitle = styled.h1`
   @media screen{
     @media (min-width: 1024px){
       font-size: 80px;
+      margin-block-start: 33px;
+
     }
   }
 `
@@ -69,7 +72,7 @@ export const StoreJumbotronSubTitle = styled.h4`
   font-style: normal;
   font-weight: 400;
   color: #FFFFFF;
-  margin-bottom: 30px;
+  margin-bottom: 0px;
   font-size: 15px;
   line-height: 1.6;
   width: 90%;
