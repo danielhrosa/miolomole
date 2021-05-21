@@ -6,6 +6,7 @@ import { StoreJumbotronFieldsFunction, StoreJumbotronFieldsState, gridTemplate }
 import Form from '../../Elements/Form';
 import Editable from '../Editable';
 import axios from 'axios';
+import EditableImage from '../EditableImage';
 
 export default function StoreJumbotron(props){
   const [ fields, setFields ] = useState(StoreJumbotronFieldsState);
@@ -17,6 +18,7 @@ export default function StoreJumbotron(props){
 
  return(
     <S.StoreJumbotronContainer>
+      <EditableImage {...props} textKey="storeJumbotronImage"><S.StoreJumbotronImage /></EditableImage>
       <Container>
         <S.JumbotronWraper>
           <Editable {...props} textKey="storeJumbotronTitle"><S.StoreJumbotronTitle /></Editable>

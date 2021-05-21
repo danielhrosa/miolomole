@@ -2,26 +2,40 @@ import styled from 'styled-components';
 import StoreJumbotron from '../../images/jumbotronLoja.jpg'
 
 export const StoreJumbotronContainer = styled.div`
-  background-image: url(${StoreJumbotron});
   width: 100vw;
-  background-repeat: no-repeat;
-  background-size: cover;
-  background-position: right;
-  height: 500px;
+  height: 400px;
+  margin-top: 70px;
+
   @media screen{
     @media (min-width: 1024px){
-      background-position: center;
-      height: 400px;
+      margin-top: 75px;
     }
   }
-  .container{
+  /* .container{
     align-items: flex-start;
     padding: 0 40px;
+  } */
+  >div{
+    >div{
+      right: 20px;
+      
+    }
   }
 `
-export const JumbotronWraper = styled.div`
+export const StoreJumbotronImage = styled.img`
   width: 100%;
+  height: max-content;
+  object-fit: cover;
+  z-index: -8;
+`
+
+export const JumbotronWraper = styled.div`
+  width: 90%;
   height: 70%;
+  position: absolute;
+  top: 90px;
+  z-index: 10;
+
 
   .inputSelect__control{
     background-color: transparent;

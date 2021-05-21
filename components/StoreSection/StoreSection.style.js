@@ -67,6 +67,8 @@ export const AddPartnerButton = styled.div`
   position: absolute;
   width: 200px;
   top: -40px;
+  z-index: 10;
+
   span {
     font-size: 36px;
     line-height: 56px;
