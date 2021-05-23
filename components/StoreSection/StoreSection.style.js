@@ -9,7 +9,6 @@ export const StorePartners = styled.div`
   position: relative;
   width: 100%;
   background-color: ${({ theme: { color: { white }}}) => white };
-  margin-top: -150px;
   margin-top: -20px;
   padding: 15px;
   display: grid;
@@ -22,7 +21,7 @@ export const StorePartners = styled.div`
       grid-template-columns: 1fr 1fr;
     }
     @media (min-width: 1024px){
-      margin-top: -150px;
+      margin-top: -40px;
       padding: 50px;
       grid-template-columns: 1fr 1fr 1fr;
     }
@@ -36,6 +35,7 @@ export const PartnerCard = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: space-evenly;
+  margin: 0 auto;
   margin-bottom: 30px;
   position: relative;
 
@@ -64,6 +64,11 @@ export const AddPartnerButton = styled.div`
   border-top-left-radius: 10px;
   border-top-right-radius: 10px;
   margin-bottom: 30px;
+  position: absolute;
+  width: 200px;
+  top: -40px;
+  z-index: 10;
+
   span {
     font-size: 36px;
     line-height: 56px;

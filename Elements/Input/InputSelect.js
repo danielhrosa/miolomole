@@ -62,7 +62,7 @@ export default function InputSelect({
       distance={4}
       placeholder={placeholder}
       getHelperDimensions={({ node }) => node.getBoundingClientRect()}
-      defaultOptions={options}
+      defaultOptions={options || true}
       id={name}
       name={name}
       key={filter}

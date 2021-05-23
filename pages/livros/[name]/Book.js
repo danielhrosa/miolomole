@@ -7,7 +7,6 @@ export default function Book(props){
   const book = props?.book ? JSON.parse(props?.book) : [];
   const books = !!props?.books?.length ? JSON.parse(props?.books) : [];
 
-  console.log(props?.books)
   if(hasAudiovisual){
     if(!Object.values(book.audio).some((item) => item !== '')){ return <BlankPage /> }
     return <BookAudiovisual {...props} book={book} books={books} />

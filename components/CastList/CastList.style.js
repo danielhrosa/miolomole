@@ -122,11 +122,11 @@ export const CardDescription = styled.div`
   height: 98px;
   width: 100%;
   color: #071825;
-  display: -webkit-box;
+  /* display: -webkit-box;
   -webkit-line-clamp: 5;
-  -webkit-box-orient: vertical;
-  overflow: hidden;
-  text-overflow: ellipsis;
+  -webkit-box-orient: vertical; */
+  overflow-Y: scroll;
+  /* text-overflow: ellipsis; */
   
   @media screen{
     @media (min-width: 1024px){

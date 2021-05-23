@@ -1,3 +1,4 @@
+import axios from 'axios';
 import * as S from './BookInfo.style';
 
 export const BookInfoFieldsState = () => ({
@@ -38,35 +39,42 @@ export const BookInfoFieldsFunction = ({ fields, isLoggedIn, users }) => ({
   authors: {
     ...fields.authors,
     name: 'authors',
-    type: 'simpleSelect',
-    label: 'Autoria: ',
-    placeholder: 'Autoria...',
-    variation: 'simple',
     isMulti: true,
+    loadEmpty: true,
+    isSearchable: true,
+    label: 'Autoria: ',
+    variation: 'simple',
+    type: 'simpleSelect',
+    isMulti: true,
+    isSearchable: true,
     isLoggedIn: isLoggedIn,
+    placeholder: 'Autoria...',
     styledLabel: <S.BookItemLabel isLoggedIn={isLoggedIn} />,
     styledItem: <S.BookInfoItemSelect isLoggedIn={isLoggedIn} />,
-    options: users.sort((a, b) => {
-      if(a.userFullName < b.userFullName) { return -1; }
-      if(a.userFullName > b.userFullName) { return 1; }
-      return 0;
-    }).map((option) => ({ _id: option._id, label: option.userFullName || option.userName, value: option._id }))
+    loadOptions: (query, callback) => { axios.get('/api/users')
+      .then((res) => res && callback(res.data
+        .filter((option) => option.userFullName?.toLowerCase().includes(query?.toLowerCase()))
+        .map((option) => ({ label: option.userFullName, value: option._id }))
+      ))}
   },
   illustrators: {
     ...fields.illustrators,
-    name: 'illustrators',
-    type: 'simpleSelect',
     isMulti: true,
+    loadEmpty: true,
+    isSearchable: true,
+    type: 'simpleSelect',
+    name: 'illustrators',
     label: 'Ilustrações: ',
     placeholder: 'Ilustrações...',
     styledItem: <S.BookInfoItemSelect isLoggedIn={isLoggedIn} />,
     styledLabel: <S.BookItemLabel isLoggedIn={isLoggedIn} />,
     styledComponent: <S.BookItemValue isLoggedIn={isLoggedIn} />,
-    options: users.sort((a, b) => {
-      if(a.userFullName < b.userFullName) { return -1; }
-      if(a.userFullName > b.userFullName) { return 1; }
-      return 0;
-    }).map((option) => ({ _id: option._id, label: option.userFullName || option.userName, value: option._id }))
+    loadOptions: (query, callback) => { axios.get('/api/users')
+      .then((res) => res && callback(res.data
+        .filter((option) => option.userFullName?.toLowerCase().includes(query?.toLowerCase()))
+        .map((option) => ({ label: option.userFullName, value: option._id }))
+      ))
+    }
   },
   size: {
     ...fields.size,

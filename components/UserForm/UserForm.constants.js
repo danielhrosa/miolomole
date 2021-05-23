@@ -1,3 +1,5 @@
+import { css } from 'styled-components';
+
 export const usuariosFieldsState = (props) => ({
   avatar: { value: '' },
   userName: { value: '' },
@@ -5,6 +7,7 @@ export const usuariosFieldsState = (props) => ({
   occupation: { value: [] },
   description: { value: '' },
   password: { value: '' },
+  hideFromList: { value: false },
 })
 
 export const usuariosFieldsFunction = ({ fields }) => ({
@@ -47,10 +50,16 @@ export const usuariosFieldsFunction = ({ fields }) => ({
     name: 'description',
     type: 'textarea',
   },
+  hideFromList: {
+    ...fields.hideFromList,
+    label: 'Ocultar da lista?',
+    name: 'hideFromList',
+    type: 'switch',
+  },
 })
 
 export const gridTemplate = () => {
-  return `
+  return css`
     grid-template-areas:
       "avatar"
       "userName"
@@ -58,20 +67,20 @@ export const gridTemplate = () => {
       "occupation"
       "password"
       "description"
-      "description";
+      "hideFromList";
     grid-template-columns: 1fr;
 
     @media screen{
       @media (min-width: 1024px){
-        grid-template:
+        grid-template-areas:
+          "avatar hideFromList hideFromList"
           "avatar userName occupation"
-          "avatar userFullName occupation"
+          "avatar userFullName userFullName"
           "avatar password password"
           "avatar description description"
-          "avatar . ."
         ;
         grid-template-columns: 320px 1fr 1fr;
-        grid-template-rows: 80px 80px 80px auto;
+        grid-template-rows: 80px 80px 80px auto auto;
       }
     }
   `

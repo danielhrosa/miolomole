@@ -58,17 +58,17 @@ export default function AboutUsSlider(props){
   const { isLoggedIn } = useAppProvider();
 
   useEffect(() => props.items && setItems(JSON.parse(props.items)), [])
-
+  
   return(
     <S.AboutUsSlider id='AboutUsSlider'>
-      <S.AboutUsSliderContainer>
+      <S.AboutUsSliderContainer onClick={() => !isLoggedIn && router.push('/autores')}>
         <S.SliderInfo>
-          <Editable {...props} textKey="homeAuthorsListTitle" onClick={() => !isLoggedIn && router.push('/autores')}><S.SliderTitle /></Editable>
+          <Editable {...props} textKey="homeAuthorsListTitle"><S.SliderTitle /></Editable>
           <Editable {...props} textKey="homeAuthorsListDesc"><S.SliderDescription/></Editable>
         </S.SliderInfo>
         <S.SliderCards>
           <Slider {...settings}>
-            {items.map((item, i) => (
+            {items.filter((item) => !item?.hideFromList ).map((item, i) => (
               <S.SliderCard key={item._id + i}>
                 <S.CardPicture src={item.avatar} />
                 <S.SliderCardContainer>

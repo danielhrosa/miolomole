@@ -9,6 +9,7 @@ var user = new Schema({
   description: { type: String },
   password: { type: String },
   token: { type: String },
+  hideFromList: { type: Boolean },
 }, {timestamps: true});
 
 mongoose.models = {};

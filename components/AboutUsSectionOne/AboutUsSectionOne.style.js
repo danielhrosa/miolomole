@@ -72,7 +72,8 @@ export const SectionOneImageOne = styled.img`
   background: #C4C4C4;
   border-radius: 50%;
   display: block;
-  
+  object-fit: cover;
+
   @media screen{
     @media (min-width: 640px){
       height: 150px;

@@ -2,25 +2,40 @@ import styled from 'styled-components';
 import StoreJumbotron from '../../images/jumbotronLoja.jpg'
 
 export const StoreJumbotronContainer = styled.div`
-  background-image: url(${StoreJumbotron});
   width: 100vw;
-  background-repeat: no-repeat;
-  background-size: cover;
-  height: 100vh;
-  background-position: right;
+  height: 400px;
+  margin-top: 70px;
+
   @media screen{
     @media (min-width: 1024px){
-      height: 54vw;
-      background-position: center;
+      margin-top: 75px;
     }
   }
-  .container{
+  /* .container{
     align-items: flex-start;
+    padding: 0 40px;
+  } */
+  >div{
+    >div{
+      right: 20px;
+      
+    }
   }
 `
-export const JumbotronWraper = styled.div`
+export const StoreJumbotronImage = styled.img`
   width: 100%;
+  height: max-content;
+  object-fit: cover;
+  z-index: -8;
+`
+
+export const JumbotronWraper = styled.div`
+  width: 90%;
   height: 70%;
+  position: absolute;
+  top: 90px;
+  z-index: 10;
+
 
   .inputSelect__control{
     background-color: transparent;
@@ -51,7 +66,7 @@ export const StoreJumbotronTitle = styled.h1`
   font-weight: 500;
   font-size: 80px;
   /* identical to box height */
-  margin-bottom: 30px;
+  margin-bottom: 0px;
   display: flex;
   align-items: flex-end;
   letter-spacing: 2.4px;
@@ -61,6 +76,8 @@ export const StoreJumbotronTitle = styled.h1`
   @media screen{
     @media (min-width: 1024px){
       font-size: 80px;
+      margin-block-start: 33px;
+
     }
   }
 `
@@ -69,7 +86,7 @@ export const StoreJumbotronSubTitle = styled.h4`
   font-style: normal;
   font-weight: 400;
   color: #FFFFFF;
-  margin-bottom: 30px;
+  margin-bottom: 0px;
   font-size: 15px;
   line-height: 1.6;
   width: 90%;
