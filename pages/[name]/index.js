@@ -13,7 +13,7 @@ export async function getServerSideProps({ params: { name } }) {
     'audiovisual',
     'versao-audioacessivel',
   ]
-  let partURL, bookName, books;
+  let partURL, bookName, booksSearch;
   let book = null;
   let hasAudiovisual = null;
   const page = 'book';
@@ -22,10 +22,12 @@ export async function getServerSideProps({ params: { name } }) {
   if (hasExtraContentsInURL.some((part) => { if(name.includes(part)) { partURL = part; return true } })) { 
     hasAudiovisual = true; 
   }
+  const booksArr = await Book.find();
+  const books = booksArr ? JSON.stringify(booksArr) : []
   bookName = name.replace(`-${partURL}`, '')
-  if(bookName) { books = await Book.find({ name: new RegExp(bookName,"g") }).populate('authors').populate('illustrators') };
-  if(books.length) { book = JSON.stringify(books[0]) };
-  return { props: { book, hasAudiovisual, texts, page } }
+  if(bookName) { booksSearch = await Book.find({ name: new RegExp(bookName,"g") }).populate('authors').populate('illustrators') };
+  if(booksSearch.length) { book = JSON.stringify(booksSearch[0]) };
+  return { props: { book, hasAudiovisual, texts, books, page } }
 }
 
 export { default } from '../livros/[name]/Book';
