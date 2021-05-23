@@ -4,7 +4,6 @@ import * as S from './BookAudiovisual.styles';
 
 export default function BookAudiovisual({book, ...props}){
   const { visual, description, video } = book.audio;
-  console.log(book)
 
   return(
     <S.BookAcessivel>
