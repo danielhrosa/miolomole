@@ -3,7 +3,6 @@ import * as P from 'video-react';
 import Container from '../Container';
 
 export default function Player({ src, poster, ...props }){
-  console.log(props)
   return(
     <S.RPlayer>
       <P.Player

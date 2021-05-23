@@ -6,7 +6,6 @@ const email = process.env.EMAIL_EUREKA;
 const pass = process.env.PASSWORD_EUREKA;
 
 export const createEmail = ({ to, html = "", subject = "" }) => {
-  console.log(to, html, subject )
   return { from: `"Miolo Mole" <${email}>`, to, subject, html };
 };
 
