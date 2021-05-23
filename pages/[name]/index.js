@@ -1,6 +1,6 @@
 import mongoose from 'mongoose';
-import Book from '../../../models/book';
-import Text from '../../../models/text';
+import Book from '../../models/book';
+import Text from '../../models/text';
 
 export async function getServerSideProps({ params: { name } }) {
   await mongoose.connect(process.env.NEXT_PUBLIC_MONGO_DB_URL, { useUnifiedTopology: true, useFindAndModify: false, useCreateIndex: true, useNewUrlParser: true });
@@ -15,10 +15,9 @@ export async function getServerSideProps({ params: { name } }) {
     hasAudiovisual = true; 
   }
   bookName = name.replace(`-${partURL}`, '')
-  console.log(texts)
   if(bookName) { books = await Book.find({ name: new RegExp(bookName,"g") }).populate('authors').populate('illustrators') };
   if(books.length) { book = JSON.stringify(books[0]) };
   return { props: { book, hasAudiovisual, texts, page } }
 }
 
-export { default } from './Book';
+export { default } from '../livros/[name]/Book';

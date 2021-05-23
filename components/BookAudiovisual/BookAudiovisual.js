@@ -2,10 +2,9 @@ import Player from '../Player';
 import Editable from '../Editable';
 import * as S from './BookAudiovisual.styles';
 
-export default function BookAudiovisual(props){
-  const visual = props?.book?.audio?.visual ? props.book.audio.visual : '';
-  const description = props?.book?.audio?.description ? props.book.audio.description : '';
-  const video = props?.book?.audio?.video ? props.book.audio.video : '';
+export default function BookAudiovisual({book, ...props}){
+  const { visual, description, video } = book.audio;
+  
   return(
     <S.BookAcessivel>
       { visual && (

@@ -2,16 +2,10 @@ import BookComponent from "../../../components/BookComponent";
 import BookAudiovisual from "../../../components/BookAudiovisual";
 import BlankPage from "../../../components/BlankPage/BlankPage";
 
-export default function Book(props){
-  const hasAudiovisual = props?.hasAudiovisual ? props?.hasAudiovisual : false;
-  const book = props?.book ? JSON.parse(props?.book) : [];
-  const books = !!props?.books?.length ? JSON.parse(props?.books) : [];
-
-  if(hasAudiovisual){
-    if(!Object.values(book.audio).some((item) => item !== '')){ return <BlankPage /> }
-    return <BookAudiovisual {...props} book={book} books={books} />
-  } else {
-    if(book) { return <BookComponent book={book} books={books} /> }
-    else { return <BlankPage /> }
-  }
+export default function Book({ hasAudiovisual, ...props }){
+  const book = JSON.parse(props.book)
+  if(book && hasAudiovisual){
+    return <BookAudiovisual {...props} book={book}/>
+  } else if (book) { return <BookComponent {...props} book={book}/> }
+  return <BlankPage />
 }
