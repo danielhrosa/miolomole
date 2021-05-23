@@ -5,13 +5,13 @@ import Text from '../../models/text';
 export async function getServerSideProps({ params: { name } }) {
   await mongoose.connect(process.env.NEXT_PUBLIC_MONGO_DB_URL, { useUnifiedTopology: true, useFindAndModify: false, useCreateIndex: true, useNewUrlParser: true });
   const hasExtraContentsInURL = [ 
+    'buyua-wasu-versao-audiovisual',
     'versao-audiovisual-acessivel',
     'versao-audiovisual',
     'audiovisual',
     'versao-audioacessivel',
     'verao-audiovisual',
     'versao-ausiovisual',
-    'buyua-wasu-versao-audiovisual',
   ]
   let partURL, bookName, books;
   let book = null;
@@ -23,6 +23,7 @@ export async function getServerSideProps({ params: { name } }) {
     hasAudiovisual = true; 
   }
   bookName = name.replace(`-${partURL}`, '')
+  console.log(partURL, bookName)
   if(bookName) { books = await Book.find({ name: new RegExp(bookName,"g") }).populate('authors').populate('illustrators') };
   if(books.length) { book = JSON.stringify(books[0]) };
   return { props: { book, hasAudiovisual, texts, page } }
