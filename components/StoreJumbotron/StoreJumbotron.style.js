@@ -48,6 +48,10 @@ export const JumbotronWraper = styled.div`
     line-height: 1.4;
     color: #FFFFFF;
   }
+  .css-b8ldur-Input {
+    color: white;
+    font-weight: bold;
+  }
   .primary{
     width: 150px;
     border: none;
