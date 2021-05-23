@@ -29,7 +29,6 @@ export default function ContactSection(props){
         });
         // refetch()
       })
-      console.log(variables)
   }
 
   const submitButton = {
