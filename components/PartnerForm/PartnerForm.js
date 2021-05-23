@@ -28,11 +28,15 @@ export default function PartnerForm(props){
 
   const onSubmit = async () => {
     const fieldsValue = mapFieldsToData(partnerFormfields);
-    if(!partner){ 
-      const res = await axios.post(`/api/parceiros`, { ...fieldsValue })
-      if(res.status === 200) { toast.success('Cadastrado realizado com sucesso!'); setFields(PartnerFormInitialState) }
-      else { toast.error(res.response.data) }
-    } else { 
+    if(!partner){
+      const emptyField = Object.values(partnerFormfields)?.find((field) => field.value == '')
+      if(emptyField) { toast.error(`Por favor preencha o campo ${emptyField.label}`) }
+      else {
+        const res = await axios.post(`/api/parceiros`, { ...fieldsValue })
+        if(res.status === 200) { toast.success('Cadastrado realizado com sucesso!'); setFields(PartnerFormInitialState) }
+        else { toast.error(res.response.data) }
+      }
+    } else {
       const res = await axios.put(`/api/parceiros`, { ...fieldsValue, _id: partner._id })
       if(res.status === 200) { toast.success('Cadastro atualizado com sucesso!') } 
       else { toast.error(res?.response?.data) }
