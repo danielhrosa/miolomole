@@ -61,13 +61,13 @@ export default function AboutUsSlider(props){
   
   return(
     <S.AboutUsSlider id='AboutUsSlider'>
-      <S.AboutUsSliderContainer onClick={() => !isLoggedIn && router.push('/autores')}>
+      <S.AboutUsSliderContainer>
         <S.SliderInfo>
-          <Editable {...props} textKey="homeAuthorsListTitle"><S.SliderTitle /></Editable>
+          <Editable {...props} textKey="homeAuthorsListTitle" onClick={() => !isLoggedIn && router.push('/autores')}><S.SliderTitle /></Editable>
           <Editable {...props} textKey="homeAuthorsListDesc"><S.SliderDescription/></Editable>
         </S.SliderInfo>
         <S.SliderCards>
-          <Slider {...settings}>
+          <Slider {...settings} >
             {items.filter((item) => !item?.hideFromList ).map((item, i) => (
               <S.SliderCard key={item._id + i}>
                 <S.CardPicture src={item.avatar} />
