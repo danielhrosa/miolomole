@@ -89,9 +89,10 @@ export const gridTemplate = () => {
         "description description logo"
         "city city logo"
         "books books logo"
-        ". . logo"
     `};
       grid-template-columns: 1fr 1fr 280px;
+      grid-template-rows: 80px 80px 80px 146px;
+
     }
   `
 };
