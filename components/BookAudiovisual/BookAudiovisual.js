@@ -3,7 +3,7 @@ import Editable from '../Editable';
 import * as S from './BookAudiovisual.styles';
 
 export default function BookAudiovisual({book, ...props}){
-  const { visual, description, video } = book.audio;
+  const { visual, description, video } = book.audio || {};
 
   return(
     <S.BookAcessivel>
