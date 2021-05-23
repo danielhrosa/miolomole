@@ -2,13 +2,13 @@ import axios from 'axios';
 import { css } from 'styled-components';
 
 export const StoreJumbotronFieldsState = ({
-  selectState: { value: '' },
+  state: { value: '' },
 })
 
 export const StoreJumbotronFieldsFunction = ({fields, router}) => ({
-  selectState: {
-    ...fields.selectState,
-    name: 'selectState',
+  state: {
+    ...fields.state,
+    name: 'state',
     placeholder: 'Cidade...',
     type: 'select',
     isSearchable: true,
@@ -22,9 +22,16 @@ export const StoreJumbotronFieldsFunction = ({fields, router}) => ({
         ), [])))
         .catch((err) => callback([]))
     },
-    // onChange: ({ target, setFields }) => {
-    //   router
-    // },
+    onChange: ({ target, setFields }) => {
+      const { name, value } = target;
+      console.log(value)
+      router.push(`/loja?city=${value.value}`)
+      setFields((oldFields) => {
+        const newFields = {...oldFields};
+        newFields[name].value = value;
+        return newFields
+      })
+    },
   },
   submitButton: {
     name: 'submitButton',
@@ -38,14 +45,14 @@ export const StoreJumbotronFieldsFunction = ({fields, router}) => ({
 export const gridTemplate = () => css`
   width: 80%;
   grid-template-areas: 
-    "selectState"
+    "state"
     "submitButton"
   ;
   grid-gap: 32px;
   @media screen{
     @media (min-width: 1024px){
       grid-template-areas: 
-        "selectState submitButton"
+        "state submitButton"
       ;
     }
   }
