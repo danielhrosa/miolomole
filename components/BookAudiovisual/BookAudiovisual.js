@@ -26,7 +26,7 @@ export default function BookAudiovisual({book, ...props}){
       { video && (
         <S.Book>
           <S.BookWrapper>
-          <Editable {...props} textKey="bookVideoTitle"><S.Title /></Editable>
+            <Editable {...props} textKey="bookVideoTitle"><S.Title /></Editable>
             <Player src={video} />
           </S.BookWrapper>
         </S.Book>
