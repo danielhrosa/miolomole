@@ -19,13 +19,13 @@ export async function getServerSideProps({ params: { name } }) {
   const page = 'book';
   const textsArray = await Text.find({ page });
   const texts = textsArray.reduce((object, text) => Object.assign(object, {[text.textKey]: text.text}), {});
-  if (hasExtraContentsInURL.some((part) => { if(name.includes(part)) { partURL = part; return true } })) { 
+  if (hasExtraContentsInURL.some((part) => { if(name.includes(part)) { partURL = part; return true } })) {
     hasAudiovisual = true; 
   }
   const booksArr = await Book.find();
   const books = booksArr ? JSON.stringify(booksArr) : []
   bookName = name.replace(`-${partURL}`, '')
-  if(bookName) { booksSearch = await Book.find({ name: new RegExp(bookName,"g") }).populate('authors').populate('illustrators') };
+  if(bookName) { booksSearch = await Book.find({ name: new RegExp(bookName, "g") }).populate('authors').populate('illustrators') };
   if(booksSearch.length) { book = JSON.stringify(booksSearch[0]) };
   return { props: { book, hasAudiovisual, texts, books, page } }
 }

@@ -1,22 +1,29 @@
-import { css } from 'styled-components';
 import axios from 'axios';
+import { css } from 'styled-components';
 
 export const StoreJumbotronFieldsState = ({
-  selectBook: { value: '' },
   selectState: { value: '' },
 })
 
-export const StoreJumbotronFieldsFunction = ({fields, setFields, books, states}) => ({
+export const StoreJumbotronFieldsFunction = ({fields, router}) => ({
   selectState: {
     ...fields.selectState,
     name: 'selectState',
-    placeholder: 'Estado...',
+    placeholder: 'Cidade...',
     type: 'select',
     isSearchable: true,
-    // loadOptions: (query, callback) => {
-    //   axios.get('/api/parceiros')
-    //     .then(({data}) => callback(data.map((item) => ({...item.city, }))))
-    //     .catch((err) => callback([]))
+    loadEmpty: true,
+    loadOptions: (query, callback) => {
+      axios.get('/api/parceiros')
+        .then((res) => res && callback(res.data.reduce((arr, item) => (
+          arr.some(({value}) => value.some((city) => item.city.includes(city)))
+            ? arr
+            : [...arr, { label: item.city, value: item.city }]
+        ), [])))
+        .catch((err) => callback([]))
+    },
+    // onChange: ({ target, setFields }) => {
+    //   router
     // },
   },
   submitButton: {
