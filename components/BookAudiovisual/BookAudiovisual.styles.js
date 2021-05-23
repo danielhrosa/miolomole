@@ -17,6 +17,9 @@ export const BookAcessivel = styled.div`
 
 export const Title = styled.h1`
   text-align: center;
+  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
+    Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+  
 `
 
 export const Book = styled.div`
