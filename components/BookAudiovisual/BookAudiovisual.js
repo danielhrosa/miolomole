@@ -4,14 +4,15 @@ import * as S from './BookAudiovisual.styles';
 
 export default function BookAudiovisual({book, ...props}){
   const { visual, description, video } = book.audio;
-  
+  console.log(book)
+
   return(
     <S.BookAcessivel>
       { visual && (
         <S.Book>
           <S.BookWrapper>
             <Editable {...props} textKey="bookVisualTitle"><S.Title /></Editable>
-            <Player src={visual} />
+            <Player src={visual} poster={book.image} />
           </S.BookWrapper>
         </S.Book>
       )}
@@ -19,7 +20,7 @@ export default function BookAudiovisual({book, ...props}){
         <S.Book>
           <S.BookWrapper>
           <Editable {...props} textKey="bookDescribleTitle"><S.Title /></Editable>
-            <Player src={description} />
+            <Player src={description} poster={book.image} />
           </S.BookWrapper>
         </S.Book>
       )}
@@ -27,7 +28,7 @@ export default function BookAudiovisual({book, ...props}){
         <S.Book>
           <S.BookWrapper>
             <Editable {...props} textKey="bookVideoTitle"><S.Title /></Editable>
-            <Player src={video} />
+            <Player src={video} poster={book.image}/>
           </S.BookWrapper>
         </S.Book>
       )}
