@@ -23,7 +23,6 @@ export async function getServerSideProps({ params: { name } }) {
     hasAudiovisual = true; 
   }
   bookName = name.replace(`-${partURL}`, '')
-  console.log(partURL, bookName)
   if(bookName) { books = await Book.find({ name: new RegExp(bookName,"g") }).populate('authors').populate('illustrators') };
   if(books.length) { book = JSON.stringify(books[0]) };
   return { props: { book, hasAudiovisual, texts, page } }
