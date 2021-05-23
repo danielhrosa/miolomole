@@ -52,6 +52,10 @@ export const JumbotronWraper = styled.div`
     color: white;
     font-weight: bold;
   }
+  .css-1uccc91-singleValue{
+    color: white;
+    font-weight: bold;
+  }
   .primary{
     width: 150px;
     border: none;
