@@ -117,32 +117,4 @@ export const LastestRegister = styled.div`
     }
   }
   
-  >button{
-    height: 50px;
-    border-top-left-radius: 0;
-    border-bottom-left-radius: 0;
-    border-top-right-radius: 29.5px;
-    border-bottom-right-radius: 29.5px;
-    border: none;
-    background-color: #FFFFFF;
-    font-family: Montserrat;
-    font-weight: 500;
-    font-size: ${({ theme: { fontSize: { fontSizeXS }}}) => fontSizeXS };
-    padding: 12px 30px;
-    color: #2D2E2E;
-    text-transform: unset;
-    width: 100px;
-    transition: .3s background-color ease-in-out;
-
-    @media screen{
-      @media (min-width: 900px){
-        width: 140px;
-
-      }
-    }
-
-    :hover{
-      background-color: #E5F0FF;
-    }
-  }
 `
