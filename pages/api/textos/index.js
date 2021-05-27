@@ -16,7 +16,8 @@ const textos = async (req, res) => {
           const { textKey, text, editedBy, page } = req.body;
           if(!textKey && !text) { res.status(422).json({ errorMessage: 'Dados Incompletos' }) };
           try {
-            var oldText = await Text.findOne({ textKey: textKey });
+            var oldText = await Text.findOne({ textKey });
+            console.log('oldText', oldText)
             if (oldText) {
               oldText.text = text;
               oldText.editedBy = editedBy;
@@ -24,6 +25,7 @@ const textos = async (req, res) => {
               res.status(200).json({ oldTextUpdated });
             } else {
               var newText = new Text({ textKey, text, page, editedBy });
+              console.log(newText)
               var textCreated = await newText.save();
               res.status(200).json({ textCreated });
             }
