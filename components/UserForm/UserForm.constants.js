@@ -1,3 +1,4 @@
+import axios from 'axios';
 import { css } from 'styled-components';
 
 export const usuariosFieldsState = (props) => ({
@@ -37,6 +38,18 @@ export const usuariosFieldsFunction = ({ fields }) => ({
     ...fields.userFullName,
     name: 'userFullName',
     label: 'Nome',
+    isCreatable: true,
+    isSearchable: true,
+    loadEmpty: true,
+    type: 'select',
+    loadOptions: (query, callback) => {
+      axios.get('/api/users').then((res) => {
+        res && callback(res.data
+          .filter((option) => option?.userFullName?.toLowerCase().includes(query.toLowerCase()) || option.userName.toLowerCase().includes(query.toLowerCase()))
+          .map((option) => ({ label: option.userFullName + ' já cadastrado!'}))
+        )
+      })
+    }
   },
   password: {
     ...fields.password,

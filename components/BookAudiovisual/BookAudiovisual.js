@@ -2,15 +2,15 @@ import Player from '../Player';
 import Editable from '../Editable';
 import * as S from './BookAudiovisual.styles';
 
-export default function BookAudiovisual({book, ...props}){
+export default function BookAudiovisual({ book, ...props }) {
   const { visual, description, video } = book.audio || {};
 
-  return(
+  return (
     <S.BookAcessivel>
       { visual && (
         <S.Book>
           <S.BookWrapper>
-            <Editable {...props} textKey="bookVisualTitle"><S.Title /></Editable>
+            <Editable {...props} textKey={`bookVisualTitle${book._id}`}><S.Title /></Editable>
             <Player src={visual} poster={book.image} />
           </S.BookWrapper>
         </S.Book>
@@ -18,7 +18,7 @@ export default function BookAudiovisual({book, ...props}){
       { description && (
         <S.Book>
           <S.BookWrapper>
-          <Editable {...props} textKey="bookDescribleTitle"><S.Title /></Editable>
+            <Editable {...props} textKey={`bookDescribleTitle${book._id}`}><S.Title /></Editable>
             <Player src={description} poster={book.image} />
           </S.BookWrapper>
         </S.Book>
@@ -26,8 +26,8 @@ export default function BookAudiovisual({book, ...props}){
       { video && (
         <S.Book>
           <S.BookWrapper>
-            <Editable {...props} textKey="bookVideoTitle"><S.Title /></Editable>
-            <Player src={video} poster={book.image}/>
+            <Editable {...props} textKey={`bookVideoTitle${book._id}`}><S.Title /></Editable>
+            <Player src={video} poster={book.image} />
           </S.BookWrapper>
         </S.Book>
       )}

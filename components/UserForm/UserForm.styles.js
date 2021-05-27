@@ -8,6 +8,7 @@ export const UsuariosWrapper = styled.div`
   align-items: center;
   > section { width: 80%; margin: 0 auto;}
   > section > form > div, > section > form > button { margin: 15px }
+  #occupation > div.inputSelect__control.css-yk16xz-control > div { padding: 0; }
   > section > form > button { justify-self: flex-end }
 
   img{

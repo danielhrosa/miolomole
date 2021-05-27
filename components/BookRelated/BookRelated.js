@@ -1,8 +1,9 @@
-import * as S from './BookRelated.style'
-import Container from '../Container'
-import Button from '../../Elements/Button'
-import { useEffect, useState } from 'react';
+import Editable from '../Editable';
+import Container from '../Container';
 import { useRouter } from 'next/router';
+import * as S from './BookRelated.style';
+import Button from '../../Elements/Button';
+import { useEffect, useState } from 'react';
 
 export default function BookRelated(props){
   const [books, setBooks] = useState();
@@ -13,7 +14,7 @@ export default function BookRelated(props){
   return(
     <S.BookRelated>
       <Container>
-        <S.RelatedTitle>Livros relacionados</S.RelatedTitle>
+        <Editable {...props} textKey="bookRelatedTitle"><S.RelatedTitle /></Editable>
         <S.RelatedBooks>
           { books?.sort(() => .5 - Math.random()).filter(((book) => book.name !== name)).slice(0,4).map((book) => (
             <S.BookRelatedCard key={book._id}>
