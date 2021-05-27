@@ -11,7 +11,6 @@ import InputFile from './InputFile';
 
 export default function Input(props) {
   const { type } = props
-
   switch (type) {
     case 'select': return <InputSelect {...props} />;
     case 'switch': return <InputSwitch {...props} />;

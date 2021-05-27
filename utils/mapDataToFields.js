@@ -23,17 +23,21 @@ function getDataSelectValue({ newFields, field, data, constant }) {
       })
     }
   } else {
-    newFields[field].value = !!data[field]?.length
-      ? {
-        label: data[field]?.label ||
-        data[field]?.name ||
-        data[field]?.legalName ||
-        data[field]?._id ||
-        data[field].title ||
-        constant?.options?.find(({value}) => value == data[field]) ||
-        data[field],
-        value: data[field]._id || data[field].value || data[field]
-      } : ''
+    if(constant.options){
+      newFields[field].value = {...constant?.options?.find(({value}) => value == data[field])}
+    } else {
+      newFields[field].value = !!data[field]?.length
+        ? {
+          label: data[field]?.label ||
+          data[field]?.name ||
+          data[field]?.legalName ||
+          data[field]?._id ||
+          data[field].title ||
+          constant?.options?.find(({value}) => value == data[field]) ||
+          data[field],
+          value: data[field]._id || data[field].value || data[field]
+        } : ''
+    }
   }
 }
 

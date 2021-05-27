@@ -87,6 +87,10 @@ export const SynopsisVideo = styled.div`
   [type="video"] { height: 100% }
 `
 
+export const Type = styled.div`
+  width: 100%;
+`
+
 export const InputVideo = styled.div`
   background-color: ${({ theme: { color: { blackLigthly }}}) => blackLigthly };
   opacity: 70%;
