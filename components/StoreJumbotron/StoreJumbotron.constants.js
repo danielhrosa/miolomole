@@ -24,7 +24,6 @@ export const StoreJumbotronFieldsFunction = ({fields, router}) => ({
     },
     onChange: ({ target, setFields }) => {
       const { name, value } = target;
-      console.log(value)
       router.push(`/loja?city=${value.value}`)
       setFields((oldFields) => {
         const newFields = {...oldFields};
