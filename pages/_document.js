@@ -15,6 +15,7 @@ export default class MyDocument extends Document {
       <Html lang="pt-br">
         <Head>
           {this.props.styleTags}
+          <title>Miolo Mole</title>
         </Head>
         <body>
           <Main />
