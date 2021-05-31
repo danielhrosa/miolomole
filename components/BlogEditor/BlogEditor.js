@@ -1,25 +1,23 @@
 import { useState } from 'react';
-import { EditorState } from 'draft-js';
-import { Editor } from 'react-draft-wysiwyg';
-import 'react-draft-wysiwyg/dist/react-draft-wysiwyg.css';
-import Slider from 'react-slick';
 import * as S from './BlogEditor.style'
+import Field from '../../Elements/Field';
+import { blogFieldsFunction, blogFieldsState } from './BlogEditor.constants';
+import { Toaster } from 'react-hot-toast';
+import { useRouter } from 'next/router';
+import { useAppProvider } from '../../store/appProvider';
 
-export default function BlogEditor(){
-  const [editorState, onEditorStateChange] = useState(EditorState.createEmpty(''));
+export default function BlogEditor({ article }){
+  const router = useRouter();
+  const { isLoggedIn } = useAppProvider();
+  const { name } = router.query;
+  const [fields, setFields] = useState(blogFieldsState(article));
+  const blogFields = blogFieldsFunction({ fields, setFields, name, isLoggedIn });
 
 
   return (
     <S.BlogEditor>
-      <Editor editorState={editorState} onEditorStateChange={onEditorStateChange}/>
+      { Object.values(blogFields).map((field) => <Field key={field.name} {...field} />) }
+      <Toaster position="bottom-right" reverseOrder={false}/>      
     </S.BlogEditor>
   )
 }
-
-
-
-
-
-
-
-
