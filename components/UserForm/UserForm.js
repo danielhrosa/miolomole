@@ -46,7 +46,6 @@ export default function UserForm(props){
       else { toast.error(res?.response?.data) }
     } catch (err) { toast.error(err.response.data.errorMessage) }
   }
-
   return(
     <S.UsuariosWrapper>
       <Button variation="primary" onClick={() => router.push('/autores')}>Voltar</Button>

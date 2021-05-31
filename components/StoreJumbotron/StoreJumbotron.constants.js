@@ -1,23 +1,36 @@
-import { css } from 'styled-components';
 import axios from 'axios';
+import { css } from 'styled-components';
 
 export const StoreJumbotronFieldsState = ({
-  selectBook: { value: '' },
-  selectState: { value: '' },
+  state: { value: '' },
 })
 
-export const StoreJumbotronFieldsFunction = ({fields, setFields, books, states}) => ({
-  selectState: {
-    ...fields.selectState,
-    name: 'selectState',
-    placeholder: 'Estado...',
+export const StoreJumbotronFieldsFunction = ({fields, router}) => ({
+  state: {
+    ...fields.state,
+    name: 'state',
+    placeholder: 'Cidade...',
     type: 'select',
     isSearchable: true,
-    // loadOptions: (query, callback) => {
-    //   axios.get('/api/parceiros')
-    //     .then(({data}) => callback(data.map((item) => ({...item.city, }))))
-    //     .catch((err) => callback([]))
-    // },
+    loadEmpty: true,
+    loadOptions: (query, callback) => {
+      axios.get('/api/parceiros')
+        .then((res) => res && callback(res.data.reduce((arr, item) => (
+          arr.some(({value}) => value.some((city) => item.city.includes(city)))
+            ? arr
+            : [...arr, { label: item.city, value: item.city }]
+        ), [])))
+        .catch((err) => callback([]))
+    },
+    onChange: ({ target, setFields }) => {
+      const { name, value } = target;
+      router.push(`/loja?city=${value.value}`)
+      setFields((oldFields) => {
+        const newFields = {...oldFields};
+        newFields[name].value = value;
+        return newFields
+      })
+    },
   },
   submitButton: {
     name: 'submitButton',
@@ -31,14 +44,14 @@ export const StoreJumbotronFieldsFunction = ({fields, setFields, books, states})
 export const gridTemplate = () => css`
   width: 80%;
   grid-template-areas: 
-    "selectState"
+    "state"
     "submitButton"
   ;
   grid-gap: 32px;
   @media screen{
     @media (min-width: 1024px){
       grid-template-areas: 
-        "selectState submitButton"
+        "state submitButton"
       ;
     }
   }

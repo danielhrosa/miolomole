@@ -39,16 +39,24 @@ export default function BookSynopsis({ book, ...props }){
     }
   }
 
+  const inputProps = {
+    isLoggedIn,
+    setFields
+  }
+
+  console.log(synopsisInput)
+
   return(
     <S.BookSynopsis>
       <Container>
         <S.SynopsisInfo>
           <S.SynopsisWrapper>
             <S.SynopsisTitle>Sinopse</S.SynopsisTitle>
-            <S.SynopsisText isLoggedIn={isLoggedIn}><Input {...synopsisInput.synopsis} setFields={setFields} /></S.SynopsisText>
+            <S.SynopsisText isLoggedIn={isLoggedIn}><Input {...synopsisInput.synopsis} {...inputProps} /></S.SynopsisText>
           </S.SynopsisWrapper>
         </S.SynopsisInfo>
-        <S.SynopsisVideo><Input {...synopsisInput.video} isLoggedIn={isLoggedIn} setFields={setFields} /></S.SynopsisVideo>
+        { isLoggedIn && <S.Type><Input {...synopsisInput.type} {...inputProps} /></S.Type> }
+        <S.SynopsisVideo><Input {...synopsisInput.video} {...inputProps} type={fields?.type?.value?.value || 'video'} /></S.SynopsisVideo>
         <Toaster position="bottom-right" reverseOrder={false}/>      
         { isLoggedIn && name && <Button id="save" variation="primary" onClick={() => saveInfos()} label="Salvar Sinopse" />}
       </Container>

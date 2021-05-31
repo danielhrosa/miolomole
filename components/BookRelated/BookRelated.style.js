@@ -13,7 +13,7 @@ export const RelatedBooks = styled.div`
     @media (min-width: 1024px){ grid-template-columns: 1fr 1fr 1fr 1fr; }
   }
 `
-export const RelatedTitle = styled.div`
+export const RelatedTitle = styled.h1`
   font-family: Amatic SC;
   font-weight: bold;
   font-size: 40px;
@@ -21,7 +21,6 @@ export const RelatedTitle = styled.div`
   display: flex;
   align-items: flex-end;
   letter-spacing: 2.4px;
-  color: #000000;
   margin-bottom: 50px;
 
 `

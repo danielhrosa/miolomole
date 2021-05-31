@@ -7,14 +7,13 @@ import Form from '../../Elements/Form';
 import Editable from '../Editable';
 import axios from 'axios';
 import EditableImage from '../EditableImage';
+import { useRouter } from 'next/router';
 
 export default function StoreJumbotron(props){
   const [ fields, setFields ] = useState(StoreJumbotronFieldsState);
-  const storeJumbotronFields = StoreJumbotronFieldsFunction({ fields, setFields });
+  const router = useRouter();
+  const storeJumbotronFields = StoreJumbotronFieldsFunction({ fields, router });
   const storeJumbotronObj = { fields: storeJumbotronFields, setFields, gridTemplate}
-
- // <Editable {...props} textKey="aboutUsImaginationTitle"><S.ImagitationTitle /></Editable>
-  
 
  return(
     <S.StoreJumbotronContainer>

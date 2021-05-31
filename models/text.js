@@ -2,7 +2,7 @@ import mongoose from 'mongoose';
 var Schema = mongoose.Schema;
 
 var text = new Schema({
-  textKey: { type: String, unique: true, required: true },
+  textKey: { type: String, required: true },
   text: { type: String, required: true },
   page: { type: String, required: true },
   editedBy: { type: String },

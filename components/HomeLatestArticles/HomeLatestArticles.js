@@ -27,7 +27,7 @@ export default function HomeLatestArticles(){
   const submitButton = {
     label: 'Enviar menssagem',
     onClick: submitMessage,
-    variation: 'primary',
+    variation: 'rounded',
     label: 'Cadastrar'
   }
 

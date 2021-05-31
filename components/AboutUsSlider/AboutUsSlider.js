@@ -1,7 +1,7 @@
 import * as S from './AboutUsSlider.style'
 import pt from '../../i18n/pt';
 import Slider from "react-slick";
-import "slick-carousel/slick/slick.css"; 
+import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import Editable from '../Editable';
 import { useEffect, useState } from 'react';
@@ -9,7 +9,7 @@ import Link from 'next/link';
 import { useAppProvider } from '../../store/appProvider';
 import { useRouter } from 'next/router';
 
-export default function AboutUsSlider(props){
+export default function AboutUsSlider(props) {
   const settings = {
     dots: true,
     speed: 500,
@@ -58,17 +58,17 @@ export default function AboutUsSlider(props){
   const { isLoggedIn } = useAppProvider();
 
   useEffect(() => props.items && setItems(JSON.parse(props.items)), [])
-  
-  return(
+
+  return (
     <S.AboutUsSlider id='AboutUsSlider'>
-      <S.AboutUsSliderContainer onClick={() => !isLoggedIn && router.push('/autores')}>
+      <S.AboutUsSliderContainer>
         <S.SliderInfo>
-          <Editable {...props} textKey="homeAuthorsListTitle"><S.SliderTitle /></Editable>
-          <Editable {...props} textKey="homeAuthorsListDesc"><S.SliderDescription/></Editable>
+          <Editable {...props} textKey={`${props.page}aboutUsAuthorsListTitle`} onClick={() => !isLoggedIn && router.push('/autores')}><S.SliderTitle /></Editable>
+          <Editable {...props} textKey={`${props.page}aboutUsAuthorsListDesc`}><S.SliderDescription /></Editable>
         </S.SliderInfo>
         <S.SliderCards>
-          <Slider {...settings}>
-            {items.filter((item) => !item?.hideFromList ).map((item, i) => (
+          <Slider {...settings} >
+            {items.filter((item) => !item?.hideFromList).map((item, i) => (
               <S.SliderCard key={item._id + i}>
                 <S.CardPicture src={item.avatar} />
                 <S.SliderCardContainer>
@@ -78,7 +78,7 @@ export default function AboutUsSlider(props){
               </S.SliderCard>
             ))}
           </Slider>
-        </S.SliderCards>  
+        </S.SliderCards>
       </S.AboutUsSliderContainer>
     </S.AboutUsSlider>
   )

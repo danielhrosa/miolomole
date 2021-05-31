@@ -2,7 +2,7 @@ import * as S from './Player.styles';
 import * as P from 'video-react';
 import Container from '../Container';
 
-export default function Player({ src }){
+export default function Player({ src, poster, ...props }){
   return(
     <S.RPlayer>
       <P.Player
@@ -10,7 +10,7 @@ export default function Player({ src }){
         width='auto'
         height={485}
         src={src}
-        poster="../images/favicon.png"
+        poster={poster}
       >
         <P.BigPlayButton position='center' />
         <P.LoadingSpinner />

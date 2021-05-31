@@ -27,9 +27,7 @@ export default function ContactSection(props){
           newFields.message.value = '';
           return newFields
         });
-        // refetch()
       })
-      console.log(variables)
   }
 
   const submitButton = {
