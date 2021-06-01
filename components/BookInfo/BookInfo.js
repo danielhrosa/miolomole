@@ -62,7 +62,10 @@ export default function BookInfo({ book }){
     } else {
       try{
         const res = await axios.put('/api/livros', { ...variables, name })
-        if(res.status === 200){ toast.success('Cadastro atualizado com sucesso!')} 
+        if(res.status === 200){ 
+          toast.success('Cadastro atualizado com sucesso!');
+          router.push(`/livros/${res.data.name}`)
+        } 
         else { console.log(res) }
       } catch (err) { console.log(err.response) }
     }

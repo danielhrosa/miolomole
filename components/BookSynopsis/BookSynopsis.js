@@ -44,8 +44,6 @@ export default function BookSynopsis({ book, ...props }){
     setFields
   }
 
-  console.log(synopsisInput)
-
   return(
     <S.BookSynopsis>
       <Container>
