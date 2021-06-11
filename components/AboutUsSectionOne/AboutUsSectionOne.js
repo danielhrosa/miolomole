@@ -17,10 +17,6 @@ export default function AboutUsSectionOne(props){
             <EditableImage {...props} textKey="sectionOneImageTwo"><S.SectionOneImageOne /></EditableImage>
             <Editable {...props} textKey="aboutUsImageNameTwo"><S.ImageName /></Editable>
           </S.ImageWrapper>
-          <S.ImageWrapper>
-            <EditableImage {...props} textKey="sectionOneImageThree"><S.SectionOneImageOne /></EditableImage>
-            <Editable {...props} textKey="aboutUsImageNameThree"><S.ImageName /></Editable>
-          </S.ImageWrapper>
         </S.SectionOneImages>
         <Editable {...props} textKey="aboutUsSectionOne"><S.SectionOneText /></Editable>
       </Container>
