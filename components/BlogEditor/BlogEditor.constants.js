@@ -65,3 +65,4 @@ export const blogFieldsFunction = ({ fields, setFields, name, isLoggedIn }) => (
     }
   }
 });
+  
