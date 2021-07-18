@@ -2,8 +2,8 @@ import BlogJumbotron from "../../components/BlogJumbotron";
 import BlogList from "../../components/BlogList";
 
 export default function Blog(props){
-
- return(
+  
+  return(
     <>
       <BlogJumbotron {...props}/>
       <BlogList/>

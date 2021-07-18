@@ -4,14 +4,12 @@ import { convertToRaw, convertFromRaw } from 'draft-js';
 import axios from 'axios';
 
 export const blogFieldsState = (article) => {
-  console.log(article);
   return ({
     title: { value: article?.title || '' },
     image: { value: article?.image || '' },
     content: { value: article?.content ? EditorState.createWithContent(convertFromRaw(JSON.parse(article.content))) : EditorState.createEmpty('') },
   })
 };
-
 
 export const blogFieldsFunction = ({ fields, setFields, name, isLoggedIn }) => ({
   title: {
