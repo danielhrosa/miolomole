@@ -2,10 +2,9 @@ import styled from 'styled-components';
 import Container from '../Container'
 
 export const BlogEditor = styled(Container)`
-  #rdw-wrapper-2807{
-    margin-top: 32px;
-  }
+
   .rdw-editor-wrapper{
+    margin-top: 32px;
     margin-bottom: 16px;
   }
   .rdw-editor-toolbar{
