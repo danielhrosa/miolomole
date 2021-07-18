@@ -52,5 +52,8 @@ export const BlogEditor = styled(Container)`
       width: 192px;
     }
   }
+  .Inputstyle__InputText-sc-1bzrsfb-16{
+    font-size: 22px;
+  }
 `
 
