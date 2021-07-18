@@ -6,7 +6,7 @@ export default function Blog(props){
   return(
     <>
       <BlogJumbotron {...props}/>
-      <BlogList/>
+      <BlogList {...props} />
     </>
   )
 }

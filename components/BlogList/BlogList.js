@@ -3,15 +3,15 @@ import * as S from './BlogList.style'
 import pt from "../../i18n/pt";
 import PostCard from '../PostCard'
 
-export default function BlogList(){
+export default function BlogList(props) {
   const t = pt
   const items = t.BLOG_ARTICLES
-
- return(
-   <Container>
-    <S.BlogList>
-      {items.map((art) => <PostCard key={art + 'articles'} item={art}/>)}
-    </S.BlogList>
-   </Container>
+  const posts = props?.posts ? JSON.parse(props.posts) : []
+  return (
+    <Container>
+      <S.BlogList>
+        {posts?.length && posts.map((post) => <PostCard key={`${post}-post`} item={post} />)}
+      </S.BlogList>
+    </Container>
   )
 }

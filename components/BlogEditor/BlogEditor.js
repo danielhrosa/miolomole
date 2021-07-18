@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useContext, useState } from 'react';
 import * as S from './BlogEditor.style'
 import Field from '../../Elements/Field';
 import { blogFieldsFunction, blogFieldsState } from './BlogEditor.constants';
@@ -12,8 +12,7 @@ export default function BlogEditor({ article }){
   const { name } = router.query;
   const [fields, setFields] = useState(blogFieldsState(article));
   const blogFields = blogFieldsFunction({ fields, setFields, name, isLoggedIn });
-
-
+  !isLoggedIn && delete blogFields.button
   return (
     <S.BlogEditor isLoggedIn={isLoggedIn}>
       { Object.values(blogFields).map((field) => <Field key={field.name} {...field} />) }
