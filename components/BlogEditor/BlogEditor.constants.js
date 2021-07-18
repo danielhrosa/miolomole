@@ -39,7 +39,7 @@ export const blogFieldsFunction = ({ fields, setFields, name, isLoggedIn }) => (
     name: 'submitArticle',
     type: 'button',
     variation: 'primary',
-    label: 'Salvar',
+    label: 'Publicar',
     onClick: () => {
       if(!fields.title.value) { toast.error('Por favor preencha o titulo') };
       if(!fields.image.value) { toast.error('Por favor coloque uma imagem') };
