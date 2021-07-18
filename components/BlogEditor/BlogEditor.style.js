@@ -55,5 +55,11 @@ export const BlogEditor = styled(Container)`
   .Inputstyle__InputText-sc-1bzrsfb-16{
     font-size: 22px;
   }
+  .rdw-colorpicker-option{
+    padding: 0;
+  }
+  .rdw-colorpicker-cube{
+    border-radius: 6px;
+  }
 `
 
