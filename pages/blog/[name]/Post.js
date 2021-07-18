@@ -11,7 +11,7 @@ export default function Post({ article }){
   
  return(
     <StyledBlogPage>
-      <BlogEditor article={JSON.parse(article)}/>
+      <BlogEditor article={article && JSON.parse(article)}/>
       {/* { isLoggedIn && <LatestArticles items={t.BLOG_ARTICLES}/> } */}
     </StyledBlogPage>
   )
