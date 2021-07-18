@@ -61,5 +61,30 @@ export const BlogEditor = styled(Container)`
   .rdw-colorpicker-cube{
     border-radius: 6px;
   }
+  .rdw-colorpicker-modal{
+    border-radius: 6px;
+    padding: 6px;
+    overflow: auto;
+    width: 230px;
+    height: 160px;
+  }
+  .rdw-colorpicker-modal-options{
+    overflow: auto;
+  }
+  .rdw-link-modal{
+    border-radius: 6px;
+  }
+  .rdw-embedded-modal {
+    border-radius: 6px;
+    height: 200px;
+  }
+  .rdw-emoji-modal{
+    border-radius: 6px;
+    width: 221px;
+  }
+  .rdw-image-modal{
+    border-radius: 6px;
+
+  }
 `
 
