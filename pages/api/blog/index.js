@@ -14,6 +14,10 @@ const blogHandler = async (req, res) => {
           if(!name || !title) {
             const posts = await Blog.find();
             return res.status(200).json(posts);
+          } else {
+            const param = name ? { name } : { title }
+            const post = await Blog.find(param);
+            return res.status(200).json(post);
           }
         } catch (err) { return res.status(500).end() };
       case 'PUT':
