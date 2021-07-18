@@ -1,31 +1,23 @@
 import { useState } from 'react';
-import { EditorState } from 'draft-js';
-import { Editor } from 'react-draft-wysiwyg';
-import { useAppProvider } from '../../store/appProvider';
 import * as S from './BlogEditor.style'
-import 'react-draft-wysiwyg/dist/react-draft-wysiwyg.css';
+import Field from '../../Elements/Field';
+import { blogFieldsFunction, blogFieldsState } from './BlogEditor.constants';
+import { Toaster } from 'react-hot-toast';
+import { useRouter } from 'next/router';
+import { useAppProvider } from '../../store/appProvider';
 
-export default function BlogEditor(){
-  const [editorState, onEditorStateChange] = useState(EditorState.createEmpty(''));
+export default function BlogEditor({ article }){
+  const router = useRouter();
   const { isLoggedIn } = useAppProvider();
-  console.log(isLoggedIn);
+  const { name } = router.query;
+  const [fields, setFields] = useState(blogFieldsState(article));
+  const blogFields = blogFieldsFunction({ fields, setFields, name, isLoggedIn });
+
 
   return (
-    <S.BlogEditor isLoggedIn={isLoggedIn}>
-      <Editor 
-        toolbarHidden={!isLoggedIn} 
-        readOnly={!isLoggedIn} 
-        editorState={editorState} 
-        onEditorStateChange={onEditorStateChange}
-      />
+    <S.BlogEditor>
+      { Object.values(blogFields).map((field) => <Field key={field.name} {...field} />) }
+      <Toaster position="bottom-right" reverseOrder={false}/>      
     </S.BlogEditor>
   )
 }
-
-
-
-
-
-
-
-

@@ -11,6 +11,7 @@ import FieldSeparator from './FieldSeparator';
 import FieldOuterLabel from './FieldOuterLabel';
 import FieldInputRadio from './FieldInputRadio';
 import FieldRadioButtons from './FieldRadioButtons';
+import Editor from '../../components/Editor';
 
 export default function Field(props) {
   switch (props.type) {
@@ -27,6 +28,7 @@ export default function Field(props) {
     case 'image':
     case 'video':
     case 'audio': return <FieldFile {...props} />
+    case 'editor': return <Editor {...props} />
     default: return <FieldInput {...props} />;
   }
 }
