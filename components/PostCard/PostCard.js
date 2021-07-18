@@ -4,17 +4,17 @@ import Clock from '../../images/js/Clock';
 import View from '../../images/js/View';
 
 export default function PostCard({ item }){
-  const router = useRouter()
-
+  const router = useRouter();
+  console.log(item);
   return(
-    <S.PostCard key={item.ID} onClick={() => router.push(`/blog/${item.ID}`)}>
-      <S.PostCardImage key={item.IMAGE} src={item.IMAGE} />
-      <S.PostCardInfo color={item.COLOR}>
-        <S.PostCardTitle>{item.TITLE}</S.PostCardTitle>
-        <S.PostCardText>{item.SHORT_DESCRIPTION}</S.PostCardText>
+    <S.PostCard key={item.id} onClick={() => router.push(`/blog/${item.name}`)}>
+      <S.PostCardImage key={item.image} src={item.image} />
+      <S.PostCardInfo color={item.color || 'green'}>
+        <S.PostCardTitle>{item.title}</S.PostCardTitle>
+        <S.PostCardText>{item.shortDescription || ''}</S.PostCardText>
         <S.Footer>
-          <S.FooterItemLabel><Clock />{item.CREATED_AT}</S.FooterItemLabel>
-          <S.FooterItemLabel><View />{item.VIEWS}</S.FooterItemLabel>
+          <S.FooterItemLabel><Clock />{item.createdAt}</S.FooterItemLabel>
+          <S.FooterItemLabel><View />{item.views || 0}</S.FooterItemLabel>
         </S.Footer>
       </S.PostCardInfo>
     </S.PostCard>
