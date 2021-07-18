@@ -6,26 +6,26 @@ import axios from 'axios';
 export const blogFieldsState = (article) => {
   console.log(article);
   return ({
-    title: { value: article?.title || '' },
     image: { value: article?.image || '' },
+    title: { value: article?.title || '' },
     content: { value: article?.content ? EditorState.createWithContent(convertFromRaw(JSON.parse(article.content))) : EditorState.createEmpty('') },
   })
 };
 
 
 export const blogFieldsFunction = ({ fields, setFields, name, isLoggedIn }) => ({
-  title: {
-    ...fields.title,
-    name: 'title',
-    placeholder: 'Titulo..',
-    type: 'titles',
-    setFields,
-    readOnly: !isLoggedIn
-  },
   image: {
     ...fields.image,
     name: 'image',
     type: 'image',
+    setFields,
+    readOnly: !isLoggedIn
+  },
+  title: {
+    ...fields.title,
+    name: 'title',
+    placeholder: 'Titulo..',
+    type: 'text',
     setFields,
     readOnly: !isLoggedIn
   },
@@ -40,6 +40,7 @@ export const blogFieldsFunction = ({ fields, setFields, name, isLoggedIn }) => (
   button: {
     name: 'submitArticle',
     type: 'button',
+    variation: 'primary',
     label: 'Salvar',
     onClick: () => {
       if(!fields.title.value) { toast.error('Por favor preencha o titulo') };

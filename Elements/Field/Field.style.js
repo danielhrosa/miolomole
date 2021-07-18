@@ -6,7 +6,7 @@ export const Field = styled.div`
   grid-area: ${({ name }) => name};
   position: relative;
   color: ${({ theme: { color: { blackMedium }}}) => blackMedium } !important;
-  
+  width: 100%;
   ${({ hasValue }) => hasValue && css`
     label {
       font-size: 12px;

@@ -197,7 +197,7 @@ export const InputText = styled(Input)`
   font-size: ${({ theme: { fontSize: { fontSizeXXS }}}) => fontSizeXXS};
 
   &::placeholder {
-    font-size: 0;
+    /* font-size: 0; */
   }
 
   &:focus {

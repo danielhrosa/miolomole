@@ -21,7 +21,10 @@ const Editor = dynamic(
 
 export default function Field(props) {
   switch (props.type) {
-    case 'button': case 'submit': return <Button {...props} />
+    case 'button': 
+    case 'submit': 
+    case 'confirm':
+      return <Button {...props} />
     case 'outerLabel': return <FieldOuterLabel {...props} />
     case 'radioButtons': return <FieldRadioButtons {...props} />
     case 'radio': return <FieldInputRadio {...props} />

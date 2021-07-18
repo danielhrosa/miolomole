@@ -202,7 +202,7 @@ const button = css`
   grid-area: ${({name}) => name};
   text-transform: uppercase;
   text-align: center;
-  padding: 12px 12px;
+  padding: 0 12px;
   border-radius: 8px;
   display: flex;
   justify-content: center;

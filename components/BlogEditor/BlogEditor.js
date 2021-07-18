@@ -15,7 +15,7 @@ export default function BlogEditor({ article }){
 
 
   return (
-    <S.BlogEditor>
+    <S.BlogEditor isLoggedIn={isLoggedIn}>
       { Object.values(blogFields).map((field) => <Field key={field.name} {...field} />) }
       <Toaster position="bottom-right" reverseOrder={false}/>      
     </S.BlogEditor>
