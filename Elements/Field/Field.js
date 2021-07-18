@@ -1,3 +1,4 @@
+import dynamic from 'next/dynamic';
 import React from 'react';
 import Button from '../Button';
 import FieldFile from './FieldFile';
@@ -11,7 +12,12 @@ import FieldSeparator from './FieldSeparator';
 import FieldOuterLabel from './FieldOuterLabel';
 import FieldInputRadio from './FieldInputRadio';
 import FieldRadioButtons from './FieldRadioButtons';
-import Editor from '../../components/Editor';
+
+const Editor = dynamic(
+  () => import('../../components/Editor'),
+  { ssr: false }
+);
+
 
 export default function Field(props) {
   switch (props.type) {
