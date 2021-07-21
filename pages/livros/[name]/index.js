@@ -23,7 +23,7 @@ export async function getServerSideProps({ params: { name } }) {
     hasAudiovisual = true; 
   }
   const booksArr = await Book.find();
-  const books = booksArr ? JSON.stringify(booksArr) : []
+  const books = booksArr ? JSON.stringify(booksArr) : [];
   bookName = name.replace(`-${partURL}`, '')
   if(bookName) { booksSearch = await Book.find({ name: new RegExp(bookName, "g") }).populate('authors').populate('illustrators') };
   if(booksSearch.length) { book = JSON.stringify(booksSearch[0]) };

@@ -7,6 +7,7 @@ export const BookAcessivel = styled.div`
   align-items: center;
   justify-content: center;
   flex-direction: column;
+  min-height: 80vh;
 
   .container { justify-content: unset }
 
@@ -41,4 +42,16 @@ export const BookWrapper = styled.div`
   justify-content: center;
   flex-direction: column;
   align-items: center;
+`
+
+export const AccessibleTitle = styled.h1`
+  font-family: 'Montserrat';
+`
+
+export const AccessibleCover = styled.img`
+  
+`
+
+export const MediaTitle = styled.p`
+  
 `

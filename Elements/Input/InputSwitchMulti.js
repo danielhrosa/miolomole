@@ -14,7 +14,7 @@ export default function InputSwitchMulti({ onChange, setFields, loadOptions, nam
       { options?.map((option) => (
         <StyledInputSwitchOption key={option._id} >
           <StyledInputSwitch
-            id={option.name}
+            id={uuidv4()}
             name={option.name}
             styles={switchStyles}
             checked={value.includes(option._id)}

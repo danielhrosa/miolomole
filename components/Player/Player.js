@@ -1,6 +1,5 @@
 import * as S from './Player.styles';
 import * as P from 'video-react';
-import Container from '../Container';
 
 export default function Player({ src, poster, ...props }){
   return(

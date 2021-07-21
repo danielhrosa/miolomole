@@ -2,6 +2,7 @@ import React, { useEffect } from 'react';
 import { inputChange } from '../../helpers/fieldFunctions';
 import { StyledInputSelect } from './Input.style';
 import { components } from 'react-select';
+import { v4 as uuidv4 } from 'uuid';
 import { SortableElement } from 'react-sortable-hoc';
 
 function arrayMove(array, from, to) {
@@ -53,7 +54,7 @@ export default function InputSelect({
     const newValue = arrayMove(props.value, oldIndex, newIndex);
     isSortable && inputChange({ target: { name, value: newValue }, setFields })
   };
-
+  console.log(name, props)
   return (
     <StyledInputSelect
       {...props}
@@ -63,7 +64,7 @@ export default function InputSelect({
       placeholder={placeholder}
       getHelperDimensions={({ node }) => node.getBoundingClientRect()}
       defaultOptions={options || true}
-      id={name}
+      id={uuidv4()}
       name={name}
       key={filter}
       classNamePrefix="inputSelect"

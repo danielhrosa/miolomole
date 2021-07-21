@@ -284,3 +284,8 @@ export const SwitchField = styled.div`
   align-items: center;
   justify-content: space-between;
 `
+
+export const FieldMediaUploads = styled.div`
+  width: 400px;
+  height: auto;
+`

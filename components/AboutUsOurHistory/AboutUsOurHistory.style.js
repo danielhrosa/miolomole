@@ -1,6 +1,4 @@
 import styled from 'styled-components';
-import TextareaAutosize from 'react-textarea-autosize';
-import { forwardRef } from 'react'
 
 export const AboutUsOurHistory = styled.div`
   margin-bottom: 0px;

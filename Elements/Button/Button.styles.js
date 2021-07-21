@@ -34,6 +34,41 @@ const primary = css`
   }
 `
 
+const addMedia = css`
+  justify-self: center;
+  padding: 15px;
+  p {
+    font-family: 'Open Sans';
+    font-weight: bold;
+    font-size: 28px;
+    letter-spacing: 2px;
+  }
+  color: #FFFFFF;
+  width: 100%;
+  height: 50px;
+  background: ${({ theme: { color: { brand }}}) => brand };
+  border-radius: 12px;
+  border: none;
+  color: white;
+  box-shadow: 3px 3px 2px rgb(115 137 169 / 20%);
+  transition: all 0.3s; 
+  margin: 20px 0;
+
+  svg {
+    path {
+      stroke: ${({ theme: { color: { white }}}) => white };
+    }
+  }
+
+  &:hover {
+    background: ${({theme: {color: { brand }}}) => darken('.05', brand) };
+  }
+
+  &:active, &:focus {
+    background: ${({theme: {color: { brand }}}) => darken('.1', brand) };
+  }
+`
+
 const inverse = css`
   background: transparent ;
   color: ${({ theme: { color: { white }}}) => white };
@@ -232,6 +267,10 @@ const button = css`
 
   &.primary {
     ${primary}
+  }
+  
+  &.addMedia {
+    ${addMedia}
   }
 
   &.primaryDark {

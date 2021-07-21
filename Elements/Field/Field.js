@@ -12,6 +12,7 @@ import FieldSeparator from './FieldSeparator';
 import FieldOuterLabel from './FieldOuterLabel';
 import FieldInputRadio from './FieldInputRadio';
 import FieldRadioButtons from './FieldRadioButtons';
+import FieldMediaUploads from './FieldMediaUploads';
 
 const Editor = dynamic(
   () => import('../../components/Editor'),
@@ -33,6 +34,7 @@ export default function Field(props) {
     case 'password': return <FieldPassword {...props} />
     case 'editable': return <FieldEditable {...props} />
     case 'switch': return <FieldSwitch {...props} />
+    case 'mediaUploads': return <FieldMediaUploads {...props} />
     case 'simpleSelect': return <FieldSelect {...props} />
     case 'image':
     case 'video':
