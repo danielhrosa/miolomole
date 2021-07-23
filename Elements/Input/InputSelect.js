@@ -54,7 +54,7 @@ export default function InputSelect({
     const newValue = arrayMove(props.value, oldIndex, newIndex);
     isSortable && inputChange({ target: { name, value: newValue }, setFields })
   };
-  console.log(name, props)
+
   return (
     <StyledInputSelect
       {...props}
