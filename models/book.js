@@ -18,9 +18,11 @@ var book = new Schema({
   image: { type: String },
   video: { type: String },
   type: { type: String },
-  accessibleTitle: { type: String },
-  accessibleCover: { type: String },
-  accessibleAssets: [{ type: Object }],
+  assets: [{ 
+    assetName: { type: String },
+    assetType: { type: String },
+    assetUrl: { type: String },
+  }],
   highlight: { type: Schema.Types.ObjectId, ref: Highlight }
 }, { timestamps: true });
 
