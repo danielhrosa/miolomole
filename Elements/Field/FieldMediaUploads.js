@@ -6,7 +6,7 @@ import Editable from '../../components/Editable';
 
 export default function FieldMediaUploads(props) {
   const { name, items, defaultItem, MediaTitle } = props;
-  console.log(items)
+  
   let arr = [];
 
   useEffect(() => arr = items, [items])
