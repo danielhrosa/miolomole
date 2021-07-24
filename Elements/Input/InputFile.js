@@ -96,7 +96,7 @@ export default function InputFile({ name, onChange, value, setFields, type, clas
           </S.DropArea>
           <S.DeleteButton>
             <p>Limpar</p>
-            <Button type="delete" onClick={() => onChange ? onChange({ target: { name, i, parentName, value: '' }, setFields }) : inputChange({target: { name, value: '' }, setFields}) } />
+            <Button type="delete" onClick={() => onChange ? onChange({ target: { name, i, parentName, value: '' }, setFields }) : inputChange({target: { name, i, parentName, value: '' }, setFields}) } />
           </S.DeleteButton>
         </S.ActionButtonWrapper>
       )}

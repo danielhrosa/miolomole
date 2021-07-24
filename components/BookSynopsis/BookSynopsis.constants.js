@@ -11,17 +11,6 @@ export const bookSinopsisFieldsFunction = ({ fields, isLoggedIn }) => ({
     type: 'textarea',
     readOnly: !isLoggedIn,
   },
-  type: {
-    ...fields.type,
-    name: 'type',
-    label: 'Tipo de midia',
-    type: 'select',
-    loadEmpty: true,
-    options: [
-      { label: 'Video', value: 'video'},
-      { label: 'Imagem', value: 'image' }
-    ],
-  },
   video: {
     ...fields.video,
     name: 'video',

@@ -3,7 +3,6 @@ export const inputChange = ({ target, setFields }) => {
   const { name, value, i, parentName } = target;
   setFields((oldFields) => {
     const newFields = { ...oldFields };
-    console.log(newFields[parentName].value[i], name)
     if(parentName){
       newFields[parentName].value[i][name].error = false;
       newFields[parentName].value[i][name].value = value;
