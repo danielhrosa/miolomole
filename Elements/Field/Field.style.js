@@ -288,4 +288,15 @@ export const SwitchField = styled.div`
 export const FieldMediaUploads = styled.div`
   width: 400px;
   height: auto;
+  margin: 26px 0;
+  section{ margin: 26px 0; }
+  section:nth-child(even) {
+    input{ background-color: #eee; }
+    background-color: #eee;
+  }
+  
+  [name="addButton"]{
+    margin-top: 15px;
+    width: 100%;
+  }
 `

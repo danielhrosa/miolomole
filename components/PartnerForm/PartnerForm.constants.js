@@ -23,7 +23,7 @@ export const PartnerFormFieldsFunction = ({ fields, partner, books }) => ({
   logo: {
     ...fields.logo,
     name: 'logo',
-    type: 'image',
+    type: 'asset',
     label: 'Logo',
     title: 'Trocar logo',
     alt: 'logo'

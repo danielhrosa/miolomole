@@ -9,4 +9,4 @@ export async function getServerSideProps({ params }) {
   } catch { return }; 
 }
 
-export { default } from '../livros/[name]/Book/Assets';
+export { default } from '../livros/[name]/Book';

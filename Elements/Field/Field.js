@@ -36,9 +36,7 @@ export default function Field(props) {
     case 'switch': return <FieldSwitch {...props} />
     case 'mediaUploads': return <FieldMediaUploads {...props} />
     case 'simpleSelect': return <FieldSelect {...props} />
-    case 'image':
-    case 'video':
-    case 'audio': return <FieldFile {...props} />
+    case 'asset': return <FieldFile {...props} />
     case 'editor': return <Editor {...props} />
     default: return <FieldInput {...props} />;
   }

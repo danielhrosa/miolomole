@@ -86,14 +86,12 @@ export const InputPreview = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  min-height: 60vw;
-  height: 60vw;
+  min-height: 100%;
   background-color: #99999950;
   position: relative;
   @media screen{
     @media (min-width: 1024px){
-      min-height: 260px;
-      height: 260px;
+      min-height: 100%;
     }
   }
 

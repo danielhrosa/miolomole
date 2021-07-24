@@ -10,7 +10,7 @@ export default function BookAudiovisual({ book, ...props }) {
     value: '',
     name: 'accessibleAssets',
     label: 'Nome da midia',
-    type: 'audio',
+    type: 'asset',
   }
 
   const fieldProps = {

@@ -10,10 +10,18 @@ import { useAppProvider } from '../../store/appProvider';
 import Button from '../Button';
 import Spinner from '../../components/Spinner';
 
-export default function InputFile({ placeholder, name, onChange, value, setFields, type, className }) {
+export default function InputFile({ name, onChange, value, setFields, type, className, poster, parentName, i, ...props }) {
   const [loading, setLoading] = useState(false);
   const [progress, setProgress] = useState(0);
   const { isLoggedIn } = useAppProvider();
+  const [fileType, setFileType] = useState();
+
+  const getFileType = (fileType) => {
+    if(fileType.includes('audio')){ return 'audio'}
+    if(fileType.includes('video')){ return 'video'}
+    if(fileType.includes('image')){ return 'image'}
+  }
+
   const onDrop = useCallback((acceptedFiles) => {
     setLoading(true);
     const file = acceptedFiles[0];
@@ -28,6 +36,8 @@ export default function InputFile({ placeholder, name, onChange, value, setField
       cryptoMd5Method: data => AWS.util.crypto.md5(data, "base64"),
       cryptoHexEncodedHash256: data => AWS.util.crypto.sha256(data, "hex"),
     };
+    setFileType(getFileType(file.type))
+
     const evaporateAddConfig = {
       file,
       name: fileName, 
@@ -35,7 +45,9 @@ export default function InputFile({ placeholder, name, onChange, value, setField
       progress: progressValue => setProgress((progressValue * 100).toFixed(2)),
       complete: (xhr) => { 
         const location = xhr.responseURL.split('?')[0]; 
-        onChange ? onChange({ target: { name, value: location }, setFields }) : inputChange({target: { name, value: location }, setFields})        
+        onChange 
+          ? onChange({ target: { name, value: location, i, parentName }, setFields })
+          : inputChange({ target: { name, value: location, i, parentName }, setFields })
         setLoading(false);  
       },
     };
@@ -45,13 +57,15 @@ export default function InputFile({ placeholder, name, onChange, value, setField
   
   const { getRootProps, getInputProps } = useDropzone({ onDrop });
   const contentRender = () => {
-    if (type === 'image') { return <img src={value} /> }
-    else { return <Player src={value} /> }
+    if(value){
+      if (fileType === 'image') { return <img src={value} /> }
+      else { return <Player src={value} poster={poster} /> }
+    }
   }
 
   const placeholderTip = () => {
     let typeTip;
-    switch (type) {
+    switch (fileType) {
       case 'image': typeTip = 'uma imagem'; break;
       case 'video': typeTip = 'um video'; break;
       case 'audio': typeTip = 'um audio'; break;
@@ -71,7 +85,7 @@ export default function InputFile({ placeholder, name, onChange, value, setField
               <S.Progress><S.ProgressBar progress={progress} /></S.Progress>
               <h1>{progress}%</h1>
             </S.Loading>
-          ) 
+          )
         }
       </S.InputPreview>
       { isLoggedIn && (
@@ -82,7 +96,7 @@ export default function InputFile({ placeholder, name, onChange, value, setField
           </S.DropArea>
           <S.DeleteButton>
             <p>Limpar</p>
-            <Button type="delete" onClick={() => onChange ? onChange({ target: { name, value: '' }, setFields }) : inputChange({target: { name, value: '' }, setFields}) } />
+            <Button type="delete" onClick={() => onChange ? onChange({ target: { name, i, parentName, value: '' }, setFields }) : inputChange({target: { name, value: '' }, setFields}) } />
           </S.DeleteButton>
         </S.ActionButtonWrapper>
       )}

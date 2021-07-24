@@ -25,6 +25,6 @@ export const bookSinopsisFieldsFunction = ({ fields, isLoggedIn }) => ({
   video: {
     ...fields.video,
     name: 'video',
-    type: 'video',
+    type: 'asset',
   },
 })

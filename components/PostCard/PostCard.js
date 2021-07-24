@@ -5,7 +5,6 @@ import View from '../../images/js/View';
 
 export default function PostCard({ item }){
   const router = useRouter();
-  console.log(item);
   return(
     <S.PostCard key={item.id} onClick={() => router.push(`/blog/${item.name}`)}>
       <S.PostCardImage key={item.image} src={item.image} />

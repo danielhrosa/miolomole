@@ -15,7 +15,7 @@ export const blogFieldsFunction = ({ fields, setFields, name, isLoggedIn }) => (
   image: {
     ...fields.image,
     name: 'image',
-    type: 'image',
+    type: 'asset',
     setFields,
     readOnly: !isLoggedIn
   },

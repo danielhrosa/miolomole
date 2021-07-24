@@ -15,7 +15,7 @@ export const usuariosFieldsFunction = ({ fields }) => ({
   avatar: {
     ...fields.avatar,
     name: 'avatar',
-    type: 'image'
+    type: 'asset'
   },
   userName: {
     ...fields.userName,

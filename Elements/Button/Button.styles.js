@@ -165,16 +165,23 @@ const dark = css`
   }
 `
 
-const warning = css`
-  background: ${({ theme: { color: { warning }}}) => warning };
-  color: ${({ theme: { color: { black }}}) => black };
-
+const remove = css`
+  background: ${({ theme: { color: { error }}}) => error };
+  justify-self: center;
+  padding: 5px;
+  font-family: Montserrat;
+  font-weight: bold;
+  font-size: 16px;
+  letter-spacing: 2px;
+  color: #FFFFFF;
+  min-width: 100%;
+  border: none;
   &:hover {
-    background: ${({theme: {color: { warning }}}) => darken('.05', warning) };
+    background: ${({theme: {color: { error }}}) => darken('.05', error) };
   }
 
   &:active, &:focus {
-    background: ${({theme: {color: { warning }}}) => darken('.1', warning) };
+    background: ${({theme: {color: { error }}}) => darken('.1', error) };
   }
 
   &:disabled {
@@ -293,8 +300,8 @@ const button = css`
     ${dark}
   }
 
-  &.warning {
-    ${warning}
+  &.remove {
+    ${remove}
   }
   
   &.bigIcon {

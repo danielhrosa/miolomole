@@ -1,9 +1,17 @@
 
 export const inputChange = ({ target, setFields }) => {
-  const { name, value } = target;
+  const { name, value, i, parentName } = target;
   setFields((oldFields) => {
-    oldFields[name].value = value;
-    return ({ ...oldFields });
+    const newFields = { ...oldFields };
+    console.log(newFields[parentName].value[i], name)
+    if(parentName){
+      newFields[parentName].value[i][name].error = false;
+      newFields[parentName].value[i][name].value = value;
+      newFields[parentName].value[i][name].errorMessage = '';
+    } else {
+      newFields[name].value = value;
+    }
+    return ({ ...newFields });
   });
 };
 

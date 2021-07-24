@@ -1,5 +1,5 @@
 import BookComponent from "../../../components/BookComponent";
-import BookAudiovisual from "../../../components/BookAudiovisual";
+import BookAudiovisual from "../../../components/Assets";
 import BlankPage from "../../../components/BlankPage/BlankPage";
 
 export default function Book({ hasAudiovisual, ...props }){

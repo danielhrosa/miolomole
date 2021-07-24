@@ -4,6 +4,7 @@ import Input from '../Input';
 
 export default function Field({label, tip, error, errorMessage, ...props}) {
   const { name, value } = props;
+  console.log('value', value)
   return (
     <S.Field 
       name={name} 

@@ -9,7 +9,7 @@ export const highlightFieldsFunction = ({ fields }) => ({
   image: {
     ...fields.image,
     name: 'image',
-    type: 'image'
+    type: 'asset'
   },
   title: {
     ...fields.title,
