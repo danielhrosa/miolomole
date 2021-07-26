@@ -97,7 +97,8 @@ const fieldsFunction = ({ fields, setFields, assetType, poster, name, isLoggedIn
         }))
       }
       const res = await axios.post('/api/assets', data)
-      console.log(res.status)
+      if(res.status === 200){ toast.success('Conteúdo salvo com sucesso') }
+      else { toast.error('Erro') }
     }
   },
 })

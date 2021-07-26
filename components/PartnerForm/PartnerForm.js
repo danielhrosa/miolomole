@@ -47,6 +47,7 @@ export default function PartnerForm(props){
 
   return(
     <S.PartnerForm>
+      <Button variation='primary' label='Voltar' onClick={() => router.push('/loja')} />
       <h1>{!!partner ? 'Editar' : 'Adicionar'} parceiro</h1>
       <Form {...formProps} />
       <Toaster position="bottom-right" reverseOrder={false}/>      

@@ -9,6 +9,7 @@ import Player from '../../components/Player';
 import { useAppProvider } from '../../store/appProvider';
 import Button from '../Button';
 import Spinner from '../../components/Spinner';
+import getFileTypeByExtensions from '../../utils/getFileTypeByExtension';
 
 export default function InputFile({ name, onChange, value, setFields, type, className, poster, parentName, i, ...props }) {
   const [loading, setLoading] = useState(false);
@@ -16,10 +17,15 @@ export default function InputFile({ name, onChange, value, setFields, type, clas
   const { isLoggedIn } = useAppProvider();
   const [fileType, setFileType] = useState();
 
-  const getFileType = (fileType) => {
-    if(fileType.includes('audio')){ return 'audio'}
-    if(fileType.includes('video')){ return 'video'}
-    if(fileType.includes('image')){ return 'image'}
+  const getFileType = (string) => {
+    if(string.includes('audio')){ return 'audio'}
+    if(string.includes('video')){ return 'video'}
+    if(string.includes('image')){ return 'image'}
+    else {
+      const fileTypeByExtension = getFileTypeByExtensions(value.split('.')[value.split('.').length - 1]);
+      setFileType(fileTypeByExtension)
+      return fileTypeByExtension
+    }
   }
 
   const onDrop = useCallback((acceptedFiles) => {
@@ -56,14 +62,18 @@ export default function InputFile({ name, onChange, value, setFields, type, clas
   }, []);
   
   const { getRootProps, getInputProps } = useDropzone({ onDrop });
+
   const contentRender = () => {
+    // console.log('fileType', fileType, value)
+    if(!fileType) getFileType(value);
     if(value){
-      if (fileType === 'image') { return <img src={value} /> }
-      else { return <Player src={value} poster={poster} /> }
+      if (fileType !== 'image') { return <Player src={value} poster={poster} /> }
+      else { return <img src={value} /> }
     }
   }
   const placeholderTip = () => {
     let typeTip;
+    if(fileType)
     switch (fileType) {
       case 'image': typeTip = 'uma imagem'; break;
       case 'video': typeTip = 'um video'; break;
@@ -77,7 +87,7 @@ export default function InputFile({ name, onChange, value, setFields, type, clas
     <S.InputFile>
       <S.InputPreview className={className} type={type} >
         {value 
-          ? contentRender() 
+          ? contentRender()
           : loading && (
             <S.Loading>
               <Spinner color="#0677d5" />

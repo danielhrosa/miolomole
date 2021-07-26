@@ -46,7 +46,6 @@ export default function BookInfo({ book }){
   
   const saveInfos = async () => {
     const variables = mapFieldsToData({ ...bookFields, priceField});
-    console.log(variables)
     if(!name) {
       try{
         if(variables.title === '') { 
