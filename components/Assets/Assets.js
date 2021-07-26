@@ -96,9 +96,8 @@ const fieldsFunction = ({ fields, setFields, assetType, poster, name, isLoggedIn
           assetUrl: item.assetUrl.value
         }))
       }
-      await axios.post('/api/assets', data)
-        .then(() => toast.success('Cadastro realizado com sucesso!'))
-        .catch(() => { toast.error('Erro ao salvar midia'); console.log(res) })
+      const res = await axios.post('/api/assets', data)
+      console.log(res.status)
     }
   },
 })
