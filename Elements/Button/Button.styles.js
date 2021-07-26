@@ -245,7 +245,7 @@ const button = css`
   text-transform: uppercase;
   text-align: center;
   padding: 0 12px;
-  border-radius: 8px;
+  border-radius: 12px;
   display: flex;
   justify-content: center;
   align-items: center;
