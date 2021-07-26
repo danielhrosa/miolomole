@@ -10,7 +10,9 @@ export const Assets = styled.div`
   min-height: 80vh;
 
   .container { justify-content: unset }
-
+  >button{
+    margin-bottom: 20px;
+  }
 `;
 
 export const TitleB = styled.h1`

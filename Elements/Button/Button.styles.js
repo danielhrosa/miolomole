@@ -115,14 +115,16 @@ const secondary = css`
   background: ${({ theme: { color: { white }}}) => white };
   color: ${({ theme: { color: { brandDark }}}) => brandDark };
   height: 50px;
-  border-radius: 29.5px;
+  letter-spacing: 2px;
+
+  /* border-radius: 29.5px; */
   &:hover {
-    background: ${({theme: {color: { brandDark }}}) => brandDark };
+    background: ${({ theme: { color: { brandDark }}}) => brandDark };
     color: ${({ theme: { color: { white }}}) => white };
   }
 
   &:active, &:focus {
-    background: ${({ theme: { color: { brandSmoth }}}) => brandSmoth };
+    background: ${({theme: {color: { brandDark }}}) => darken('0.05', brandDark) };
     color: white;
   }
 `

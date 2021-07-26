@@ -8,12 +8,13 @@ import AWS from "aws-sdk";
 import Button from '../../Elements/Button';
 import { useAppProvider } from '../../store/appProvider';
 import BookComponent from '../BookComponent';
+import coverDefault from '../../images/coverDefault.svg'
 
 export default function EditableImage ({ children, page, texts, textKey, book }) {
   const { isLoggedIn } = useAppProvider();
   const [edit, setEdit] = useState(false);
-  let initialLink = (!!texts && !!textKey) && !!texts[textKey] ? texts[textKey] : 'https://placekitten.com/400/400'
-  if(!!book?.image) { initialLink = book.image || 'https://placekitten.com/400/400' }
+  let initialLink = (!!texts && !!textKey) && !!texts[textKey] ? texts[textKey] : coverDefault
+  if(!!book?.image) { initialLink = book.image || coverDefault }
   const [link, setLink] = useState(initialLink);
   const [newLink, setNewLink] = useState(initialLink);
   const [loading, setLoading] = useState(false);
