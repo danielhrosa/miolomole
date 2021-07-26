@@ -15,5 +15,19 @@ module.exports = withImages({
         ]
       }
     ]
-  }
+  },
+  async redirects() {
+    return [
+      {
+        source: '/namarama-leao-cantando',
+        destination: '/livros/namarama/musicas/leao-cantando',
+        permanent: true,
+      },
+      {
+        source: '/namarama-cantada',
+        destination: '/livros/namarama/musicas/cantada',
+        permanent: true,
+      },
+    ]
+  },
 });
