@@ -7,7 +7,7 @@ export default function FieldMediaUploads(props) {
   const { name, subfields, addButton, isCreatable, isLoggedIn } = props;
   return (
     <S.FieldMediaUploads name={name}>
-      {subfields.map((item, i) => <Form fields={item} name={`${item.name}${i}`} {...props} />)}
+      {subfields.map((item, i) => <Form key={`${item+i}`} fields={item} name={`${item.name}${i}`} {...props} />)}
       {isCreatable && isLoggedIn && <Field {...addButton} />}
     </S.FieldMediaUploads>
   );

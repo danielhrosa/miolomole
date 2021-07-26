@@ -8,10 +8,10 @@ import { useAppProvider } from '../../store/appProvider';
 
 const assetState = () => ({ assetName: { value: '' }, assetUrl: { value: '' } })
 
-const assetsState = (parsedBook, assetType) => parsedBook.assets.length
+const assetsState = (parsedBook, assetType) => parsedBook?.assets?.length
   ? {
     assets: {
-      value: parsedBook.assets
+      value: parsedBook?.assets
         .filter((item) => item.assetType === assetType)
         .map((item) => ({ assetName: { value: item.assetName }, assetUrl: { value: item.assetUrl } }))
     }
@@ -77,7 +77,7 @@ const fieldsFunction = ({ fields, setFields, assetType, poster, name, isLoggedIn
           })
         }
       }
-      if(!isLoggedIn) delete subFieldsObj.deleteButton
+      if (!isLoggedIn) delete subFieldsObj.deleteButton
       return subFieldsObj
     }),
   },
@@ -97,7 +97,7 @@ const fieldsFunction = ({ fields, setFields, assetType, poster, name, isLoggedIn
         }))
       }
       const res = await axios.post('/api/assets', data)
-      if(res.status === 200){ toast.success('Conteúdo salvo com sucesso') }
+      if (res.status === 200) { toast.success('Conteúdo salvo com sucesso') }
       else { toast.error('Erro') }
     }
   },
@@ -113,7 +113,7 @@ export default function BookAudiovisual({ book, params: { assetType, assetName, 
       <S.Title>{parsedBook?.title}</S.Title>
       <S.Cover src={parsedBook?.image} />
       <Field {...assetFields.assets} isCreatable={!assetName} />
-      { isLoggedIn && <Field {...assetFields.submitButton} />}
+      {isLoggedIn && <Field {...assetFields.submitButton} />}
     </S.Assets>
   )
 }

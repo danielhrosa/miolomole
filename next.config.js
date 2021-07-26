@@ -28,6 +28,71 @@ module.exports = withImages({
         destination: '/livros/namarama/musicas/cantada',
         permanent: true,
       },
+      {
+        source: '/o-amor-e-lilas-audiovisual',
+        destination: '/livros/o-amor-e-lilas/audioacessivel',
+        permanent: true,
+      },
+      {
+        source: '/demonho-versao-audioacessivel',
+        destination: '/livros/demonho/audioacessivel',
+        permanent: true,
+      },
+      {
+        source: '/folhinhas-versao-audiovisual',
+        destination: '/livros/folhinhas/audioacessivel',
+        permanent: true,
+      },
+      {
+        source: '/garoto-avatar-versao-audiovisual-acessivel',
+        destination: '/livros/garoto-avatar/audioacessivel',
+        permanent: true,
+      },
+      {
+        source: '/girafa-versao-audiovisual',
+        destination: '/livros/girafa/audioacessivel',
+        permanent: true,
+      },
+      {
+        source: '/lourenco-um-bicho-quase-papao-audiovisual',
+        destination: '/livros/lourenco-um-bicho-quase-papao/audioacessivel',
+        permanent: true,
+      },
+      {
+        source: '/o-medo-que-a-gente-tem-versao-audiovisual',
+        destination: '/livros/o-medo-que-a-gente-tem/audioacessivel',
+        permanent: true,
+      },
+      {
+        source: '/namarama-audiovisual',
+        destination: '/livros/namarama/audioacessivel',
+        permanent: true,
+      },
+      {
+        source: '/a-nuvem-versao-audiovisual',
+        destination: '/livros/a-nuvem/audioacessivel',
+        permanent: true,
+      },
+      {
+        source: '/as-aventuras-de-ralf-e-carlos-versao-audiovisual',
+        destination: '/livros/as-aventuras-de-ralf-e-carlos/audioacessivel',
+        permanent: true,
+      },
+      {
+        source: '/o-seu-menino-versao-audiovisual',
+        destination: '/livros/o-seu-menino/audioacessivel',
+        permanent: true,
+      },
+      {
+        source: '/tigres-do-rio-versao-audioacessivel',
+        destination: '/livros/tigres-do-rio/audioacessivel',
+        permanent: true,
+      },
+      {
+        source: '/bhadra-versao-audiovisual-acessivel',
+        destination: '/livros/bhadra-o-principe-e-o-conselheiro/audioacessivel',
+        permanent: false,
+      },
     ]
   },
 });

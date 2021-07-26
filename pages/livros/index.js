@@ -15,7 +15,7 @@ export async function getServerSideProps() {
   itemsArray = itemsArray.filter((item) => !!item?.occupation?.length && item.occupation?.some((occupation) => ['illustrator', 'writer'].includes(occupation)))
   const items = itemsArray ? JSON.stringify(itemsArray) : {}
   const books = JSON.stringify(booksArray);
-  const texts = textsArray.reduce((object, text) => Object.assign(object, {[text.textKey]: text.text}), {});
+  const texts = textsArray.reduce((object, text) => Object.assign(object, { [text.textKey]: text.text }), {});
   return { props: { texts, books, items, highlights, page } }
 }
 
