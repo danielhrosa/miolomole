@@ -87,7 +87,7 @@ export const InputPreview = styled.div`
   justify-content: center;
   align-items: center;
   min-height: 100%;
-  background-color: #99999950;
+  background-color: ${({ isLoggedIn }) => isLoggedIn ? '#99999950' : '#FFFFFF' };
   position: relative;
   @media screen{
     @media (min-width: 1024px){
@@ -193,10 +193,6 @@ export const InputText = styled(Input)`
   border-bottom: 1px solid #151B64;
   padding: 24px 0 16px;
   font-size: ${({ theme: { fontSize: { fontSizeXXS }}}) => fontSizeXXS};
-
-  &::placeholder {
-    /* font-size: 0; */
-  }
 
   &:focus {
     outline: none;

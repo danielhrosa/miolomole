@@ -11,9 +11,6 @@ export const Assets = styled.div`
 
   .container { justify-content: unset }
 
-  >div:nth-child(even){
-    background-color: ${({ theme: { color: { brandSmoth }}}) => brandSmoth };
-  }
 `;
 
 export const TitleB = styled.h1`

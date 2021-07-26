@@ -7,7 +7,6 @@ const assetsHandler = async (req, res) => {
     switch (method) {
       case 'POST':
         let { name, assets, assetType } = body;
-        console.log(assetType);
         try {
           const book = await Book.findOne({ name });
           if(!book) { return res.status(409).json({ errorMessage: 'Livro não encontrado.' }) };

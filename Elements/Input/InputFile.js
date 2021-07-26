@@ -62,7 +62,6 @@ export default function InputFile({ name, onChange, value, setFields, type, clas
       else { return <Player src={value} poster={poster} /> }
     }
   }
-
   const placeholderTip = () => {
     let typeTip;
     switch (fileType) {

@@ -40,7 +40,7 @@ export default function UsersList(props) {
             <S.UserName>{user.userName}</S.UserName>
             <S.UserFullName>{user.userFullName}</S.UserFullName>
             <S.UserOccupation>{user.occupation.join(', ')}</S.UserOccupation>
-            <S.ButtonDelete type="delete" onClick={(e) => { e.stopPropagation() ;handleDeleteUser(user)} }/>
+            <S.ButtonDelete type="delete" onClick={(e) => { e.stopPropagation(); handleDeleteUser(user)} }/>
             <S.ButtonDelete type="edit" onClick={(e) => {e.stopPropagation(); router.push(`/autores/${user._id}`)}} />
           </S.UsersListItem>
         ))}

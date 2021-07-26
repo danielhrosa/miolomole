@@ -12,7 +12,6 @@ export default function InputText({ name, i, parentName, placeholder, onChange, 
       }
       maskChar=""
       placeholder={placeholder}
-
     />
   );
 }

@@ -290,10 +290,6 @@ export const FieldMediaUploads = styled.div`
   height: auto;
   margin: 26px 0;
   section{ margin: 26px 0; }
-  section:nth-child(even) {
-    input{ background-color: #eee; }
-    background-color: #eee;
-  }
   
   [name="addButton"]{
     margin-top: 15px;
