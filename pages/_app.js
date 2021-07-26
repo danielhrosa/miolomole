@@ -7,6 +7,7 @@ import LogoutButton from '../components/LogoutButton';
 import { AppProvider } from '../store/appProvider';
 import '../styles/globals.css';
 import NProgress from "nprogress";
+import { Toaster } from 'react-hot-toast';
 
 Router.events.on("routeChangeStart", (url) => {
   NProgress.start();
@@ -23,6 +24,7 @@ function MyApp({ Component, pageProps }) {
         <Header/>
         <LogoutButton />
         <Component {...pageProps} />
+        <Toaster position="bottom-right" reverseOrder={false}/>      
         <Footer/>
       </AppProvider>
     </ThemeProvider>

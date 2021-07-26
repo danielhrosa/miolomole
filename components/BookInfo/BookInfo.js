@@ -46,6 +46,7 @@ export default function BookInfo({ book }){
   
   const saveInfos = async () => {
     const variables = mapFieldsToData({ ...bookFields, priceField});
+    console.log(variables)
     if(!name) {
       try{
         if(variables.title === '') { 
@@ -55,10 +56,9 @@ export default function BookInfo({ book }){
           if(res.status === 200){
             router.push(`/livros/${res.data.bookCreated.name}`)
             toast.success('Cadastro realizado com sucesso!');
-          } 
-          else { console.log(res); }
+          } else { toast.error(res.data.errorMessage); }
         }
-      } catch (err) { console.log(err.response) }
+      } catch (err) { console.log(err.response.data.errorMessage); toast.error(err.response.data.errorMessage) }
     } else {
       try{
         const res = await axios.put('/api/livros', { ...variables, name })
