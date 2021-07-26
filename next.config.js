@@ -75,7 +75,7 @@ module.exports = withImages({
       },
       {
         source: '/as-aventuras-de-ralf-e-carlos-versao-audiovisual',
-        destination: '/livros/as-aventuras-de-ralf-e-carlos/audioacessivel',
+        destination: '/livros/as-aventuras-de-ralf-e-carlos-no-mundo-da-lua/audioacessivel',
         permanent: true,
       },
       {
@@ -91,7 +91,7 @@ module.exports = withImages({
       {
         source: '/bhadra-versao-audiovisual-acessivel',
         destination: '/livros/bhadra-o-principe-e-o-conselheiro/audioacessivel',
-        permanent: false,
+        permanent: true,
       },
     ]
   },
