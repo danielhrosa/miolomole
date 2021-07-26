@@ -2,10 +2,20 @@ import Field from '../../Elements/Field';
 import * as S from './Assets.styles';
 import { css } from 'styled-components';
 import { useMemo, useState } from 'react';
+import axios from 'axios';
+import toast from 'react-hot-toast';
 
 const assetState = () => ({ assetName: { value: '' }, assetUrl: { value: '' } })
 
-const fieldsFunction = ({ fields, setFields, assetType, poster }) => ({
+const assetsState = (parsedBook, assetType) => parsedBook.assets.length 
+    ? { assets: { value: parsedBook.assets
+      .filter((item) => item.assetType === assetType)
+      .map((item) => ({ assetName: { value: item.assetName }, assetUrl: { value: item.assetUrl } })) 
+    }}
+    : { assets: { value: [assetState()] }};
+
+
+const fieldsFunction = ({ fields, setFields, assetType, poster, name }) => ({
   assets: {
     name: 'assets',
     label: 'Medias',
@@ -22,7 +32,7 @@ const fieldsFunction = ({ fields, setFields, assetType, poster }) => ({
       name: 'addButton',
       type: 'button',
       label: '+ Adicionar',
-      variation: 'primary',
+      variation: 'secondary',
       onClick: () => setFields((oldFields) => {
         const newFields = { ...oldFields };
         newFields.assets.value.push(assetState());
@@ -59,18 +69,41 @@ const fieldsFunction = ({ fields, setFields, assetType, poster }) => ({
       },
     })),
   },
+  submitButton: {
+    name: 'addButton',
+    type: 'button',
+    label: 'Salvar',
+    variation: 'primary',
+    onClick: async () => {
+      const data = {
+        name,
+        assetType,
+        assets: fields.assets.value.map((item) => ({
+          assetType,
+          assetName: item.assetName.value,
+          assetUrl: item.assetUrl.value
+        }))
+      }
+      const res = await axios.post('/api/assets', data)
+      if(res.status === 200){
+        toast.success('Cadastro realizado com sucesso!');
+      } else { console.log(res); }
+    }
+  },
 })
 
-export default function BookAudiovisual({ book, params: { assetType } }) {
+export default function BookAudiovisual({ book, params: { assetType, name } }) {
   const parsedBook = useMemo(() => JSON.parse(book), [book]);
-  const [fields, setFields] = useState({ assets: { value: [ { ...assetState() }] } })
-  const assetFields = fieldsFunction({ fields, setFields, assetType, poster: parsedBook?.image })
+  console.log(parsedBook)
+  const [fields, setFields] = useState(assetsState(parsedBook, assetType));
+  const assetFields = fieldsFunction({ fields, setFields, assetType, poster: parsedBook?.image, name });
 
   return (
     <S.Assets>
       <S.Title>{parsedBook?.title}</S.Title>
       <S.Cover src={parsedBook?.image} />
       <Field {...assetFields.assets} />
+      <Field {...assetFields.submitButton} />
     </S.Assets>
   )
 } 

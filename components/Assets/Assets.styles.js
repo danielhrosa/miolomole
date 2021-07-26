@@ -46,7 +46,7 @@ export const BookWrapper = styled.div`
 
 export const Title = styled.h1`
   font-family: 'Montserrat';
-  text-align: center
+  text-align: center;
 `
 
 export const Cover = styled.img`
