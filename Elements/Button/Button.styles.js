@@ -245,7 +245,7 @@ const button = css`
   text-transform: uppercase;
   text-align: center;
   padding: 0 12px;
-  border-radius: 8px;
+  border-radius: 12px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -253,6 +253,7 @@ const button = css`
   border: 1px solid;
   cursor: pointer;
   white-space: nowrap;
+  box-shadow: 3px 3px 2px rgb(115 137 169 / 20%);
   
   p {
     font-weight: ${({theme: {fontWeight: {fontWeightBold}}}) => fontWeightBold};
