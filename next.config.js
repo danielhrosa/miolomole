@@ -19,6 +19,31 @@ module.exports = withImages({
   async redirects() {
     return [
       {
+        source: '/o-sonho-da-buyuassu-cancao-da-cobra-grande/',
+        destination: '/livros/o-sonho-da-buya-wasu/musicas',
+        permanent: true,
+      },
+      {
+        source: '/o-sonho-da-buyuassu-canção-da-cobra-grande',
+        destination: '/livros/o-sonho-da-buya-wasu/musicas',
+        permanent: true,
+      },
+      {
+        source: '/o-sonho-da-buyuassu-canc%cc%a7a%cc%83o-da-cobra-grande/',
+        destination: '/livros/o-sonho-da-buya-wasu/musicas',
+        permanent: true,
+      },
+      {
+        source: '/bhadra-musica/',
+        destination: '/livros/bhadra-o-principe-e-o-conselheiro/musicas',
+        permanent: true,
+      },
+      {
+        source: '/o-seu-menino-musica/',
+        destination: '/livros/o-seu-menino/musicas',
+        permanent: true,
+      },
+      {
         source: '/namarama-leao-cantando',
         destination: '/livros/namarama/musicas/leao-cantando',
         permanent: true,
