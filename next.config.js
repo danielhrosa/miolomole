@@ -19,6 +19,11 @@ module.exports = withImages({
   async redirects() {
     return [
       {
+        source: '/o-sonho-da-buyua-wasu-versao-audiovisual',
+        destination: '/livros/o-sonho-da-buya-wasu/audioacessivel',
+        permanent: true,
+      },
+      {
         source: '/o-sonho-da-buyuassu-cancao-da-cobra-grande',
         destination: '/livros/o-sonho-da-buya-wasu/musicas',
         permanent: true,
