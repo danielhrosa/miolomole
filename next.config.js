@@ -19,6 +19,11 @@ module.exports = withImages({
   async redirects() {
     return [
       {
+        source: '/namarama-fanta-konate-cantando',
+        destination: '/livros/o-sonho-da-buya-wasu/musicas/fanta-konate-cantando',
+        permanent: true,
+      },
+      {
         source: '/o-sonho-da-buyua-wasu-versao-audiovisual',
         destination: '/livros/o-sonho-da-buya-wasu/audioacessivel',
         permanent: true,
