@@ -128,6 +128,11 @@ module.exports = withImages({
         destination: '/livros/bhadra-o-principe-e-o-conselheiro/audioacessivel',
         permanent: true,
       },
+      {
+        source: '/tres-contos-machado-de-assis-versao-audioacessivel',
+        destination: '/livros/tres-contos-machado-de-assis/audioacessivel',
+        permanent: true,
+      },
     ]
   },
 });
