@@ -20,7 +20,7 @@ module.exports = withImages({
     return [
       {
         source: '/namarama-fanta-konate-cantando',
-        destination: '/livros/o-sonho-da-buya-wasu/musicas/fanta-konate-cantando',
+        destination: '/livros/namarama/musicas/namarama-fanta-konate-cantando',
         permanent: true,
       },
       {
