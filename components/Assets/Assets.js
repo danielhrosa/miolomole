@@ -19,12 +19,12 @@ const assetsState = (parsedBook, assetType) => parsedBook?.assets?.length
   : { assets: { value: [assetState()] } };
 
 
-const fieldsFunction = ({ fields, setFields, assetType, poster, name, isLoggedIn }) => ({
+const fieldsFunction = ({ fields, setFields, assetType, poster, name, isLoggedInHandler }) => ({
   assets: {
     name: 'assets',
     label: 'Medias',
     type: 'mediaUploads',
-    isLoggedIn,
+    isLoggedIn: isLoggedInHandler,
     gridTemplate: () => css`
       grid-template: ${`
         "assetName"
@@ -50,8 +50,8 @@ const fieldsFunction = ({ fields, setFields, assetType, poster, name, isLoggedIn
           ...subfield.assetName,
           parentName: 'assets',
           name: 'assetName',
-          isLoggedIn,
-          readOnly: !isLoggedIn,
+          isLoggedIn: isLoggedInHandler,
+          readOnly: !isLoggedInHandler,
           i,
           type: 'labelOcutable',
           label: `Coloque o nome de ${assetType}`,
@@ -60,6 +60,7 @@ const fieldsFunction = ({ fields, setFields, assetType, poster, name, isLoggedIn
           ...subfield.assetUrl,
           parentName: 'assets',
           name: 'assetUrl',
+          isLoggedInHandler,
           i,
           type: 'asset',
           poster,
@@ -77,7 +78,7 @@ const fieldsFunction = ({ fields, setFields, assetType, poster, name, isLoggedIn
           })
         }
       }
-      if (!isLoggedIn) delete subFieldsObj.deleteButton
+      if (!isLoggedInHandler) delete subFieldsObj.deleteButton
       return subFieldsObj
     }),
   },
@@ -107,13 +108,14 @@ export default function BookAudiovisual({ book, params: { assetType, assetName, 
   const parsedBook = useMemo(() => JSON.parse(book), [book]);
   const { isLoggedIn } = useAppProvider();
   const [fields, setFields] = useState(assetsState(parsedBook, assetType));
-  const assetFields = fieldsFunction({ fields, setFields, assetType, poster: parsedBook?.image, name, isLoggedIn });
+  const isLoggedInHandler = isLoggedIn && !assetName;
+  const assetFields = fieldsFunction({ fields, setFields, assetType, poster: parsedBook?.image, name, isLoggedInHandler });
   return (
     <S.Assets>
       <S.Title>{parsedBook?.title}</S.Title>
       <S.Cover src={parsedBook?.image} />
       <Field {...assetFields.assets} isCreatable={!assetName} />
-      {isLoggedIn && <Field {...assetFields.submitButton} />}
+      {isLoggedInHandler && <Field {...assetFields.submitButton} />}
     </S.Assets>
   )
 }

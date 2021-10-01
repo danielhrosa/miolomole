@@ -9,7 +9,6 @@ export default function HeaderNav({isOpen, toggle}){
   let navMenuItems = [
     { name: 'Home', path: '/' },
     { name: 'Livros', path: '/livros' },
-    { name: 'Loja', path: '/loja' },
     { name: 'Quem somos', path: '/quem-somos' },
     { name: 'Contato', path: '/contato' },
   ];

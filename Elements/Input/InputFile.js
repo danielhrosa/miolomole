@@ -11,11 +11,13 @@ import Button from '../Button';
 import Spinner from '../../components/Spinner';
 import getFileTypeByExtensions from '../../utils/getFileTypeByExtension';
 
-export default function InputFile({ name, onChange, value, setFields, type, className, poster, parentName, i, ...props }) {
+export default function InputFile({ name, onChange, value, setFields, type, className, poster, parentName, i, isLoggedInHandler = true, ...props }) {
   const [loading, setLoading] = useState(false);
   const [progress, setProgress] = useState(0);
-  const { isLoggedIn } = useAppProvider();
+  const { isLoggedIn: isLoggedInContext } = useAppProvider();
   const [fileType, setFileType] = useState();
+  const isLoggedIn = !!isLoggedInContext && !!isLoggedInHandler;
+  console.log(isLoggedIn)
 
   const getFileType = (string) => {
     if(string.includes('audio')){ return 'audio'}
