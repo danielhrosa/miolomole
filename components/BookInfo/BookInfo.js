@@ -3,7 +3,7 @@ import * as S from './BookInfo.style';
 import Form from '../../Elements/Form';
 import { useRouter } from 'next/router';
 import Button from '../../Elements/Button';
-import { useState, useEffect, useMemo } from 'react';
+import { useState, useEffect } from 'react';
 import toast, { Toaster } from 'react-hot-toast';
 import { useAppProvider } from '../../store/appProvider';
 import mapFieldsToData from '../../utils/mapFieldsToData';
@@ -27,7 +27,6 @@ export default function BookInfo({ book }){
       .then((res) => setUsers(res.data))
       .catch((err) => console.log(err))
   }, [])
-
   
   useEffect(() => {
     if(book) {
@@ -72,7 +71,7 @@ export default function BookInfo({ book }){
 
   const saveButton = {
     variation: "primary",
-    onClick: async () => isLoggedIn ? await saveInfos() : router.push('parceiros'),
+    onClick: async () => isLoggedIn ? await saveInfos() : router.push('/parceiros'),
     label: isLoggedIn ? "Salvar Descrição" : "Comprar em loja parceira"
   }
   
