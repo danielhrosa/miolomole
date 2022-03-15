@@ -69,9 +69,13 @@ export default function BookInfo({ book }){
     }
   }
 
+  const handlerOnClick = () => {
+    name === 'tres-contos-machado-de-assis' ? router.push('https://www.livrariadagente.com.br/') : router.push('/parceiros')
+  }
+
   const saveButton = {
     variation: "primary",
-    onClick: async () => isLoggedIn ? await saveInfos() : router.push('/parceiros'),
+    onClick: async () => isLoggedIn ? await saveInfos() : handlerOnClick(),
     label: isLoggedIn ? "Salvar Descrição" : "Comprar em loja parceira"
   }
   
