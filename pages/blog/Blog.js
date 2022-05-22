@@ -5,7 +5,7 @@ export default function Blog(props){
   
   return(
     <>
-      <BlogJumbotron {...props}/>
+      {/* <BlogJumbotron {...props}/> */}
       <BlogList {...props} />
     </>
   )

@@ -1,10 +1,11 @@
 import styled, {css} from 'styled-components';
+import Button from '../../Elements/Button';
 import iconQuotes from '../../images/icon_quotes.svg';
+
 export const PostCard = styled.div`
   cursor: pointer;
- 
-  
-  
+  position: relative;
+
 `
 
 export const PostCardImage = styled.img`
@@ -19,9 +20,9 @@ export const PostCardInfo = styled.div`
 `
 
 export const PostCardTitle = styled.h1`
-  font-family: Montserrat;
-  font-weight: normal;
-  font-size: 30px;
+  font-family: "Amatic SC";
+  font-weight: 700;
+  font-size: 32px;
   line-height: 1.4;
   color: #212121;
   overflow: hidden;
@@ -30,7 +31,7 @@ export const PostCardTitle = styled.h1`
 export const PostCardText = styled.p`
   font-family: Montserrat;
   font-size: 18px;
-  line-height: 1.4;
+  line-height: 1.5;
   display: flex;
   align-items: center;
   color: #000000s;
@@ -89,4 +90,10 @@ export const Line = styled.div`
     top: -22px;
   }
   
+`
+
+export const DeleteButton = styled(Button)`
+  position: absolute;
+  right: 20px;
+  top: 20px;
 `

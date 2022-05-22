@@ -22,7 +22,7 @@ export default function HeaderNav({isOpen, toggle}){
   return (
     <S.HeaderNav>
       {navMenuItems.map((item) => 
-        <S.NavItem isActive={asPath === item.path} key={item.name} key={item.name} onClick={() => toggle(!isOpen)}>
+        <S.NavItem isActive={asPath === item.path} key={item.name} onClick={() => toggle(!isOpen)}>
           <Link href={item.path}>
             {item.name}
           </Link>

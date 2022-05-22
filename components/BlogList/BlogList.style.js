@@ -18,3 +18,17 @@ export const BlogList = styled.div`
 
 export const CreateNewButton = styled(Button)`
 `
+
+export const BlogBanner = styled.div`
+  font-family: Montserrat;
+  margin: 40px auto;
+  background-color: #00A79D;
+  height: 60px;
+  width: 100%;
+  max-width: 1024px;
+  border-radius: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #FFFFFF;
+`
