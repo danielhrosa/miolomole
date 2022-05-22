@@ -7,6 +7,7 @@ export const blogFieldsState = (article) => {
   return ({
     image: { value: article?.image || '' },
     title: { value: article?.title || '' },
+    description: { value: article?.description || '' },
     content: { value: article?.content ? EditorState.createWithContent(convertFromRaw(JSON.parse(article.content))) : EditorState.createEmpty('') },
   })
 };
@@ -27,6 +28,14 @@ export const blogFieldsFunction = ({ fields, setFields, name, isLoggedIn }) => (
     setFields,
     readOnly: !isLoggedIn
   },
+  description: {
+    ...fields.description,
+    name: 'description',
+    placeholder: 'Descrição...',
+    type: 'textarea',
+    setFields,
+    readOnly: !isLoggedIn
+  },
   content: {
     ...fields.content,
     name: 'content',
@@ -42,11 +51,13 @@ export const blogFieldsFunction = ({ fields, setFields, name, isLoggedIn }) => (
     label: 'Publicar',
     onClick: () => {
       if(!fields.title.value) { toast.error('Por favor preencha o titulo') };
+      if(!fields.description.value) { toast.error('Por favor preencha a descrição') };
       if(!fields.image.value) { toast.error('Por favor coloque uma imagem') };
       if(!fields.content.value) { toast.error('Por favor preencha o conteúdo') };
-      if(fields.title.value && fields.image.value && fields.content.value) {
+      if(fields.title.value && fields.image.value && fields.content.value && fields.description.value) {
         const variables = {
           title: fields.title.value,
+          description: fields.description.value,
           image: fields.image.value,
           content: JSON.stringify(convertToRaw(fields.content.value.getCurrentContent())),
         }

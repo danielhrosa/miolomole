@@ -11,11 +11,11 @@ export default function HeaderNav({isOpen, toggle}){
     { name: 'Livros', path: '/livros' },
     { name: 'Quem somos', path: '/quem-somos' },
     { name: 'Contato', path: '/contato' },
+    { name: 'Blog', path: '/blog' },
   ];
 
   if(isLoggedIn) { navMenuItems = navMenuItems.concat(
     { name: 'Destaques', path: '/destaques'},
-    { name: 'Blog', path: '/blog' },
     { name: 'Usuários', path: '/autores'}
   )};
 

@@ -7,15 +7,16 @@ export default function PostCard({ item }){
   const router = useRouter();
   return(
     <S.PostCard key={item.id} onClick={() => router.push(`/blog/${item.name}`)}>
+      <S.PostCardTitle>{item.title}</S.PostCardTitle>
       <S.PostCardImage key={item.image} src={item.image} />
       <S.PostCardInfo color={item.color || 'green'}>
-        <S.PostCardTitle>{item.title}</S.PostCardTitle>
-        <S.PostCardText>{item.shortDescription || ''}</S.PostCardText>
-        <S.Footer>
-          <S.FooterItemLabel><Clock />{item.createdAt}</S.FooterItemLabel>
+        <S.PostCardText>{item.description || ''}</S.PostCardText>
+        {/* <S.Footer>
+          <S.FooterItemLabel><Clock />{item.updatedAt}</S.FooterItemLabel>
           <S.FooterItemLabel><View />{item.views || 0}</S.FooterItemLabel>
-        </S.Footer>
+        </S.Footer> */}
       </S.PostCardInfo>
+      <S.Line/>
     </S.PostCard>
   )
 }

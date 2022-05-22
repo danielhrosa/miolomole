@@ -1,72 +1,46 @@
 import styled, {css} from 'styled-components';
-import CurrencyFormat from 'react-currency-format';
-import setColorByBackGround from '../../helpers/setColorByBackGround';
-
+import iconQuotes from '../../images/icon_quotes.svg';
 export const PostCard = styled.div`
-  box-shadow: 0px 4px 10px rgba(115, 137, 169, 0.15);
-  border: none;
-  border-radius: 12px;  
-  overflow: hidden;
-  transition: .1s ease;
   cursor: pointer;
-  width: 85%;
-  max-height: 469px;
-  max-width: 350px;
-  margin: 20px;
-
-  @media screen{
-    @media (min-width: 1024px){
-
-    }
-  }
+ 
+  
+  
 `
 
 export const PostCardImage = styled.img`
   height: 240px;
-  width: 100%;  
+  width: 240px;  
   object-fit: cover;  
+  border-radius: 16px;  
 `
 
 export const PostCardInfo = styled.div`
-  padding: 32px;
-  background-color: ${({ theme: { color: { gray }}}) => gray };
+ 
 `
 
 export const PostCardTitle = styled.h1`
-  font-family: Arvo;
+  font-family: Montserrat;
   font-weight: normal;
-  font-size: 22px;
-  line-height: 32px;
+  font-size: 30px;
+  line-height: 1.4;
   color: #212121;
-  margin-block-start: 0;
-  margin-block-end: 0em;
-  height: 35px;
   overflow: hidden;
   text-overflow: ellipsis;
-  white-space: nowrap;
-`
+  `
 export const PostCardText = styled.p`
   font-family: Montserrat;
-  font-size: 14px;
-  line-height: 20px;
+  font-size: 18px;
+  line-height: 1.4;
   display: flex;
   align-items: center;
-  color: #4A4A4A;
-
+  color: #000000s;
   position: relative;
-  height: 80px;
-  overflow: visible;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
   
-  &:after {
-    /* content: "";
-    text-align: right;
-    position: absolute;
-    bottom: 0;
-    right: 0;
-    width: 70%;
-    height: 1.2em;
-    background: linear-gradient(to right, rgba(255, 255, 255, 0), #F7F8F9 50%); */
-  }
 `
 
 export const Footer = styled.footer`
@@ -93,4 +67,26 @@ export const FooterItemLabel = styled.div`
       margin-right: 8px
     }
   }
+`
+export const Line = styled.div`
+  width: calc(100% - 30px);
+  height: 2px;
+  background-color: #00A79D;
+  position: relative;
+  margin-top: 30px;
+  ::after{
+    content: '';
+    background-image: url(${iconQuotes});
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    width: 23px;
+    height: 23px;
+    display: block;
+    font-size: 28px;
+    position: absolute;
+    right: -17px;
+    top: -22px;
+  }
+  
 `

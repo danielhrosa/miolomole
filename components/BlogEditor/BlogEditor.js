@@ -12,7 +12,8 @@ export default function BlogEditor({ article }){
   const { name } = router.query;
   const [fields, setFields] = useState(blogFieldsState(article));
   const blogFields = blogFieldsFunction({ fields, setFields, name, isLoggedIn });
-  !isLoggedIn && delete blogFields.button
+  !isLoggedIn && delete blogFields.button;
+  !isLoggedIn && delete blogFields.description;
   return (
     <S.BlogEditor isLoggedIn={isLoggedIn}>
       { Object.values(blogFields).map((field) => <Field key={field.name} {...field} />) }

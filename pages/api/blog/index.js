@@ -6,7 +6,7 @@ import removeModel from '../../../utils/removeModel';
 
 const blogHandler = async (req, res) => {
   const { body, method } = req;
-  let { name, title, image, content } = body;
+  let { name, title, image, content, description } = body;
   try{
     switch (method) {
       case 'GET':
@@ -23,7 +23,7 @@ const blogHandler = async (req, res) => {
       case 'PUT':
         try{
           if(!name) { return res.status(400).json({ errorMessage: 'Parâmetros inválidos' }) };
-          const updatedModel = await updateModel({name, title, image, content}, Blog);
+          const updatedModel = await updateModel({name, title, image, content, description}, Blog);
           await updatedModel.save();
           return await res.status(200).json(updatedModel);
         } catch (err) { console.log(err); return res.status(500).end() };
@@ -35,6 +35,7 @@ const blogHandler = async (req, res) => {
             name: title.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f`~!@#$%^&*()_|+\=?;:'",.<>\{\}\[\]\\\/]/gi, '').replace(/(\s)(?=\1)/gi, "").replace(/\s/g, "-"),
             title,
             image,
+            description,
             content
           }
           const article = await createModel(args, Blog);
