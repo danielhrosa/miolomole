@@ -32,3 +32,9 @@ export const BlogBanner = styled.div`
   justify-content: center;
   color: #FFFFFF;
 `
+
+export const DeleteButton = styled(Button)`
+  position: absolute;
+  right: 20px;
+  top: 20px;
+`
