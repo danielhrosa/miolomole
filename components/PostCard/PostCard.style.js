@@ -70,7 +70,7 @@ export const FooterItemLabel = styled.div`
   }
 `
 export const Line = styled.div`
-  width: calc(100% - 30px);
+  width: calc(100% - 40px);
   height: 2px;
   background-color: #00A79D;
   position: relative;
@@ -81,13 +81,13 @@ export const Line = styled.div`
     background-repeat: no-repeat;
     background-position: center;
     background-size: cover;
-    width: 23px;
-    height: 23px;
+    width: 30px;
+    height: 30px;
     display: block;
     font-size: 28px;
     position: absolute;
-    right: -17px;
-    top: -22px;
+    right: -24px;
+    top: -27px;
   }
   
 `

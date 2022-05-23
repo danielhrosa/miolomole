@@ -11,15 +11,11 @@ export default function BlogList(props) {
   const t = pt
   const items = t.BLOG_ARTICLES
   const posts = props?.posts ? JSON.parse(props.posts) : [] 
-  const createNewPostClick = () => {
-    router.push('/blog/novo')
-  }
-
   return (
     <Container>
       <S.BlogList>
         <S.BlogBanner><h1>miolo_blog</h1></S.BlogBanner>
-        {isLoggedIn && <S.CreateNewButton onClick={createNewPostClick} label="Criar no post" variation="secondary"/>}
+        {isLoggedIn && <S.CreateNewButton onClick={() => router.push('/blog/novo')} label="Criar no post" variation="secondary"/>}
         {posts?.length && posts.map((post) => <PostCard key={`${post}-post`} item={post} />)}
       </S.BlogList>
     </Container>

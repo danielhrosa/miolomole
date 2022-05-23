@@ -4,14 +4,26 @@ import Clock from '../../images/js/Clock';
 import View from '../../images/js/View';
 import Button from '../../Elements/Button';
 import { useAppProvider } from '../../store/appProvider';
+import axios from 'axios';
+import { useState } from 'react';
 
 export default function PostCard({ item }){
   const { isLoggedIn } = useAppProvider();
   const router = useRouter();
+  const [blog, setBlog] = useState(item);
+
+  const handleDeletePost = async (blog) => {
+    console.log('Deletando blog: ', blog);
+    // const { _id } = blog;
+    // setBlog((oldPost) => [...oldPost].filter((blog) => blog._id !== _id))
+    // const confirm = window.confirm(`Tem certeza que deseja deletar o blog ${blog.title}?`)
+    // if(!confirm) { return false };
+    // await axios.delete(`/api/blog`, { data: { _id: blog._id } })
+  }
   return(
     <S.PostCard key={item.id} onClick={() => router.push(`/blog/${item.name}`)}>
       <S.PostCardTitle>{item.title}</S.PostCardTitle>
-      { isLoggedIn && <S.DeleteButton type="delete"/> }
+      { isLoggedIn && <S.DeleteButton type="delete" onClick={(e) => { e.stopPropagation(); handleDeletePost(blog) }}  /> }
       <S.PostCardImage key={item.image} src={item.image} />
       <S.PostCardInfo color={item.color || 'green'}>
         <S.PostCardText>{item.description || ''}</S.PostCardText>
