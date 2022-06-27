@@ -6,7 +6,7 @@ import removeModel from '../../../utils/removeModel';
 
 const blogHandler = async (req, res) => {
   const { body, method } = req;
-  let { name, title, image, content, description } = body;
+  let { _id, name, title, image, content, description } = body;
   try{
     switch (method) {
       case 'GET':

@@ -12,13 +12,14 @@ export default function PostCard({ item }){
   const router = useRouter();
   const [blog, setBlog] = useState(item);
 
-  const handleDeletePost = async (blog) => {
-    console.log('Deletando blog: ', blog);
-    // const { _id } = blog;
+  const handleDeletePost = async (item) => {
+    console.log('Deletando blog: ', item);
+    const { _id } = item;
     // setBlog((oldPost) => [...oldPost].filter((blog) => blog._id !== _id))
-    // const confirm = window.confirm(`Tem certeza que deseja deletar o blog ${blog.title}?`)
-    // if(!confirm) { return false };
-    // await axios.delete(`/api/blog`, { data: { _id: blog._id } })
+    const confirm = window.confirm(`Tem certeza que deseja deletar o blog ${item.title}?`)
+    if(!confirm) { return false };
+    await axios.delete(`/api/blog`, { data: { _id: item._id } })
+    window.location.reload();
   }
   return(
     <S.PostCard key={item.id} onClick={() => router.push(`/blog/${item.name}`)}>
