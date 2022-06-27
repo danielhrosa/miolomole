@@ -11,7 +11,7 @@ export default function BlogEditor({ article }){
   const { isLoggedIn } = useAppProvider();
   const { name } = router.query;
   const [fields, setFields] = useState(blogFieldsState(article));
-  const blogFields = blogFieldsFunction({ fields, setFields, name, isLoggedIn });
+  const blogFields = blogFieldsFunction({ fields, setFields, name, isLoggedIn, router });
   !isLoggedIn && delete blogFields.button;
   !isLoggedIn && delete blogFields.description;
   return (

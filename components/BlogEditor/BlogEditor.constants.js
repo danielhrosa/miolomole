@@ -12,7 +12,7 @@ export const blogFieldsState = (article) => {
   })
 };
 
-export const blogFieldsFunction = ({ fields, setFields, name, isLoggedIn }) => ({
+export const blogFieldsFunction = ({ fields, setFields, name, isLoggedIn, router }) => ({
   image: {
     ...fields.image,
     name: 'image',
@@ -64,12 +64,15 @@ export const blogFieldsFunction = ({ fields, setFields, name, isLoggedIn }) => (
         name === 'novo'
           ? axios.post('/api/blog', { ...variables })
             .then(() => {
-              router.push(`/blog/${res.data.article.name}`)
               toast.success('Artigo postado com sucesso!');
+              router.push('/blog')
             })
             .catch((err) => console.log(err.response))
           : axios.put('/api/blog', { ...variables, name })
-            .then(() => toast.success('Artigo atualizado com sucesso!'))
+            .then(() => {
+              toast.success('Artigo atualizado com sucesso!')
+              router.push('/blog')
+            })
             .catch((err) => console.log(err.response))
       }
     }
