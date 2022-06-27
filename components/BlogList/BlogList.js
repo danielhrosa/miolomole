@@ -16,7 +16,7 @@ export default function BlogList(props) {
       <S.BlogList>
         <S.BlogBanner><h1>miolo_blog</h1></S.BlogBanner>
         {isLoggedIn && <S.CreateNewButton onClick={() => router.push('/blog/novo')} label="Criar no post" variation="secondary"/>}
-        {posts?.length && posts.map((post) => <PostCard key={`${post}-post`} item={post} />)}
+        {posts?.length && posts.map((post) => <PostCard key={`${post}-post`} item={post} />).reverse()}
       </S.BlogList>
     </Container>
   )
