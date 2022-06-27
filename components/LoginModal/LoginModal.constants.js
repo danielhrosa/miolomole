@@ -22,7 +22,7 @@ export const loginModalFieldsFunction = ({ fields, onSubmit, loading, formDisabl
     label: 'Entrar',
     variation: 'primary',
     loading: loading,
-    disbled: formDisabledState,
+    disbled: formDisabledState || loading,
     onClick: (e) => onSubmit(e)
   }
 })

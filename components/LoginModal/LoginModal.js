@@ -46,9 +46,9 @@ export default function LoginModal(){
         const responseError = err.response && err.response?.data?.errorMessage;
         if (responseError) { toast.error(responseError) }
       })
-      .finally(() => setLoading(false))
+      // .finally(() => setLoading(false))
     }
-    setLoading(false);
+    // setLoading(false);
   }
 
   useEffect(() => {
@@ -61,7 +61,8 @@ export default function LoginModal(){
     fields: loginModalFields ? loginModalFields : {} ,
     setFields,
     disabled: formDisabledState,
-    onSubmit
+    onSubmit,
+    loading,
   }
 
   return(
