@@ -133,6 +133,48 @@ module.exports = withImages({
         destination: '/livros/tres-contos-machado-de-assis/audioacessivel',
         permanent: true,
       },
+      
+      {
+        source: '/do-lado-de-la-audioacessivel',
+        destination: '/livros/do-lado-de-la/audioacessivel',
+        permanent: true,
+      },
+      {
+        source: '/TANTAS-PALAVRAS-AUDIOACESSIVEL',
+        destination: '/livros/tantas-palavras/audioacessivel',
+        permanent: true,
+      },
+      {
+        source: '/tantas-palavras-audiocessivel',
+        destination: '/livros/tantas-palavras/audioacessivel',
+        permanent: true,
+      },
+      {
+        source: '/livro-do-ouvido-audioacessivel',
+        destination: '/livros/o-livro-do-ouvido/audioacessivel',
+        permanent: true,
+      },
+      {
+        source: '/abichodario-versao-audioacessivel',
+        destination: '/livros/abichodario/audioacessivel',
+        permanent: true,
+      },
+      {
+        source: '/de-onde-vem-as-cores-versao-audioacessivel',
+        destination: '/livros/de-onde-vem-as-cores/audiodescricao',
+        permanent: true,
+      },
+      {
+        source: '/o-rapto-das-cores-versao-audioacessivel',
+        destination: '/livros/o-rapto-das-cores/audioacessivel',
+        permanent: true,
+      },
+      {
+        source: '/flores-sonhadas-versao-audioacessivel',
+        destination: '/livros/flores-sonhadas/audioacessivel',
+        permanent: true,
+      },
     ]
   },
 });
+
