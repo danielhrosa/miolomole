@@ -12,7 +12,7 @@ export default function HomeLatestArticles(){
   const { email} = homeLastestFields;
 
   const submitMessage = async () => {
-    await axios.post('/api/contato', { email, newsletter: true })
+    await axios.post('/api/contato', { email, type: 'newsletter' })
       .then((res) => {
         setFields((oldFields) => {
           const newFields = {...oldFields}

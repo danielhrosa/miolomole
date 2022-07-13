@@ -1,11 +1,10 @@
-export const ContactSectionFieldsState = ({
+export const contactSectionFieldsState = ({
   name: { value: '' },
   email: { value: '' },
   message: { value: '' },
 })
 
-export const ContactSectionFunction = ({fields, setFields}) => ({
-  
+export const contactSectionFunction = ({ fields }) => ({
   name: {
     ...fields.name,
     name: 'name',
@@ -31,7 +30,7 @@ export const ContactSectionFunction = ({fields, setFields}) => ({
 })
 
 export const gridTemplate = (theme) => {
-  const { screen: { screenXS }} = theme
+  const { screen: { screenXS } } = theme
   return `
     grid-template: ${`
       "name"

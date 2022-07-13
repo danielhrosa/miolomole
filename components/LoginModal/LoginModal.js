@@ -8,7 +8,7 @@ import * as S from './LoginModal.style'
 import { useAppProvider } from '../../store/appProvider';
 import toast, { Toaster } from 'react-hot-toast';
 
-export default function LoginModal(){
+export default function LoginModal() {
   const { setCurrentUser, setIsLoggedIn } = useAppProvider();
   const [fields, setFields] = useState(loginModalFieldsState);
   const [loading, setLoading] = useState();
@@ -17,7 +17,7 @@ export default function LoginModal(){
 
   useEffect(() => {
     setFields((oldFields) => {
-      const newFields = {...oldFields};
+      const newFields = { ...oldFields };
       newFields.userName.value = '';
       newFields.password.value = '';
       return newFields;
@@ -28,11 +28,11 @@ export default function LoginModal(){
     e.preventDefault();
     setLoading(true);
     const fieldsArray = Object.entries(fields);
-    const { userName, password } = fieldsArray.reduce((obj, item) => ({...obj, [item[0]]: item[1]?.value }), {});
-    if ( userName && password ){
+    const { userName, password } = fieldsArray.reduce((obj, item) => ({ ...obj, [item[0]]: item[1]?.value }), {});
+    if (userName && password) {
       axios.post(`/api/login`, { userName, password })
         .then((res) => {
-          if(res.status == 200) {
+          if (res.status == 200) {
             const user = res.data.user;
             const token = user.token;
             localStorage.setItem("token", token);
@@ -42,10 +42,10 @@ export default function LoginModal(){
             router.push('/');
           }
         })
-      .catch((err) => { 
-        const responseError = err.response && err.response?.data?.errorMessage;
-        if (responseError) { toast.error(responseError) }
-      })
+        .catch((err) => {
+          const responseError = err.response && err.response?.data?.errorMessage;
+          if (responseError) { toast.error(responseError) }
+        })
       // .finally(() => setLoading(false))
     }
     // setLoading(false);
@@ -58,16 +58,16 @@ export default function LoginModal(){
   const loginModalFields = loginModalFieldsFunction({ fields, setFields, onSubmit, loading, formDisabledState })
   const formProps = {
     gridTemplate,
-    fields: loginModalFields ? loginModalFields : {} ,
+    fields: loginModalFields ? loginModalFields : {},
     setFields,
     disabled: formDisabledState,
     onSubmit,
     loading,
   }
 
-  return(
+  return (
     <S.LoginModalContainer>
-      <Toaster position="bottom-right" reverseOrder={false}/>    
+      <Toaster position="bottom-right" reverseOrder={false} />
       <S.LoginModalBody>
         <S.Close className="unselectable" onClick={() => router.push('/')}>+</S.Close>
         <S.FormWrapper>
@@ -75,7 +75,7 @@ export default function LoginModal(){
             <S.Title>Login</S.Title>
             <S.SubTitle>*Somente para administradores</S.SubTitle>
           </S.FormTitleWrapper>
-          <Form {...formProps}/>
+          <Form {...formProps} />
         </S.FormWrapper>
       </S.LoginModalBody>
     </S.LoginModalContainer>
