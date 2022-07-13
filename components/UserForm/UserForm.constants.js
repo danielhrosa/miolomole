@@ -11,7 +11,7 @@ export const usuariosFieldsState = (props) => ({
   hideFromList: { value: false },
 })
 
-export const usuariosFieldsFunction = ({ fields }) => ({
+export const usuariosFieldsFunction = ({ fields, setFields }) => ({
   avatar: {
     ...fields.avatar,
     name: 'avatar',
@@ -21,6 +21,14 @@ export const usuariosFieldsFunction = ({ fields }) => ({
     ...fields.userName,
     name: 'userName',
     label: 'Login',
+    onChange: ({ target }) => {
+      const { value, name } = target;
+      setFields((oldFields) => {
+        const newFields = { ...oldFields };
+        newFields[name].value = value.toLowerCase().replace(" ", "");
+        return newFields;
+      });
+    }
   },
   occupation: {
     ...fields.occupation,
@@ -46,7 +54,7 @@ export const usuariosFieldsFunction = ({ fields }) => ({
       axios.get('/api/users').then((res) => {
         res && callback(res.data
           .filter((option) => option?.userFullName?.toLowerCase().includes(query.toLowerCase()) || option.userName.toLowerCase().includes(query.toLowerCase()))
-          .map((option) => ({ label: option.userFullName + ' já cadastrado!'}))
+          .map((option) => ({ label: option.userFullName + ' já cadastrado!' }))
         )
       })
     }
@@ -82,6 +90,7 @@ export const gridTemplate = () => {
       "description"
       "hideFromList";
     grid-template-columns: 1fr;
+    grid-column-gap: 32px;
 
     @media screen{
       @media (min-width: 1024px){
