@@ -7,7 +7,6 @@ export default function HeaderNav({isOpen, toggle}){
   const { asPath } = useRouter();
   const { isLoggedIn } = useAppProvider();
   let navMenuItems = [
-    { name: 'Home', path: '/' },
     { name: 'Livros', path: '/livros' },
     { name: 'Quem somos', path: '/quem-somos' },
     { name: 'Contato', path: '/contato' },
