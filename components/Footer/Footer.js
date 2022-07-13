@@ -5,6 +5,7 @@ import Copyright from '../Copyright';
 import FooterNav from '../FooterNav';
 import Container from '../Container'
 import * as S from './Footer.style';
+import Partners from '../Partners/Partners';
 
 export default function Footer(){
 
@@ -17,6 +18,7 @@ export default function Footer(){
             <S.FooterNavItem name="logo"><Logo/></S.FooterNavItem>
             <FooterNav/>
             <ContactSocial/>
+            <Partners/>
           </S.FooterNavList>
         </S.FooterNav>
 

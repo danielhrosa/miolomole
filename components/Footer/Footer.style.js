@@ -23,6 +23,7 @@ export const FooterNavList = styled.ul`
   border-bottom: 1px solid #474747;
   padding-inline-start: 0;
   padding: 0 16px;
+  gap: 18px;
   flex-direction: column;
   
   @media (min-width: 1024px){
