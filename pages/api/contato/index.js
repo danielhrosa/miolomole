@@ -8,8 +8,6 @@ export default async function contactHandler(req, res) {
   let args = body ? { ...body } : {};
   let { name, email, message, type = 'contact' } = body;
 
-  console.log(type)
-
   try {
     switch (method) {
       case 'POST':

@@ -17,7 +17,6 @@ export default function InputFile({ name, onChange, value, setFields, type, clas
   const { isLoggedIn: isLoggedInContext } = useAppProvider();
   const [fileType, setFileType] = useState();
   const isLoggedIn = !!isLoggedInContext && !!isLoggedInHandler;
-  console.log(isLoggedIn)
 
   const getFileType = (string) => {
     if(string.includes('audio')){ return 'audio'}
