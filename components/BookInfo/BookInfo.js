@@ -92,9 +92,9 @@ export default function BookInfo({ book }) {
       <Form {...formProps} />
       <S.BottomWrapper>
         <S.Price>
-          <S.Label>Preço</S.Label>
+          <S.Label>Capa comum</S.Label>
           <S.PriceText><S.PriceLabel>{dynamicText(price.price?.value)}</S.PriceLabel><FieldEditable {...priceField.price} isLoggedIn={isLoggedIn} setFields={setPrice} /></S.PriceText>
-          <S.Label>Literatura interativa</S.Label>
+          <S.Label>Com experiência digital</S.Label>
           <S.PriceText><S.PriceLabel>{dynamicText(price.digitalExperiencePrice?.value)}</S.PriceLabel><FieldEditable {...priceField.digitalExperiencePrice} isLoggedIn={isLoggedIn} setFields={setPrice} /></S.PriceText>
         </S.Price>
         <Button id="save" {...saveButton} />
