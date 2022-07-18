@@ -76,13 +76,13 @@ export default function BookInfo({ book }) {
   }
 
   const handlerOnClick = () => {
-    name === 'tres-contos-machado-de-assis' ? router.push('https://www.livrariadagente.com.br/MLB-2041123775-livro-trs-contos-de-machado-de-assis-_JM#position=4&search_layout=stack&type=item&tracking_id=c5d84bc5-e331-4065-88f4-7787f54615c5') : router.push('/parceiros')
+    name === 'tres-contos-machado-de-assis' ? router.push('https://www.livrariadagente.com.br/MLB-2041123775-livro-trs-contos-de-machado-de-assis-_JM#position=4&search_layout=stack&type=item&tracking_id=c5d84bc5-e331-4065-88f4-7787f54615c5') : router.push('/onde-comprar')
   }
 
   const saveButton = {
     variation: "primary",
     onClick: async () => isLoggedIn ? await saveInfos() : handlerOnClick(),
-    label: isLoggedIn ? "Salvar Descrição" : "Comprar em loja parceira"
+    label: isLoggedIn ? "Salvar Descrição" : "Onde comprar"
   }
 
   const dynamicText = (price) => price && !(/\D/gim).test(price?.replace(',', '')) && 'R$';
