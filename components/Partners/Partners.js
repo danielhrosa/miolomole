@@ -1,11 +1,9 @@
 
-import pt from '../../i18n/pt'
 import * as S from './Partners.style'
-import Icon from '../Icon'
 
-export default function Partners(){
+export default function Partners() {
 
-  return(
+  return (
     <S.Partners>
       <S.PartnersList>
         <img src="./EUREKA_DIGITAL_LOGO.png"></img>
