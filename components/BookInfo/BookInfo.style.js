@@ -19,7 +19,7 @@ export const BookInfoTitle = styled.h1`
   text-align: center;
   align-items: center;
   @media (min-width: 1024px){ font-size: 40px; text-align: left; }
-  ${({isLoggedIn}) => !isLoggedIn && css`:focus-visible { outline: none }`}
+  ${({ isLoggedIn }) => !isLoggedIn && css`:focus-visible { outline: none }`}
 `
 
 export const BookInfoItem = styled.div`
@@ -30,7 +30,7 @@ export const BookInfoItem = styled.div`
   height: 100%;
   width: 100%;
 
-  ${({isLoggedIn}) => !isLoggedIn && css`:focus-visible { outline: none }`};
+  ${({ isLoggedIn }) => !isLoggedIn && css`:focus-visible { outline: none }`};
 
   @media screen {
     @media (min-width: 1024px) {
@@ -49,7 +49,7 @@ export const BookInfoItemSelect = styled.div`
   text-align: center;
   align-items: center;
 
-  ${({isLoggedIn}) => !isLoggedIn && css`:focus-visible { outline: none }`};
+  ${({ isLoggedIn }) => !isLoggedIn && css`:focus-visible { outline: none }`};
   
   @media screen {
     @media (min-width: 1024px) {
@@ -66,17 +66,17 @@ export const BookInfoItemSelect = styled.div`
       border: none;
       min-height: 40px;
       box-shadow: 0 0 0 0 #000000 !important;
-      border: 1px solid ${({ theme: { color: { blackDark }}}) => blackDark};
+      border: 1px solid ${({ theme: { color: { blackDark } } }) => blackDark};
       border-radius: 8px;
     }
   
     .inputSelect__option--is-selected  {
-      background: ${({ theme: { color: { brandLight }}}) => brandLight};
+      background: ${({ theme: { color: { brandLight } } }) => brandLight};
     }
   
     .inputSelect__option--is-focused {
-      background: ${({ theme: { color: { brand }}}) => brand};
-      color: ${({ theme: { color: { white }}}) => white};
+      background: ${({ theme: { color: { brand } } }) => brand};
+      color: ${({ theme: { color: { white } } }) => white};
     }
     .inputSelect__control {
       background: unset;
@@ -103,7 +103,7 @@ export const BookItemLabel = styled.label`
   font-size: 16px;
   color: #071825;
   text-align: center;
-  ${({isLoggedIn}) => !isLoggedIn && css`:focus-visible { outline: none }`}
+  ${({ isLoggedIn }) => !isLoggedIn && css`:focus-visible { outline: none }`}
   @media (min-width: 1024px){
     text-align: left;
     width: 200px;
@@ -119,7 +119,7 @@ export const BookItemValue = styled.p`
   padding: 7px;
   border-radius: 5px;
   text-align: center;
-  ${({isLoggedIn}) => isLoggedIn ? css`:focus-visible { background-color: ${({ theme: { color: { brandVeryLighter }}}) => brandVeryLighter } }` : css `:focus-visible { outline: none }`}
+  ${({ isLoggedIn }) => isLoggedIn ? css`:focus-visible { background-color: ${({ theme: { color: { brandVeryLighter } } }) => brandVeryLighter} }` : css`:focus-visible { outline: none }`}
   @media (min-width: 1024px){
     text-align: left;
     width: 100%;
@@ -149,10 +149,11 @@ export const Price = styled.div`
   margin: 0;
   width: 100%;
   height: 100%;
-  @media (min-width: 1024px){ margin: 0 20px }
+  @media (min-width: 1024px){ margin: 0 10px }
 `
 
 export const Label = styled.label`
+  display: block;
   font-family: Montserrat;
   font-style: normal;
   font-weight: 600;
@@ -160,11 +161,11 @@ export const Label = styled.label`
   line-height: 22px;
   text-align: left;
   margin-bottom: 15px;
-  color: ${({ theme: { color: { blackMedium }}}) => blackMedium };
+  color: ${({ theme: { color: { blackMedium } } }) => blackMedium};
 `
 
 export const PriceValue = styled.p`
-  ${({isLoggedIn}) => !isLoggedIn && css`:focus-visible { outline: none }`}
+  ${({ isLoggedIn }) => !isLoggedIn && css`:focus-visible { outline: none }`}
   font-family: Montserrat;
   font-style: normal;
   font-weight: bold;
@@ -186,7 +187,7 @@ export const PriceLabel = styled.span`
   @media (min-width: 1024px){ text-align: left; width: unset }
 `
 
-export const PriceText = styled.p`
+export const PriceText = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;

@@ -9,17 +9,22 @@ import { useAppProvider } from '../../store/appProvider';
 import mapFieldsToData from '../../utils/mapFieldsToData';
 import mapDataToFields from '../../utils/mapDataToFields';
 import FieldEditable from '../../Elements/Field/FieldEditable';
-import { BookInfoFieldsFunction, BookInfoFieldsState, priceFieldState, priceFieldFunction, gridTemplate } from './BookInfo.constants';
+import { bookInfoFieldsFunction, bookInfoFieldsState, priceFieldState, priceFieldFunction, gridTemplate } from './BookInfo.constants';
 
-export default function BookInfo({ book }){
+/*
+  to do: 
+    refact the fields state manipulation removing redundant states and unifying
+*/ 
+
+export default function BookInfo({ book }) {
   const router = useRouter();
   const { name } = router.query;
   const { isLoggedIn } = useAppProvider();
-  const [fields, setFields] = useState(BookInfoFieldsState);
+  const [fields, setFields] = useState(bookInfoFieldsState);
   const [price, setPrice] = useState(priceFieldState);
   const [users, setUsers] = useState([]);
-  const priceField = priceFieldFunction({ price, isLoggedIn }).price
-  const bookFields = BookInfoFieldsFunction({ fields, setFields, users });
+  const priceField = priceFieldFunction({ price, isLoggedIn })
+  const bookFields = bookInfoFieldsFunction({ fields, setFields, users });
   const formProps = { fields: bookFields, setFields, gridTemplate, isLoggedIn, striped: true }
 
   useEffect(() => {
@@ -27,43 +32,44 @@ export default function BookInfo({ book }){
       .then((res) => setUsers(res.data))
       .catch((err) => console.log(err))
   }, [])
-  
+
   useEffect(() => {
-    if(book) {
+    if (book) {
       setFields((oldFields) => {
-        const newFields = {...oldFields};
-        mapDataToFields({newFields, constantFields: bookFields, data: book})
+        const newFields = { ...oldFields };
+        mapDataToFields({ newFields, constantFields: bookFields, data: book })
         return newFields;
       })
       setPrice((oldFields) => {
-        const newFields = {...oldFields};
+        const newFields = { ...oldFields };
         newFields.price.value = book.price;
+        newFields.digitalExperiencePrice.value = book.digitalExperiencePrice;
         return newFields;
       })
     }
   }, [book])
-  
+
   const saveInfos = async () => {
-    const variables = mapFieldsToData({ ...bookFields, priceField});
-    if(!name) {
-      try{
-        if(variables.title === '') { 
+    const variables = mapFieldsToData({ ...bookFields, ...priceField });
+    if (!name) {
+      try {
+        if (variables.title === '') {
           toast.error('Por favor preencha o titulo')
         } else {
           const res = await axios.post('/api/livros', { ...variables })
-          if(res.status === 200){
+          if (res.status === 200) {
             router.push(`/livros/${res.data.bookCreated.name}`)
             toast.success('Cadastro realizado com sucesso!');
           } else { toast.error(res.data.errorMessage); }
         }
       } catch (err) { console.log(err.response.data.errorMessage); toast.error(err.response.data.errorMessage) }
     } else {
-      try{
+      try {
         const res = await axios.put('/api/livros', { ...variables, name })
-        if(res.status === 200){ 
+        if (res.status === 200) {
           toast.success('Cadastro atualizado com sucesso!');
           router.push(`/livros/${res.data.name}`)
-        } 
+        }
         else { console.log(res) }
       } catch (err) { console.log(err.response) }
     }
@@ -78,20 +84,22 @@ export default function BookInfo({ book }){
     onClick: async () => isLoggedIn ? await saveInfos() : handlerOnClick(),
     label: isLoggedIn ? "Salvar Descrição" : "Comprar em loja parceira"
   }
-  
-  const dynamicText = price.price && !(/\D/gim).test(price.price?.value?.replace(',', '')) && 'R$';
+
+  const dynamicText = (price) => price && !(/\D/gim).test(price?.replace(',', '')) && 'R$';
 
   return (
     <S.BookInfo>
-      <Form { ...formProps } />
+      <Form {...formProps} />
       <S.BottomWrapper>
         <S.Price>
           <S.Label>Preço</S.Label>
-          <S.PriceText><S.PriceLabel>{dynamicText}</S.PriceLabel><FieldEditable {...priceField} isLoggedIn={isLoggedIn} setFields={setPrice} /></S.PriceText>
+          <S.PriceText><S.PriceLabel>{dynamicText(price.price?.value)}</S.PriceLabel><FieldEditable {...priceField.price} isLoggedIn={isLoggedIn} setFields={setPrice} /></S.PriceText>
+          <S.Label>Literatura interativa</S.Label>
+          <S.PriceText><S.PriceLabel>{dynamicText(price.digitalExperiencePrice?.value)}</S.PriceLabel><FieldEditable {...priceField.digitalExperiencePrice} isLoggedIn={isLoggedIn} setFields={setPrice} /></S.PriceText>
         </S.Price>
-          <Button id="save" {...saveButton} />
+        <Button id="save" {...saveButton} />
       </S.BottomWrapper>
-      <Toaster position="bottom-right" reverseOrder={false}/>      
+      <Toaster position="bottom-right" reverseOrder={false} />
     </S.BookInfo>
   )
 }

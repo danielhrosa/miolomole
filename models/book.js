@@ -15,6 +15,7 @@ var book = new Schema({
   ageIndication: { type: Object },
   synopsis: { type: String },
   price: { type: String },
+  digitalExperiencePrice: { type: String },
   image: { type: String },
   video: { type: String },
   type: { type: String },
