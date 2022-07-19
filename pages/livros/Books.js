@@ -7,17 +7,17 @@ import HomeLatestArticles from "../../components/HomeLatestArticles";
 import SpotlightBooksJumbotron from "../../components/SpotlightBooksJumbotron";
 import { useAppProvider } from "../../store/appProvider";
 
-export default function BooksList(props){
+export default function BooksList(props) {
   const t = pt;
   const router = useRouter();
   const { id } = router.query;
   const { isLoggedIn } = useAppProvider();
 
-  return(
+  return (
     <div>
       <SpotlightBooksJumbotron {...props} />
       <OurProductsList {...props} id={id} />
-      { isLoggedIn && <LatestArticles items={t.BLOG_ARTICLES}/> }
+      {isLoggedIn && <LatestArticles items={t.BLOG_ARTICLES} />}
       <AboutUsSlider {...props} />
       <HomeLatestArticles id={id} />
     </div>
