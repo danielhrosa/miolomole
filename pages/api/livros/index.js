@@ -28,9 +28,9 @@ const bookHandler = async (req, res) => {
           if (!name && !_id) { return res.status(400).json({ errorMessage: 'Parâmetros inválidos' }) };
           const updatedModel = await updateModel(args, Book);
           updatedModel.name = updatedModel.title.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f`~!@#$%^&*()_|+\=?;:'",.<>\{\}\[\]\\\/]/gi, '').replace(/(\s)(?=\1)/gi, "").replace(/\s/g, "-")
-          updatedModel.save();
+          await updatedModel.save();
           return res.status(200).json(updatedModel);
-        } catch (err) { console.log(err); console.log('fui eu...'); return res.status(500).end() };
+        } catch (err) { console.log(err); return res.status(500).end() };
       case 'POST':
         try {
           const book = await Book.findOne({ title });

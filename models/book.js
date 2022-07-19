@@ -19,6 +19,7 @@ var book = new Schema({
   image: { type: String },
   video: { type: String },
   type: { type: String },
+  isHidden: { type: Boolean },
   assets: [{ 
     assetName: { type: String },
     assetType: { type: String },

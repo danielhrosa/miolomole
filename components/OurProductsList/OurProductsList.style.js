@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 
 export const OurProductsList = styled.div`
   position: relative;
@@ -22,7 +22,7 @@ export const AddBookButton = styled.div`
     font-weight: 500;
   }
   &:hover {
-    color: ${({ theme: { color: { blue }}}) => blue };
+    color: ${({ theme: { color: { blue } } }) => blue};
     transition: .5s cubic-bezier(.22,.68,0,1.71);
   }
 
@@ -35,7 +35,7 @@ export const AddBookButton = styled.div`
 export const OurProductsApresentation = styled.div`
   width: 100%;
   text-align: center;
-` 
+`
 export const OurProductsTitle = styled.h1`
   font-family: Amatic SC;
   font-weight: bold;
@@ -51,7 +51,7 @@ export const OurProductsTitle = styled.h1`
 export const OurProductsText = styled.p`
   font-family: Montserrat;
   font-weight: 500;
-  font-size: ${({ theme: { fontSize: { fontSizeSMM }}}) => fontSizeSMM };
+  font-size: ${({ theme: { fontSize: { fontSizeSMM } } }) => fontSizeSMM};
   line-height: 30px;
   text-align: center;
   width: 100%;
@@ -91,15 +91,15 @@ export const ProductCard = styled.div`
       width: 250px;
     }
   }
+`;
 
-  [type="delete"]{
-    svg{
-      position: absolute;
-      top: 10px;
-      right: 10px;
-    }
-  }
-`
+export const ProductCardButtons = styled.div`
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  display: flex;
+  gap: 8px;
+`;
 
 export const ProductCardImage = styled.img`
   width: 250px;
@@ -108,11 +108,12 @@ export const ProductCardImage = styled.img`
   background-repeat: no-repeat;
   background-position: center;
   margin-bottom: 10px;
+  ${({ isHidden }) => isHidden && css`filter: grayscale(1);`}
 `
 export const ProductCardTitle = styled.div`
   font-family: Montserrat;
   font-weight: 600;
-  font-size: ${({ theme: { fontSize: { fontSizeXS }}}) => fontSizeXS };
+  font-size: ${({ theme: { fontSize: { fontSizeXS } } }) => fontSizeXS};
   line-height: 26px;
   margin-bottom: 5px;
 `
