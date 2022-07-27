@@ -1,11 +1,9 @@
 import nodemailer from "nodemailer";
 
-const host = process.env.EMAIL_HOST;
-const port = Number(process.env.EMAIL_PORT);
-const email = process.env.EMAIL;
-const pass = process.env.PASSWORD;
-
-console.log(host, port, email, pass)
+const host = process.env.NEXT_EMAIL_HOST;
+const port = Number(process.env.NEXT_EMAIL_PORT);
+const email = process.env.NEXT_EMAIL;
+const pass = process.env.NEXT_PASSWORD;
 
 export const createEmail = ({ to, html = "", subject = "" }) => {
   return { from: `"Miolo Mole" <${email}>`, to, subject, html };
