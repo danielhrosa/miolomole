@@ -23,8 +23,8 @@ export default async function contactHandler(req, res) {
           default:
             try {
               if (!name || !email || !message) { return res.status(400).json({ errorMessage: 'Digite um email válido' }) };
-              transport.sendMail(createEmail({ to: process.env.EMAIL, html: contactEmail({ ...args }), subject: "Contato Miolo Mole Site" }));
-              transport.sendMail(createEmail({ to: email, html: contactResponseEmail({ ...args }), subject: "Miolo Mole Site" }));
+              await transport.sendMail(createEmail({ to: process.env.EMAIL, html: contactEmail({ ...args }), subject: "Contato Miolo Mole Site" }));
+              await transport.sendMail(createEmail({ to: email, html: contactResponseEmail({ ...args }), subject: "Miolo Mole Site" }));
               return res.status(200).end();
             } catch (error) {
               return res.status(405).json({ errorMessage: `Method ${method} Not Allowed` })
