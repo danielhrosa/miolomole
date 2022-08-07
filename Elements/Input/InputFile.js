@@ -1,6 +1,6 @@
 import React, { useState, useCallback } from 'react';
 import { inputChange } from '../../helpers/fieldFunctions';
-import {useDropzone} from 'react-dropzone';
+import { useDropzone } from 'react-dropzone';
 import Evaporate from 'evaporate';
 import { v4 as uuidv4 } from 'uuid';
 import AWS from "aws-sdk";
@@ -19,9 +19,9 @@ export default function InputFile({ name, onChange, value, setFields, type, clas
   const isLoggedIn = !!isLoggedInContext && !!isLoggedInHandler;
 
   const getFileType = (string) => {
-    if(string.includes('audio')){ return 'audio'}
-    if(string.includes('video')){ return 'video'}
-    if(string.includes('image')){ return 'image'}
+    if (string.includes('audio')) { return 'audio' }
+    if (string.includes('video')) { return 'video' }
+    if (string.includes('image')) { return 'image' }
     else {
       const fileTypeByExtension = getFileTypeByExtensions(value.split('.')[value.split('.').length - 1]);
       setFileType(fileTypeByExtension)
@@ -47,47 +47,47 @@ export default function InputFile({ name, onChange, value, setFields, type, clas
 
     const evaporateAddConfig = {
       file,
-      name: fileName, 
+      name: fileName,
       contentType: file.type,
       progress: progressValue => setProgress((progressValue * 100).toFixed(2)),
-      complete: (xhr) => { 
-        const location = xhr.responseURL.split('?')[0]; 
-        onChange 
+      complete: (xhr) => {
+        const location = xhr.responseURL.split('?')[0];
+        onChange
           ? onChange({ target: { name, value: location, i, parentName }, setFields })
           : inputChange({ target: { name, value: location, i, parentName }, setFields })
-        setLoading(false);  
+        setLoading(false);
       },
     };
     Evaporate.create(evaporateConfig)
       .then((evaporate) => evaporate.add(evaporateAddConfig))
   }, []);
-  
+
   const { getRootProps, getInputProps } = useDropzone({ onDrop });
 
   const contentRender = () => {
     // console.log('fileType', fileType, value)
-    if(!fileType) getFileType(value);
-    if(value){
+    if (!fileType) getFileType(value);
+    if (value) {
       if (fileType !== 'image') { return <Player src={value} poster={poster} /> }
       else { return <img src={value} /> }
     }
   }
   const placeholderTip = () => {
     let typeTip;
-    if(fileType)
-    switch (fileType) {
-      case 'image': typeTip = 'uma imagem'; break;
-      case 'video': typeTip = 'um video'; break;
-      case 'audio': typeTip = 'um audio'; break;
-      default: typeTip = `${type}`
-    }
+    if (fileType)
+      switch (fileType) {
+        case 'image': typeTip = 'uma imagem'; break;
+        case 'video': typeTip = 'um video'; break;
+        case 'audio': typeTip = 'um audio'; break;
+        default: typeTip = `${type}`
+      }
     return <p>Clique aqui ou arraste {typeTip}</p>
   }
 
   return (
     <S.InputFile>
       <S.InputPreview className={className} type={type} >
-        {value 
+        {value
           ? contentRender()
           : loading && (
             <S.Loading>
@@ -98,15 +98,15 @@ export default function InputFile({ name, onChange, value, setFields, type, clas
           )
         }
       </S.InputPreview>
-      { isLoggedIn && (
+      {isLoggedIn && (
         <S.ActionButtonWrapper>
           <S.DropArea {...getRootProps()}>
-            { placeholderTip() }
+            {placeholderTip()}
             <input {...getInputProps()} />
           </S.DropArea>
           <S.DeleteButton>
             <p>Limpar</p>
-            <Button type="delete" onClick={() => onChange ? onChange({ target: { name, i, parentName, value: '' }, setFields }) : inputChange({target: { name, i, parentName, value: '' }, setFields}) } />
+            <Button type="delete" onClick={() => onChange ? onChange({ target: { name, i, parentName, value: '' }, setFields }) : inputChange({ target: { name, i, parentName, value: '' }, setFields })} />
           </S.DeleteButton>
         </S.ActionButtonWrapper>
       )}

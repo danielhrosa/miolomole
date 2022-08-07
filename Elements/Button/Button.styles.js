@@ -221,10 +221,13 @@ const rounded = css`
 `
 
 const bigIcon = css`
-  padding: 0;
+  width: 38px;
+  right: -2px;
+  position: absolute;
   display: flex;
   flex-direction: column;
-  padding-top: 16px;
+  background-color: transparent;
+  border: 2px dashed ${({ theme: { color: { brand } } }) => brand};
   border-radius: 0;
 
   svg {
@@ -364,6 +367,7 @@ export const ConfirmButton = styled.div`${customButton}`
 export const CancelButton = styled.div`${customButton}`
 
 export const StyledButtonAction = styled.button`
+  ${({ height }) => `height: ${height}px;`}
   ${button}
 `
 

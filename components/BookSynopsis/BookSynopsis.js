@@ -11,30 +11,30 @@ import mapFieldsToData from '../../utils/mapFieldsToData';
 import mapDataToFields from '../../utils/mapDataToFields';
 import toast, { Toaster } from 'react-hot-toast';
 
-export default function BookSynopsis({ book, ...props }){
+export default function BookSynopsis({ book, ...props }) {
   const router = useRouter();
   const { name } = router.query;
   const { isLoggedIn } = useAppProvider();
   const [fields, setFields] = useState(bookSinopsisFieldsState);
   const synopsisInput = bookSinopsisFieldsFunction({ fields, isLoggedIn })
-  
+
   useEffect(() => {
     book && setFields((oldFields) => {
-      const newFields = {...oldFields};
-      mapDataToFields({newFields, constantFields: synopsisInput, data: book})
+      const newFields = { ...oldFields };
+      mapDataToFields({ newFields, constantFields: synopsisInput, data: book })
       return newFields
     })
   }, [book])
 
   const saveInfos = async () => {
     const variables = mapFieldsToData(synopsisInput)
-    if(!name) {
+    if (!name) {
       const res = await axios.post('/api/livros', { ...variables, name })
-      if(res.status === 200){ toast.success('Cadastro realizado com sucesso!')} 
+      if (res.status === 200) { toast.success('Cadastro realizado com sucesso!') }
       else { alert(res?.data?.response) }
     } else {
       const res = await axios.put('/api/livros', { ...variables, name })
-      if(res.status === 200){ toast.success('Cadastro atualizado com sucesso!')} 
+      if (res.status === 200) { toast.success('Cadastro atualizado com sucesso!') }
       else { alert(res?.data?.response) }
     }
   }
@@ -44,7 +44,7 @@ export default function BookSynopsis({ book, ...props }){
     setFields
   }
 
-  return(
+  return (
     <S.BookSynopsis>
       <Container>
         <S.SynopsisInfo>
@@ -54,8 +54,8 @@ export default function BookSynopsis({ book, ...props }){
           </S.SynopsisWrapper>
         </S.SynopsisInfo>
         <S.SynopsisVideo><Input {...synopsisInput.video} {...inputProps} /></S.SynopsisVideo>
-        <Toaster position="bottom-right" reverseOrder={false}/>      
-        { isLoggedIn && name && <Button id="save" variation="primary" onClick={() => saveInfos()} label="Salvar Sinopse" />}
+        <Toaster position="bottom-right" reverseOrder={false} />
+        {isLoggedIn && name && <Button id="save" variation="primary" onClick={() => saveInfos()} label="Salvar Sinopse" />}
       </Container>
     </S.BookSynopsis>
   )
