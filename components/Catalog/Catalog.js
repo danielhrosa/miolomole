@@ -4,6 +4,8 @@ import Editable from '../Editable';
 import Button from '../../Elements/Button';
 import LogoMiolo from '../../images/js/Logo-miolo';
 import randomColor from '../../utils/randomColor';
+import EditableImage from '../EditableImage';
+import Container from '../Container';
 
 export default function Catalog(props) {
   const catalogLink1 = props?.texts['catalogo-miolo-mole-1'];
@@ -26,21 +28,26 @@ export default function Catalog(props) {
 
   return (
     <S.Catalog>
-      <Editable textKey="catalogo-titulo" {...props}><S.CatalogoTitle /></Editable>
-      {props?.isLoggedIn
-        ? <S.CatalogsList>
-          <Editable textKey="catalogo-miolo-mole-1-botao" {...props}><S.ButtonText /></Editable>
-          <EditableFile textKey="catalogo-miolo-mole-1" link={catalogLink1} {...props} />
-          <Editable textKey="catalogo-miolo-mole-2-botao" {...props}><S.ButtonText /></Editable>
-          <EditableFile textKey="catalogo-miolo-mole-2" link={catalogLink2} {...props} />
-        </S.CatalogsList>
-        : (catalogLink1 || catalogLink2)
-          ? <S.CatalogsList>
-            {catalogLink1 && <Button variation="secondary" label={catalog1Button} onClick={() => downloadFile(catalogLink1)}/>}
-            {catalogLink2 && <Button variation="secondary" label={catalog2Button} onClick={() => downloadFile(catalogLink2)}/>}
-          </S.CatalogsList>
-          : <S.CatalogComingSoon><span>Em breve</span><LogoMiolo color={randomColor()}/></S.CatalogComingSoon>
-      }
+      <EditableImage {...props} textKey="catalogo-background"><S.CatalogBg /></EditableImage>
+      <Container>
+        <S.CatalogWrapper>
+          <Editable textKey="catalogo-titulo" {...props}><S.CatalogoTitle /></Editable>
+          {props?.isLoggedIn
+            ? <S.CatalogsList>
+              <Editable textKey="catalogo-miolo-mole-1-botao" {...props}><S.ButtonText /></Editable>
+              <EditableFile textKey="catalogo-miolo-mole-1" link={catalogLink1} {...props} />
+              <Editable textKey="catalogo-miolo-mole-2-botao" {...props}><S.ButtonText /></Editable>
+              <EditableFile textKey="catalogo-miolo-mole-2" link={catalogLink2} {...props} />
+            </S.CatalogsList>
+            : (catalogLink1 || catalogLink2)
+              ? <S.CatalogsList>
+                {catalogLink1 && <Button variation="primary" label={catalog1Button} onClick={() => downloadFile(catalogLink1)} />}
+                {catalogLink2 && <Button variation="primary" label={catalog2Button} onClick={() => downloadFile(catalogLink2)} />}
+              </S.CatalogsList>
+              : <S.CatalogComingSoon><span>Em breve</span><LogoMiolo color={randomColor()} /></S.CatalogComingSoon>
+          }
+        </S.CatalogWrapper>
+      </Container>
     </S.Catalog>
   )
 }

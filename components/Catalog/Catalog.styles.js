@@ -1,13 +1,46 @@
 import styled from "styled-components";
-import ButtonComponent from '../../Elements/Button';
 
 export const Catalog = styled.div`
-  padding: 32px 16px;
-  background-color: #00A79D;
+  /* padding: 32px 16px; */
+
+  width: 100vw;
+  height: 64vh;
+  overflow: hidden;
+  cursor: pointer;
+
+  .container{
+    align-items: center;
+    height: auto;
+    justify-content: space-evenly;
+    flex-direction: ${({isPair}) => {
+      return isPair ? 'column' : 'column-reverse'}};
+
+    @media screen{
+      @media (min-width: 1024px){
+        height: 400px;
+        flex-direction: ${({isPair}) => {
+          return isPair ? 'row' : 'row-reverse'}};
+      }
+    }
+  }
+
+`;
+
+export const CatalogWrapper = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  z-index: 1;
+
+  margin: 0 50px;
+  z-index: 1;
+  width: 100%;
+  @media screen{
+    @media(min-width: 1024px){
+      width: 55%;
+    }
+  }
 `;
 
 export const CatalogDropzone = styled.div`
@@ -23,9 +56,28 @@ export const ButtonText = styled.a`
 export const CatalogoTitle = styled.h1`
   font-family: Amatic SC;
   font-size: 47px;
-  text-align: center;
   font-weight: 700;
   color: #fff;
+  z-index: 0;
+
+  background: #000000;
+
+  padding: 4px 120px 4px 16px;
+  border-radius: 36px;
+  position: relative;
+  box-shadow: 5px 10px 20px #07182550;
+  
+  :after {
+    content: '';
+    position: absolute;
+    width: 25px;
+    height: 25px;
+    background-color: #FFF;
+    border-radius: 50px;
+    right: 20px;
+    top: 50%;
+    transform: translateY(-50%);
+  }
 `;
 
 export const CatalogComingSoon = styled.div`
@@ -82,6 +134,23 @@ export const CatalogComingSoon = styled.div`
 
 export const CatalogsList = styled.div`
   display: flex;
-  flex-direction: column;
   gap: 16px;
+  align-items: center;
+  justify-content: space-around;
 `;
+
+export const CatalogBg = styled.img`
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+  position: absolute;
+  height: 64vh;
+
+
+  /* @media screen{
+    @media (min-width: 1024px){
+      max-height: 400px;
+      height: fit-content;
+    }
+  } */
+`
