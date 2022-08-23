@@ -3,11 +3,13 @@ import User from '../models/user';
 import Text from '../models/text';
 import Banner from '../components/Banner';
 import Highlight from '../models/highlight';
+import CatalogModel from '../models/catalog';
 import { useAppProvider } from '../store/appProvider';
-import AboutUsSlider from "../components/AboutUsSlider";
-import HomeApresentation from "../components/HomeApresentation";
-import SpotlightBooksJumbotron from "../components/SpotlightBooksJumbotron";
-import Catalog from "../components/Catalog/Catalog";
+import AboutUsSlider from '../components/AboutUsSlider';
+import HomeApresentation from '../components/HomeApresentation';
+import SpotlightBooksJumbotron from '../components/SpotlightBooksJumbotron';
+import Catalog from '../components/Catalog/Catalog';
+import randomColor from '../utils/randomColor';
 
 export default function Home(props) {
   const { isLoggedIn } = useAppProvider();
@@ -35,5 +37,7 @@ export async function getServerSideProps() {
   const items = itemsArray ? JSON.stringify(itemsArray) : {}
   const highlightsArray = await Highlight.find({ isActive: true });
   const highlights = !!highlightsArray.length ? JSON.stringify(highlightsArray) : '[]';
-  return { props: { texts, page, items, highlights } }
+  const catalogsArray = await CatalogModel.find({});
+  const catalogs = !!catalogsArray?.length ? JSON.stringify(catalogsArray) : `[{ "label": "Catalogo", "color": "${randomColor()}" }]`;
+  return { props: { texts, page, items, highlights, catalogs } }
 }
