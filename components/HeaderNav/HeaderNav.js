@@ -10,7 +10,7 @@ export default function HeaderNav({isOpen, toggle}){
     { name: 'Livros', path: '/livros' },
     { name: 'Quem somos', path: '/quem-somos' },
     { name: 'Contato', path: '/contato' },
-    { name: 'Blog', path: '/blog' },
+    { name: 'Blog', path: 'https://editoramiolomole.com.br/' },
   ];
 
   if(isLoggedIn) { navMenuItems = navMenuItems.concat(
