@@ -1,25 +1,23 @@
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 
 export const Catalog = styled.div`
-  /* padding: 32px 16px; */
+  button { width: 200px !important; }
 
   width: 100vw;
-  height: 64vh;
+  min-height: 64vh;
   overflow: hidden;
-  cursor: pointer;
 
   .container{
     align-items: center;
     height: auto;
-    justify-content: space-evenly;
-    flex-direction: ${({isPair}) => {
-      return isPair ? 'column' : 'column-reverse'}};
+    flex-direction: ${({ isPair }) => {
+    return isPair ? 'column' : 'column-reverse'
+  }};
 
     @media screen{
       @media (min-width: 1024px){
         height: 400px;
-        flex-direction: ${({isPair}) => {
-          return isPair ? 'row' : 'row-reverse'}};
+        flex-direction: ${({ isPair }) => isPair ? 'row' : 'row-reverse'};
       }
     }
   }
@@ -29,18 +27,11 @@ export const Catalog = styled.div`
 export const CatalogWrapper = styled.div`
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: space-evenly;
   align-items: center;
   z-index: 1;
-
-  margin: 0 50px;
-  z-index: 1;
+  height: 100%;
   width: 100%;
-  @media screen{
-    @media(min-width: 1024px){
-      width: 55%;
-    }
-  }
 `;
 
 export const CatalogDropzone = styled.div`
@@ -55,14 +46,17 @@ export const ButtonText = styled.a`
 
 export const CatalogoTitle = styled.h1`
   font-family: Amatic SC;
-  font-size: 47px;
+  font-size: 32px;
   font-weight: 700;
   color: #fff;
   z-index: 0;
 
-  background: #000000;
+  width: 107%;
+  text-align: center;
 
-  padding: 4px 120px 4px 16px;
+  background: #000000;
+  width: fit-content;
+  padding: 4px 52px 4px 24px;
   border-radius: 36px;
   position: relative;
   box-shadow: 5px 10px 20px #07182550;
@@ -78,6 +72,13 @@ export const CatalogoTitle = styled.h1`
     top: 50%;
     transform: translateY(-50%);
   }
+
+  @media (min-width: 1042px) {
+    margin: 0 auto;
+    width: 100%;
+    font-size: 47px;
+    padding: 4px 120px 8px 32px;
+  }
 `;
 
 export const CatalogComingSoon = styled.div`
@@ -87,7 +88,6 @@ export const CatalogComingSoon = styled.div`
   justify-content: center;
   align-items: flex-end;
   gap: 32px;
-  color: #fff;
   font-family: Montserrat;
   font-weight: bold;
   position: relative;
@@ -135,8 +135,16 @@ export const CatalogComingSoon = styled.div`
 export const CatalogsList = styled.div`
   display: flex;
   gap: 16px;
+  column-gap: 48px;
   align-items: center;
   justify-content: space-around;
+  flex-direction: column;
+  margin-bottom: 16px;
+  flex-wrap: wrap;
+
+  @media (min-width: 1024px) {
+    flex-direction: row;
+  }
 `;
 
 export const CatalogBg = styled.img`
@@ -145,12 +153,29 @@ export const CatalogBg = styled.img`
   object-fit: cover;
   position: absolute;
   height: 64vh;
+`;
+
+export const CatalogItem = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  position: relative;
+  .delete {
+    position: absolute;
+    right: -20px;
+  }
+`;
+
+export const Title = styled.h1`
+  text-align: center;
+  margin: 8px 0px;
+`;
 
 
-  /* @media screen{
-    @media (min-width: 1024px){
-      max-height: 400px;
-      height: fit-content;
-    }
-  } */
-`
+export const CatalogListWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+`;

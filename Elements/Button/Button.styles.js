@@ -369,6 +369,7 @@ export const CancelButton = styled.div`${customButton}`
 export const StyledButtonAction = styled.button`
   ${({ height }) => `height: ${height}px;`}
   ${button}
+  ${({ color }) => color && css`background: ${color} !important;`}
 `
 
 export const ToggleHideButton = styled.div`

@@ -26,12 +26,12 @@ export const Field = styled.div`
 
 export const FieldEditable = styled.div`
   ${({styles}) => styles}
-`
+`;
 
 export const FieldReadOnly = styled.div`
   width: 100%;
   background-color: unset;
-`
+`;
 
 export const LabelEditable = styled(forwardRef((props, ref) => <TextareaAutosize {...props} ref={ref} />))`
   background-color: transparent;
@@ -39,7 +39,7 @@ export const LabelEditable = styled(forwardRef((props, ref) => <TextareaAutosize
   border: none;
   ${({styles}) => styles };
   ${({isLoggedIn}) => isLoggedIn && css`:focus { outline: none; box-shadow: none }` }
-`
+`;
 
 export const FieldPassword = styled.div`
   grid-area: ${({ name }) => name};
@@ -94,7 +94,7 @@ export const FieldsRadios = styled.div`
       justify-content: center;
     }
   }
-`
+`;
 
 export const FieldRadioButton = styled.label`
   font-family: 'Open Sans';
@@ -132,7 +132,6 @@ export const FieldRadioButton = styled.label`
     display: none;
   }
 `;
-
 
 export const FieldRadio = styled.label`
   font-family: 'Open Sans';
@@ -193,7 +192,7 @@ export const InputRadioMark = styled.div`
   width: 20px;
   border-radius: 50%;
   border: 1px solid ${({ theme: { color: { blue }}}) => blue };
-`
+`;
 
 export const Label = styled.label`
   position: absolute;
@@ -217,7 +216,7 @@ export const StyledFieldError = styled.p`
 
 export const NormalLabel = styled(forwardRef((props, ref) => <label {...props} ref={ref} />))`
   ${({styles}) => styles}
-`
+`;
 
 export const FieldTextArea = styled.div`
   font-size: ${({ theme: { fontSize: { fontSizeXXS }}}) => fontSizeXXS};
@@ -252,7 +251,7 @@ export const SeparatorContainer = styled.div`
       position: inherit;
     }
   }
-`
+`;
 
 export const SeparatorLine = styled.span`
   width: 100%;
@@ -268,7 +267,7 @@ export const SeparatorLine = styled.span`
       font-size: ${({ theme: { fontSize: { fontSizeSM }}}) => fontSizeSM };
     }
   }
-`
+`;
 
 export const PasswordToggle = styled.div`
   position: absolute;
@@ -277,13 +276,13 @@ export const PasswordToggle = styled.div`
   right: 0;
   bottom: 0px;
   cursor: pointer;
-`
+`;
 
 export const SwitchField = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
-`
+`;
 
 export const FieldMediaUploads = styled.div`
   width: 400px;
@@ -295,4 +294,11 @@ export const FieldMediaUploads = styled.div`
     margin-top: 15px;
     width: 100%;
   }
-`
+`;
+
+export const FieldColor = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+`;

@@ -8,6 +8,7 @@ import InputDate from './InputDate';
 import InputRange from './InputRange';
 import InputSearch from './InputSearch';
 import InputFile from './InputFile';
+import InputColor from './InputColor';
 
 export default function Input(props) {
   const { type } = props;
@@ -20,6 +21,7 @@ export default function Input(props) {
     case 'range': return <InputRange {...props} />;
     case 'search': return <InputSearch {...props} />;
     case 'asset': return <InputFile {...props} />;
+    case 'color': return <InputColor {...props} />;
     default: return <InputText {...props} />
   }
 };

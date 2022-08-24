@@ -1,15 +1,14 @@
 import mongoose from 'mongoose';
-import User from '../models/user';
-import Text from '../models/text';
-import Banner from '../components/Banner';
-import Highlight from '../models/highlight';
-import CatalogModel from '../models/catalog';
-import { useAppProvider } from '../store/appProvider';
 import AboutUsSlider from '../components/AboutUsSlider';
+import Banner from '../components/Banner';
+import Catalog from '../components/Catalog/Catalog';
 import HomeApresentation from '../components/HomeApresentation';
 import SpotlightBooksJumbotron from '../components/SpotlightBooksJumbotron';
-import Catalog from '../components/Catalog/Catalog';
-import randomColor from '../utils/randomColor';
+import CatalogModel from '../models/catalog';
+import Highlight from '../models/highlight';
+import Text from '../models/text';
+import User from '../models/user';
+import { useAppProvider } from '../store/appProvider';
 
 export default function Home(props) {
   const { isLoggedIn } = useAppProvider();
@@ -18,7 +17,7 @@ export default function Home(props) {
     <>
       <SpotlightBooksJumbotron {...props} />
       <HomeApresentation {...props} />
-      {[1, 2, 3, 4].map((index) => <Banner {...props} index={index} />)}
+      {[1, 2, 3, 4].map((i) => <Banner key={i} {...props} i={i} />)}
       {/* { isLoggedIn && <LatestArticles items={t.BLOG_ARTICLES}/> } */}
       <AboutUsSlider {...props} />
       <Catalog {...props} isLoggedIn={isLoggedIn} />
@@ -38,6 +37,6 @@ export async function getServerSideProps() {
   const highlightsArray = await Highlight.find({ isActive: true });
   const highlights = !!highlightsArray.length ? JSON.stringify(highlightsArray) : '[]';
   const catalogsArray = await CatalogModel.find({});
-  const catalogs = !!catalogsArray?.length ? JSON.stringify(catalogsArray) : `[{ "label": "Catalogo", "color": "${randomColor()}" }]`;
+  const catalogs = !!catalogsArray?.length ? JSON.stringify(catalogsArray) : `[]`;
   return { props: { texts, page, items, highlights, catalogs } }
 }

@@ -1,4 +1,4 @@
-import React, { useState, useCallback } from 'react';
+import React, { useState, useCallback, useEffect } from 'react';
 import { inputChange } from '../../helpers/fieldFunctions';
 import { useDropzone } from 'react-dropzone';
 import Evaporate from 'evaporate';
@@ -11,21 +11,24 @@ import Button from '../Button';
 import Spinner from '../../components/Spinner';
 import getFileTypeByExtensions from '../../utils/getFileTypeByExtension';
 
-export default function InputFile({ name, onChange, value, setFields, type, className, poster, parentName, i, isLoggedInHandler = true, ...props }) {
+export default function InputFile({ variation, name, onChange, value, setFields, type, className, poster, parentName, i, isLoggedInHandler = true }) {
   const [loading, setLoading] = useState(false);
   const [progress, setProgress] = useState(0);
+  const [fileName, setFileName] = useState(value);
   const { isLoggedIn: isLoggedInContext } = useAppProvider();
   const [fileType, setFileType] = useState();
   const isLoggedIn = !!isLoggedInContext && !!isLoggedInHandler;
 
   const getFileType = (string) => {
-    if (string.includes('audio')) { return 'audio' }
-    if (string.includes('video')) { return 'video' }
-    if (string.includes('image')) { return 'image' }
-    else {
-      const fileTypeByExtension = getFileTypeByExtensions(value.split('.')[value.split('.').length - 1]);
-      setFileType(fileTypeByExtension)
-      return fileTypeByExtension
+    if(value) {
+      if (string.includes('audio')) { return 'audio' }
+      if (string.includes('video')) { return 'video' }
+      if (string.includes('image')) { return 'image' }
+      else {
+        const fileTypeByExtension = getFileTypeByExtensions(value?.split('.')[value.split('.').length - 1]);
+        setFileType(fileTypeByExtension)
+        return fileTypeByExtension
+      }
     }
   }
 
@@ -44,7 +47,6 @@ export default function InputFile({ name, onChange, value, setFields, type, clas
       cryptoHexEncodedHash256: data => AWS.util.crypto.sha256(data, "hex"),
     };
     setFileType(getFileType(file.type))
-
     const evaporateAddConfig = {
       file,
       name: fileName,
@@ -52,6 +54,7 @@ export default function InputFile({ name, onChange, value, setFields, type, clas
       progress: progressValue => setProgress((progressValue * 100).toFixed(2)),
       complete: (xhr) => {
         const location = xhr.responseURL.split('?')[0];
+        console.log(location)
         onChange
           ? onChange({ target: { name, value: location, i, parentName }, setFields })
           : inputChange({ target: { name, value: location, i, parentName }, setFields })
@@ -71,7 +74,8 @@ export default function InputFile({ name, onChange, value, setFields, type, clas
       if (fileType !== 'image') { return <Player src={value} poster={poster} /> }
       else { return <img src={value} /> }
     }
-  }
+  };
+
   const placeholderTip = () => {
     let typeTip;
     if (fileType)
@@ -82,35 +86,52 @@ export default function InputFile({ name, onChange, value, setFields, type, clas
         default: typeTip = `${type}`
       }
     return <p>Clique aqui ou arraste {typeTip}</p>
-  }
+  };
 
-  return (
-    <S.InputFile>
-      <S.InputPreview className={className} type={type} >
-        {value
-          ? contentRender()
-          : loading && (
-            <S.Loading>
-              <Spinner color="#0677d5" />
-              <S.Progress><S.ProgressBar progress={progress} /></S.Progress>
-              <h1>{progress}%</h1>
-            </S.Loading>
-          )
-        }
-      </S.InputPreview>
-      {isLoggedIn && (
-        <S.ActionButtonWrapper>
-          <S.DropArea {...getRootProps()}>
-            {placeholderTip()}
-            <input {...getInputProps()} />
-          </S.DropArea>
-          <S.DeleteButton>
-            <p>Limpar</p>
-            <Button type="delete" onClick={() => onChange ? onChange({ target: { name, i, parentName, value: '' }, setFields }) : inputChange({ target: { name, i, parentName, value: '' }, setFields })} />
-          </S.DeleteButton>
-        </S.ActionButtonWrapper>
-      )}
-    </S.InputFile>
-  )
+  useEffect(() => {
+    const fileLinkSplittedArr = value?.split('/')
+    fileLinkSplittedArr?.length && setFileName(decodeURI(fileLinkSplittedArr[fileLinkSplittedArr?.length - 1].replace(/^[0-9A-F]{8}-[0-9A-F]{4}-4[0-9A-F]{3}-[89AB][0-9A-F]{3}-[0-9A-F]{12}/i, '')))
+  }, [value])
+ 
+  switch (variation) {
+    case 'mini':
+      return (
+        <S.InputFileMini {...getRootProps()} hasFile={!!value}>
+          <input {...getInputProps()} />
+          {loading && <h4>Carregando...{progress}</h4>}
+          {!loading && <p> {fileName ? fileName : 'Insira o catalogo'}</p>}
+          {fileName && <Button type="delete" variation="bigIcon" onClick={(e) => { e.stopPropagation(); deleteFile(); }} />}
+        </S.InputFileMini>
+      )
+    default:
+      return (
+        <S.InputFile>
+          <S.InputPreview className={className} type={type} >
+            {value
+              ? contentRender()
+              : loading && (
+                <S.Loading>
+                  <Spinner color="#0677d5" />
+                  <S.Progress><S.ProgressBar progress={progress} /></S.Progress>
+                  <h1>{progress}%</h1>
+                </S.Loading>
+              )
+            }
+          </S.InputPreview>
+          {isLoggedIn && (
+            <S.ActionButtonWrapper>
+              <S.DropArea {...getRootProps()}>
+                {placeholderTip()}
+                <input {...getInputProps()} />
+              </S.DropArea>
+              <S.DeleteButton>
+                <p>Limpar</p>
+                <Button type="delete" onClick={() => onChange ? onChange({ target: { name, i, parentName, value: '' }, setFields }) : inputChange({ target: { name, i, parentName, value: '' }, setFields })} />
+              </S.DeleteButton>
+            </S.ActionButtonWrapper>
+          )}
+        </S.InputFile>
+      )
+  }
 };
 

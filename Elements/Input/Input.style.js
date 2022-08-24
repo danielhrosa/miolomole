@@ -27,7 +27,7 @@ export const InputFile = styled.div`
 export const DropArea = styled.span`
   width: 130px; 
   height: 100px;
-  border: 3px solid ${({ theme: { color: { blackMedium }}}) => blackMedium };;
+  border: 3px solid ${({ theme: { color: { blackMedium } } }) => blackMedium};;
   border-right: none;
   display: flex;
   align-items: center;
@@ -74,7 +74,7 @@ export const DeleteButton = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  border: 3px solid ${({ theme: { color: { error }}}) => error };;
+  border: 3px solid ${({ theme: { color: { error } } }) => error};;
   border-left: none;
   cursor: auto;
   p { margin: 5px; }
@@ -87,7 +87,7 @@ export const InputPreview = styled.div`
   justify-content: center;
   align-items: center;
   min-height: 100%;
-  background-color: ${({ isLoggedIn }) => isLoggedIn ? '#99999950' : '#FFFFFF' };
+  background-color: ${({ isLoggedIn }) => isLoggedIn ? '#99999950' : '#FFFFFF'};
   position: relative;
   @media screen{
     @media (min-width: 1024px){
@@ -125,8 +125,8 @@ export const ProgressBar = styled.div`
   border-radius: 4px;
   transition: 0.4s linear;
   transition-property: width, background-color;
-  background-color: ${({ theme: { color: { brand }}}) => brand };;
-  width: ${({ progress }) => `${progress}%` };
+  background-color: ${({ theme: { color: { brand } } }) => brand};;
+  width: ${({ progress }) => `${progress}%`};
   background-image: linear-gradient(
         45deg, #8AC2BF 25%,
         transparent 25%, transparent 50%,
@@ -163,15 +163,15 @@ export const InputRadioLabel = styled.label`
   width: 107px;
   height: 34px;
   border-radius: 20px;
-  border: 1.5px solid ${({ theme: { color: { blackLigthly }}}) => blackLigthly };
+  border: 1.5px solid ${({ theme: { color: { blackLigthly } } }) => blackLigthly};
   padding: 5px 16px;
   margin-right: 15px;
   text-align: center;
   font-family: 'Open Sans';
-  font-weight: ${({ theme: { fontWeight: { fontWeightLight }}}) => fontWeightLight };
+  font-weight: ${({ theme: { fontWeight: { fontWeightLight } } }) => fontWeightLight};
   
   &:has(input:checked){
-    background-color: ${({ theme: { color: { blue }}}) => blue };
+    background-color: ${({ theme: { color: { blue } } }) => blue};
   }
 `
 
@@ -192,7 +192,7 @@ export const InputText = styled(Input)`
   border: none;
   border-bottom: 1px solid #151B64;
   padding: 24px 0 16px;
-  font-size: ${({ theme: { fontSize: { fontSizeXXS }}}) => fontSizeXXS};
+  font-size: ${({ theme: { fontSize: { fontSizeXXS } } }) => fontSizeXXS};
 
   &:focus {
     outline: none;
@@ -200,8 +200,8 @@ export const InputText = styled(Input)`
 `;
 
 export const InputSearchContainer = styled.div`
-  border-radius: ${({theme: { borderRadius: { borderRadiusXL}}}) => borderRadiusXL};
-  background: ${({ theme: { color: { grayLight }}}) => grayLight};
+  border-radius: ${({ theme: { borderRadius: { borderRadiusXL } } }) => borderRadiusXL};
+  background: ${({ theme: { color: { grayLight } } }) => grayLight};
   width: 200px;
   height: 41px;
   display: flex;
@@ -251,27 +251,27 @@ export const StyledLabel = styled.label`
 `;
 
 export const StyledInputSelect = styled(SortableSelect)`
-  ${({variation}) => variation === 'borderSelect'
+  ${({ variation }) => variation === 'borderSelect'
     ? css`
       width: 100%;
-      font-size: ${({ theme: { fontSize: { fontSizeXS }}}) => fontSizeXS};
+      font-size: ${({ theme: { fontSize: { fontSizeXS } } }) => fontSizeXS};
     
       .inputSelect__control {
         padding: 0;
         border: none;
         min-height: 40px;
         box-shadow: 0 0 0 0 #000000 !important;
-        border: 1px solid ${({ theme: { color: { blackDark }}}) => blackDark};
+        border: 1px solid ${({ theme: { color: { blackDark } } }) => blackDark};
         border-radius: 8px;
       }
     
       .inputSelect__option--is-selected  {
-        background: ${({ theme: { color: { brandLight }}}) => brandLight};
+        background: ${({ theme: { color: { brandLight } } }) => brandLight};
       }
     
       .inputSelect__option--is-focused {
-        background: ${({ theme: { color: { brand }}}) => brand};
-        color: ${({ theme: { color: { white }}}) => white};
+        background: ${({ theme: { color: { brand } } }) => brand};
+        color: ${({ theme: { color: { white } } }) => white};
       }
     
       &:focus {
@@ -308,7 +308,7 @@ export const StyledInputSelect = styled(SortableSelect)`
           width: 0;
           border-left: 8px solid transparent;
           border-right: 8px solid transparent;
-          border-top: 8px solid ${({ theme: { color: { blackMedium }}}) => blackMedium };
+          border-top: 8px solid ${({ theme: { color: { blackMedium } } }) => blackMedium};
         }
       }
 
@@ -317,8 +317,8 @@ export const StyledInputSelect = styled(SortableSelect)`
         }
 
       .inputSelect__option--is-focused {
-        background: ${({ theme: { color: { brand }}}) => brand};
-        color: ${({ theme: { color: { white }}}) => white};
+        background: ${({ theme: { color: { brand } } }) => brand};
+        color: ${({ theme: { color: { white } } }) => white};
 
       }
   `};
@@ -351,9 +351,53 @@ export const TextArea = styled(forwardRef((props, ref) => <TextareaAutosize {...
     outline: none;
     border: 1px solid #151B64;
   }
-`
+`;
 
 export const InputRange = styled(Range)`
   margin: 20px 0;
-  height: 20px
-`
+  height: 20px;
+`;
+
+export const InputColorContainer = styled.div`
+  position: relative;
+  overflow: hidden;
+  width: 40px;
+  height: 40px;
+  border: solid 2px #FFF;
+  border-radius: 40px;
+`;
+
+export const InputColor = styled.input`
+  position: absolute;
+  right: -8px;
+  top: -8px;
+  width: 56px;
+  height: 56px;
+  border: none;
+`;
+
+export const InputFileMini = styled.label`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 43px;
+  border: 2px dashed ${({ theme: { color: { brand } } }) => brand};
+  background-color: #fafafa;
+  color: #bdbdbd;
+  outline: none;
+  position: relative;
+  cursor: ${({ disabled }) => disabled ? 'not-allowed' : 'pointer'};;
+
+  a,
+  p {
+    color: #666;
+    font-weight: 700;
+    font-family: Montserrat;
+    text-align: center;
+    padding: 0 10px;
+
+    &:visited {
+      color: ${({ theme: { color: { brandDark } } }) => brandDark};
+    }
+  }
+`;

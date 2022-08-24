@@ -13,6 +13,7 @@ import FieldOuterLabel from './FieldOuterLabel';
 import FieldInputRadio from './FieldInputRadio';
 import FieldRadioButtons from './FieldRadioButtons';
 import FieldMediaUploads from './FieldMediaUploads';
+import FieldColor from './FieldColor';
 
 const Editor = dynamic(
   () => import('../../components/Editor'),
@@ -38,6 +39,7 @@ export default function Field(props) {
     case 'simpleSelect': return <FieldSelect {...props} />
     case 'asset': return <FieldFile {...props} />
     case 'editor': return <Editor {...props} />
+    case 'color': return <FieldColor {...props} />
     default: return <FieldInput {...props} />;
   }
 }
