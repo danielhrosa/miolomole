@@ -11,7 +11,7 @@ export default function InputSwitch({ onChange, setFields, name, value }) {
       name={name}
       styles={switchStyles}
       checked={value}
-      onColor={'#00A79D'}
+      onColor={'${({ theme: { color: { brand } } }) => brand};'}
       onChange={(value) => (
         onChange 
           ? onChange({ target: { name, value }, setFields }) 

@@ -13,12 +13,12 @@ export const ContactAddressListItem = styled.li`
   :hover{
     svg{
       path{
-        fill: #00A79D;
+        fill: ${({ theme: { color: { brand } } }) => brand};;
       }
     }
     span{
       font-weight: 600;
-      color: #00A79D;
+      color: ${({ theme: { color: { brand } } }) => brand};;
       letter-spacing: 0;   
     }
   }

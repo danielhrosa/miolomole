@@ -72,7 +72,7 @@ export const FooterItemLabel = styled.div`
 export const Line = styled.div`
   width: calc(100% - 40px);
   height: 2px;
-  background-color: #00A79D;
+  background-color: ${({ theme: { color: { brand } } }) => brand};;
   position: relative;
   margin-top: 30px;
   ::after{

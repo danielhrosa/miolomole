@@ -153,7 +153,7 @@ export const ContactForm = styled.div`
     transition: background 0.3s; 
 
     :hover{
-      background: #00A79D;
+      background: ${({ theme: { color: { brand } } }) => brand};;
     }
   }
 `

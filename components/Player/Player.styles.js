@@ -12,7 +12,7 @@ export const RPlayer = styled.div`
 
     border-radius: 4px;
     
-    >button{ color: #00A79D }
+    >button{ color: ${({ theme: { color: { brand } } }) => brand}; }
 
     .video-react-control{
       color: #ffffff;
@@ -40,7 +40,7 @@ export const RPlayer = styled.div`
 
     &:hover{
       background-color: #ffffff20;
-      >button{ border-color: #00A79D; color: #fbb040; }
+      >button{ border-color: ${({ theme: { color: { brand } } }) => brand};; color: #fbb040; }
     }
 
     .video-react-progress-holder{ border-radius: 4px}

@@ -55,7 +55,7 @@ export const OurHistoryTitle = styled.h2`
   font-family: Amatic SC;
   font-weight: bold;
   letter-spacing: 2.4px;
-  color: #00A79D;
+  color: ${({ theme: { color: { brand } } }) => brand};
   margin: 0;
   margin-bottom: 20px;
   font-size: 35px;

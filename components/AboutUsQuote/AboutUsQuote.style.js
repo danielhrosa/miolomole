@@ -37,7 +37,7 @@ export const QuoteText = styled.p`
   font-weight: 500;
   font-size: ${({ theme: { fontSize: { fontSizeSMM }}}) => fontSizeSMM };
   line-height: 28px;
-  color: #00A79D;
+  color: ${({ theme: { color: { brand } } }) => brand};
   margin: 0;
   margin-bottom: 10px;
   width: 100%;

@@ -7,7 +7,7 @@ export const Highlights = styled.div`
 export const Title = styled.h1`
   text-align: center;
   margin-bottom: 20px;
-  color: #00A79D;
+  color: ${({ theme: { color: { brand } } }) => brand};;
 `
 
 export const AddUserButton = styled.div`

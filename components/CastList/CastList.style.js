@@ -6,7 +6,7 @@ export const CastContainer = styled(Container)`
 `
 export const CastTitle = styled.h1`
   padding-top: 40px;
-  color: #00A79D;
+  color: ${({ theme: { color: { brand } } }) => brand};;
 `
 export const CardRoles = styled.div`
   display: flex;
@@ -51,7 +51,7 @@ export const CardTitle = styled.div`
   font-family: Montserrat;
   font-weight: 500;
   line-height: 35px;
-  color: #00A79D;
+  color: ${({ theme: { color: { brand } } }) => brand};;
   margin-bottom: 15px;
   font-size: ${({ theme: { fontSize: { fontSizeXS }}}) => fontSizeXS };
   margin-left: 64px;

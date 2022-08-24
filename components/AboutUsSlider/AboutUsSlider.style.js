@@ -96,7 +96,7 @@ export const AboutUsSlider = styled.div`
       }
       &.slick-active{
         width: 24px;
-        background-color: ${({ theme: { color: { brand }}}) => brand };
+        background-color: ${({ theme: { color: { brand } } }) => brand};
       }
     }
   }
@@ -105,9 +105,9 @@ export const AboutUsSlider = styled.div`
     width: 15px;
     height: 15px;
     z-index: 10; 
-    color: ${({ theme: { color: { brand }}}) => brand };
-    border-bottom: 3px solid ${({ theme: { color: { brand }}}) => brand };
-    border-left: 3px solid ${({ theme: { color: { brand }}}) => brand };
+    color: ${({ theme: { color: { brand } } }) => brand};
+    border-bottom: 3px solid ${({ theme: { color: { brand } } }) => brand};
+    border-left: 3px solid ${({ theme: { color: { brand } } }) => brand};
     transform: rotate(45deg);
     bottom: -6px;
     top: unset;
@@ -141,9 +141,9 @@ export const AboutUsSlider = styled.div`
     z-index: 10; 
     width: 15px;
     height: 15px;
-    color: ${({ theme: { color: { brand }}}) => brand };
-    border-bottom: 3px solid ${({ theme: { color: { brand }}}) => brand };
-    border-right: 3px solid ${({ theme: { color: { brand }}}) => brand };
+    color: ${({ theme: { color: { brand } } }) => brand};
+    border-bottom: 3px solid ${({ theme: { color: { brand } } }) => brand};
+    border-right: 3px solid ${({ theme: { color: { brand } } }) => brand};
     transform: rotate(-45deg);
     bottom: -6px;
     top: unset;
@@ -217,7 +217,7 @@ export const SliderTitle = styled.h1`
   font-weight: 400;
   font-size: 40px;
   line-height: 69px;
-  color: #00A79D;
+  color: ${({ theme: { color: { brand } } }) => brand};;
   opacity: 0.9;
   margin-bottom: 20px;
   display: flex;
@@ -279,13 +279,13 @@ export const CardTitle = styled.div`
   font-family: Montserrat;
   font-weight: 500;
   line-height: 35px;
-  color: #00A79D;
+  color: ${({ theme: { color: { brand } } }) => brand};;
   margin-bottom: 5px;
-  font-size: ${({ theme: { fontSize: { fontSizeXS }}}) => fontSizeXS };
+  font-size: ${({ theme: { fontSize: { fontSizeXS } } }) => fontSizeXS};
   margin-left: 64px;
   @media screen{
     @media (min-width: 1024px){
-      font-size: ${({ theme: { fontSize: { fontSizeSMM }}}) => fontSizeSMM };
+      font-size: ${({ theme: { fontSize: { fontSizeSMM } } }) => fontSizeSMM};
       margin-left: 100px;
     }
   }
@@ -310,10 +310,8 @@ export const SliderCardContainer = styled.div`
       margin-top: 15px;
       width: 100%;
     }
-    @media (min-width: 1250px){
-      /* width: 475px; */
-    }
   }
+
 `
 export const CardName = styled.div`
   text-align: left;
@@ -342,7 +340,7 @@ export const CardInfo = styled.div`
 
 export const CardDescription = styled.div`
   font-family: Montserrat;
-  font-size: ${({ theme: { fontSize: { fontSizeXXS }}}) => fontSizeXXS };
+  font-size: ${({ theme: { fontSize: { fontSizeXXS } } }) => fontSizeXXS};
   line-height: 19px;
   position: relative;
   margin-top: 20px;
@@ -351,15 +349,30 @@ export const CardDescription = styled.div`
   color: #071825;
   overflow-Y: scroll;
 
+  ::-webkit-scrollbar-track {
+    background: #f1f1f1;
+  }
+
+  ::-webkit-scrollbar {
+    width: 5px;
+  }
+
+  /* Handle */
+  ::-webkit-scrollbar-thumb {
+    background: ${({ theme: { color: { brand } } }) => brand};
+    border-radius: 8px;
+  }
+
+  /* Handle on hover */
+  ::-webkit-scrollbar-thumb:hover {
+    background: #555;
+  }
   
   @media screen{
     @media (min-width: 1024px){
-      font-size: ${({ theme: { fontSize: { fontSizeXXS }}}) => fontSizeXXS };
+      font-size: ${({ theme: { fontSize: { fontSizeXXS } } }) => fontSizeXXS};
       height: 150px;
       margin-top: 30px;
-    }
-    @media (min-width: 1205px){
-      /* width: 400px; */
     }
   }
 `
@@ -386,8 +399,8 @@ export const CarrousselLeftArrow = styled.div`
   height: 15px;
   cursor: pointer;
   transform: rotate(45deg);
-  border-bottom: 3px solid ${({ theme: { color: { brand }}}) => brand };
-  border-left: 3px solid ${({ theme: { color: { brand }}}) => brand };
+  border-bottom: 3px solid ${({ theme: { color: { brand } } }) => brand};
+  border-left: 3px solid ${({ theme: { color: { brand } } }) => brand};
   transition: all 0.5s;
 
   :hover{
@@ -401,8 +414,8 @@ export const CarrousselRightArrow = styled.div`
   width: 15px;
   height: 15px;
   transform: rotate(45deg);
-  border-top: 3px solid ${({ theme: { color: { brand }}}) => brand };
-  border-right: 3px solid ${({ theme: { color: { brand }}}) => brand };
+  border-top: 3px solid ${({ theme: { color: { brand } } }) => brand};
+  border-right: 3px solid ${({ theme: { color: { brand } } }) => brand};
   margin-right: 20px;
   transition: all 0.5s;
 
@@ -421,17 +434,17 @@ export const CarrousselListButtons = styled.ul`
     width: 12px;
     height: 3px;
     margin-right: 5px;  
-    background-color: ${({ theme: { color: { blackLight }}}) => blackLight };
+    background-color: ${({ theme: { color: { blackLight } } }) => blackLight};
     :first-child{
       width: 23px;
-      background-color: ${({ theme: { color: { brandDark }}}) => brandDark };
+      background-color: ${({ theme: { color: { brandDark } } }) => brandDark};
 
     }
   }
 `
 
 export const CardLogo = styled.div`
-  background-image: url(${({ src }) => src });
+  background-image: url(${({ src }) => src});
   width: 80px;
   background-size: cover;
   height: 40px;
@@ -441,8 +454,8 @@ export const CardLogo = styled.div`
   background-position: center;
 `
 export const CardPicture = styled.div`
-  background-color: ${({ theme: { color: { whiteDark }}}) => whiteDark };;
-  background-image: url(${({ src }) => src });
+  background-color: ${({ theme: { color: { whiteDark } } }) => whiteDark};;
+  background-image: url(${({ src }) => src});
   position: absolute;
   width: 56px;
   height: 56px;

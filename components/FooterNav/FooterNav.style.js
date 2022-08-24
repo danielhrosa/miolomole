@@ -27,7 +27,7 @@ export const FooterNav = styled.ul`
     cursor: pointer;
     :hover{
       font-weight: 600;
-      color: #00A79D;
+      color: ${({ theme: { color: { brand } } }) => brand};;
       letter-spacing: 0;
     }
   }
@@ -54,7 +54,7 @@ export const NavItem = styled.li`
   }
   :hover{
     font-weight: 600;
-    color: #00A79D;
+    color: ${({ theme: { color: { brand } } }) => brand};;
     letter-spacing: 0;
   }
 `
