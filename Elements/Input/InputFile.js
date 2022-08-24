@@ -20,7 +20,7 @@ export default function InputFile({ variation, name, onChange, value, setFields,
   const isLoggedIn = !!isLoggedInContext && !!isLoggedInHandler;
 
   const getFileType = (string) => {
-    if(value) {
+    if (value) {
       if (string.includes('audio')) { return 'audio' }
       if (string.includes('video')) { return 'video' }
       if (string.includes('image')) { return 'image' }
@@ -92,11 +92,11 @@ export default function InputFile({ variation, name, onChange, value, setFields,
     const fileLinkSplittedArr = value?.split('/')
     fileLinkSplittedArr?.length && setFileName(decodeURI(fileLinkSplittedArr[fileLinkSplittedArr?.length - 1].replace(/^[0-9A-F]{8}-[0-9A-F]{4}-4[0-9A-F]{3}-[89AB][0-9A-F]{3}-[0-9A-F]{12}/i, '')))
   }, [value])
- 
+
   switch (variation) {
     case 'mini':
       return (
-        <S.InputFileMini {...getRootProps()} hasFile={!!value}>
+        <S.InputFileMini {...getRootProps()} hasFile={!!value} onClick={(e) => { e.stopPropagation() }}>
           <input {...getInputProps()} />
           {loading && <h4>Carregando...{progress}</h4>}
           {!loading && <p> {fileName ? fileName : 'Insira o catalogo'}</p>}

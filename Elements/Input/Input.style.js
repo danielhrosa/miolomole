@@ -386,6 +386,8 @@ export const InputFileMini = styled.label`
   color: #bdbdbd;
   outline: none;
   position: relative;
+  height: 40px;
+  width: 200px;
   cursor: ${({ disabled }) => disabled ? 'not-allowed' : 'pointer'};;
 
   a,
@@ -394,6 +396,9 @@ export const InputFileMini = styled.label`
     font-weight: 700;
     font-family: Montserrat;
     text-align: center;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
     padding: 0 10px;
 
     &:visited {
