@@ -34,7 +34,7 @@ export const List = styled.div`
 `
 
 export const Header = styled.div`
-  width: 100vw;
+  width: 100%;
   display: flex;
   text-align: center;
   align-items: center;

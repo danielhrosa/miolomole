@@ -3,7 +3,7 @@ import styled from 'styled-components';
 export const Header = styled.div`
   position: fixed;
   background-color: ${({ theme: { color: { brandWhite }}}) => brandWhite };
-  width: 100vw;
+  width: 100%;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -58,7 +58,7 @@ export const HeaderMenu = styled.section`
   top: 0;
   left: 0;
   height: 100vh;
-  width: 100vw;
+  width: 100%;
   z-index: 99;
   background-color: ${({ theme: { color: { transparentBlack }}}) => transparentBlack };
   transition: .6s ${({isOpen}) => isOpen ? 0 : '.6s'} ease;
@@ -89,7 +89,7 @@ export const HeaderMenuContainer = styled.section`
   display: flex;
   flex-direction: column;
   background-color: ${({ theme: { color: { white }}}) => white };
-  width: 100vw;
+  width: 100%;
   max-width: 280px;
   height: 100vh;
   padding: 20px;

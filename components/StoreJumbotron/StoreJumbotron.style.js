@@ -2,7 +2,7 @@ import styled from 'styled-components';
 import StoreJumbotron from '../../images/jumbotronLoja.jpg'
 
 export const StoreJumbotronContainer = styled.div`
-  width: 100vw;
+  width: 100%;
   height: 400px;
   margin-top: 70px;
 

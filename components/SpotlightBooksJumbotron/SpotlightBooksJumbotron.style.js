@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 export const HomeJumbotronContainer = styled.div`
-  width: 100vw;
+  width: 100%;
   .slick-dots{
     ul{
       margin: 0px;

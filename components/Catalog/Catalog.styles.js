@@ -3,7 +3,7 @@ import styled, { css } from "styled-components";
 export const Catalog = styled.div`
   button { width: 200px !important; }
 
-  width: 100vw;
+  width: 100%;
   min-height: 64vh;
   overflow: hidden;
 

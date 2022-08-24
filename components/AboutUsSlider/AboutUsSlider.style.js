@@ -168,7 +168,7 @@ export const AboutUsSliderContainer = styled.div`
   margin: 0 auto;
   flex-direction: column;
   max-width: unset;
-  width: 100vw;
+  width: 100%;
   max-width: 1024px;
   cursor: pointer;
   

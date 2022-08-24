@@ -2,7 +2,7 @@ import styled from 'styled-components';
 import templateCover from '../../images/banners/template_cover.png'
 
 export const Banner = styled.div`
-  width: 100vw;
+  width: 100%;
   height: auto;
   overflow: hidden;
   cursor: pointer;
