@@ -6,22 +6,22 @@ import EditableImage from '../EditableImage'
 import { useAppProvider } from '../../store/appProvider';
 import { useRouter } from 'next/router';
 
-export default function Banner({ index, ...props }) {
+export default function Banner({ i, ...props }) {
   const { isLoggedIn } = useAppProvider();
-  const isPair = index % 2 === 0;
+  const isPair = i % 2 === 0;
   const { texts } = props
   const router = useRouter();
 
   return (
-    <S.Banner isPair={isPair} onClick={() => !!texts[`bannerLink${index}`] && !isLoggedIn && router.push(texts[`bannerLink${index}`])}>
-      <EditableImage {...props} textKey={`bannerBgImage${index}`}><S.BannerBgImage /></EditableImage>
+    <S.Banner isPair={isPair} onClick={() => !!texts[`bannerLink${i}`] && !isLoggedIn && router.push(texts[`bannerLink${i}`])}>
+      <EditableImage {...props} textKey={`bannerBgImage${i}`}><S.BannerBgImage /></EditableImage>
       <Container>
         <S.BannerWrapper>
-          <Editable {...props} textKey={`bannerTitle${index}`}><S.BannerTitle /></Editable>
-          <Editable {...props} textKey={`bannerText${index}`}><S.BannerText /></Editable>
-          {isLoggedIn && <Editable {...props} textKey={`bannerLink${index}`}><S.BannerText /></Editable>}
+          <Editable {...props} textKey={`bannerTitle${i}`}><S.BannerTitle /></Editable>
+          <Editable {...props} textKey={`bannerText${i}`}><S.BannerText /></Editable>
+          {isLoggedIn && <Editable {...props} textKey={`bannerLink${i}`}><S.BannerText /></Editable>}
         </S.BannerWrapper>
-        <EditableImage {...props} textKey={`bannerImage${index}`}><S.BannerImage /></EditableImage>
+        <EditableImage {...props} textKey={`bannerImage${i}`}><S.BannerImage /></EditableImage>
       </Container>
     </S.Banner>
   )

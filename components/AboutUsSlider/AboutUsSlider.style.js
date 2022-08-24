@@ -8,7 +8,6 @@ export const AboutUsSlider = styled.div`
   flex-direction: column;
   height: auto;
   position: relative;
-  margin-bottom: 30px;
 
   @media screen{
     @media (min-width: 1024px){
