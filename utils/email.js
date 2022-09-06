@@ -1,12 +1,16 @@
-import nodemailer from "nodemailer";
+// using Twilio SendGrid's v3 Node.js Library
+// https://github.com/sendgrid/sendgrid-nodejs
+import sgMail from '@sendgrid/mail'
 
-const host = process.env.NEXT_EMAIL_HOST;
-const port = Number(process.env.NEXT_EMAIL_PORT);
-const email = process.env.NEXT_EMAIL;
-const pass = process.env.NEXT_PASSWORD;
+sgMail.setApiKey(process.env.SENDGRID_API_KEY)
 
-export const createEmail = ({ to, html = "", subject = "" }) => {
-  return { from: `"Miolo Mole" <${email}>`, to, subject, html };
+const from = process.env.NEXT_EMAIL;
+
+export const sendEmail = ({ to, html = "", subject = "" }) => {
+
+  sgMail.send({ to, from, subject, html })
+    .then(() => {
+      console.log(`Email to ${to} sent`)
+    })
+    .catch((err) => { console.error(err) })
 };
-
-export const transport = nodemailer.createTransport({ host, port, auth: { user: email, pass } });
