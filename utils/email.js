@@ -2,7 +2,7 @@
 // https://github.com/sendgrid/sendgrid-nodejs
 import sgMail from '@sendgrid/mail'
 
-sgMail.setApiKey(process.env.SENDGRID_API_KEY)
+sgMail.setApiKey(process.env.NEXT_SENDGRID_API_KEY)
 
 const from = process.env.NEXT_EMAIL;
 
@@ -12,5 +12,8 @@ export const sendEmail = ({ to, html = "", subject = "" }) => {
     .then(() => {
       console.log(`Email to ${to} sent`)
     })
-    .catch((err) => { console.error(err) })
+    .catch((err) => {
+      alert('teste')
+      console.error(err)
+    })
 };
