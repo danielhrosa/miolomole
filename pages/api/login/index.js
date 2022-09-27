@@ -2,6 +2,7 @@ import connectDB from '../../../middleware/mongodb';
 import User from '../../../models/user';
 import bcrypt from 'bcryptjs';
 import jwt from 'jsonwebtoken';
+import { setCookie } from 'cookies-next';
 
 const loginHandler = async (req, res) => {
   try {
@@ -16,6 +17,7 @@ const loginHandler = async (req, res) => {
         const token = jwt.sign({ _id: user._id }, process.env.SECRET_KEY);
         user.token = token;
         user.save();
+        setCookie('TK', token, { req, res })
         return res.status(200).json({ user });
       default: return res.status(405).json({ errorMessage: `Method ${method} Not Allowed` })
     }

@@ -3,6 +3,7 @@ import * as S from './LogoutButton.style';
 import animationData from '../../lotties/log-out.json';
 import { useState } from 'react';
 import { useAppProvider } from '../../store/appProvider';
+import { removeCookies } from 'cookies-next';
 
 export default function LogoutButton(){
   const { isLoggedIn, setCurrentUser, setIsLoggedIn } = useAppProvider()
@@ -12,15 +13,14 @@ export default function LogoutButton(){
     animationData: animationData,
     loop: true,
     autoplay: true,
-    rendererSettings: {
-      preserveAspectRatio: 'xMidYMid slice'
-    }
+    rendererSettings: { preserveAspectRatio: 'xMidYMid slice' }
   };
+
   if(isLoggedIn){
     return (
       <S.LogoutContainer>
         <S.LogoutWrapper
-          onClick={ () => { setCurrentUser(''); setIsLoggedIn(false); localStorage.removeItem('token') } } 
+          onClick={ () => { setCurrentUser(''); setIsLoggedIn(false); removeCookies('TK'); } } 
           onMouseEnter={() => setPaused(false)}
           onMouseLeave={() => setPaused(true)}
         >

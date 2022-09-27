@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 
 export const WhereToBuy = styled.div`
 	margin: 90px 16px 16px;
@@ -20,14 +20,26 @@ export const WhereToBuyHeaderTitle = styled.h1`
 `;
 
 export const WhereToBuyColum = styled.div`
-	width: 50%;
+	width: ${({ isLoggedIn }) => isLoggedIn ? '100%' : '50%' };
 	display: flex;
 	justify-content: center;
-  div { text-align: center; }
 	@media (min-width: 1024px) {
     align-items: center;
-    div { text-align: left; }
   }
+`;
+
+export const WhereToBuyColumWrapper = styled.div`
+  text-align: center;
+  @media (min-width: 1024px) {
+    text-align: left;
+  }
+  ${({ isLoggedIn }) => !!isLoggedIn && css`
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    > div { width: 100%; }
+  `};
 `;
 
 export const WhereToBuyColumTitle = styled.h1`
@@ -42,9 +54,13 @@ export const WhereToBuyColumText = styled.p`
 `;
 
 export const WhereToBuyOptions = styled.div`
-  display: flex;
-  align-items: center;
-  width: 100%;
-  flex-direction: column;
-  @media (min-width: 1024px) { flex-direction: row; } 
+  ${({ isLoggedIn }) => css`
+    display: flex;
+    align-items: center;
+    width: 100%;
+    flex-direction: column;
+    @media (min-width: 1024px) { 
+      flex-direction: ${isLoggedIn ? 'column' : 'row'};
+    } 
+  `}
 `;

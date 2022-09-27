@@ -8,7 +8,7 @@ import parser from 'html-react-parser';
 export default function Editable({ children, page, texts, textKey, onClick }) {
   const { isLoggedIn } = useAppProvider()
   const [edit, setEdit] = useState(false);
-  const initialText = (!!texts && !!textKey) && !!texts[textKey] ? texts[textKey] : 'Insira um conteúdo';
+  const initialText = (!!texts && !!textKey) && !!texts[textKey] ? texts[textKey] : (page !== 'where-to-buy' || isLoggedIn) ? 'Insira um conteúdo' : '';
   const [text, setText] = useState(initialText);
   const [newText, setNewText] = useState(initialText);
   const ref = useRef();

@@ -14,7 +14,7 @@ import { bookInfoFieldsFunction, bookInfoFieldsState, priceFieldState, priceFiel
 /*
   to do: 
     refact the fields state manipulation removing redundant states and unifying
-*/ 
+*/
 
 export default function BookInfo({ book }) {
   const router = useRouter();

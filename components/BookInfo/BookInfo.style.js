@@ -184,6 +184,7 @@ export const PriceLabel = styled.span`
   font-size: 24px;
   line-height: 29px;
   align-self: center;
+  padding-bottom: 4px;
   @media (min-width: 1024px){ text-align: left; width: unset }
 `
 
@@ -192,6 +193,8 @@ export const PriceText = styled.div`
   align-items: center;
   justify-content: center;
   margin: 2px;
+
+  textarea { text-align: left !important; }
 
   @media (min-width: 1024px){ flex-direction: row }
 `
