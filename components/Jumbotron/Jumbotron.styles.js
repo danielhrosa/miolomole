@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-export const AboutUsJumbotronContainer = styled.div`
+export const JumbotronContainer = styled.div`
   width: 100%;
   height: 400px;
   >div{
@@ -10,9 +10,10 @@ export const AboutUsJumbotronContainer = styled.div`
 
     }
   }
-`
-export const AboutUsJumbotronImage = styled.img`
+`;
+
+export const JumbotronImage = styled.img`
   width: 100%;
   height: 400px;
   object-fit: cover;
-`
+`;
