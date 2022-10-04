@@ -9,11 +9,6 @@ const from = process.env.NEXT_EMAIL;
 export const sendEmail = ({ to, html = "", subject = "" }) => {
 
   sgMail.send({ to, from, subject, html })
-    .then(() => {
-      console.log(`Email to ${to} sent`)
-    })
-    .catch((err) => {
-      alert('teste')
-      console.error(err)
-    })
+    .then(() => { console.log(`Email to ${to} sent`) })
+    .catch((err) => { console.error(err) })
 };
