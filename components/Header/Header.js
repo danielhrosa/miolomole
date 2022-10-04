@@ -2,7 +2,7 @@ import Logo from '../Logo';
 import Link from 'next/link';
 import { useState } from 'react';
 import * as S from './Header.style';
-import HeaderNav from '../HeaderNav';
+import HeaderNav from '../HeaderNav/HeaderNav';
 import Hamburger from '../Hamburger';
 import Container from '../Container';
 import Input from '../../Elements/Input';

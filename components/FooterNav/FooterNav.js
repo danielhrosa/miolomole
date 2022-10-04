@@ -1,17 +1,14 @@
 import Link from 'next/link';
-import { useRouter } from 'next/router';
 import * as S from './FooterNav.style'
 
 export default function FooterNav(){
-  const router = useRouter();
-
   const navMenuItems = [
-    {name: 'Home', path: '/'},
-    {name: 'Livros', path: '/livros' },
-    {name: 'Blog', path: '/blog'},
-    {name: 'Quem somos', path: '/quem-somos'},
-    {name: 'Contato', path: '/contato'},
-  ]
+    { name: 'Livros', path: '/livros' },
+    { name: 'Onde Comprar', path: '/onde-comprar' },
+    { name: 'Quem somos', path: '/quem-somos' },
+    { name: 'Contato', path: '/contato' },
+    { name: 'Blog', path: 'https://editoramiolomole.com.br/' },
+  ];
 
   return(
     <S.FooterNav>
