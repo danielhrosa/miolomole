@@ -12,7 +12,7 @@ export default function Editable({ children, page, texts, textKey, onClick }) {
   const [text, setText] = useState(initialText);
   const [newText, setNewText] = useState(initialText);
   const ref = useRef();
-
+  console.log(initialText)
   useEffect(() => edit && ref.current.focus(), [edit])
 
   const onChange = ({ target }) => setNewText(target.value)
@@ -31,7 +31,7 @@ export default function Editable({ children, page, texts, textKey, onClick }) {
     setEdit(false)
   }
 
-  const inputProps = { value: newText, ref, edit, onChange, onBlur, styles: children.type.componentStyle.rules }
+  const inputProps = { value: newText, ref, edit, onChange, /* onBlur, */ styles: children.type.componentStyle.rules }
 
   return (
     <S.Editable isLoggedIn={isLoggedIn} onClick={onClick}>
