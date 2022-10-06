@@ -12,7 +12,6 @@ export default function Editable({ children, page, texts, textKey, onClick }) {
   const [text, setText] = useState(initialText);
   const [newText, setNewText] = useState(initialText);
   const ref = useRef();
-  console.log(initialText)
   useEffect(() => edit && ref.current.focus(), [edit])
 
   const onChange = ({ target }) => setNewText(target.value)
