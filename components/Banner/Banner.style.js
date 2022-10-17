@@ -37,7 +37,8 @@ export const BannerBgImage = styled.img`
       height: fit-content;
     }
   }
-`
+`;
+
 export const BannerWrapper = styled.div`
   margin: 0 50px;
   z-index: 1;

@@ -1,11 +1,11 @@
 import * as S from './Jumbotron.styles'
 import EditableImage from '../EditableImage'
 
-export default function Jumbotron({ page, ...props }){
+export default function Jumbotron(props){
 
  return(
     <S.JumbotronContainer>
-      <EditableImage {...props} textKey={`${page}JumbotronImage`}><S.JumbotronImage /></EditableImage>
+      <EditableImage {...props} textKey={`${props?.page || ''}JumbotronImage`}><S.JumbotronImage /></EditableImage>
     </S.JumbotronContainer>
   )
 }

@@ -7,7 +7,7 @@ export async function getServerSideProps() {
   const textsArray = await Text.find({ page: 'educatorArea' });
   const texts = textsArray.reduce((object, text) => Object.assign(object, {[text.textKey]: text.text}), {});
   const publicationsArray = await Publication.find();
-  const publications = publicationsArray ? JSON.stringify(publicationsArray) : []
+  const publications = publicationsArray ? JSON.stringify(publicationsArray) : `[]`
   return { props: { publications, texts } }
 }
 

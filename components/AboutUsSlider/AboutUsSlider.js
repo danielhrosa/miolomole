@@ -1,13 +1,11 @@
-import * as S from './AboutUsSlider.style'
-import pt from '../../i18n/pt';
-import Slider from "react-slick";
-import "slick-carousel/slick/slick.css";
-import "slick-carousel/slick/slick-theme.css";
-import Editable from '../Editable';
-import { useEffect, useState } from 'react';
-import Link from 'next/link';
-import { useAppProvider } from '../../store/appProvider';
 import { useRouter } from 'next/router';
+import { useEffect, useState } from 'react';
+import Slider from "react-slick";
+import "slick-carousel/slick/slick-theme.css";
+import "slick-carousel/slick/slick.css";
+import { useAppProvider } from '../../store/appProvider';
+import Editable from '../Editable';
+import * as S from './AboutUsSlider.style';
 
 export default function AboutUsSlider(props) {
   const settings = {
@@ -67,7 +65,7 @@ export default function AboutUsSlider(props) {
           <Editable {...props} textKey={`${props.page}aboutUsAuthorsListDesc`}><S.SliderDescription /></Editable>
         </S.SliderInfo>
         <S.SliderCards>
-          <Slider {...settings} >
+          <Slider {...settings}>
             {items.filter((item) => !item?.hideFromList).map((item, i) => (
               <S.SliderCard key={item._id + i}>
                 <S.CardPicture src={item.avatar} />

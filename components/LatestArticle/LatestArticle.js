@@ -7,7 +7,7 @@ export default function LatestArticle({ item }){
   const router = useRouter()
 
   return(
-    <S.LatestArticle key={item.ID} onClick={() => router.push(`/blog/${item.ID}`)}>
+    <S.LatestArticle key={item.ID} onClick={() => router.push(`/publication/${item.ID}`)}>
       <S.LatestArticleImage key={item.IMAGE} src={item.IMAGE} />
       <S.LatestArticleInfo color={item.COLOR}>
         <S.LatestArticleTitle>{item.TITLE}</S.LatestArticleTitle>

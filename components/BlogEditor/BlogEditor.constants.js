@@ -62,16 +62,16 @@ export const blogFieldsFunction = ({ fields, setFields, name, isLoggedIn, router
           content: JSON.stringify(convertToRaw(fields.content.value.getCurrentContent())),
         }
         name === 'novo'
-          ? axios.post('/api/blog', { ...variables })
+          ? axios.post('/api/publication', { ...variables })
             .then(() => {
               toast.success('Artigo postado com sucesso!');
-              router.push('/blog')
+              router.push('/publication')
             })
             .catch((err) => console.log(err.response))
-          : axios.put('/api/blog', { ...variables, name })
+          : axios.put('/api/publication', { ...variables, name })
             .then(() => {
               toast.success('Artigo atualizado com sucesso!')
-              router.push('/blog')
+              router.push('/publication')
             })
             .catch((err) => console.log(err.response))
       }

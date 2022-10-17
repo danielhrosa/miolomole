@@ -18,7 +18,7 @@ export default function PostCard({ item }){
     // setBlog((oldPost) => [...oldPost].filter((blog) => blog._id !== _id))
     const confirm = window.confirm(`Tem certeza que deseja deletar o blog ${item.title}?`)
     if(!confirm) { return false };
-    await axios.delete(`/api/blog`, { data: { _id: item._id } })
+    await axios.delete(`/api/publication`, { data: { _id: item._id } })
     window.location.reload();
   }
   return(
