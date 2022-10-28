@@ -59,6 +59,8 @@
   },
   "devDependencies": {
     "react-lottie": "^1.2.3",
+    "suneditor": "^2.44.3",
+    "suneditor-react": "^3.4.1",
     "swr": "^0.5.4",
     "uuidv4": "^6.2.6",
     "yarn": "^1.22.10"

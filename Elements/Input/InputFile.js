@@ -54,7 +54,6 @@ export default function InputFile({ variation, name, onChange, value, setFields,
       progress: progressValue => setProgress((progressValue * 100).toFixed(2)),
       complete: (xhr) => {
         const location = xhr.responseURL.split('?')[0];
-        console.log(location)
         onChange
           ? onChange({ target: { name, value: location, i, parentName }, setFields })
           : inputChange({ target: { name, value: location, i, parentName }, setFields })
@@ -68,7 +67,6 @@ export default function InputFile({ variation, name, onChange, value, setFields,
   const { getRootProps, getInputProps } = useDropzone({ onDrop });
 
   const contentRender = () => {
-    // console.log('fileType', fileType, value)
     if (!fileType) getFileType(value);
     if (value) {
       if (fileType !== 'image') { return <Player src={value} poster={poster} /> }

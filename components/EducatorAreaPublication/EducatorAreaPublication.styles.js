@@ -4,11 +4,20 @@ export const EducatorAreaPublication = styled.div`
   display: flex;
   flex-direction: column;
   width: 100%;
+  cursor: pointer;
 
   padding-bottom: 24px;
 
   :not(:last-child) {
     border-bottom: 2px solid #D9D9D9;
+  }
+
+  @media (min-width: 768px) {
+    padding-bottom: 50px;
+
+    :not(:last-child) {
+      border-bottom: 3px solid #D9D9D9;
+    }
   }
 `;
 
@@ -27,7 +36,7 @@ export const EducatorAreaPublicationContainerTitle = styled.div`
   font-style: normal;
   font-weight: 700;
   letter-spacing: -0.022em;
-  padding: 16px 0;
+  padding: 32px 0;
   font-size: 24px;
   
   @media (min-width: 768px) {
@@ -37,4 +46,9 @@ export const EducatorAreaPublicationContainerTitle = styled.div`
 
 export const EducatorAreaPublicationContainerDescription = styled.div`
   font-size: 14px;
+    
+  @media (min-width: 768px) {
+    font-size: 24px;
+    line-height: 44px;
+  }
 `;

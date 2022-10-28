@@ -13,7 +13,6 @@ export default function PostCard({ item }){
   const [blog, setBlog] = useState(item);
 
   const handleDeletePost = async (item) => {
-    console.log('Deletando blog: ', item);
     const { _id } = item;
     // setBlog((oldPost) => [...oldPost].filter((blog) => blog._id !== _id))
     const confirm = window.confirm(`Tem certeza que deseja deletar o blog ${item.title}?`)
