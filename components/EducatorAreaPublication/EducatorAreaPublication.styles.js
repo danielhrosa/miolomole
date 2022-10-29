@@ -6,18 +6,11 @@ export const EducatorAreaPublication = styled.div`
   width: 100%;
   cursor: pointer;
 
-  padding-bottom: 24px;
-
-  :not(:last-child) {
-    border-bottom: 2px solid #D9D9D9;
-  }
+  padding-top: 32px;
+  border-top: 3px solid #D9D9D9;
 
   @media (min-width: 768px) {
-    padding-bottom: 50px;
-
-    :not(:last-child) {
-      border-bottom: 3px solid #D9D9D9;
-    }
+    padding-top: 50px;
   }
 `;
 

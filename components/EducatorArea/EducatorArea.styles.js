@@ -4,7 +4,7 @@ export const EducatorArea = styled.div`
 `;
 
 export const EducatorAreaSliderCard = styled.div`
-  height: 100px;
+  height: 150px;
   width: 200px;
   border-radius: 20px;
   background-color: ${({ color }) => color};
@@ -12,12 +12,16 @@ export const EducatorAreaSliderCard = styled.div`
   display: flex !important;
   justify-content: center;
   align-items: center;
-  /* text-align: center; */
+  text-align: center;
   font-weight: 700;
+  font-size: 30px;
   letter-spacing: -0.011em;
   text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
 
   div { margin: 0; }
+  @media (min-width: 768px) {
+    font-size: 40px;
+  }
 `;
 
 export const EducatorAreaPosts = styled.div`
@@ -26,9 +30,9 @@ export const EducatorAreaPosts = styled.div`
 
   gap: 50px;
   padding: 0 16px;
-
+  
   @media (min-width: 768px) {
-    padding: 100px;
+    padding: 0 33px;
   }
 `;
 
@@ -42,26 +46,16 @@ export const SliderContainer = styled.div`
 
   width: 100%;
 
-  .slick-track {
-    /* div {
-      width: 350px;
-    } */
-  }
-
   .slick-slide {
-    /* padding: 0 8px; */
-    padding: 5px 30px;
-
-    @media (min-width: 768px) {
-      /* div { width: 250px; } */
-    }
+    padding: 10px 30px;
   }
 
   .slick-list{
-    /* margin: 15px 20px; */
-    height: 130px;
-    padding: 10px 0;
-    /* div { margin: 0 auto; } */
+    height: 220px;
+    padding: 30px 0;
+    @media (min-width: 768px) {
+      height: 230px;
+    }
   }
 
   .slick-prev {
@@ -69,11 +63,11 @@ export const SliderContainer = styled.div`
     width: 15px;
     height: 15px;
     color: ${({ theme: { color: { brand } } }) => brand};
-    border-bottom: 2px solid ${({ theme: { color: { brand } } }) => brand};
-    border-left: 2px solid ${({ theme: { color: { brand } } }) => brand};
+    border-bottom: 3px solid ${({ theme: { color: { brand } } }) => brand};
+    border-left: 3px solid ${({ theme: { color: { brand } } }) => brand};
     transform: rotate(45deg);
     left: 10px;
-    top: 60px;
+    top: 110px;
 
     &::before{
       display: none;
@@ -85,11 +79,11 @@ export const SliderContainer = styled.div`
     width: 15px;
     height: 15px;
     color: ${({ theme: { color: { brand } } }) => brand};
-    border-bottom: 2px solid ${({ theme: { color: { brand } } }) => brand};
-    border-right: 2px solid ${({ theme: { color: { brand } } }) => brand};
+    border-bottom: 3px solid ${({ theme: { color: { brand } } }) => brand};
+    border-right: 3px solid ${({ theme: { color: { brand } } }) => brand};
     transform: rotate(-45deg);
     right: 10px;
-    top: 60px;
+    top: 110px;
 
     &::before{
       display: none;
