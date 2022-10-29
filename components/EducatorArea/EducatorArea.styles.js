@@ -5,18 +5,19 @@ export const EducatorArea = styled.div`
 
 export const EducatorAreaSliderCard = styled.div`
   height: 100px;
-  width: 150px;
+  width: 200px;
   border-radius: 20px;
   background-color: ${({ color }) => color};
   color: #fff;
-  display: flex;
+  display: flex !important;
   justify-content: center;
   align-items: center;
-  text-align: center;
+  /* text-align: center; */
   font-weight: 700;
   letter-spacing: -0.011em;
-  padding: 16px;
   text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+
+  div { margin: 0; }
 `;
 
 export const EducatorAreaPosts = styled.div`
@@ -24,7 +25,7 @@ export const EducatorAreaPosts = styled.div`
   flex-direction: column;
 
   gap: 50px;
-  padding: 16px;
+  padding: 0 16px;
 
   @media (min-width: 768px) {
     padding: 100px;
@@ -41,6 +42,59 @@ export const SliderContainer = styled.div`
 
   width: 100%;
 
+  .slick-track {
+    /* div {
+      width: 350px;
+    } */
+  }
+
+  .slick-slide {
+    /* padding: 0 8px; */
+    padding: 5px 30px;
+
+    @media (min-width: 768px) {
+      /* div { width: 250px; } */
+    }
+  }
+
+  .slick-list{
+    /* margin: 15px 20px; */
+    height: 130px;
+    padding: 10px 0;
+    /* div { margin: 0 auto; } */
+  }
+
+  .slick-prev {
+    z-index: 10; 
+    width: 15px;
+    height: 15px;
+    color: ${({ theme: { color: { brand } } }) => brand};
+    border-bottom: 2px solid ${({ theme: { color: { brand } } }) => brand};
+    border-left: 2px solid ${({ theme: { color: { brand } } }) => brand};
+    transform: rotate(45deg);
+    left: 10px;
+    top: 60px;
+
+    &::before{
+      display: none;
+    }
+  }
+
+  .slick-next {
+    z-index: 10; 
+    width: 15px;
+    height: 15px;
+    color: ${({ theme: { color: { brand } } }) => brand};
+    border-bottom: 2px solid ${({ theme: { color: { brand } } }) => brand};
+    border-right: 2px solid ${({ theme: { color: { brand } } }) => brand};
+    transform: rotate(-45deg);
+    right: 10px;
+    top: 60px;
+
+    &::before{
+      display: none;
+    }
+  }
   
   @media (min-width: 768px) {
     flex-direction: row;
