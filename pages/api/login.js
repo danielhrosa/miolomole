@@ -1,5 +1,5 @@
-import connectDB from '../../../middleware/mongodb';
-import User from '../../../models/user';
+import connectDB from '../../middleware/mongodb';
+import User from '../../models/user';
 import bcrypt from 'bcryptjs';
 import jwt from 'jsonwebtoken';
 import { setCookie } from 'cookies-next';

@@ -61,7 +61,7 @@ export const UsersListItem = styled.div`
     @media (min-width: 1024px){grid-template-columns: 55px 1fr 2fr 2fr 30px 30px; font-size: unset;}
   }
 `
-export const UserAvatar = styled.image`
+export const UserAvatar = styled.img`
   background-color: ${({ theme: { color: { blackLight }}}) => blackLight };
   background-image: url(${({ img }) => img });
   width: 30px;

@@ -1,7 +1,7 @@
-import Catalog from "../../../models/catalog";
-import createModel from "../../../utils/createModel";
-import updateModel from "../../../utils/updateModel";
-import removeModel from "../../../utils/removeModel";
+import Catalog from '../../models/catalog'
+import createModel from '../../utils/createModel'
+import updateModel from '../../utils/updateModel'
+import removeModel from '../../utils/removeModel'
 
 export default async function catalogHandler(req, res) {
   const { body, method } = req;

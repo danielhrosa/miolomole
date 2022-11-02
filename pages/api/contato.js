@@ -1,7 +1,7 @@
-import contactEmail from '../../../utils/emails/contact';
-import { sendEmail } from "../../../utils/email";
-import contactResponseEmail from '../../../utils/emails/contactResponse';
-import newsletterEmail from '../../../utils/emails/newsletter';
+import contactEmail from '../../utils/emails/contact';
+import { sendEmail } from '../../utils/email';
+import contactResponseEmail from '../../utils/emails/contactResponse';
+import newsletterEmail from '../../utils/emails/newsletter';
 
 export default async function contactHandler(req, res) {
   const { body, method } = req;

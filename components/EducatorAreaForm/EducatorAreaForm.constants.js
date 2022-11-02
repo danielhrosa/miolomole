@@ -11,25 +11,36 @@ export const educatorFieldsState = (props) => ({
   hide: { value: false },
 })
 
-export const educatorFieldsFunction = ({ fields, setFields }) => ({
+export const educatorFieldsFunction = ({ fields, setFields, onSubmit, id }) => ({
   title: {
     ...fields.title,
     name: 'title',
     label: 'Titulo',
+    type: 'simple',
     onChange: ({ target }) => {
-      const { value, name } = target;
+      const { value } = target;
       setFields((oldFields) => {
         const newFields = { ...oldFields };
-        newFields[name].value = value.toLowerCase().replace(" ", "");
+        newFields.title.value = value;
+        newFields.name.value = value.toLowerCase().replace(" ", "");
         return newFields;
       });
     }
   },
-  description: {
-    ...fields.description,
-    name: 'description',
-    label: 'Descrição',
-    onChange: ({ target }) => { inputChange({ target, setFields }) }
+  area: {
+    ...fields.area,
+    name: 'area',
+    label: 'Area:',
+    type: 'select',
+    handleCreate: () => {},
+    options: [
+      { instanceId: 'material-de-apoio', value: 'material-de-apoio', label: 'Material de apoio', color: '#157EFA' },
+      { instanceId: 'noticias', value: 'noticias', label: 'Notícias', color: '#3DC55D' },
+      { instanceId: 'nossas-recomendacoes', value: 'nossas-recomendacoes', label: 'Nossas Recomendações', color: '#FD9426' },
+      { instanceId: 'politica', value: 'politica', label: 'Politica', color: '#9700FF' },
+      { instanceId: 'religiao', value: 'religiao', label: 'Religião', color: '#FFCC22' },
+      { instanceId: 'futebo', value: 'futebol', label: 'Futebol', color: '#FF00CF' },
+    ]
   },
   image: {
     ...fields.image,
@@ -37,21 +48,18 @@ export const educatorFieldsFunction = ({ fields, setFields }) => ({
     label: 'Foto',
     type: 'asset',
   },
-  area: {
-    ...fields.area,
-    name: 'area',
-    label: 'Area:',
-    type: 'select',
-    options: [
-      { label: 'a', value: 'a' },
-      { label: 'b', value: 'b' },
-      { label: 'c', value: 'c' },
-    ]
+  description: {
+    ...fields.description,
+    name: 'description',
+    label: 'Descrição',
+    type: 'textarea',
+    maxRows: 10,
+    onChange: ({ target }) => { inputChange({ target, setFields }) }
   },
   hide: {
     ...fields.hide,
     label: 'Ocultar?',
-    name: 'hideFromList',
+    name: 'hide',
     type: 'switch',
   },
   content: {
@@ -59,7 +67,21 @@ export const educatorFieldsFunction = ({ fields, setFields }) => ({
     name: 'content',
     label: 'Senha',
     type: 'editor',
+    onChange: (content) => {
+      setFields((oldFields) => {
+        const newFields = { ...oldFields };
+        newFields.content.value = content;
+        return newFields;
+      })
+    }
   },
+  submitButton: {
+    name: 'submitButton',
+    label: id ? 'Editar' : 'Criar',
+    type: 'button',
+    variation: 'primary',
+    onClick: onSubmit
+  }
 })
 
 export const gridTemplate = () => {
@@ -68,16 +90,21 @@ export const gridTemplate = () => {
     flex-direction: column;
     gap: 16px;
 
-    @media (min-width: 1024px){
-      /* grid-template-areas:
-        "avatar hideFromList hideFromList"
-        "avatar userName occupation"
-        "avatar userFullName userFullName"
-        "avatar password password"
-        "avatar description description"
+    @media (min-width: 1024px) {
+      display: grid;
+      grid-template-areas:
+        "foto title title"
+        "foto area area"
+        "foto hide ."
+        "foto description description"
+        "content content content"
+        ". . submitButton"
       ;
-      grid-template-columns: 320px 1fr 1fr;
-      grid-template-rows: 80px 80px 80px auto auto; */
+      grid-template-rows: 60px 60px 50px 250px 1fr 50px;
+      grid-template-columns: 300px 1fr 2fr;
+      .primary {
+        justify-self: right;
+      }
     }
   `
 };

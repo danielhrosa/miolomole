@@ -38,24 +38,24 @@ export default function LoginModal() {
             localStorage.setItem("token", token);
             toast.success('Login realizado com sucesso');
             setCurrentUser(user);
-            setIsLoggedIn(true);
+            setIsLoggedIn(false);
             router.push('/');
           }
         })
         .catch((err) => {
           const responseError = err.response && err.response?.data?.errorMessage;
+          setLoading(false);
           if (responseError) { toast.error(responseError) }
         })
-      // .finally(() => setLoading(false))
+        .finally(() => setLoading(false))
     }
-    // setLoading(false);
+    setLoading(false);
   }
 
-  useEffect(() => {
-    setFormDisabledState(formDisabled(fields))
-  }, [fields])
+  useEffect(() => { setFormDisabledState(formDisabled(fields)) }, [fields])
 
   const loginModalFields = loginModalFieldsFunction({ fields, setFields, onSubmit, loading, formDisabledState })
+  
   const formProps = {
     gridTemplate,
     fields: loginModalFields ? loginModalFields : {},

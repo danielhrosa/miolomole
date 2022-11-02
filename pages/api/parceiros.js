@@ -1,8 +1,8 @@
-import connectDB from '../../../middleware/mongodb';
-import Partner from '../../../models/partner';
-import updateModel from '../../../utils/updateModel';
-import createModel from '../../../utils/createModel';
-import removeModel from '../../../utils/removeModel';
+import connectDB from '../../middleware/mongodb';
+import Partner from '../../models/partner';
+import updateModel from '../../utils/updateModel';
+import createModel from '../../utils/createModel';
+import removeModel from '../../utils/removeModel';
 
 const partnerHandler = async (req, res) => {
   const { body, method } = req;

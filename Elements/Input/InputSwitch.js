@@ -1,22 +1,20 @@
 import React from 'react';
 import { inputChange } from '../../helpers/fieldFunctions'
-import { StyledInputSwitch, switchStyles } from './Input.style';
-import { v4 as uuidv4 } from 'uuid';
+import { StyledInputSwitch } from './Input.style';
+import { useTheme } from 'styled-components';
 
 export default function InputSwitch({ onChange, setFields, name, value }) {
-  
+  const { color: { brand } } = useTheme();
   return (
     <StyledInputSwitch
-      id={uuidv4()}
+      id={name}
       name={name}
-      styles={switchStyles}
       checked={value}
-      onColor={'${({ theme: { color: { brand } } }) => brand};'}
-      onChange={(value) => (
-        onChange 
-          ? onChange({ target: { name, value }, setFields }) 
-          : inputChange({ target: { name, value }, setFields })
-      )}
+      onColor={brand}
+      onChange={(value) => onChange
+        ? onChange({ target: { name, value }, setFields })
+        : inputChange({ target: { name, value }, setFields })
+      }
     />
   );
 }

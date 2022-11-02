@@ -1,9 +1,9 @@
 import bcrypt from 'bcryptjs';
-import User from '../../../models/user';
-import connectDB from '../../../middleware/mongodb';
-import updateModel from '../../../utils/updateModel';
-import createModel from '../../../utils/createModel';
-import removeModel from '../../../utils/removeModel';
+import User from '../../models/user';
+import connectDB from '../../middleware/mongodb';
+import updateModel from '../../utils/updateModel';
+import createModel from '../../utils/createModel';
+import removeModel from '../../utils/removeModel';
 
 const userHandle = async (req, res) => {
   const { body, method } = req;

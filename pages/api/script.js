@@ -1,6 +1,6 @@
-import connectDB from '../../../middleware/mongodb';
-import Book from '../../../models/book';
-import updateModel from '../../../utils/updateModel';
+import connectDB from '../../middleware/mongodb';
+import Book from '../../models/book';
+import updateModel from '../../utils/updateModel';
 
 const bookHandler = async (req, res) => {
   try {

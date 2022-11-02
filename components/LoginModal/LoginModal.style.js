@@ -39,7 +39,7 @@ export const LoginModalBody = styled.div`
     }
     form{ div{ margin: 15px; } }
     input {
-      width: 100%;
+      width: 200px;
       border-bottom: 1px solid ${({ theme: { color: { brand }}}) => brand };
     }
   }

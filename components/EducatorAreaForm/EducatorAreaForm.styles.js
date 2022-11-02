@@ -1,14 +1,21 @@
 import styled from "styled-components";
 
 export const EducatorAreaForm = styled.div`
-  margin: 100px auto;
-  width: 100vw;
+  width: 100%;
+  margin: 60px auto;
   display: flex;
   flex-direction: column;
   align-items: center;
 
   section {
     width: 100%;
-    padding: 32px;
   }
+
+  .se-toolbar-sticky {
+    top: 72px !important;
+    left: 0;
+    width: 100% !important;
+  }
+
+  img { height: 260px; }
 `;

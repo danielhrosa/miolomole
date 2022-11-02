@@ -1,8 +1,8 @@
-import Highlight from '../../../models/highlight';
-import connectDB from '../../../middleware/mongodb';
-import updateModel from '../../../utils/updateModel';
-import createModel from '../../../utils/createModel';
-import removeModel from '../../../utils/removeModel';
+import Highlight from '../../models/highlight';
+import connectDB from '../../middleware/mongodb';
+import updateModel from '../../utils/updateModel';
+import createModel from '../../utils/createModel';
+import removeModel from '../../utils/removeModel';
 
 const highlightHandle = async (req, res) => {
   const { body, method } = req;

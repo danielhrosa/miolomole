@@ -9,7 +9,7 @@ export default function InputTextArea({ fields, field, isLoggedIn, setFields, se
     <S.TextArea
       {...props}
       name={name}
-      id={uuidv4()}
+      id={name}
       placeholder={placeholder}
       value={value || ''}
       onChange={({target}) => inputChange({ target, field, fields, setFields, setInputInFocus })}

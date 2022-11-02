@@ -1,5 +1,5 @@
-import connectDB from '../../../middleware/mongodb';
-import Text from '../../../models/text';
+import connectDB from '../../middleware/mongodb';
+import Text from '../../models/text';
 
 const textos = async (req, res) => {
   const { method } = req;

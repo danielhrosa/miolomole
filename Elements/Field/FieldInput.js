@@ -11,6 +11,7 @@ export default function Field({ label, tip, error, errorMessage, ...props }) {
         props.type === 'select' ||
         props.type === 'selectMulti' ||
         props.type === 'textarea' ||
+        props.type === 'simple' ||
         !!value
       }
     >

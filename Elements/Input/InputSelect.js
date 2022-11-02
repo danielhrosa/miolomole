@@ -38,6 +38,7 @@ export default function InputSelect({
   filterField,
   isSortable,
   noOptionsMessage,
+  handleCreate,
   ...props
 }) {
 
@@ -60,14 +61,16 @@ export default function InputSelect({
     <StyledInputSelect
       {...props}
       axis="xy"
+      id={name}
+      instanceId={name}
       onSortEnd={onSortEnd}
       distance={4}
       placeholder={placeholder}
       getHelperDimensions={({ node }) => node.getBoundingClientRect()}
       defaultOptions={options || true}
-      id={uuidv4()}
       name={name}
-      key={filter}
+      key={name}
+      onCreateOption={handleCreate}
       classNamePrefix="inputSelect"
       loadOptions={loadOptionsHandler}
       isClearable={isClearable}

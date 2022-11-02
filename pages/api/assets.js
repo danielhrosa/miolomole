@@ -1,5 +1,5 @@
-import connectDB from '../../../middleware/mongodb';
-import Book from '../../../models/book';
+import connectDB from '../../middleware/mongodb'
+import Book from '../../models/book'
 
 const assetsHandler = async (req, res) => {
   const { body, method } = req;
