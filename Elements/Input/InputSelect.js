@@ -33,13 +33,14 @@ export default function InputSelect({
   disabled,
   isCreatable,
   placeholder = 'Selecione',
-  isSearchable=false,
+  isSearchable = false,
   filter,
   filterField,
   isSortable,
   noOptionsMessage,
   ...props
 }) {
+
   const loadOptionsHandler = (inputValue, callback) => {
     if (loadOptions) {
       if (isCreatable || !loadEmpty) {

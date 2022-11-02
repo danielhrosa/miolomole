@@ -18,7 +18,7 @@ export const StoreJumbotronFieldsFunction = ({fields, router}) => ({
         .then((res) => res && callback(res.data.reduce((arr, item) => (
           arr.some(({value}) => value.some((city) => item.city.includes(city)))
             ? arr
-            : [...arr, { label: item.city, value: item.city }]
+            : [...arr, { instanceId: item._id, label: item.city, value: item.city }]
         ), [])))
         .catch((err) => callback([]))
     },
