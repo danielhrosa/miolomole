@@ -6,7 +6,7 @@ import removeModel from '../../utils/removeModel';
 
 const publicationHandler = async (req, res) => {
   const { body, method } = req;
-  let { _id, name, title, image, content, description } = body;
+  let { _id, name, title, image, content, description, hide } = body;
   try {
     switch (method) {
       case 'GET':
@@ -22,25 +22,19 @@ const publicationHandler = async (req, res) => {
         } catch (err) { return res.status(500).end() };
       case 'PUT':
         try {
-          if (!name) { return res.status(400).json({ errorMessage: 'Parâmetros inválidos' }) };
-          const updatedModel = await updateModel({ name, title, image, content, description }, Publication);
+          if (!name || !_id) { return res.status(400).json({ errorMessage: 'Parâmetros inválidos' }) };
+          const updatedModel = await updateModel({ name, title, image, content, description, hide }, Publication);
           await updatedModel.save();
           return await res.status(200).json(updatedModel);
-        } catch (err) { console.log(err); return res.status(500).end() };
+        } catch (err) { console.log(err); break; };
       case 'POST':
         try {
-          const publications = await Publication.find({ name });
-          if (!!publications.length) { return res.status(409).json({ errorMessage: 'Artigo ja cadastrado.' }) };
-          const args = {
-            name: title.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f`~!@#$%^&*()_|+\=?;:'",.<>\{\}\[\]\\\/]/gi, '').replace(/(\s)(?=\1)/gi, "").replace(/\s/g, "-"),
-            title,
-            image,
-            description,
-            content
-          }
-          const article = await createModel(args, Publication);
-          return res.status(200).json({ article });
-        } catch (err) { console.log(err); res.status(500).end() };
+          const existedPublication = await Publication.findOne({ name });
+          if (!!existedPublication) { return res.status(409).json({ errorMessage: 'Artigo ja cadastrado.' }) };
+          const args = { name, title, image, description, content, hide };
+          const publication = await createModel(args, Publication);
+          return res.status(200).json({ publication });
+        } catch (err) { console.log(err); break };
       case 'DELETE':
         try {
           await removeModel(_id, Publication)

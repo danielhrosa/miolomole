@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 
 export const EducatorArea = styled.div`
 `;
@@ -14,13 +14,14 @@ export const EducatorAreaSliderCard = styled.div`
   align-items: center;
   text-align: center;
   font-weight: 700;
-  font-size: 30px;
+  font-size: 24px;
   letter-spacing: -0.011em;
   text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-
+  padding: 16px;
   div { margin: 0; }
+
   @media (min-width: 768px) {
-    font-size: 40px;
+    font-size: 30px;
   }
 `;
 
@@ -29,98 +30,122 @@ export const EducatorAreaPosts = styled.div`
   flex-direction: column;
 
   gap: 50px;
-  padding: 0 16px;
-  
-  @media (min-width: 768px) {
-    padding: 0 33px;
-  }
 `;
 
 export const SliderContainer = styled.div`
-  /* display: flex; */
-  align-items: center;
-  justify-content: center;
-  height: 100%;
-  position: relative;
-  flex-direction: column;
+  ${({ colors, index }) => css`
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    position: relative;
+    flex-direction: column;
 
-  width: 100%;
+    width: 100%;
 
-  .slick-slide {
-    padding: 10px 30px;
-  }
+    .slick-slide { padding: 10px 30px; }
 
-  .slick-list{
-    height: 220px;
-    padding: 30px 0;
-    @media (min-width: 768px) {
-      height: 230px;
+    .slick-list{
+      height: 220px;
+      padding: 30px 0;
+      @media (min-width: 768px) { height: 230px; }
     }
-  }
 
-  .slick-prev {
-    z-index: 10; 
-    width: 15px;
-    height: 15px;
-    color: ${({ theme: { color: { brand } } }) => brand};
-    border-bottom: 3px solid ${({ theme: { color: { brand } } }) => brand};
-    border-left: 3px solid ${({ theme: { color: { brand } } }) => brand};
-    transform: rotate(45deg);
-    left: 10px;
-    top: 110px;
+    .slick-prev, .slick-next {
+      z-index: 10; 
+      width: 15px;
+      height: 15px;
+      top: 110px;
+      border-bottom: 5px solid ${colors[index]};
+      &::before { display: none; }
 
-    &::before{
-      display: none;
+      &::after { 
+        position: absolute;
+        top: 200px;
+        background-color: red;
+        width: 40px;
+        height: 100px;
+        z-index: 10;
+      }
     }
-  }
 
-  .slick-next {
-    z-index: 10; 
-    width: 15px;
-    height: 15px;
-    color: ${({ theme: { color: { brand } } }) => brand};
-    border-bottom: 3px solid ${({ theme: { color: { brand } } }) => brand};
-    border-right: 3px solid ${({ theme: { color: { brand } } }) => brand};
-    transform: rotate(-45deg);
-    right: 10px;
-    top: 110px;
-
-    &::before{
-      display: none;
+    .slick-prev {
+      border-left: 5px solid ${colors[index]};
+      transform: rotate(45deg);
+      left: 10px;
     }
-  }
-  
-  @media (min-width: 768px) {
-    flex-direction: row;
-  }
+
+    .slick-next {
+      border-right: 5px solid ${colors[index]};
+      transform: rotate(-45deg);
+      right: 10px;
+    }
+    
+    border-bottom: 5px solid ${colors[index]};
+    
+    @media (min-width: 768px) { flex-direction: row; }
+    @media (min-width: 1023px) {
+      border-bottom: 5px solid ${colors[(index + 1) % colors?.length]};
+      .slick-prev, .slick-next { border-bottom: 5px solid ${colors[(index + 1) % colors?.length]} };
+      .slick-prev { border-left: 5px solid ${colors[(index + 1) % colors?.length]}; }
+      .slick-next { border-right: 5px solid ${colors[(index + 1) % colors?.length]}; }
+    }
+    /* @media (min-width: 1250px) {
+      border-bottom: 5px solid ${colors[(index + 2) % colors?.length]};
+      .slick-prev, .slick-next { border-bottom: 5px solid ${colors[(index + 2) % colors?.length]} };
+      .slick-prev { border-left: 5px solid ${colors[(index + 2) % colors?.length]}; }
+      .slick-next { border-right: 5px solid ${colors[(index + 2) % colors?.length]}; }
+    } */
+  `}
 `;
 
 export const AddButton = styled.div`
-  top: 0px;
-  right: 0px;
-  background-color: white;
-  width: 100%;
-  cursor: pointer;
+  ${({ theme: { color: { white, black } }, color }) => css`
+    position: absolute;
+    top: -40px;
+    right: 0px;
+    width: 100%;
+    color: ${color};
+
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+
+    background-color: ${white};
+    border-top-left-radius: 25px;
+    border-top-right-radius: 25px;
+
+    z-index: 5;
+    cursor: pointer;
+
+    font-weight: 700;
+    letter-spacing: 0.7px;
+
+    span {
+      font-size: 36px;
+      line-height: 56px;
+    }
+
+    &:hover {
+      color: ${({ theme: { color: { blue } } }) => blue};
+      transition: .5s cubic-bezier(.22,.68,0,1.71);
+    }
+
+    @media (min-width: 768px){
+      border-top-left-radius: 10px;
+      border-top-right-radius: 10px;
+      width: 200px;
+      top: -90px;
+      color: ${black}
+    }
+  `}
+`;
+
+export const EducatorAreaPostsEmpty = styled.div`
   display: flex;
   align-items: center;
-  justify-content: space-around;
-  border-top-left-radius: 10px;
-  border-top-right-radius: 10px;
-  margin-bottom: 30px;
-  z-index: 5;
-  span {
-    font-size: 36px;
-    line-height: 56px;
-    font-weight: 500;
-  }
-  &:hover {
-    color: ${({ theme: { color: { blue } } }) => blue};
-    transition: .5s cubic-bezier(.22,.68,0,1.71);
-  }
+  justify-content: center;
 
-  @media (min-width: 768px){
-    position: absolute;
-    width: 200px;
-    top: -55px;
-  }
-`
+  flex-direction: column;
+
+  padding: 32px 16px;
+`;

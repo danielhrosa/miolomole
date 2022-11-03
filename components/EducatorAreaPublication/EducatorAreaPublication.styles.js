@@ -1,47 +1,25 @@
 import styled from "styled-components";
 
 export const EducatorAreaPublication = styled.div`
+  width: 100%;
+  padding-top: 70px;
+  .sun-editor { border: none; }
+  .se-resizing-bar { display: none !important; }
+`;
+
+export const EducatorAreaPublicationHeader = styled.header`
   display: flex;
-  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  height: 40px;
   width: 100%;
-  cursor: pointer;
-
-  padding-top: 18px;
-  border-top: 3px solid #D9D9D9;
-
-  @media (min-width: 768px) {
-    padding-top: 40px;
-  }
 `;
 
-export const EducatorAreaPublicationPicture = styled.img`
-  width: 100%;
-  height: auto;
-  object-fit: contain;
-`;
-
-export const EducatorAreaPublicationContainer = styled.div`
-
-`;
-
-export const EducatorAreaPublicationContainerTitle = styled.div`
-  color: #333333;
-  font-style: normal;
-  font-weight: 700;
-  letter-spacing: -0.022em;
-  padding: 32px 0;
-  font-size: 24px;
-  
-  @media (min-width: 768px) {
-    font-size: 40px;
-  }
-`;
-
-export const EducatorAreaPublicationContainerDescription = styled.div`
-  font-size: 14px;
-    
-  @media (min-width: 768px) {
-    font-size: 24px;
-    line-height: 44px;
-  }
+export const EducatorAreaPublicationBackButton = styled.div`
+  left: 15px;
+  width: 20px;
+  height: 20px;
+  border-bottom: 3px solid #333;
+  border-left: 3px solid #333;
+  transform: rotate(45deg);
 `;

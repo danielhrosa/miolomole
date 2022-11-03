@@ -1,5 +1,6 @@
 import { css } from 'styled-components';
 import { inputChange } from '../../helpers/fieldFunctions';
+import urlNameFormatter from '../../utils/urlNameFormatter'
 
 export const educatorFieldsState = (props) => ({
   name: { value: '' },
@@ -11,7 +12,7 @@ export const educatorFieldsState = (props) => ({
   hide: { value: false },
 })
 
-export const educatorFieldsFunction = ({ fields, setFields, onSubmit, id }) => ({
+export const educatorFieldsFunction = ({ fields, setFields }) => ({
   title: {
     ...fields.title,
     name: 'title',
@@ -22,7 +23,7 @@ export const educatorFieldsFunction = ({ fields, setFields, onSubmit, id }) => (
       setFields((oldFields) => {
         const newFields = { ...oldFields };
         newFields.title.value = value;
-        newFields.name.value = value.toLowerCase().replace(" ", "");
+        newFields.name.value = urlNameFormatter(value);
         return newFields;
       });
     }
@@ -74,13 +75,6 @@ export const educatorFieldsFunction = ({ fields, setFields, onSubmit, id }) => (
         return newFields;
       })
     }
-  },
-  submitButton: {
-    name: 'submitButton',
-    label: id ? 'Editar' : 'Criar',
-    type: 'button',
-    variation: 'primary',
-    onClick: onSubmit
   }
 })
 

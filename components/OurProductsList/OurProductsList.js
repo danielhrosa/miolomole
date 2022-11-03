@@ -31,14 +31,7 @@ export default function OurProductsList(props) {
     await axios.put(`/api/livros`, { ...book, isHidden: !book?.isHidden })
   }
 
-  const breakpointColumnsObj = {
-    default: 4,
-    1100: 3,
-    700: 2,
-    500: 1
-  };
-
-  useEffect(() => { setBooks((oldBook) => [...oldBook].filter((book) => isLoggedIn ? true : !!book?.isHidden == false)) }, [isLoggedIn])
+  const breakpointColumnsObj = { default: 4, 1100: 3, 700: 2, 500: 1 };
 
   return (
     <S.OurProductsList>

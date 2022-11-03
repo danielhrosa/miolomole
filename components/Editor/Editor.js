@@ -1,7 +1,6 @@
 import * as S from './Editor.styles';
 import dynamic from "next/dynamic";
 import 'suneditor/dist/css/suneditor.min.css';
-import { useMemo, useState } from 'react';
 
 const SunEditor = dynamic(() => import("suneditor-react"), { ssr: false });
 
@@ -13,6 +12,7 @@ const SunEditorComponent = ({ name, onChange, value }) => {
         onChange={onChange}
         height="250px"
         setContents={value}
+        setDefaultStyle={'font-family: Arial'}
         setOptions={{
           "textTags": {
             "bold": "b",

@@ -1,6 +1,6 @@
-export default function HideIcon({ isHidden }) {
+export default function HideIcon({ ishidden }) {
 
-  if (isHidden) {
+  if (ishidden) {
     return (
       <svg className="hide" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 267 267" width="267" height="267" fill="none">
         <path fill="#707070" d="M133 267a133 133 0 1 0 0-267 133 133 0 0 0 0 267Z" />
