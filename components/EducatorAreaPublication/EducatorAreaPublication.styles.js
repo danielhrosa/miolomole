@@ -22,4 +22,6 @@ export const EducatorAreaPublicationBackButton = styled.div`
   border-bottom: 3px solid #333;
   border-left: 3px solid #333;
   transform: rotate(45deg);
+
+  cursor: pointer;
 `;
