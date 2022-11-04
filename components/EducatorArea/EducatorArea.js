@@ -41,7 +41,7 @@ const fakePubAreas = [
   { title: 'Futebol', color: '#FF00CF' },
 ];
 
-export default function EducatorArea({ publications, publicationsAreas: pubAreas = [], ...props }) {
+export default function EducatorArea({ publications, publicationsAreas: pubAreas, ...props }) {
   const { isLoggedIn } = useAppProvider();
   const router = useRouter();
   const [index, setIndex] = useState(0);
