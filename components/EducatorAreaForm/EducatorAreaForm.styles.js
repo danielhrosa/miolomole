@@ -12,7 +12,7 @@ export const EducatorAreaForm = styled.div`
   }
 
   .se-toolbar-sticky {
-    top: 72px !important;
+    top: 95px !important;
     left: 0;
     width: 100% !important;
   }

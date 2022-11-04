@@ -9,40 +9,58 @@ const SunEditor = dynamic(() => import("suneditor-react"), { ssr: false });
 
 const SunEditorComponent = ({ name, onChange, value }) => {
 
-  // const imageUploadHandler = (files, info, core, uploadHandler) => {
-  //   console.log(files, info)
+  function onImageUploadBefore(files, _info, uploadHandler) {
+    try {
+      ResizeImage(files, uploadHandler)
+    } catch (err) {
+      uploadHandler(err.toString())
+    }
+  };
 
-  //   const fileName = `dev/mioloMole/${uuidv4() + files[0].name}`;
-  //   const evaporateConfig = {
-  //     aws_key: process.env.NEXT_PUBLIC_AWS_KEY,
-  //     bucket: process.env.NEXT_PUBLIC_AWS_BUCKET,
-  //     awsRegion: process.env.NEXT_PUBLIC_AWS_REGION,
-  //     awsSignatureVersion: "4",
-  //     computeContentMd5: true,
-  //     signerUrl: `/api/sign-auth`,
-  //     cryptoMd5Method: data => AWS.util.crypto.md5(data, "base64"),
-  //     cryptoHexEncodedHash256: data => AWS.util.crypto.sha256(data, "hex"),
-  //   };
-  //   const evaporateAddConfig = {
-  //     file: files[0],
-  //     name: fileName,
-  //     contentType: files[0].type,
-  //     complete: (xhr) => {
-  //       new FormData()
-  //       api.upalo
-  //       core.plugins.image.register.call(core, info, {
-  //         "result": [
-  //           {
-  //             "url": xhr.responseURL.split('?')[0],
-  //             "name": files[0].name,
-  //             "size": "0"
-  //           }
-  //         ]
-  //       })
-  //     },
-  //   };
-  //   Evaporate.create(evaporateConfig).then((evaporate) => evaporate.add(evaporateAddConfig))
-  // }
+  // image resize
+  function ResizeImage(files, uploadHandler) {
+    const uploadFile = files[0];
+    const img = document.createElement('img');
+    const canvas = document.createElement('canvas');
+    const reader = new FileReader();
+
+    reader.onload = function (e) {
+      img.src = e.target.result
+      img.onload = function () {
+        let ctx = canvas.getContext("2d");
+        ctx.drawImage(img, 0, 0);
+
+        const MAX_WIDTH = 500;
+        const MAX_HEIGHT = 300;
+        let width = img.width;
+        let height = img.height;
+
+        if (width > height) {
+          if (width > MAX_WIDTH) {
+            height *= MAX_WIDTH / width;
+            width = MAX_WIDTH;
+          }
+        } else {
+          if (height > MAX_HEIGHT) {
+            width *= MAX_HEIGHT / height;
+            height = MAX_HEIGHT;
+          }
+        }
+
+        canvas.width = width;
+        canvas.height = height;
+
+        ctx = canvas.getContext("2d");
+        ctx.drawImage(img, 0, 0, width, height);
+
+        canvas.toBlob(function (blob) {
+          uploadHandler([new File([blob], uploadFile.name)])
+        }, uploadFile.type, 1);
+      }
+    }
+
+    reader.readAsDataURL(uploadFile);
+  }
 
   return (
     <S.SunEditorWrapper name={name}>
@@ -50,7 +68,7 @@ const SunEditorComponent = ({ name, onChange, value }) => {
         onChange={onChange}
         height="250px"
         setContents={value}
-        // onImageUploadBefore={imageUploadHandler}
+        onImageUploadBefore={onImageUploadBefore}
         setDefaultStyle={'font-family: Arial'}
         setOptions={{
           "textTags": {

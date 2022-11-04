@@ -1,13 +1,14 @@
 import styled, { css } from "styled-components";
 
-export const StyledForm = styled.section`
-  form{
-    display: grid;
-    ${({gridTemplate, joinUsWay}) => gridTemplate({joinUsWay})};
-  }
-  ${({striped}) => striped && css`
+export const FormWrapper = styled.section`
+  ${({ striped }) => striped && css`
     div.field:nth-child(even){
-      background-color: ${({ theme: { color: { gray }}}) => gray };
+      background-color: ${({ theme: { color: { gray } } }) => gray};
     }
   `}
+`;
+
+export const Form = styled.form`
+  display: grid;
+  ${({ gridTemplate, joinUsWay }) => gridTemplate({ joinUsWay })};
 `;
