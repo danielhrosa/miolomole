@@ -22,7 +22,7 @@ const publicationHandler = async (req, res) => {
         } catch (err) { return res.status(500).end() };
       case 'PUT':
         try {
-          if (!name || !_id) { return res.status(400).json({ errorMessage: 'Parâmetros inválidos' }) };
+          if (!name && !_id) { return res.status(400).json({ errorMessage: 'Parâmetros inválidos' }) };
           const updatedModel = await updateModel({ name, title, image, content, description, hide }, Publication);
           await updatedModel.save();
           return await res.status(200).json(updatedModel);

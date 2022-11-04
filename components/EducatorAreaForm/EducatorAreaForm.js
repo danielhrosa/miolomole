@@ -19,7 +19,7 @@ export default function EducatorAreaForm({ publication }) {
 
   const onSubmit = () => {
     setLoading(true);
-    const variables = Object.entries(fields).reduce((obj, [key, { value }]) => ({ ...obj, [key]: value }), {});
+    const variables = Object.entries(fields).reduce((obj, [key, { value }]) => ({ ...obj, [key]: value?.value || value }), {});
     const hasEmpty = Object.entries(variables).some(([key, value]) => !['_id', 'hide'].includes(key) && !value)
     const errorMessage = `Erro ao ${_id ? 'salvar' : 'criar'} publicação`;
     if (hasEmpty) {
