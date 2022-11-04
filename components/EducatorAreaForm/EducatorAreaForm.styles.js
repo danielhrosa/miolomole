@@ -12,10 +12,22 @@ export const EducatorAreaForm = styled.div`
   }
 
   .se-toolbar-sticky {
-    top: 95px !important;
+    top: 75px !important;
     left: 0;
     width: 100% !important;
+
+    @media (min-width: 768px){
+      top: 100px !important;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 90% !important;
+    }
   }
 
   img { height: 260px; }
+
+  figure img {
+    width: 100%;
+    height: unset !important;
+  }
 `;

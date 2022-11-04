@@ -12,6 +12,7 @@ import animationData from '../../lotties/empty.json';
 import Lottie from 'react-lottie';
 import axios from 'axios';
 import toast from 'react-hot-toast';
+import ComingSoon from '../ComingSoon/ComingSoon';
 
 const fakePublicationsArray = [
   {
@@ -32,7 +33,7 @@ const fakePublicationsArray = [
   },
 ];
 
-const pubAreas = [
+const fakePubAreas = [
   { title: 'Material de apoio', color: '#157EFA' },
   { title: 'Notícias', color: '#3DC55D' },
   { title: 'Nossas Recomendações', color: '#FD9426' },
@@ -40,21 +41,11 @@ const pubAreas = [
   { title: 'Futebol', color: '#FF00CF' },
 ];
 
-const defaultOptions = {
-  animationData: animationData,
-  loop: true,
-  autoplay: true,
-  rendererSettings: {
-    preserveAspectRatio: 'xMidYMid slice'
-  }
-};
-
-export default function EducatorArea(props) {
+export default function EducatorArea({ publications, publicationsAreas: pubAreas, ...props }) {
   const { isLoggedIn } = useAppProvider();
   const router = useRouter();
   const [index, setIndex] = useState(0);
-  const publicationsObj = props?.publications && JSON.parse(props.publications)
-  const [publications, setPublications] = useState(publicationsObj);
+  const [newPublications, setNewPublications] = useState(publications);
   const colors = pubAreas.map((item) => item.color);
 
   const settings = {
@@ -95,7 +86,7 @@ export default function EducatorArea(props) {
   const handleDeletePublication = async ({ _id, title }) => {
     const confirm = window.confirm(`Tem certeza que deseja deletar "${title}"?`)
     if (!confirm) { return false };
-    setPublications((oldPublication) => [...oldPublication].filter((publication) => publication._id !== _id))
+    setNewPublications((oldPublication) => [...oldPublication].filter((publication) => publication._id !== _id))
     await axios.delete(`/api/publication`, { data: { _id } })
       .catch((err) => { toast.error(`Error ${err.response.data.errorMessage || ''}`) })
   }
@@ -104,12 +95,12 @@ export default function EducatorArea(props) {
     const { _id, title, hide } = publication;
     const confirm = window.confirm(`Tem certeza que deseja ${!!hide ? 'desocultar' : 'ocultar'} a publicação "${title}"?`);
     if (!confirm) { return false };
-    setPublications((oldPublication) => [...oldPublication].reduce((publications, publication) => publication._id !== _id ? [...publications, publication] : [...publications, { ...publication, hide: !publication?.hide }], []))
+    setNewPublications((oldPublication) => [...oldPublication].reduce((publications, publication) => publication._id !== _id ? [...publications, publication] : [...publications, { ...publication, hide: !publication?.hide }], []))
     await axios.put(`/api/publication`, { ...publication, hide: !hide })
       .then((res) => { res.status === 200 && toast.success('Sucesso') })
       .catch((err) => {
         toast.error(`Error ${err.response.data.errorMessage || ''}`)
-        setPublications((oldPublication) => [...oldPublication].reduce((publications, publication) => publication._id !== _id ? [...publications, publication] : [...publications, { ...publication, hide: !publication?.hide }], []))
+        setNewPublications((oldPublication) => [...oldPublication].reduce((publications, publication) => publication._id !== _id ? [...publications, publication] : [...publications, { ...publication, hide: !publication?.hide }], []))
       })
   }
 
@@ -119,19 +110,18 @@ export default function EducatorArea(props) {
     <S.EducatorArea>
       <Jumbotron {...props} page="educatorArea" />
       <Container>
-        <S.SliderContainer colors={colors} index={index}>
-          {isLoggedIn && <S.AddButton colors={colors} index={index} className="unselectable" onClick={() => router.push('/educador/novo')}>Cadastrar<span>+</span></S.AddButton>}
-          <Slider {...settings}>
-            {pubAreas.map(({ color, title }, i) => <S.EducatorAreaSliderCard color={color} key={i}>{title}</S.EducatorAreaSliderCard>)}
-          </Slider>
-        </S.SliderContainer>
+        {pubAreas?.length && (
+          <S.SliderContainer colors={colors} index={index}>
+            {isLoggedIn && <S.AddButton colors={colors} index={index} className="unselectable" onClick={() => router.push('/educador/novo')}>Cadastrar<span>+</span></S.AddButton>}
+            <Slider {...settings}>
+              {pubAreas.map(({ color, title }, i) => <S.EducatorAreaSliderCard color={color} key={i}>{title}</S.EducatorAreaSliderCard>)}
+            </Slider>
+          </S.SliderContainer>
+        )}
         <S.EducatorAreaPosts>
-          {publications?.length
-            ? publications.map((publication, i) => <EducatorAreaPublication publication={publication} key={i} {...publicationProps} />)
-            : <S.EducatorAreaPostsEmpty>
-              <span>Sem publicações ainda...</span>
-              <Lottie options={defaultOptions} height={200} />
-            </S.EducatorAreaPostsEmpty>
+          {newPublications?.length
+            ? newPublications.map((publication, i) => <EducatorAreaPublication publication={publication} key={i} {...publicationProps} />)
+            : <ComingSoon />
           }
         </S.EducatorAreaPosts>
       </Container >

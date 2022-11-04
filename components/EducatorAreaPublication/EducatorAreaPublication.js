@@ -19,7 +19,7 @@ export default function EducatorAreaPublication({ publication }) {
     <S.EducatorAreaPublication>
       <Container>
         <S.EducatorAreaPublicationHeader>
-          <S.EducatorAreaPublicationBackButton onClick={() => router.back()} />
+          <S.EducatorAreaPublicationBackButton onClick={() => router.push('/educador')} />
           {isLoggedIn && <Button type="edit" onClick={() => router.push(`/educador/${publication.name}/editar`)} />}
         </S.EducatorAreaPublicationHeader>
         <SunEditor

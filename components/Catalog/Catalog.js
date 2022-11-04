@@ -4,14 +4,13 @@ import toast from 'react-hot-toast';
 import Button from '../../Elements/Button';
 import Form from '../../Elements/Form';
 import Modal from '../../Elements/Modal/Modal';
-import LogoMiolo from '../../images/js/Logo-miolo';
-import randomColor from '../../utils/randomColor';
 import Container from '../Container';
 import Editable from '../Editable';
 import EditableImage from '../EditableImage';
 import { catalogFieldsFunction, catalogFieldsState, gridTemplate } from './Catalog.constants';
 import { useRouter } from 'next/router';
 import * as S from './Catalog.styles';
+import ComingSoon from '../ComingSoon/ComingSoon';
 
 export default function Catalog({ catalogs, ...props }) {
   const { isLoggedIn } = props;
@@ -116,7 +115,7 @@ export default function Catalog({ catalogs, ...props }) {
                     <Button key={i} variation="primary" color={catalog.color} label={catalog.label} onClick={() => downloadFile(catalog.link)} />
                   ))}
                 </S.CatalogsList>
-              ) : <S.CatalogComingSoon><span>Em breve</span><LogoMiolo color={randomColor()} /></S.CatalogComingSoon>
+              ) : <ComingSoon />
           }
         </S.CatalogWrapper>
       </Container>

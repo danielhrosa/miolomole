@@ -15,7 +15,7 @@ export default function EducatorAreaPublication({ isLoggedIn, publication, i, ha
           <Button ishidden={hide} onClick={(e) => { e.stopPropagation(); handleHidePublication(publication); }} type="toggleHide" />
         </S.EducatorAreaPublicationButtons>
       )}
-      <S.EducatorAreaPublicationPicture hide={hide} src={image} onClick={() => { console.log(`/educator/publications/${name}`) }} height="auto" width="100%" />
+      <S.EducatorAreaPublicationPicture hide={hide} src={image} height="auto" width="100%" />
       <S.EducatorAreaPublicationContainer>
         <S.EducatorAreaPublicationContainerTitle>{title}</S.EducatorAreaPublicationContainerTitle>
         <S.EducatorAreaPublicationContainerDescription>{description}</S.EducatorAreaPublicationContainerDescription>

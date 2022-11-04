@@ -1,5 +1,6 @@
 import mongoose from 'mongoose';
 import Publication from '../../models/publication';
+import PublicationArea from '../../models/publicationArea';
 import Text from '../../models/text';
 import { getCookies } from 'cookies-next';
 import jwt from 'jsonwebtoken';
@@ -13,8 +14,10 @@ export async function getServerSideProps({ req, res }) {
   const { _id: token } = jwt.decode(TK, process.env.SECRET_KEY) || { token: undefined };
 
   const publicationsArray = await Publication.find(token ? {} : { hide: { $ne: true } });
-  const publications = publicationsArray ? JSON.stringify(publicationsArray) : `[]`
-  return { props: { publications, texts } }
+  const publicationsObj = publicationsArray ? JSON.stringify(publicationsArray) : `[]`
+  const publicationsAreasArray = await PublicationArea.find();
+  const publicationsAreasObj = publicationsAreasArray ? JSON.stringify(publicationsAreasArray) : `[]`
+  return { props: { publicationsObj, publicationsAreasObj, texts } }
 }
 
 export { default } from './EducatorArea';

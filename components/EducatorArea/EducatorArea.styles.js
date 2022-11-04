@@ -101,7 +101,8 @@ export const SliderContainer = styled.div`
 export const AddButton = styled.div`
   ${({ theme: { color: { white, black } }, color }) => css`
     position: absolute;
-    top: -40px;
+    height: 50px;
+    top: -50px;
     right: 0px;
     width: 100%;
     color: ${color};
@@ -134,7 +135,7 @@ export const AddButton = styled.div`
       border-top-left-radius: 10px;
       border-top-right-radius: 10px;
       width: 200px;
-      top: -90px;
+      top: -30%;
       color: ${black}
     }
   `}

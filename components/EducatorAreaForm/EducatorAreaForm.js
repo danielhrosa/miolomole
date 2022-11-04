@@ -8,9 +8,10 @@ import { useEffect, useState } from 'react';
 import toast from 'react-hot-toast';
 import mapFieldsToData from '../../utils/mapFieldsToData';
 import axios from 'axios';
+import mapDataToFields from '../../utils/mapDataToFields';
 
 export default function EducatorAreaForm({ publication }) {
-  const { _id } = publication;
+  const _id = publication && publication._id;
   const router = useRouter();
   const [fields, setFields] = useState(educatorFieldsState());
   const [loading, setLoading] = useState();
@@ -19,7 +20,7 @@ export default function EducatorAreaForm({ publication }) {
 
   const onSubmit = () => {
     setLoading(true);
-    const variables = Object.entries(fields).reduce((obj, [key, { value }]) => ({ ...obj, [key]: value?.value || value }), {});
+    const variables = Object.entries(fields).reduce((obj, [key, { value }]) => ({ ...obj, [key]: (value?.value || value?._id) || value }), {});
     const hasEmpty = Object.entries(variables).some(([key, value]) => !['_id', 'hide'].includes(key) && !value)
     const errorMessage = `Erro ao ${_id ? 'salvar' : 'criar'} publicação`;
     if (hasEmpty) {
@@ -27,12 +28,13 @@ export default function EducatorAreaForm({ publication }) {
       toast.error('Por favor preencha todos os campos')
       return;
     }
+    if(publication?._id) { variables._id = publication?._id; }
     axios[_id ? 'put' : 'post']('/api/publication', variables)
       .then((res) => {
         if (res.status === 200) {
           toast.success(`Publicação ${_id ? 'salva' : 'criada'}!`)
           setLoading(false);
-          router.back();
+          router.push(`/educador/${res.data.name}`);
         } else {
           setLoading(false);
           toast.error(errorMessage)
@@ -48,14 +50,8 @@ export default function EducatorAreaForm({ publication }) {
   useEffect(() => {
     setFields((oldFields) => {
       const newFields = { ...oldFields };
-      newFields.name.value = publication?.name;
-      newFields.image.value = publication?.image;
-      newFields.title.value = publication?.title;
-      newFields.description.value = publication?.description;
-      newFields.content.value = publication?.content;
-      newFields.area.value = publication?.area;
-      newFields.hide.value = publication?.hide;
-      return newFields;
+      mapDataToFields({ newFields, constantFields: educatorFields, data: publication })
+      return newFields
     })
   }, [_id, publication])
 

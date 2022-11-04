@@ -1,4 +1,3 @@
-import React from 'react';
 import { inputChange } from '../../helpers/fieldFunctions';
 import * as S from './Input.style';
 

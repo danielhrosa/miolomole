@@ -1,8 +1,10 @@
+import axios from 'axios';
 import { css } from 'styled-components';
 import { inputChange } from '../../helpers/fieldFunctions';
 import urlNameFormatter from '../../utils/urlNameFormatter'
 
 export const educatorFieldsState = (props) => ({
+  _id: { value: '' },
   name: { value: '' },
   title: { value: '' },
   description: { value: '' },
@@ -33,15 +35,19 @@ export const educatorFieldsFunction = ({ fields, setFields }) => ({
     name: 'area',
     label: 'Area:',
     type: 'select',
-    handleCreate: () => {},
-    options: [
-      { instanceId: 'material-de-apoio', value: 'material-de-apoio', label: 'Material de apoio', color: '#157EFA' },
-      { instanceId: 'noticias', value: 'noticias', label: 'Notícias', color: '#3DC55D' },
-      { instanceId: 'nossas-recomendacoes', value: 'nossas-recomendacoes', label: 'Nossas Recomendações', color: '#FD9426' },
-      { instanceId: 'politica', value: 'politica', label: 'Politica', color: '#9700FF' },
-      { instanceId: 'religiao', value: 'religiao', label: 'Religião', color: '#FFCC22' },
-      { instanceId: 'futebo', value: 'futebol', label: 'Futebol', color: '#FF00CF' },
-    ]
+    loadEmpty: true,
+    isSearchable: true,
+    isCreatable: true,
+    loadOptions: (query, callback) => {
+      axios.get('/api/publicationArea')
+      .then((res) => res && callback(res.data
+        .filter((option) => option.title
+          ?.toLowerCase()
+          ?.normalize("NFD")
+          ?.includes(query?.toLowerCase()))
+        .map((option) => ({ ...option, instanceId: option._id, label: option.title }))
+      ))
+    }
   },
   image: {
     ...fields.image,

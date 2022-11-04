@@ -10,11 +10,16 @@ export default function EducatorPublication({ publication }){
 
 export async function getServerSideProps({ params: { name } }) {
   mongoose.connect(process.env.NEXT_PUBLIC_MONGO_DB_URL, { useUnifiedTopology: true, useFindAndModify: false, useCreateIndex: true, useNewUrlParser: true });
-  if(name) {
-    let publicationObj = await Publication.findOne({ name });
+  let publicationObj = await Publication.findOne({ name });
+  if(publicationObj?._id) {
     const publication = publicationObj ? JSON.stringify(publicationObj) : {}
     return { props: { publication } }
   } else {
-    return { props: { publication: {} }  }
+    return {
+      redirect: {
+        permanent: false,
+        destination: "/educador"
+      }
+    }
   }
 }
