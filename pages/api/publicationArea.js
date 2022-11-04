@@ -1,5 +1,6 @@
 import connectDB from '../../middleware/mongodb';
 import PublicationArea from '../../models/publicationArea';
+import Publication from '../../models/publication';
 import updateModel from '../../utils/updateModel';
 import createModel from '../../utils/createModel';
 import removeModel from '../../utils/removeModel';
@@ -37,6 +38,10 @@ const publicationAreaHandler = async (req, res) => {
       case 'DELETE':
         try {
           await removeModel(_id, PublicationArea)
+          const publications = await Publication.find({ area: _id })
+          publications.forEach(async (pub) => {
+            await Publication.updateOne({ _id: pub._id }, { $unset: { area: "" } });
+          })
           return res.status(200).json({ message: 'Área de publicação excluída com sucesso!' });
         } catch (err) { return res.status(500).end() };
       default:

@@ -19,6 +19,7 @@ export const EducatorAreaSliderCard = styled.div`
   text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
   padding: 16px;
   div { margin: 0; }
+  position: relative;
 
   @media (min-width: 768px) {
     font-size: 30px;
@@ -149,4 +150,13 @@ export const EducatorAreaPostsEmpty = styled.div`
   flex-direction: column;
 
   padding: 32px 16px;
+`;
+
+export const EducatorAreaSliderCardButtons = styled.div`
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
 `;
