@@ -33,13 +33,15 @@ export default function InputSelect({
   disabled,
   isCreatable,
   placeholder = 'Selecione',
-  isSearchable=false,
+  isSearchable = false,
   filter,
   filterField,
   isSortable,
   noOptionsMessage,
+  handleCreate,
   ...props
 }) {
+
   const loadOptionsHandler = (inputValue, callback) => {
     if (loadOptions) {
       if (isCreatable || !loadEmpty) {
@@ -59,14 +61,16 @@ export default function InputSelect({
     <StyledInputSelect
       {...props}
       axis="xy"
+      id={name}
+      instanceId={name}
       onSortEnd={onSortEnd}
       distance={4}
       placeholder={placeholder}
       getHelperDimensions={({ node }) => node.getBoundingClientRect()}
       defaultOptions={options || true}
-      id={uuidv4()}
       name={name}
-      key={filter}
+      key={name}
+      onCreateOption={handleCreate}
       classNamePrefix="inputSelect"
       loadOptions={loadOptionsHandler}
       isClearable={isClearable}

@@ -1,5 +1,5 @@
 import AboutUsImagination from "../../components/AboutUsImagination/AboutUsImagination";
-import AboutUsJumbotron from "../../components/AboutUsJumbotron";
+import Jumbotron from "../../components/Jumbotron/Jumbotron";
 import AboutUsOurHistory from "../../components/AboutUsOurHistory";
 import AboutUsQuote from "../../components/AboutUsQuote";
 import AboutUsSectionOne from "../../components/AboutUsSectionOne";
@@ -8,7 +8,7 @@ import AboutUsSlider from "../../components/AboutUsSlider";
 export default function AboutUs(props){
   return(
     <div>
-      <AboutUsJumbotron {...props}/>
+      <Jumbotron {...props} page="aboutUs" />
       <AboutUsOurHistory {...props} />
       <AboutUsQuote {...props} />
       <AboutUsSectionOne {...props} />

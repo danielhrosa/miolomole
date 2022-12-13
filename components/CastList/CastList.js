@@ -10,14 +10,14 @@ export default function CastList(props){
       <S.CastTitle>Autores e Ilustradores</S.CastTitle>
       <S.CastList>
         {casts.map((item, i) => (
-          <S.SliderCard key={item._id + i}>
+          <S.SliderCard key={item?._id + i}>
             <S.CardPicture src={item.avatar} />
             <S.SliderCardContainer>
               <S.CardTitle>{item.userFullName}</S.CardTitle>
               <S.CardRoles>
                 {item.occupation
                   .filter((role) => role !== "admin")
-                  .map((role) => <div>{role == "illustrator" ? "Ilustrador" : "Escritor"}</div>)
+                  .map((role, i) => <div key={i}>{role == "illustrator" ? "Ilustrador" : "Escritor"}</div>)
                 }
               </S.CardRoles>
               <S.CardDescription>{item.description}</S.CardDescription>

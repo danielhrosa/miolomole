@@ -17,7 +17,7 @@ export const headerFieldsFunction = ({ fields, router, setMenuIsOpen }) => ({
       axios.get('/api/livros')
         .then(({data}) => callback( data
           ?.filter((option) => option.title.toLowerCase().includes(query.toLowerCase()))
-          ?.map((option) => ({ ...option, label: option.title, name: option.name, value: option._id }))))
+          ?.map((option) => ({ ...option, instanceId: option._id ,label: option.title, name: option.name, value: option._id }))))
         .catch((err) => callback([]))
     },
     onChange: ({ target}) => {

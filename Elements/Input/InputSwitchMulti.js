@@ -3,7 +3,7 @@ import { switchMultiOnChange } from '../../helpers/fieldFunctions'
 import { StyledInputSwitch, StyledInputSwitchs, StyledInputSwitchOption, StyledInputSwitchLabel, switchStyles } from './Input.style';
 
 export default function InputSwitchMulti({ onChange, setFields, loadOptions, name, value }) {
-  const [ options, setOptions ] = useState([]);
+  const [options, setOptions] = useState([]);
 
   useEffect(() => {
     loadOptions().then((items) => setOptions(items))
@@ -11,7 +11,7 @@ export default function InputSwitchMulti({ onChange, setFields, loadOptions, nam
 
   return (
     <StyledInputSwitchs>
-      { options?.map((option) => (
+      {options?.map((option) => (
         <StyledInputSwitchOption key={option._id} >
           <StyledInputSwitch
             id={uuidv4()}

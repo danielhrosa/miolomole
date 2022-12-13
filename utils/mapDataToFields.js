@@ -26,13 +26,13 @@ function getDataSelectValue({ newFields, field, data, constant }) {
     if(constant.options){
       newFields[field].value = {...constant?.options?.find(({value}) => value == data[field])}
     } else {
-      newFields[field].value = !!data[field]?.length
+      newFields[field].value = !!data[field]?.length || !!data[field]
         ? {
           label: data[field]?.label ||
-          data[field]?.name ||
           data[field]?.legalName ||
+          data[field]?.title ||
+          data[field]?.name ||
           data[field]?._id ||
-          data[field].title ||
           constant?.options?.find(({value}) => value == data[field]) ||
           data[field],
           value: data[field]._id || data[field].value || data[field]

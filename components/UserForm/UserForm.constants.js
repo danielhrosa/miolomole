@@ -37,9 +37,9 @@ export const usuariosFieldsFunction = ({ fields, setFields }) => ({
     type: 'select',
     isMulti: true,
     options: [
-      { label: 'Ilustrador', value: 'illustrator' },
-      { label: 'Escritor', value: 'writer' },
-      { label: 'Administrador', value: 'admin' }
+      { instanceId: 'illustrator', label: 'Ilustrador', value: 'illustrator' },
+      { instanceId: 'writer', label: 'Escritor', value: 'writer' },
+      { instanceId: 'admin', label: 'Administrador', value: 'admin' }
     ]
   },
   userFullName: {
@@ -54,7 +54,7 @@ export const usuariosFieldsFunction = ({ fields, setFields }) => ({
       axios.get('/api/users').then((res) => {
         res && callback(res.data
           .filter((option) => option?.userFullName?.toLowerCase().includes(query.toLowerCase()) || option.userName.toLowerCase().includes(query.toLowerCase()))
-          .map((option) => ({ label: option.userFullName + ' já cadastrado!' }))
+          .map((option) => ({ instanceId: option._id, label: option.userFullName + ' já cadastrado!' }))
         )
       })
     }

@@ -48,7 +48,7 @@
     "react-slick": "^0.28.0",
     "react-sortable-hoc": "^1.11.0",
     "react-switch": "^6.0.0",
-    "react-textarea-autosize": "^8.3.2",
+    "react-textarea-autosize": "^8.3.4",
     "redux": "^4.1.0",
     "saslprep": "^1.0.3",
     "slick-carousel": "^1.8.1",
@@ -59,6 +59,8 @@
   },
   "devDependencies": {
     "react-lottie": "^1.2.3",
+    "suneditor": "^2.44.3",
+    "suneditor-react": "^3.4.1",
     "swr": "^0.5.4",
     "uuidv4": "^6.2.6",
     "yarn": "^1.22.10"

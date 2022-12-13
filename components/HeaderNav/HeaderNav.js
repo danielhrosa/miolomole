@@ -10,6 +10,7 @@ export default function HeaderNav({isOpen, toggle}){
     { name: 'Livros', path: '/livros' },
     { name: 'Onde Comprar', path: '/onde-comprar' },
     { name: 'Quem somos', path: '/quem-somos' },
+    { name: 'Educador', path: '/educador' },
     { name: 'Contato', path: '/contato' },
     { name: 'Blog', path: 'https://editoramiolomole.com.br/' },
   ];

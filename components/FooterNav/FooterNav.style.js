@@ -1,60 +1,32 @@
 import styled from 'styled-components';
 
 export const FooterNav = styled.ul`
-  grid-area: headerNav;
+  display: none;
   width: 60%;
+  grid-area: headerNav;
   list-style: none;
   justify-content: space-around;
-  display: none;
-  color: #474747;
-  font-family: Roboto;
 
-  /* font-style: normal; */
-  font-weight: 400;
-  font-size: 14px;
-  line-height: 16px;
-  /* identical to box height, or 100% */
+  @media (min-width: 1024px){ display: flex; }
+`;
 
-  text-align: center;
-
-  @media screen{
-    @media (min-width: 1024px){
-      display: flex;
-
-    }
-  }
-  span{
-    cursor: pointer;
-    :hover{
-      font-weight: 600;
-      color: ${({ theme: { color: { brand } } }) => brand};;
-      letter-spacing: 0;
-    }
-  }
-`
 export const NavItem = styled.li`
-  font-family: Roboto;
-  /* font-style: normal; */
-  font-weight: 400;
-  font-size: 14px;
-  line-height: 16px;
-  /* identical to box height, or 100% */
-  text-align: center;
+  letter-spacing: 0.13px;
   cursor: pointer;
+  margin-bottom: 10px;
+  transition: all 0.3s;
+  color: ${({ isActive }) => isActive ? '${({ theme: { color: { brand } } }) => brand};' : '#474747'};
+  background: ${({ isActive }) => isActive ? '#E4E4E480' : 'none'};
+  border-radius: 8px;
+  padding: 4px 8px;
+  font-family: Montserrat;
+  font-weight: 500;
+  font-size: 15px;
+  text-align: center;
 
-  @media (min-width: 1024px){
-    font-family: Roboto;
-    /* font-style: normal; */
-    font-weight: 400;
-    font-size: 14px;
-    line-height: 16px;
-    /* identical to box height, or 100% */
-
-    text-align: center;
-  }
-  :hover{
-    font-weight: 600;
+  :hover { 
     color: ${({ theme: { color: { brand } } }) => brand};;
-    letter-spacing: 0;
   }
+
+  @media (min-width: 1024px) { margin-bottom: 0 }
 `

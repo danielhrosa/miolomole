@@ -22,7 +22,7 @@ export const InputFile = styled.div`
   display: flex;
   align-items: center;
   flex-direction: column;
-`
+`;
 
 export const DropArea = styled.span`
   width: 130px; 
@@ -40,7 +40,7 @@ export const DropArea = styled.span`
     justify-content: center;
     text-align: center;
   }
-`
+`;
 
 export const ActionButtonWrapper = styled.div`
   display: grid;
@@ -65,7 +65,7 @@ export const ActionButtonWrapper = styled.div`
   span{
     padding: 20px;
   }
-`
+`;
 
 export const DeleteButton = styled.div`
   width: 100%;
@@ -78,7 +78,7 @@ export const DeleteButton = styled.div`
   border-left: none;
   cursor: auto;
   p { margin: 5px; }
-`
+`;
 
 export const InputPreview = styled.div`
   grid-area: preview;
@@ -107,7 +107,7 @@ export const InputPreview = styled.div`
     }
   }
 
-`
+`;
 
 export const Loading = styled.div`
   width: 100%;
@@ -150,14 +150,14 @@ export const InputRadio = styled.input`
   cursor: pointer;
   height: 0;
   width: 0;
-`
+`;
 
 export const InputRadioCheckMark = styled.div`
   width: 100px;
   height: 100px;
   right: 0;
   position: absolute;
-`
+`;
 
 export const InputRadioLabel = styled.label`
   width: 107px;
@@ -173,13 +173,13 @@ export const InputRadioLabel = styled.label`
   &:has(input:checked){
     background-color: ${({ theme: { color: { blue } } }) => blue};
   }
-`
+`;
 
 export const InputRadioContainer = styled.div`
   display: flex;
   margin-bottom: 26px;
 
-`
+`;
 
 export const StyledInputSwitchLabel = styled.p`
 `;
@@ -238,14 +238,15 @@ export const InputSearchContainer = styled.div`
       height: 41px;
     }
   }
-`
+`;
+
 export const InputSearch = styled.div`
 
-`
-export const switchStyles = {
-}
+`;
 
-export const StyledInputSwitch = styled(Switch)``;
+export const StyledInputSwitch = styled(Switch)`
+  grid-area: ${({ name }) => name};
+`;
 
 export const StyledLabel = styled.label`
 `;
@@ -322,7 +323,7 @@ export const StyledInputSelect = styled(SortableSelect)`
 
       }
   `};
-`
+`;
 
 export const StyledDropzone = styled.div`
 `;
@@ -335,17 +336,18 @@ export const StyledFieldLink = styled(Button)`
 `;
 
 export const TextArea = styled(forwardRef((props, ref) => <TextareaAutosize {...props} ref={ref} />))`
+  grid-area: ${({ name }) => name};
   border: 1px solid #151B64;
   box-sizing: border-box;
   border-radius: 8px;
-  width: 100%;
+  width: 100% !important;
   min-height: 140px;
   margin-top: 24px;
   padding: 10px;
   font-family: 'Open Sans';
   font-size: 14px;
   line-height: 20px;
-  color: #A1A1A1;
+  color: #333;
 
   &:focus {
     outline: none;

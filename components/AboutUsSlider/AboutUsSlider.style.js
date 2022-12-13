@@ -184,7 +184,8 @@ export const AboutUsSliderContainer = styled.div`
     }
   }
   
-`
+`;
+
 export const SliderInfo = styled.div`
   display: flex;
   align-items: center;
@@ -209,7 +210,7 @@ export const SliderInfo = styled.div`
     }
   }
 
-`
+`;
 
 export const SliderTitle = styled.h1`
   font-family: Amatic SC;
@@ -229,7 +230,7 @@ export const SliderTitle = styled.h1`
     cursor: pointer;
   }
 
-`
+`;
 
 export const SliderDescription = styled.h3`
   font-family: Montserrat;
@@ -245,7 +246,7 @@ export const SliderDescription = styled.h3`
     text-align: unset;
     width: 380px;
   }
-`
+`;
 
 export const SliderCards = styled.div`
   /* display: flex; */
@@ -258,7 +259,7 @@ export const SliderCards = styled.div`
       width: 61%;
     }
   }
-`
+`;
 
 export const SliderCard = styled.div`
   /* width: 170px; */
@@ -274,7 +275,8 @@ export const SliderCard = styled.div`
     }
   }
 
-`
+`;
+
 export const CardTitle = styled.div`
   font-family: Montserrat;
   font-weight: 500;
@@ -291,6 +293,7 @@ export const CardTitle = styled.div`
   }
 
 `
+;
 export const SliderCardContainer = styled.div`
   background-color: #FFFFFF;
   height: 220px;
@@ -313,6 +316,7 @@ export const SliderCardContainer = styled.div`
   }
 
 `
+;
 export const CardName = styled.div`
   text-align: left;
   grid-area: cardName;
@@ -334,9 +338,10 @@ export const CardName = styled.div`
   }
 
 `
+;
 export const CardInfo = styled.div`
   display: flex;
-`
+`;
 
 export const CardDescription = styled.div`
   font-family: Montserrat;
@@ -375,7 +380,7 @@ export const CardDescription = styled.div`
       margin-top: 30px;
     }
   }
-`
+`;
 
 export const CarrousselButtons = styled.div`
   display: flex;
@@ -392,7 +397,7 @@ export const CarrousselButtons = styled.div`
     }
   }
 
-`
+`;
 
 export const CarrousselLeftArrow = styled.div`
   width: 15px;
@@ -407,7 +412,7 @@ export const CarrousselLeftArrow = styled.div`
     width: 18px;
     height: 18px;
   }
-`
+`;
 
 export const CarrousselRightArrow = styled.div`
   cursor: pointer;
@@ -423,7 +428,7 @@ export const CarrousselRightArrow = styled.div`
     width: 18px;
     height: 18px;
   }
-`
+`;
 
 export const CarrousselListButtons = styled.ul`
   display: flex;
@@ -441,7 +446,7 @@ export const CarrousselListButtons = styled.ul`
 
     }
   }
-`
+`;
 
 export const CardLogo = styled.div`
   background-image: url(${({ src }) => src});
@@ -452,7 +457,8 @@ export const CardLogo = styled.div`
   background-repeat: no-repeat;
   margin-right: 10px;
   background-position: center;
-`
+`;
+
 export const CardPicture = styled.div`
   background-color: ${({ theme: { color: { whiteDark } } }) => whiteDark};;
   background-image: url(${({ src }) => src});
@@ -473,4 +479,4 @@ export const CardPicture = styled.div`
     height: 75px;
     margin-left: 35px;
   }
-`
+`;

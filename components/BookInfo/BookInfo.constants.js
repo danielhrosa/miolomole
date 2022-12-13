@@ -54,15 +54,14 @@ export const bookInfoFieldsFunction = ({ fields, isLoggedIn, users }) => ({
     variation: 'simple',
     type: 'simpleSelect',
     isMulti: true,
-    isSearchable: true,
-    isLoggedIn: isLoggedIn,
+    isLoggedIn,
     placeholder: 'Autoria...',
     styledLabel: <S.BookItemLabel isLoggedIn={isLoggedIn} />,
     styledItem: <S.BookInfoItemSelect isLoggedIn={isLoggedIn} />,
     loadOptions: (query, callback) => { axios.get('/api/users')
       .then((res) => res && callback(res.data
         .filter((option) => option.userFullName?.toLowerCase().includes(query?.toLowerCase()))
-        .map((option) => ({ label: option.userFullName, value: option._id }))
+        .map((option) => ({ instanceId: option._id, label: option.userFullName, value: option._id }))
       ))}
   },
   illustrators: {
@@ -80,7 +79,7 @@ export const bookInfoFieldsFunction = ({ fields, isLoggedIn, users }) => ({
     loadOptions: (query, callback) => { axios.get('/api/users')
       .then((res) => res && callback(res.data
         .filter((option) => option.userFullName?.toLowerCase().includes(query?.toLowerCase()))
-        .map((option) => ({ label: option.userFullName, value: option._id }))
+        .map((option) => ({ instanceId: option._id, label: option.userFullName, value: option._id }))
       ))
     }
   },

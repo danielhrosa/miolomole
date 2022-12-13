@@ -279,6 +279,7 @@ export const PasswordToggle = styled.div`
 `;
 
 export const SwitchField = styled.div`
+  grid-area: ${({ name }) => name};
   display: flex;
   align-items: center;
   justify-content: space-between;
