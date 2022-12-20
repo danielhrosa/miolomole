@@ -25,8 +25,11 @@ export default function Home(props) {
   )
 }
 
-export async function getServerSideProps() {
+export async function getServerSideProps({ req, res }) {
   mongoose.connect(process.env.NEXT_PUBLIC_MONGO_DB_URL, { useUnifiedTopology: true, useFindAndModify: false, useCreateIndex: true, useNewUrlParser: true });
+  const { TK } = getCookies({ req, res });
+  const { _id: token } = jwt.decode(TK, process.env.SECRET_KEY) || { token: undefined };
+
   const page = 'home';
   const textsArray = await Text.find({ page });
   const texts = textsArray.reduce((object, text) => Object.assign(object, { [text.textKey]: text.text }), {});
@@ -37,7 +40,7 @@ export async function getServerSideProps() {
   const highlights = !!highlightsArray.length ? JSON.stringify(highlightsArray) : '[]';
   const catalogsArray = await CatalogModel.find({});
   const catalogs = !!catalogsArray?.length ? JSON.stringify(catalogsArray) : `[]`;
-  const pagesArray = await Pages.find({});
+  const pagesArray = await Pages.find(token ? {} : { isPrivate: { $ne: true }});
   const pages = !!pagesArray?.length ? JSON.stringify(pagesArray) : `[]`;
   return { props: { texts, page, items, highlights, catalogs, pages } }
 }

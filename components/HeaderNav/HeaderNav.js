@@ -1,12 +1,13 @@
 import Link from 'next/link';
 import { useRouter } from 'next/router';
-import Button from '../../Elements/Button/Button'
+import Button from '../../Elements/Button/Button';
+import { useAppProvider } from '../../store/appProvider';
 import * as S from './HeaderNav.style';
+import { getCookies } from 'cookies-next';
 
 export default function HeaderNav({ isOpen, pages = [], toggle }) {
   const { asPath } = useRouter();
-
-  console.log(pages)
+  const { isLoggedIn } = useAppProvider();
 
   const hidePage = (e, pageId) => {
     e.stopPropagation();
@@ -20,7 +21,7 @@ export default function HeaderNav({ isOpen, pages = [], toggle }) {
           <Link href={page.path}>
             {page.label}
           </Link>
-          <Button type="toggleHide" onClick={(e) => hidePage(e, page._id)} />
+          {isLoggedIn && <Button type="toggleHide" onClick={(e) => hidePage(e, page._id)} />}
         </S.NavItem>
       ))}
     </S.HeaderNav>

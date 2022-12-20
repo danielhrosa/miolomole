@@ -51,5 +51,7 @@ export const NavItem = styled.li`
 
   @media (min-width: 1024px) {
     margin-bottom: 0;
+    border-bottom: none;
+    flex-direction: column;
   }
 `
