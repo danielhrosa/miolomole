@@ -11,15 +11,13 @@ import { AppProvider } from '../store/appProvider';
 import { mioloMoleAppTheme } from '../styles/global';
 import '../styles/globals.css';
 
-Router.events.on("routeChangeStart", (url) => {
-  NProgress.start();
-});
+Router.events.on("routeChangeStart", () => NProgress.start());
 Router.events.on("routeChangeComplete", () => NProgress.done());
 Router.events.on("routeChangeError", () => NProgress.done());
 
 
 function MyApp({ Component, pageProps }) {
-  console.log(pageProps)
+
   return (
     <ThemeProvider theme={mioloMoleAppTheme}>
       <AppProvider>

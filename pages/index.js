@@ -19,10 +19,8 @@ export default function Home(props) {
       <SpotlightBooksJumbotron {...props} />
       <HomeApresentation {...props} />
       {[1, 2, 3, 4].map((i) => <Banner key={i} {...props} i={i} />)}
-      {/* { isLoggedIn && <LatestArticles items={t.BLOG_ARTICLES}/> } */}
       <AboutUsSlider {...props} />
       <Catalog {...props} isLoggedIn={isLoggedIn} />
-      {/* <HomeLatestArticles /> */}
     </>
   )
 }

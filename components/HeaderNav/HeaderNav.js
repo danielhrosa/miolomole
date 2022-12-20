@@ -1,19 +1,28 @@
 import Link from 'next/link';
 import { useRouter } from 'next/router';
+import Button from '../../Elements/Button/Button'
 import * as S from './HeaderNav.style';
 
 export default function HeaderNav({ isOpen, pages = [], toggle }) {
   const { asPath } = useRouter();
-  
+
+  console.log(pages)
+
+  const hidePage = (e, pageId) => {
+    e.stopPropagation();
+
+  }
+
   return (
     <S.HeaderNav>
-      {pages.map((item) => (
-        <S.NavItem isActive={asPath === item.path} key={item.label} onClick={() => toggle(!isOpen)}>
-          <Link href={item.path}>
-            {item.label}
+      {pages.map((page) => (
+        <S.NavItem isActive={asPath === page.path} key={page.label} onClick={() => toggle(!isOpen)}>
+          <Link href={page.path}>
+            {page.label}
           </Link>
+          <Button type="toggleHide" onClick={(e) => hidePage(e, page._id)} />
         </S.NavItem>
-        ))}
+      ))}
     </S.HeaderNav>
   )
 }
