@@ -17,6 +17,14 @@ export default function Header(){
   const fieldsObj = headerFieldsFunction({ fields: search, router, setMenuIsOpen })
   const inputSearchObj = { ...fieldsObj.search, setFields: setSearch }
 
+  // mongoose.connect(process.env.NEXT_PUBLIC_MONGO_DB_URL, { useUnifiedTopology: true, useFindAndModify: false, useCreateIndex: true, useNewUrlParser: true });
+
+  // const { TK } = getCookies({ req, res });
+  // const { _id: token } = jwt.decode(TK, process.env.SECRET_KEY) || { token: undefined };
+
+  // const pagesArray = await Pages.find(token ? {} : { isPrivate: { $ne: true } });
+  // const pages = pagesArray.reduce((object, text) => Object.assign(object, { [text.textKey]: text.text }), {});
+
   const searchButton = () => {
     if(fieldsObj.search?.value) { return <Link href={`/livros/${fieldsObj.search?.value?.name}`}><a><SearchIcon /></a></Link> }
     else { return <SearchIcon /> }
@@ -31,7 +39,7 @@ export default function Header(){
         <S.HeaderMenuContainer isOpen={menuIsOpen} onClick={(e) => e.stopPropagation()}>
           <Hamburger isOpen={menuIsOpen} toggle={setMenuIsOpen} />
           <Logo/>
-          <HeaderNav isOpen={menuIsOpen} toggle={setMenuIsOpen} />
+          <HeaderNav isOpen={menuIsOpen} toggle={setMenuIsOpen} {...props} />
           <S.SearchField className="searchFieldMobile" isOpen={menuIsOpen}>
             <Input { ...inputSearchObj } />
             {searchButton()}
