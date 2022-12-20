@@ -6,6 +6,7 @@ import HomeApresentation from '../components/HomeApresentation';
 import SpotlightBooksJumbotron from '../components/SpotlightBooksJumbotron';
 import CatalogModel from '../models/catalog';
 import Highlight from '../models/highlight';
+import Pages from '../models/pages';
 import Text from '../models/text';
 import User from '../models/user';
 import { useAppProvider } from '../store/appProvider';
@@ -38,5 +39,7 @@ export async function getServerSideProps() {
   const highlights = !!highlightsArray.length ? JSON.stringify(highlightsArray) : '[]';
   const catalogsArray = await CatalogModel.find({});
   const catalogs = !!catalogsArray?.length ? JSON.stringify(catalogsArray) : `[]`;
-  return { props: { texts, page, items, highlights, catalogs } }
+  const pagesArray = await Pages.find({});
+  const pages = !!pagesArray?.length ? JSON.stringify(pagesArray) : `[]`;
+  return { props: { texts, page, items, highlights, catalogs, pages } }
 }

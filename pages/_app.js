@@ -23,7 +23,7 @@ function MyApp({ Component, pageProps }) {
   return (
     <ThemeProvider theme={mioloMoleAppTheme}>
       <AppProvider>
-        <Header />
+        <Header pages={pageProps?.pages} />
         <LogoutButton />
         <Component {...pageProps} />
         <Toaster position="bottom-right" reverseOrder={false} />
