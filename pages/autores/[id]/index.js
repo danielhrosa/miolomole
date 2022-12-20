@@ -1,4 +1,5 @@
 import mongoose from 'mongoose';
+import Pages from '../../../models/pages';
 import User from '../../../models/user';
 import UserForm from '../../../components/UserForm';
 import { useAppProvider } from '../../../store/appProvider';
@@ -20,12 +21,15 @@ export default function index(props){
 
 export async function getServerSideProps({ params: { id } }) {
   await mongoose.connect(process.env.NEXT_PUBLIC_MONGO_DB_URL, { useUnifiedTopology: true, useFindAndModify: false, useCreateIndex: true, useNewUrlParser: true });
+  const pagesArray = await Pages.find({});
+  const pages = !!pagesArray?.length ? JSON.stringify(pagesArray) : `[]`;
+
   if(id) {
     let userObj = await User.findById(id);
     userObj.password = ''
     const user = userObj ? JSON.stringify(userObj) : {}
-    return { props: { user } }
+    return { props: { user, pages} }
   } else {
-    return { props: { user: {} } }
+    return { props: { user: {}, pages } }
   }
 }

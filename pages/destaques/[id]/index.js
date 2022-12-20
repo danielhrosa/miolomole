@@ -1,5 +1,6 @@
 import mongoose from 'mongoose';
 import HighlightModel from '../../../models/highlight';
+import Pages from '../../../models/pages';
 import Highlight from '../../../components/Highlight';
 import { useAppProvider } from '../../../store/appProvider';
 import PageJustForAdmin from '../../../components/PageJustForAdmin';
@@ -23,8 +24,10 @@ export async function getServerSideProps({ params: { id } }) {
   if(id) {
     let highlightObj = await HighlightModel.findById(id);
     const highlight = highlightObj ? JSON.stringify(highlightObj) : {}
-    return { props: { highlight } }
+    const pagesArray = await Pages.find({});
+    const pages = !!pagesArray?.length ? JSON.stringify(pagesArray) : `[]`;  
+    return { props: { highlight, pages} }
   } else {
-    return { props: { highlight: {} }  }
+    return { props: { highlight: {}, pages }  }
   }
 }
