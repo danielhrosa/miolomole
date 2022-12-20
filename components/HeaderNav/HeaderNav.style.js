@@ -39,19 +39,11 @@ export const NavItem = styled.li`
   font-size: 15px;
   text-align: center;
 
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-
-  border-bottom: 1px solid #767676;
-
   :hover { 
     color: ${({ theme: { color: { brand } } }) => brand};;
   }
 
   @media (min-width: 1024px) {
     margin-bottom: 0;
-    border-bottom: none;
-    flex-direction: column;
   }
 `

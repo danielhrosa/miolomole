@@ -10,6 +10,8 @@ import Pages from '../models/pages';
 import Text from '../models/text';
 import User from '../models/user';
 import { useAppProvider } from '../store/appProvider';
+import { getCookies } from 'cookies-next';
+import jwt from 'jsonwebtoken';
 
 export default function Home(props) {
   const { isLoggedIn } = useAppProvider();

@@ -18,7 +18,8 @@ export async function getServerSideProps({ req, res }) {
   const publicationsObj = publicationsArray ? JSON.stringify(publicationsArray) : `[]`
   const publicationsAreasArray = await PublicationArea.find();
   const publicationsAreasObj = publicationsAreasArray ? JSON.stringify(publicationsAreasArray) : `[]`
-  const pagesArray = await Pages.find({});
+  const pagesArray = await Pages.find(token ? {} : { isPrivate: { $ne: true }});
+
   const pages = !!pagesArray?.length ? JSON.stringify(pagesArray) : `[]`;
   return { props: { publicationsObj, publicationsAreasObj, texts, pages } }
 }

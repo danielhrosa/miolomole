@@ -24,7 +24,8 @@ export async function getServerSideProps({ params: { id } }) {
   if(id) {
     let highlightObj = await HighlightModel.findById(id);
     const highlight = highlightObj ? JSON.stringify(highlightObj) : {}
-    const pagesArray = await Pages.find({});
+    const pagesArray = await Pages.find(token ? {} : { isPrivate: { $ne: true }});
+
     const pages = !!pagesArray?.length ? JSON.stringify(pagesArray) : `[]`;  
     return { props: { highlight, pages} }
   } else {

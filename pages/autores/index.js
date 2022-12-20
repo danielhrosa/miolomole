@@ -8,7 +8,8 @@ export async function getServerSideProps() {
   const castsArray = await User.find({ hideFromList: { $ne: true } });
   const casts = usersArray ? JSON.stringify(castsArray.filter((item) => !!item?.occupation?.length && item.occupation?.some((occupation) => ['illustrator', 'writer'].includes(occupation)))) : []
   const users = usersArray ? JSON.stringify(usersArray) : {}
-  const pagesArray = await Pages.find({});
+  const pagesArray = await Pages.find(token ? {} : { isPrivate: { $ne: true }});
+
   const pages = !!pagesArray?.length ? JSON.stringify(pagesArray) : `[]`;
   return { props: { users, casts, pages } }
 }
