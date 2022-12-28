@@ -2,12 +2,12 @@ import styled from "styled-components";
 import Button from "../../Elements/Button";
 
 export const UsersList = styled.div`
-  padding: 50px 0 0 0 ;
+  padding: 50px 0 0 0;
   min-height: 70vh;
   width: 100%;
   max-width: 800px;
+`;
 
-`
 export const UsersTitle = styled.h1`
   text-align: center;
   margin-bottom: 20px;

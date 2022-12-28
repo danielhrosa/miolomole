@@ -30,7 +30,7 @@ export const NavItem = styled.li`
   cursor: pointer;
   margin-bottom: 10px;
   transition: all 0.3s;
-  color: ${({ isActive }) => isActive ? '${({ theme: { color: { brand } } }) => brand};' : '#474747'};
+  color: ${({ isActive, theme: { color: { brand }}}) => isActive ? brand : '#474747'};
   background: ${({ isActive }) => isActive ? '#E4E4E480' : 'none'};
   border-radius: 8px;
   padding: 4px 8px;
@@ -43,5 +43,7 @@ export const NavItem = styled.li`
     color: ${({ theme: { color: { brand } } }) => brand};;
   }
 
-  @media (min-width: 1024px) { margin-bottom: 0 }
+  @media (min-width: 1024px) {
+    margin-bottom: 0;
+  }
 `

@@ -1,6 +1,7 @@
 import mongoose from 'mongoose';
 import Text from '../../models/text';
 import Book from '../../models/book';
+import Pages from '../../models/pages';
 import Highlight from '../../models/highlight';
 import User from '../../models/user';
 import { getCookies } from 'cookies-next';
@@ -22,7 +23,11 @@ export async function getServerSideProps({ req, res }) {
   const items = itemsArray ? JSON.stringify(itemsArray) : {}
   const books = JSON.stringify(booksArray);
   const texts = textsArray.reduce((object, text) => Object.assign(object, { [text.textKey]: text.text }), {});
-  return { props: { texts, books, items, highlights, page } }
+
+  const pagesArray = await Pages.find(token ? {} : { isPrivate: { $ne: true }});
+  const pages = !!pagesArray?.length ? JSON.stringify(pagesArray) : `[]`;
+  
+  return { props: { texts, books, items, highlights, page, pages } }
 }
 
 export { default } from './Books';
