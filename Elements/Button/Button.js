@@ -9,7 +9,6 @@ import ToggleHideButton from './ToggleHideButton';
 
 export const Button = forwardRef((props, ref) => {
   const { type } = props;
-
   const buttons = {
     externalLink: <ButtonExternalLink {...props} ref={ref} />,
   };

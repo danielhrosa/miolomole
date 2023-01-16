@@ -4,11 +4,12 @@ import animationData from '../../lotties/log-out.json';
 import { useState } from 'react';
 import { useAppProvider } from '../../store/appProvider';
 import { removeCookies } from 'cookies-next';
+import { useRouter } from 'next/router';
 
 export default function LogoutButton(){
-  const { isLoggedIn, setCurrentUser, setIsLoggedIn } = useAppProvider()
-  const [paused, setPaused] = useState(true)
-
+  const { isLoggedIn, setCurrentUser, setIsLoggedIn } = useAppProvider();
+  const [paused, setPaused] = useState(true);
+  const router = useRouter();
   const defaultOptions = {
     animationData: animationData,
     loop: true,
@@ -20,7 +21,7 @@ export default function LogoutButton(){
     return (
       <S.LogoutContainer>
         <S.LogoutWrapper
-          onClick={ () => { setCurrentUser(''); setIsLoggedIn(false); removeCookies('TK'); } } 
+          onClick={ () => { setCurrentUser(''); setIsLoggedIn(false); removeCookies('TK'); router.replace(router.asPath, null, { scroll: false }); } } 
           onMouseEnter={() => setPaused(false)}
           onMouseLeave={() => setPaused(true)}
         >
