@@ -16,6 +16,14 @@ export default class MyDocument extends Document {
         <Head>
           {this.props.styleTags}
           <title>Miolo Mole</title>
+          <meta name='description' content='Editora de livros Miolo Mole' />
+          <meta property='og:title' content='Editora Miolo Mole' />
+          <meta
+            property='og:description'
+            content='Editora de livros Miolo Mole'
+          />
+          <meta property='og:url' content='https://www.editoramiolomole.com/' />
+          <meta property='og:type' content='website' />
         </Head>
         <body>
           <Main />
