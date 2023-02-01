@@ -15,6 +15,15 @@ export default class MyDocument extends Document {
       <Html lang="pt-br">
         <Head>
           {this.props.styleTags}
+          <script
+            dangerouslySetInnerHTML={{
+              __html: `(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+              new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+              j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+              'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+              })(window,document,'script','dataLayer','GTM-5BSR2CJ');`,
+            }}
+          />
           <title>Miolo Mole</title>
           <meta name='description' content='Editora de livros Miolo Mole' />
           <meta property='og:title' content='Editora Miolo Mole' />
@@ -26,6 +35,11 @@ export default class MyDocument extends Document {
           <meta property='og:type' content='website' />
         </Head>
         <body>
+        <noscript
+            dangerouslySetInnerHTML={{
+              __html: `<iframe src="https://www.googletagmanager.com/ns.html?id=GTM-5BSR2CJ" height="0" width="0" style="display: none; visibility: hidden;" />`,
+            }}
+          />
           <Main />
           <NextScript />
         </body>
