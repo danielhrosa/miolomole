@@ -11,7 +11,7 @@ export async function getServerSideProps({ params: { name }, req, res }) {
   const { TK } = getCookies({ req, res });
   const { _id: token } = jwt.decode(TK, process.env.SECRET_KEY) || { token: undefined };
 
-  const booksArr = await Book.find({ isHidden: { $ne: true } }).populate('authors').populate('illustrators');
+  const booksArr = await Book.find(token ? {} : { isHidden: { $ne: true } }).populate('authors').populate('illustrators');
   const book = JSON.stringify(booksArr.find((item) => item.name.includes(name)));
   const books = JSON.stringify(booksArr);
 
