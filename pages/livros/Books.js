@@ -19,7 +19,7 @@ export default function BooksList(props) {
       <OurProductsList {...props} id={id} />
       {isLoggedIn && <LatestArticles items={t.BLOG_ARTICLES} />}
       <AboutUsSlider {...props} />
-      <HomeLatestArticles id={id} />
+      {/* <HomeLatestArticles id={id} /> */}
     </div>
   )
 }
