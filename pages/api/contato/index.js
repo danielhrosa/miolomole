@@ -2,6 +2,7 @@ import contactEmail from '../../../utils/emails/contact';
 import { sendEmail } from "../../../utils/email";
 import contactResponseEmail from '../../../utils/emails/contactResponse';
 import newsletterEmail from '../../../utils/emails/newsletter';
+import Contact from '../../contato/Contact';
 
 export default async function contactHandler(req, res) {
   const { body, method } = req;
@@ -25,6 +26,8 @@ export default async function contactHandler(req, res) {
               if (!name || !email || !message) { return res.status(400).json({ errorMessage: 'Digite um email válido' }) };
               sendEmail({ to: process.env.NEXT_EMAIL, html: contactEmail({ ...args }), subject: "Contato Miolo Mole Site" });
               sendEmail({ to: email, html: contactResponseEmail({ ...args }), subject: "Miolo Mole Site" });
+              const contato = new Contact({ name, email, message });
+              await contato.save();
               return res.status(200).end();
             } catch (error) {
               return res.status(405).json({ errorMessage: `Method ${method} Not Allowed` })
