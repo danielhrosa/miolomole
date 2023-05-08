@@ -6,7 +6,6 @@ import * as S from './EducatorAreaForm.styles';
 import { gridTemplate, educatorFieldsState, educatorFieldsFunction } from './EducatorAreaForm.constants';
 import { useEffect, useState } from 'react';
 import toast from 'react-hot-toast';
-import mapFieldsToData from '../../utils/mapFieldsToData';
 import axios from 'axios';
 import mapDataToFields from '../../utils/mapDataToFields';
 
