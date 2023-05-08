@@ -9,6 +9,7 @@ import Highlight from '../models/highlight';
 import Text from '../models/text';
 import User from '../models/user';
 import { useAppProvider } from '../store/appProvider';
+import VLibras from '@djpfs/react-vlibras';
 
 export default function Home(props) {
   const { isLoggedIn } = useAppProvider();
@@ -22,6 +23,7 @@ export default function Home(props) {
       <AboutUsSlider {...props} />
       <Catalog {...props} isLoggedIn={isLoggedIn} />
       {/* <HomeLatestArticles /> */}
+      <VLibras />
     </>
   )
 }
