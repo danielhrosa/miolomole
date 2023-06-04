@@ -1,38 +1,38 @@
-import { useState } from 'react';
+import toast from 'react-hot-toast';
+import logoContato from '../../images/logo-contato.png';
+import { useAppProvider } from '../../store/appProvider';
+import Container from '../Container';
+import Editable from '../Editable';
 import * as S from './ContactSection.style';
-import Container from '../Container'
-import { contactSectionFieldsState, contactSectionFunction } from './ContactSection.constants';
-import Input from '../../Elements/Input'
-import Button from '../../Elements/Button'
-import logoContato from '../../images/logo-contato.png'
-import Editable from '../Editable'
-import mapFieldsToData from "../../utils/mapFieldsToData"
-import axios from 'axios';
+
+const TextContactInfo = ({ props, isLoggedIn, textKey, textLabel = "" }) => {
+  const value = props?.texts[textKey];
+  let link = `mailto:${value}`;
+
+  if (textKey === 'textContactWhatsapp') {
+    link = `https://wa.me/${value.replace(/\D/g, '')}`;
+  }
+
+  if (isLoggedIn) {
+    return (
+      <S.TextContactInfoWrapper>
+        <span>{textLabel} </span>
+        <Editable {...props} textKey={textKey}><S.TextContactInfo /></Editable>
+      </S.TextContactInfoWrapper>
+    )
+  }
+  return (
+    <S.TextContactInfoWrapper>
+      <span>{textLabel} </span>
+      <a href={link} onClick={() => { navigator.clipboard.writeText(value); toast.success("Copiado!") }}>
+        <Editable {...props} textKey={textKey}><S.TextContactInfo /></Editable>
+      </a>
+    </S.TextContactInfoWrapper>
+  )
+}
 
 export default function ContactSection(props) {
-  const [fields, setFields] = useState(contactSectionFieldsState);
-  const contactSectionFields = contactSectionFunction({ fields, setFields });
-  const { name, email, message } = contactSectionFields;
-
-  const submitMessage = async () => {
-    const variables = mapFieldsToData(contactSectionFields)
-    await axios.post('/api/contacts', { ...variables, type: 'contact' })
-      .then((res) => {
-        setFields((oldFields) => {
-          const newFields = { ...oldFields };
-          newFields.name.value = '';
-          newFields.email.value = '';
-          newFields.message.value = '';
-          return newFields
-        });
-      })
-  }
-
-  const submitButton = {
-    label: 'Enviar menssagem',
-    onClick: submitMessage,
-    variation: 'primary',
-  }
+  const { isLoggedIn } = useAppProvider();
 
   return (
     <S.ContactSection>
@@ -49,10 +49,10 @@ export default function ContactSection(props) {
           </S.TagContact>
         </S.ContactInfoWrapper>
         <S.ContactForm>
-          <Input {...name} setFields={setFields} gridTemplate />
-          <Input {...email} setFields={setFields} gridTemplate />
-          <Input {...message} setFields={setFields} gridTemplate />
-          <Button {...submitButton} />
+          <TextContactInfo props={props} isLoggedIn={isLoggedIn} textKey="textContactOriginals" textLabel="Envio de originais: " />
+          <TextContactInfo props={props} isLoggedIn={isLoggedIn} textKey="textContctArtistPortfolio" textLabel="Portfólio de artista: " />
+          <TextContactInfo props={props} isLoggedIn={isLoggedIn} textKey="textContactOtherSubjects" textLabel="Outros assuntos: " />
+          <TextContactInfo props={props} isLoggedIn={isLoggedIn} textKey="textContactWhatsapp" textLabel="Whatsapp: " />
         </S.ContactForm>
       </Container>
 

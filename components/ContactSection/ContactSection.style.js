@@ -53,7 +53,7 @@ export const TagContact = styled.div`
 export const Logo = styled.div`
   width: 91px;
   height: 91px;
-  background-image: url(${({ img }) => img });
+  background-image: url(${({ img }) => img});
   background-size: contain;
   background-repeat: no-repeat;
   background-position: center;
@@ -61,7 +61,8 @@ export const Logo = styled.div`
 `
 export const ContactAdressWrapper = styled.div`
   width: 100%;
-`
+`;
+
 export const ContactTitle = styled.div`
   font-family: Roboto;
   font-weight: bold;
@@ -78,7 +79,8 @@ export const ContactTitle = styled.div`
     }
   }
 
-`
+`;
+
 export const ContactAdress = styled.p`
   font-family: 'Open Sans';
   line-height: 1.6;
@@ -93,67 +95,39 @@ export const ContactAdress = styled.p`
     }
   }
 
-`
+`;
+
 export const ContactForm = styled.div`
   display: flex;
   flex-direction: column;
   width: 100%;
-  align-items: flex-end;
+  gap: 14px;
   @media screen{
     @media (min-width: 1024px){
       width: 45%;
-
     }
   }
-  textarea{
-    margin-bottom: 20px;
-    background: #F6F6F6;
-    border: 1px solid #DEDEDE;
-    margin-top: 0px;
-    font-family: Open Sans;
-    font-weight: 500;
-    font-size: 14px;
-  }
+  font-family: Open Sans;
+  font-weight: 500;
+  font-size: 14px;
+`;
 
-  >input{
-    margin-bottom: 20px;
-    border-bottom: none;
-    font-family: Montserrat;
-    font-weight: 500;
-    padding: 15px 20px;
-    font-size: 16px;
-    color: #212121;
-    background: #F6F6F6;
-    border: 1px solid #DEDEDE;
-    box-sizing: border-box;
-    border-radius: 5px;
+export const TextContactInfoWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
 
-    &::placeholder {
-      font-family: Open Sans;
-      font-weight: 500;
-      font-size: 14px;
-      /* color: #FFFCF8; */
-    }
+  @media (min-width: 768px) {
+    flex-direction: row;
   }
-  
-  button{
-    padding: 5px;
-    text-transform: capitalize;
-    font-family: Montserrat;
-    font-weight: bold;
-    font-size: ${({ theme: { fontSize: { fontSizeS }}}) => fontSizeS };
-    letter-spacing: 2.4px;
-    color: #FFFFFF;
-    width: 150px;
-    background: #FFCB05;
-    border-radius: 100px;
-    border: none;
-    color: white;
-    box-shadow: 3px 3px 2px rgb(115 137 169 / 20%);
-    transition: background 0.3s; 
+`;
+export const TextContactInfo = styled.p`
+  margin: 0;
+  width: unset;
+  color: ${({ theme: { color: { brand } } }) => brand};
 
-    :hover{
-      background: ${({ theme: { color: { brand } } }) => brand};;
-    }
+  :hover {
+    text-decoration: underline;
   }
-`
+`;
