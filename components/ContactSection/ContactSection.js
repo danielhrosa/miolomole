@@ -6,7 +6,7 @@ import Editable from '../Editable';
 import * as S from './ContactSection.style';
 
 const TextContactInfo = ({ props, isLoggedIn, textKey, textLabel = "" }) => {
-  const value = props?.texts[textKey];
+  const value = props && props?.texts ? props?.texts[textKey] : '';
   let link = `mailto:${value}`;
 
   if (textKey === 'textContactWhatsapp') {
