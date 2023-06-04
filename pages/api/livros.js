@@ -3,23 +3,28 @@ import Book from '../../models/book';
 import updateModel from '../../utils/updateModel';
 import createModel from '../../utils/createModel';
 import removeModel from '../../utils/removeModel';
+import { getCookies } from 'cookies-next';
+import jwt from 'jsonwebtoken';
 
 const bookHandler = async (req, res) => {
   const { body, method } = req;
   let { _id, name, title } = body;
   let args = body ? { ...body } : {};
+  const { TK } = getCookies({ req, res });
+  const { _id: token } = jwt.decode(TK, process.env.SECRET_KEY) || { token: undefined };
+
   try {
     switch (method) {
       case 'GET':
         try {
           if (!_id || !title) {
-            const books = await Book.find();
+            const books = await Book.find(token ? {} : { isHidden: { $ne: true } });
             return res.status(200).json(books);
           }
           else {
             let book;
             if (_id) { book = await Book.findById(_id); }
-            if (title) { book = await Book.find({ title }); }
+            if (title) { book = await Book.find(token ? { title } : { isHidden: { $ne: true }, title }); }
             return res.status(200).json(book);
           }
         } catch (err) { return res.status(500).end() };
