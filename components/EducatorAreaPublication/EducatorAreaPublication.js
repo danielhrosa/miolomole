@@ -1,19 +1,17 @@
-import { useRouter } from 'next/router';
 import dynamic from "next/dynamic";
+import { useRouter } from 'next/router';
 import 'suneditor/dist/css/suneditor.min.css';
-import Container from '../Container';
-import * as S from './EducatorAreaPublication.styles'
-import { useEffect } from 'react';
 import Button from '../../Elements/Button';
 import { useAppProvider } from '../../store/appProvider';
-import { route } from 'next/dist/next-server/server/router';
+import Container from '../Container';
+import * as S from './EducatorAreaPublication.styles';
 
 const SunEditor = dynamic(() => import("suneditor-react"), { ssr: false });
 
 export default function EducatorAreaPublication({ publication }) {
   const router = useRouter();
   const { isLoggedIn } = useAppProvider();
-  const { content } = publication;
+  const { content, comments } = publication;
 
   return (
     <S.EducatorAreaPublication>
@@ -29,6 +27,7 @@ export default function EducatorAreaPublication({ publication }) {
           setContents={content}
           setDefaultStyle={'font-family: Arial'}
         />
+        <Comments comments={comments} />
       </Container>
     </S.EducatorAreaPublication>
   )
