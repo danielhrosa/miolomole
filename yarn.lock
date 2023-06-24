@@ -150,6 +150,11 @@
     "@babel/helper-validator-identifier" "^7.14.8"
     to-fast-properties "^2.0.0"
 
+"@djpfs/react-vlibras@^2.0.2":
+  version "2.0.2"
+  resolved "https://registry.yarnpkg.com/@djpfs/react-vlibras/-/react-vlibras-2.0.2.tgz#aeb7740f9c74b769a24c899f6b650ccccb3543cc"
+  integrity sha512-mhfxr1cg8tLdcXBUT5hictbcityoAXFKJz4/boiMGbpsZRCVkqC5EoJVRF+6brrB1GBAoVLCtn1OuzipEopewA==
+
 "@emotion/cache@^11.4.0":
   version "11.4.0"
   resolved "https://registry.npmjs.org/@emotion/cache/-/cache-11.4.0.tgz"
