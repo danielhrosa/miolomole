@@ -6,11 +6,11 @@ import Editable from '../Editable';
 import * as S from './ContactSection.style';
 
 const TextContactInfo = ({ props, isLoggedIn, textKey, textLabel = "" }) => {
-  const value = props?.texts[textKey];
+  const value = props && props?.texts ? props?.texts[textKey] : '';
   let link = `mailto:${value}`;
 
   if (textKey === 'textContactWhatsapp') {
-    link = `https://wa.me/${value.replace(/\D/g, '')}`;
+    link = `https://wa.me/55${value.replace(/\D/g, '')}`;
   }
 
   if (isLoggedIn) {
@@ -24,7 +24,7 @@ const TextContactInfo = ({ props, isLoggedIn, textKey, textLabel = "" }) => {
   return (
     <S.TextContactInfoWrapper>
       <span>{textLabel} </span>
-      <a href={link} onClick={() => { navigator.clipboard.writeText(value); toast.success("Copiado!") }}>
+      <a href={link} target="__blank" onClick={() => { navigator.clipboard.writeText(value); toast.success("Copiado!") }}>
         <Editable {...props} textKey={textKey}><S.TextContactInfo /></Editable>
       </a>
     </S.TextContactInfoWrapper>
