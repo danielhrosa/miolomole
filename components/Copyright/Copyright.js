@@ -7,7 +7,7 @@ export default function ContactChannel(){
   const t = pt;
   return(
     <S.Copyright>
-      &copy; {parser(t.COPYRIGHT)}
+      &copy; Copyright © Editora Miolo Mole. Todos os direitos reservados
     </S.Copyright>
   )
 }
