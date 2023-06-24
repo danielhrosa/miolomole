@@ -5,7 +5,6 @@ export const Banner = styled.div`
   width: 100%;
   height: auto;
   overflow: hidden;
-  cursor: pointer;
 
   .container{
     align-items: center;
@@ -43,9 +42,11 @@ export const BannerWrapper = styled.div`
   margin: 0 50px;
   z-index: 1;
   width: 100%;
+  button { width: 100% !important; }
   @media screen{
     @media(min-width: 1024px){
       width: 55%;
+      button { width: auto !important; }
     }
   }
 
@@ -94,4 +95,15 @@ export const BannerImage = styled.img`
 
     }
   }
-`
+`;
+
+export const BannerLink = styled.div`
+  border-radius: 16px;
+  background-color: #fff;
+  padding: 16px;
+  border: 2px solid black;
+  margin-bottom: 16px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+`;
