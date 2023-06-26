@@ -1,12 +1,6 @@
 import mongoose, { Schema } from 'mongoose';
 import PublicationArea from './publicationArea'
-
-const commentSchema = new Schema({
-  phone: String,
-  email: String,
-  username: String,
-  content: String
-});
+import Comment from './comment'
 
 var publication = new Schema({
   name: { type: String, unique: true, required: true },
@@ -16,7 +10,7 @@ var publication = new Schema({
   content: { type: String, required: true },
   area: { type: Schema.Types.ObjectId, ref: PublicationArea },
   hide: { type: Boolean },
-  comments: [commentSchema]
+  comments: [{ type: Schema.Types.ObjectId, ref: Comment }]
 }, { timestamps: true });
 
 mongoose.models = {};

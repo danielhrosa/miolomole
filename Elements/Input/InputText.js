@@ -9,8 +9,8 @@ export default function InputText({ name, i, parentName, placeholder, onChange, 
         ? onChange({ target: { name, value: target.value, i, parentName }, setFields })
         : inputChange({ target: { name, value: target.value, i, parentName }, setFields })
       }
-      maskChar=""
       placeholder={placeholder}
+      formatChars={{ 9: '[0-9]', '?': '[0-9 ]' }}
     />
   );
 }

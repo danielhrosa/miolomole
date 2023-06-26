@@ -7,6 +7,7 @@ import randomColor from '../../utils/randomColor';
 import diacriticSensitiveRegex from '../../utils/diacriticSensitive';
 import PublicationArea from '../../models/publicationArea';
 import urlNameFormatter from '../../utils/urlNameFormatter';
+import Comment from '../../models/comment';
 
 const publicationHandler = async (req, res) => {
   const { body, method } = req;
@@ -16,12 +17,16 @@ const publicationHandler = async (req, res) => {
       case 'GET':
         try {
           if (!name && !title && !_id) {
-            const posts = await Publication.find()
-            return res.status(200).json(posts);
+            const publications = await Publication.find().populate({ path: 'comments', model: Comment })
+            return res.status(200).json(publications);
           } else {
             const param = name ? name : _id ? _id : title;
-            const post = await Publication.find(param).populate({ path: 'area', model: PublicationArea });
-            return res.status(200).json(post);
+            const publication = await Publication.find(param)
+              .populate({ path: 'area', model: PublicationArea })
+              .populate({ path: 'comments', model: Comment });
+
+            console.log(publication)
+            return res.status(200).json(publication);
           }
         } catch (err) { return res.status(500).end() };
       case 'PUT':

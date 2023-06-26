@@ -4,14 +4,18 @@ import 'suneditor/dist/css/suneditor.min.css';
 import Button from '../../Elements/Button';
 import { useAppProvider } from '../../store/appProvider';
 import Container from '../Container';
+import Comments from '../Comments/Comments';
 import * as S from './EducatorAreaPublication.styles';
+import { useEffect, useState } from "react";
 
 const SunEditor = dynamic(() => import("suneditor-react"), { ssr: false });
 
 export default function EducatorAreaPublication({ publication }) {
   const router = useRouter();
   const { isLoggedIn } = useAppProvider();
-  const { content, comments } = publication;
+  const [comments, setComments] = useState([]);
+  console.log(comments)
+  useEffect(() => { setComments(publication?.comments); }, [publication]);
 
   return (
     <S.EducatorAreaPublication>
@@ -24,10 +28,10 @@ export default function EducatorAreaPublication({ publication }) {
           readOnly
           hideToolbar
           height="100%"
-          setContents={content}
+          setContents={publication?.content}
           setDefaultStyle={'font-family: Arial'}
         />
-        <Comments comments={comments} />
+        <Comments comments={comments} publicationId={publication._id} setComments={setComments} />
       </Container>
     </S.EducatorAreaPublication>
   )
