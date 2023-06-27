@@ -1,4 +1,3 @@
-import connectDB from '../../middleware/mongodb';
 import Book from '../../models/book';
 import updateModel from '../../utils/updateModel';
 import createModel from '../../utils/createModel';
@@ -57,4 +56,4 @@ const bookHandler = async (req, res) => {
   }
 };
 
-export default connectDB(bookHandler);
+export default bookHandler;

@@ -16,7 +16,7 @@ export default async function contactHandler(req, res) {
         switch (type) {
           case "newsletter":
             try {
-              sendEmail({ to: email, html: newsletterEmail({ ...args }), subject: "Contato Miolo Mole Site" });
+              // sendEmail({ to: email, html: newsletterEmail({ ...args }), subject: "Contato Miolo Mole Site" });
               return res.status(200).end();
             } catch (error) {
               return res.status(405).json({ errorMessage: `Method ${method} Not Allowed` });
@@ -25,8 +25,8 @@ export default async function contactHandler(req, res) {
           default:
             try {
               if (!name || !email || !message) { return res.status(400).json({ errorMessage: 'Digite um email válido' }) };
-              sendEmail({ to: process.env.NEXT_EMAIL, html: contactEmail({ ...args }), subject: "Contato Miolo Mole Site" });
-              sendEmail({ to: email, html: contactResponseEmail({ ...args }), subject: "Miolo Mole Site" });
+              // sendEmail({ to: process.env.NEXT_EMAIL, html: contactEmail({ ...args }), subject: "Contato Miolo Mole Site" });
+              // sendEmail({ to: email, html: contactResponseEmail({ ...args }), subject: "Miolo Mole Site" });
               const contato = new Contact({ name, email, message });
               await contato.save();
               return res.status(200).end();

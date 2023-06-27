@@ -1,4 +1,3 @@
-import connectDB from '../../middleware/mongodb';
 import Comment from '../../models/comment';
 import Publication from '../../models/publication';
 import createModel from '../../utils/createModel';
@@ -24,14 +23,16 @@ const commentHandler = async (req, res) => {
         } catch (err) { console.log(err); return res.status(500).end() };
       case 'POST':
         try {
-          const publication = await Publication.findById(publicationId);
-          if(!publication) { return res.status(404).json({ errorMessage: 'Parâmetros inválidos' }); }
-          const args = { userFullName, phone, email, content };
-          const comment = await createModel(args, Comment);
-          publication.comments.push(comment?._id);
-          await publication.save();
-          return res.status(200).json(comment);
-        } catch (err) { console.log(err); break };
+          try {
+            const publication = await Publication.findById(publicationId);
+            if (!publication) { return res.status(404).json({ errorMessage: 'Parâmetros inválidos' }); }
+            const args = { userFullName, phone, email, content };
+            const comment = await createModel(args, Comment);
+            publication.comments.push(comment?._id);
+            await publication.save();
+            return res.status(200).json(comment);
+          } catch (err) { console.log(err); return res.status(500).end() };
+        } catch (err) { console.log(err); return res.status(500).end() };
       case 'DELETE':
         try {
           await removeModel(_id, Comment)
@@ -43,4 +44,4 @@ const commentHandler = async (req, res) => {
   } catch (err) { return res.status(500).end() }
 };
 
-export default connectDB(commentHandler);
+export default commentHandler;

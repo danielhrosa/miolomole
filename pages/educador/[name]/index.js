@@ -15,7 +15,7 @@ export default function EducatorPublication({ publication }) {
 export async function getServerSideProps({ params: { name }, req, res }) {
   mongoose.connect(process.env.NEXT_PUBLIC_MONGO_DB_URL, { useUnifiedTopology: true, useFindAndModify: false, useCreateIndex: true, useNewUrlParser: true });
   let publicationObj = await Publication.findOne({ name }).populate({ path: 'comments', model: Comment });
-  console.log(publicationObj?.comments)
+  
   if (publicationObj?._id) {
     const { TK } = getCookies({ req, res });
     const { _id: token } = jwt.decode(TK, process.env.SECRET_KEY) || { token: undefined };

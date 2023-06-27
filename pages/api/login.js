@@ -1,4 +1,3 @@
-import connectDB from '../../middleware/mongodb';
 import User from '../../models/user';
 import bcrypt from 'bcryptjs';
 import jwt from 'jsonwebtoken';
@@ -24,4 +23,4 @@ const loginHandler = async (req, res) => {
   } catch (err) { return res.end() }
 };
 
-export default connectDB(loginHandler);
+export default loginHandler;

@@ -1,4 +1,3 @@
-import connectDB from '../../middleware/mongodb';
 import PublicationArea from '../../models/publicationArea';
 import Publication from '../../models/publication';
 import updateModel from '../../utils/updateModel';
@@ -50,4 +49,4 @@ const publicationAreaHandler = async (req, res) => {
   } catch (err) { return res.status(500).end() }
 };
 
-export default connectDB(publicationAreaHandler);
+export default publicationAreaHandler;

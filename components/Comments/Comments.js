@@ -8,10 +8,12 @@ import axios from 'axios';
 import Lottie from 'react-lottie';
 import toast from 'react-hot-toast';
 import animationData from '../../lotties/empty-comments.json';
+import { useRouter } from 'next/router';
 
 export default function Comments({ comments = [], publicationId, setComments }) {
   const [fields, setFields] = useState(commentFieldsState);
   const [loading, setLoading] = useState();
+  const router = useRouter();
   const commentFields = commentFieldsFunction({ fields })
 
   const defaultOptions = {
@@ -21,7 +23,7 @@ export default function Comments({ comments = [], publicationId, setComments }) 
     rendererSettings: { preserveAspectRatio: 'xMidYMid slice' }
   };
 
-  const onComment = async () => {
+  const onComment = () => {
     setLoading(true);
     const commentProps = {
       content: commentFields.content?.value,
@@ -46,17 +48,21 @@ export default function Comments({ comments = [], publicationId, setComments }) 
       return;
     }
     const oldComments = comments;
-    setComments((oldComments) => [...oldComments, commentProps])
-    const res = await axios.post('/api/comment', { ...commentProps })
-    if (res.status === 200) {
-      setLoading(false);
-      toast.success('Comentário realizado com sucesso!')
-    }
-    else {
-      setComments(oldComments);
-      setLoading(false);
-      console.log(res)
-    }
+    axios.post('/api/comment', { ...commentProps })
+      .then((res) => {
+        if (res.status === 200) {
+          setLoading(false);
+          toast.success('Comentário realizado com sucesso!')
+          router.replace(router.asPath);
+        }
+      })
+      .catch((err) => {
+        setComments(oldComments);
+        setLoading(false);
+        console.log(err)
+      })
+    setLoading(false)
+    setFields(commentFields);
   };
 
   return (
@@ -66,12 +72,12 @@ export default function Comments({ comments = [], publicationId, setComments }) 
         <Field labelvariation="simple" {...commentFields?.phone} setFields={setFields} />
         <Field labelvariation="simple" {...commentFields?.email} setFields={setFields} />
         <Field labelvariation="simple" {...commentFields?.content} setFields={setFields} />
-        <Button label="Comentar" variation="primary" onClick={onComment} />
+        <Button label="Comentar" loading={loading} variation="primary" onClick={onComment} />
       </S.CommentInput>
       <S.CommentsTitle>Comentários</S.CommentsTitle>
       <S.CommentsList>
         {comments?.length
-          ? comments.map((comment) => <Comment {...comment} />)
+          ? comments.map((comment) => <Comment comment={comment} setComments={setComments} />)
           : (
             <S.CommentsListEmpty>
               <Lottie

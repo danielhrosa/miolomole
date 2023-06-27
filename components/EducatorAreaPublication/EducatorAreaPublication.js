@@ -14,7 +14,6 @@ export default function EducatorAreaPublication({ publication }) {
   const router = useRouter();
   const { isLoggedIn } = useAppProvider();
   const [comments, setComments] = useState([]);
-  console.log(comments)
   useEffect(() => { setComments(publication?.comments); }, [publication]);
 
   return (

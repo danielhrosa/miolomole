@@ -3,10 +3,8 @@ import styled from "styled-components";
 export const Comments = styled.section`
   min-height: 100px;
   width: 100%;
-  padding: 32px;
-  border-radius: 50px;
+  padding: 16px;
   input { background: transparent; }
-  box-shadow: rgb(204, 219, 232) 3px 3px 10px 0px inset, rgba(255, 255, 255, 0.5) -3px -3px 6px 1px inset;
 `;
 
 export const CommentsTitle = styled.h3`
@@ -39,10 +37,30 @@ export const CommentInput = styled.div`
     overflow-y: scroll;
     margin-top: 8px;
   }
+
+  input {
+    padding: 16px;
+    padding-left: 0;
+  }
+
+  @media (min-width: 768px) {
+    button {
+      grid-area: button;
+    }
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-areas:
+      "userFullName phone email"
+      "content content content"
+      "button button button"
+    ;
+  }
 `;
 
 export const CommentsListEmpty = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
+
+  path { stroke: #999; }
 `;

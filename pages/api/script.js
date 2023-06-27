@@ -1,4 +1,3 @@
-import connectDB from '../../middleware/mongodb';
 import Book from '../../models/book';
 import updateModel from '../../utils/updateModel';
 
@@ -14,4 +13,4 @@ const bookHandler = async (req, res) => {
   }
   return res.status(200).json({ response: "Executed" });
 }
-export default connectDB(bookHandler);
+export default bookHandler;

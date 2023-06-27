@@ -1,4 +1,3 @@
-import connectDB from '../../middleware/mongodb'
 import Book from '../../models/book'
 
 const assetsHandler = async (req, res) => {
@@ -20,4 +19,4 @@ const assetsHandler = async (req, res) => {
   } catch (err) { return }
 };
 
-export default connectDB(assetsHandler);
+export default assetsHandler;
