@@ -65,6 +65,14 @@ export default function Comments({ comments = [], publicationId, setComments }) 
     setFields(commentFields);
   };
 
+  const deleteComment = (comment) => {
+    const confirm = window.confirm('Tem certeza que deseja deletar este comentário?')
+    if (!confirm) { return false };
+    axios.delete('/api/comment', { data: { _id: comment._id } })
+      .then(() => { setComments(comments.filter((comm) => comm._id !== comment._id)) })
+      .catch((err) => console.log(err.response))
+  };
+
   return (
     <S.Comments>
       <S.CommentInput>
@@ -77,7 +85,7 @@ export default function Comments({ comments = [], publicationId, setComments }) 
       <S.CommentsTitle>Comentários</S.CommentsTitle>
       <S.CommentsList>
         {comments?.length
-          ? comments.map((comment) => <Comment comment={comment} setComments={setComments} />)
+          ? comments.map((comment) => <Comment comment={comment} deleteComment={deleteComment} />)
           : (
             <S.CommentsListEmpty>
               <Lottie
