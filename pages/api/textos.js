@@ -1,6 +1,9 @@
+import connectToDatabase from '../../middleware/mongodb';
 import Text from '../../models/text';
 
 const textos = async (req, res) => {
+  await connectToDatabase();
+
   const { method } = req;
 
   try {

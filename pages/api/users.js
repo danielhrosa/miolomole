@@ -3,8 +3,11 @@ import User from '../../models/user';
 import updateModel from '../../utils/updateModel';
 import createModel from '../../utils/createModel';
 import removeModel from '../../utils/removeModel';
+import connectToDatabase from '../../middleware/mongodb';
 
 const userHandler = async (req, res) => {
+  await connectToDatabase();
+
   const { body, method } = req;
   let { _id, userName } = body;
   let args = body ? { ...body } : {};

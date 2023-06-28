@@ -2,8 +2,11 @@ import Partner from '../../models/partner';
 import updateModel from '../../utils/updateModel';
 import createModel from '../../utils/createModel';
 import removeModel from '../../utils/removeModel';
+import connectToDatabase from '../../middleware/mongodb';
 
 const partnerHandler = async (req, res) => {
+  await connectToDatabase();
+
   const { body, method } = req;
   const { _id } = body;
   const args = body ? { ...body } : {};

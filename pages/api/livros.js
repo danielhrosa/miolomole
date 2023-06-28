@@ -4,8 +4,11 @@ import createModel from '../../utils/createModel';
 import removeModel from '../../utils/removeModel';
 import { getCookies } from 'cookies-next';
 import jwt from 'jsonwebtoken';
+import connectToDatabase from '../../middleware/mongodb';
 
 const bookHandler = async (req, res) => {
+  await connectToDatabase();
+
   const { body, method } = req;
   let { _id, name, title } = body;
   let args = body ? { ...body } : {};

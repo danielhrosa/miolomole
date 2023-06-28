@@ -1,7 +1,10 @@
+import connectToDatabase from '../../middleware/mongodb';
 import Book from '../../models/book';
 import updateModel from '../../utils/updateModel';
 
 const bookHandler = async (req, res) => {
+  await connectToDatabase();
+
   try {
     const books = await Book.find().lean();
     for (const book of books) {

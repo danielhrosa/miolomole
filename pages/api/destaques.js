@@ -2,8 +2,11 @@ import Highlight from '../../models/highlight';
 import updateModel from '../../utils/updateModel';
 import createModel from '../../utils/createModel';
 import removeModel from '../../utils/removeModel';
+import connectToDatabase from '../../middleware/mongodb';
 
 const highlightHandler = async (req, res) => {
+  await connectToDatabase();
+
   const { body, method } = req;
   let { _id, title, description, image } = body;
   let args = body ? { ...body } : {};

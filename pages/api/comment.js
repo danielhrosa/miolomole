@@ -1,3 +1,4 @@
+import connectToDatabase from '../../middleware/mongodb';
 import Comment from '../../models/comment';
 import Publication from '../../models/publication';
 import createModel from '../../utils/createModel';
@@ -5,6 +6,8 @@ import removeModel from '../../utils/removeModel';
 import updateModel from '../../utils/updateModel';
 
 const commentHandler = async (req, res) => {
+  await connectToDatabase();
+
   const { body, method } = req;
   let { _id, userFullName, content, email, phone, publicationId } = body;
   try {

@@ -1,11 +1,10 @@
-import contactEmail from '../../utils/emails/contact';
-import { sendEmail } from '../../utils/email';
-import contactResponseEmail from '../../utils/emails/contactResponse';
-import newsletterEmail from '../../utils/emails/newsletter';
+import connectToDatabase from '../../middleware/mongodb';
 import Contact from '../../models/contact';
 import removeModel from '../../utils/removeModel';
 
 export default async function contactHandler(req, res) {
+  await connectToDatabase();
+
   const { body, method } = req;
   let args = body ? { ...body } : {};
   let { _id, name, email, message, type = 'contact' } = body;

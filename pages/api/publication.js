@@ -7,8 +7,11 @@ import diacriticSensitiveRegex from '../../utils/diacriticSensitive';
 import PublicationArea from '../../models/publicationArea';
 import urlNameFormatter from '../../utils/urlNameFormatter';
 import Comment from '../../models/comment';
+import connectToDatabase from '../../middleware/mongodb';
 
 const publicationHandler = async (req, res) => {
+  await connectToDatabase();
+
   const { body, method } = req;
   let { _id, name, title, image, area, content, description, hide } = body;
   try {

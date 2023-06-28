@@ -1,9 +1,12 @@
 import crypto from "crypto";
+import connectToDatabase from "../../middleware/mongodb";
 
 function hmac(key, value) { return crypto.createHmac("sha256", key).update(value).digest() }
 function hexhmac(key, value) { return crypto.createHmac("sha256", key).update(value).digest("hex");}
 
 const singAuth = async (req, res) => {
+  await connectToDatabase();
+
   try {
     if (req.method === 'GET') {
       const { datetime, to_sign } = req.query;

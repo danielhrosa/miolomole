@@ -1,6 +1,9 @@
+import connectToDatabase from '../../middleware/mongodb';
 import Book from '../../models/book'
 
 const assetsHandler = async (req, res) => {
+  await connectToDatabase();
+  
   const { body, method } = req;
   try{
     switch (method) {

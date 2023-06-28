@@ -2,8 +2,10 @@ import User from '../../models/user';
 import bcrypt from 'bcryptjs';
 import jwt from 'jsonwebtoken';
 import { setCookie } from 'cookies-next';
+import connectToDatabase from '../../middleware/mongodb';
 
 const loginHandler = async (req, res) => {
+  await connectToDatabase();
   try {
     const { method } = req;
     switch (method) {
