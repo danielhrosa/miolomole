@@ -45,7 +45,6 @@ export default function EducatorAreaPublication({ publication }) {
           setContents={publication?.content}
           setDefaultStyle={'font-family: Arial'}
         />
-        <Button type="delete" onClick={() => onDelete({ _id: "649c7129bb62b08618637693" })} />
         <Comments comments={comments} publicationId={publication._id} onDelete={onDelete} setComments={setComments} />
       </Container>
     </S.EducatorAreaPublication>
