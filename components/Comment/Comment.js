@@ -5,7 +5,7 @@ import Button from '../../Elements/Button';
 import { useAppProvider } from '../../store/appProvider';
 import * as S from './Comment.styles';
 
-export default function Comment({ comment, deleteComment }) {
+export default function Comment({ comment, loading, onDelete }) {
   const { isLoggedIn } = useAppProvider();
   const [edit, setEdit] = useState();
   const [newContent, setNewContent] = useState(comment.content);
@@ -21,8 +21,6 @@ export default function Comment({ comment, deleteComment }) {
       .catch((err) => console.log(err.response))
   };
 
-  
-
   const contentEditableProps = {
     value: newContent,
     onChange: ({ target: { value } }) => { setNewContent(value); }
@@ -32,15 +30,16 @@ export default function Comment({ comment, deleteComment }) {
     value: newUserFullName,
     onChange: ({ target: { value } }) => { setNewUserFullName(value); }
   };
+  
   return (
     <S.Comment key={comment._id}>
       {isLoggedIn && (
         <S.EditableButtons>
-          <S.EditButton onClick={() => edit ? saveComment() : setEdit(true)}>
+          <S.EditButton onClick={() => !loading && edit ? saveComment() : setEdit(true)}>
             {edit ? <Button id={`${comment?._id}ConfirmButton`} type="confirm" /> : <Button id={`${comment?._id}EditButton`} type="edit" />}
           </S.EditButton>
           {edit && <Button id={`${comment?._id}CancelButton`} onClick={() => { setNewContent(comment?.content); setEdit(false) }} type="cancel" />}
-          <Button type="delete" onClick={() => deleteComment(comment)} />
+          <Button type="delete" onClick={() => !loading && onDelete(comment)} />
         </S.EditableButtons>
       )}
       {edit ? (

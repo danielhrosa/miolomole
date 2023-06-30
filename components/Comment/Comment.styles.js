@@ -36,14 +36,14 @@ export const ContentEditable = styled(forwardRef((props, ref) => <TextareaAutosi
 export const EditableButtons = styled.div`
   position: absolute;
   right: 0;
-  bottom: 0px;
+  bottom: 10px;
   display: flex;
   gap: 4px;
   align-items: center;
   z-index: 1;
 
-  [type="edit"] {
-    margin: 0
+  [type="edit"], [type="confirm"] {
+    margin: 0;
   }
 `
 export const EditButton = styled.div`
