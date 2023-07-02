@@ -106,4 +106,8 @@ export const BannerLink = styled.div`
   display: flex;
   align-items: center;
   gap: 8px;
+
+  > div {
+    width: 100%;
+  }
 `;

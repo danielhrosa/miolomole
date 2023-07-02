@@ -20,7 +20,7 @@ export default function Banner({ i, ...props }) {
         <S.BannerWrapper>
           <Editable {...props} textKey={`bannerTitle${i}`}><S.BannerTitle /></Editable>
           <Editable {...props} textKey={`bannerText${i}`}><S.BannerText /></Editable>
-          {isLoggedIn && <S.BannerLink>Link do botão: <Editable {...props} textKey={`bannerLink${i}`}><S.BannerText /></Editable></S.BannerLink>}
+          {isLoggedIn && <S.BannerLink><Editable {...props} textKey={`bannerLink${i}`}><S.BannerText /></Editable></S.BannerLink>}
           {(!!texts[`bannerLink${i}`] && !isLoggedIn) && (
             <a href={texts[`bannerLink${i}`]} target='_blank'><Button variation="primary">Saiba mais</Button></a>
           )}

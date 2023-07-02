@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 export const ContactSocial = styled.li`
-  margin-bottom: 28px;
+  margin-bottom: 16px;
   grid-area: ${({ name }) => name};
   justify-self: end;
 
