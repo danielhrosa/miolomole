@@ -87,44 +87,29 @@ export default function EducatorArea({ publications, publicationsAreas: pubAreas
       })
   }
 
-  // const handleEditPublicationArea = async (publication) => {
-  //   const { _id, title, hide } = publication;
-  //   const confirm = window.confirm(`Tem certeza que deseja ${!!hide ? 'desocultar' : 'ocultar'} a publicação "${title}"?`);
-  //   if (!confirm) { return false };
-  //   setNewPublications((oldPublication) => [...oldPublication].reduce((publications, publication) => publication._id !== _id ? [...publications, publication] : [...publications, { ...publication, hide: !publication?.hide }], []))
-  //   await axios.put(`/api/publication`, { ...publication, hide: !hide })
-  //     .then((res) => { res.status === 200 && toast.success('Sucesso') })
-  //     .catch((err) => {
-  //       toast.error(`Error ${err.response.data.errorMessage || ''}`)
-  //       setNewPublications((oldPublication) => [...oldPublication].reduce((publications, publication) => publication._id !== _id ? [...publications, publication] : [...publications, { ...publication, hide: !publication?.hide }], []))
-  //     })
-  // }
-
   const publicationProps = { handleDeletePublication, handleHidePublication, isLoggedIn }
 
   return (
     <S.EducatorArea>
       <Jumbotron {...props} page="educatorArea" />
       <Container>
-        <S.SliderContainer colors={colors} index={index}>
-          {isLoggedIn && <S.AddButton colors={colors} index={index} className="unselectable" onClick={() => router.push('/educador/novo')}>Cadastrar<span>+</span></S.AddButton>}
-          {newPublicationsAreas?.length && (
+        {/* <S.SliderContainer colors={colors} index={index}> */}
+          {/* isLoggedIn && <S.AddButton colors={colors} index={index} className="unselectable" onClick={() => router.push('/educador/novo')}>Cadastrar<span>+</span></S.AddButton> */}
+          {/* newPublicationsAreas?.length && (
             <Slider {...settings}>
               {newPublicationsAreas.map((item, i) => (
                 <S.EducatorAreaSliderCard color={item.color} key={i}>
                   {isLoggedIn && (
                     <S.EducatorAreaSliderCardButtons>
                       <Button onClick={(e) => { e.stopPropagation(); handleDeletePublicationArea(item); }} type="delete" />
-                      {/* <Button onClick={(e) => { e.stopPropagation(); handleEditPublicationArea(item); }} type="edit" /> */}
-                      {/* <Button ishidden={item.hide} onClick={(e) => { e.stopPropagation(); handleHidePublication(item); }} type="toggleHide" /> */}
                     </S.EducatorAreaSliderCardButtons>
                   )}
                   {item.title}
                 </S.EducatorAreaSliderCard>
               ))}
             </Slider>
-          )}
-        </S.SliderContainer>
+          )*/}
+        {/* </S.SliderContainer> */}
         <S.EducatorAreaPosts>
           {newPublications?.length
             ? newPublications.map((publication, i) => <EducatorAreaPublication publication={publication} key={i} {...publicationProps} />)
