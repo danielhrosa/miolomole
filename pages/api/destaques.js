@@ -1,10 +1,12 @@
 import Highlight from '../../models/highlight';
-import connectDB from '../../middleware/mongodb';
 import updateModel from '../../utils/updateModel';
 import createModel from '../../utils/createModel';
 import removeModel from '../../utils/removeModel';
+import connectToDatabase from '../../middleware/mongodb';
 
-const highlightHandle = async (req, res) => {
+const highlightHandler = async (req, res) => {
+  await connectToDatabase();
+
   const { body, method } = req;
   let { _id, title, description, image } = body;
   let args = body ? { ...body } : {};
@@ -48,4 +50,4 @@ const highlightHandle = async (req, res) => {
   } catch (err) { return res.status(500).end() }
 };
 
-export default connectDB(highlightHandle);
+export default highlightHandler;

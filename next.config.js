@@ -176,5 +176,15 @@ module.exports = withImages({
       },
     ]
   },
+  // webpack(config, { isServer }) {
+  //   if (!isServer) {
+  //     config.output = {
+  //       ...config.output,
+  //       hashFunction: 'xxhash64', // Substitua pela função de hash desejada
+  //     };
+  //   }
+
+  //   return config;
+  // }
 });
 

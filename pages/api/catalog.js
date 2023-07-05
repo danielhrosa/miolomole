@@ -2,8 +2,11 @@ import Catalog from '../../models/catalog'
 import createModel from '../../utils/createModel'
 import updateModel from '../../utils/updateModel'
 import removeModel from '../../utils/removeModel'
+import connectToDatabase from '../../middleware/mongodb';
 
 export default async function catalogHandler(req, res) {
+  await connectToDatabase();
+
   const { body, method } = req;
   let args = body ? { ...body } : {};
   let { _id, label, link } = body;

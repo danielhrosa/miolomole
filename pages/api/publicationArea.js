@@ -1,11 +1,13 @@
-import connectDB from '../../middleware/mongodb';
 import PublicationArea from '../../models/publicationArea';
 import Publication from '../../models/publication';
 import updateModel from '../../utils/updateModel';
 import createModel from '../../utils/createModel';
 import removeModel from '../../utils/removeModel';
+import connectToDatabase from '../../middleware/mongodb';
 
 const publicationAreaHandler = async (req, res) => {
+  await connectToDatabase();
+
   const { body, method } = req;
   let { _id, name, title, color, hide } = body;
   try {
@@ -50,4 +52,4 @@ const publicationAreaHandler = async (req, res) => {
   } catch (err) { return res.status(500).end() }
 };
 
-export default connectDB(publicationAreaHandler);
+export default publicationAreaHandler;

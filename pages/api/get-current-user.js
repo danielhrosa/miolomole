@@ -1,7 +1,10 @@
 import jwt from 'jsonwebtoken'
 import User from '../../models/user'
+import connectToDatabase from '../../middleware/mongodb';
 
 const getCurrentUser = async (req, res) => {
+  await connectToDatabase();
+
   try {
     const { method } = req;
     switch (method) {

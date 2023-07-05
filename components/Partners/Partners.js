@@ -1,15 +1,11 @@
-
+import Image from 'next/image'
 import * as S from './Partners.style'
 
 export default function Partners() {
 
   return (
     <S.Partners>
-      <S.PartnersList>
-        <img src="./EUREKA_DIGITAL_LOGO.png"></img>
-        <img src="./EUREKA_SOLUCOES _LOGO.png"></img>
-        <img src="./SHIU_LOGO.png"></img>
-      </S.PartnersList>
+      <Image src="/LOGO_GRUPO_EUREKA.png" width={127} height={45} alt="Logo grupo eureka" />
     </S.Partners>
   )
 }

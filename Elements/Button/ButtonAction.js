@@ -6,7 +6,7 @@ export const ButtonAction = forwardRef((props, ref) => {
   const { children, icon, iconRight, loading, disabled, label, variation, ...restProps } = props;
 
   return (
-    <StyledButtonAction {...restProps} className={variation} ref={ref} disabled={disabled || loading}>
+    <StyledButtonAction type="button" {...restProps} className={variation} ref={ref} disabled={disabled || loading}>
       {loading
         ? <Spinner color="#fff" />
         : children

@@ -1,4 +1,3 @@
-import connectDB from '../../middleware/mongodb';
 import Publication from '../../models/publication';
 import updateModel from '../../utils/updateModel';
 import createModel from '../../utils/createModel';
@@ -7,8 +6,12 @@ import randomColor from '../../utils/randomColor';
 import diacriticSensitiveRegex from '../../utils/diacriticSensitive';
 import PublicationArea from '../../models/publicationArea';
 import urlNameFormatter from '../../utils/urlNameFormatter';
+import Comment from '../../models/comment';
+import connectToDatabase from '../../middleware/mongodb';
 
 const publicationHandler = async (req, res) => {
+  await connectToDatabase();
+
   const { body, method } = req;
   let { _id, name, title, image, area, content, description, hide } = body;
   try {
@@ -16,12 +19,16 @@ const publicationHandler = async (req, res) => {
       case 'GET':
         try {
           if (!name && !title && !_id) {
-            const posts = await Publication.find()
-            return res.status(200).json(posts);
+            const publications = await Publication.find().populate({ path: 'comments', model: Comment })
+            return res.status(200).json(publications);
           } else {
             const param = name ? name : _id ? _id : title;
-            const post = await Publication.find(param).populate({ path: 'area', model: PublicationArea });
-            return res.status(200).json(post);
+            const publication = await Publication.find(param)
+              .populate({ path: 'area', model: PublicationArea })
+              .populate({ path: 'comments', model: Comment });
+
+            console.log(publication)
+            return res.status(200).json(publication);
           }
         } catch (err) { return res.status(500).end() };
       case 'PUT':
@@ -55,4 +62,4 @@ const publicationHandler = async (req, res) => {
   } catch (err) { return res.status(500).end() }
 };
 
-export default connectDB(publicationHandler);
+export default publicationHandler;

@@ -1,11 +1,13 @@
 import bcrypt from 'bcryptjs';
 import User from '../../models/user';
-import connectDB from '../../middleware/mongodb';
 import updateModel from '../../utils/updateModel';
 import createModel from '../../utils/createModel';
 import removeModel from '../../utils/removeModel';
+import connectToDatabase from '../../middleware/mongodb';
 
-const userHandle = async (req, res) => {
+const userHandler = async (req, res) => {
+  await connectToDatabase();
+
   const { body, method } = req;
   let { _id, userName } = body;
   let args = body ? { ...body } : {};
@@ -56,4 +58,4 @@ const userHandle = async (req, res) => {
   } catch (err) { return res.status(500).end() }
 };
 
-export default connectDB(userHandle);
+export default userHandler;

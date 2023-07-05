@@ -1,7 +1,9 @@
-import connectDB from '../../middleware/mongodb';
+import connectToDatabase from '../../middleware/mongodb';
 import Text from '../../models/text';
 
 const textos = async (req, res) => {
+  await connectToDatabase();
+
   const { method } = req;
 
   try {
@@ -51,4 +53,4 @@ const textos = async (req, res) => {
 
 };
 
-export default connectDB(textos);
+export default textos;

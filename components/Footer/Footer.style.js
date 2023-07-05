@@ -24,7 +24,7 @@ export const FooterNavList = styled.ul`
     display: flex;
     align-items: center;
     margin-bottom: 20px;
-    padding: 20px;
+    padding: 18px;
     justify-content: space-between;
   }
 `

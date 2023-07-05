@@ -1,8 +1,10 @@
-import connectDB from '../../middleware/mongodb';
+import connectToDatabase from '../../middleware/mongodb';
 import Page from '../../models/pages';
 import updateModel from '../../utils/updateModel';
 
 const bookHandler = async (req, res) => {
+  await connectToDatabase();
+
   const { body, method } = req;
   let { _id } = body;
   let args = body ? { ...body } : {};
@@ -24,4 +26,4 @@ const bookHandler = async (req, res) => {
   }
 };
 
-export default connectDB(bookHandler);
+export default bookHandler;
