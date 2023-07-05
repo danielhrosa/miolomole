@@ -33,7 +33,7 @@ export default function EducatorAreaForm({ publication }) {
         if (res.status === 200) {
           toast.success(`Publicação ${_id ? 'salva' : 'criada'}!`)
           setLoading(false);
-          router.push(`/educador/${res.data.name}`);
+          router.push(`/blog/${res.data.name}`);
         } else {
           setLoading(false);
           toast.error(errorMessage)
@@ -57,7 +57,7 @@ export default function EducatorAreaForm({ publication }) {
   return (
     <Container>
       <S.EducatorAreaForm>
-        <Button variation="primary" onClick={() => router.push('/educador')}>Voltar</Button>
+        <Button variation="primary" onClick={() => router.push('/blog')}>Voltar</Button>
         <h1>{_id ? 'Editar' : 'Criar'} Publicação</h1>
         <Form {...formProps} />
         <Button onClick={onSubmit} loading={loading} variation="primary">{_id ? 'Editar' : 'Criar'}</Button>

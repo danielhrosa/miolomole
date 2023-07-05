@@ -26,6 +26,6 @@ export async function getServerSideProps({ params: { name }, req, res }) {
     return { props: { publication, pages } }
 
   } else {
-    return { redirect: { permanent: false, destination: "/educador" } }
+    return { redirect: { permanent: false, destination: "/blog" } }
   }
 }

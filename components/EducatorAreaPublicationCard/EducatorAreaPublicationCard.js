@@ -8,7 +8,7 @@ export default function EducatorAreaPublication({ isLoggedIn, publication, i, ha
   const router = useRouter();
 
   return (
-    <S.EducatorAreaPublication key={i} onClick={() => { router.push(`/educador/${name}`) }}>
+    <S.EducatorAreaPublication key={i} onClick={() => { router.push(`/blog/${name}`) }}>
       {isLoggedIn && (
         <S.EducatorAreaPublicationButtons onClick={(e) => { e.stopPropagation(); }}>
           <Button onClick={(e) => { e.stopPropagation(); handleDeletePublication(publication); }} type="delete" />

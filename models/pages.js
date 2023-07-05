@@ -17,7 +17,7 @@ export default Pages;
 //   { label: 'Livros', path: '/livros', isPrivate: false, isHidden: false },
 //   { label: 'Onde Comprar', path: '/onde-comprar', isPrivate: false, isHidden: false },
 //   { label: 'Quem somos', path: '/quem-somos', isPrivate: false, isHidden: false },
-//   { label: 'Educador', path: '/educador', isPrivate: true, isHidden: false },
+//   { label: 'Educador', path: '/blog', isPrivate: true, isHidden: false },
 //   { label: 'Contato', path: '/contato', isPrivate: false, isHidden: false },
 //   { label: 'Blog', path: 'https://editoramiolomole.com.br/', isPrivate: false, isHidden: false },
 //   { label: 'Destaques', path: '/destaques', isPrivate: false, isHidden: false },
