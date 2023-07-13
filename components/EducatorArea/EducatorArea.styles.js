@@ -29,7 +29,7 @@ export const EducatorAreaSliderCard = styled.div`
 export const EducatorAreaPosts = styled.div`
   display: flex;
   flex-direction: column;
-
+  position: relative;
   gap: 50px;
 `;
 
@@ -103,7 +103,7 @@ export const AddButton = styled.div`
   ${({ theme: { color: { white, black } }, color }) => css`
     position: absolute;
     height: 50px;
-    top: -50px;
+    bottom: 0px;
     right: 0px;
     width: 100%;
     color: ${color};
@@ -136,7 +136,6 @@ export const AddButton = styled.div`
       border-top-left-radius: 10px;
       border-top-right-radius: 10px;
       width: 200px;
-      top: -30%;
       color: ${black}
     }
   `}
@@ -159,4 +158,9 @@ export const EducatorAreaSliderCardButtons = styled.div`
   display: flex;
   flex-direction: column;
   gap: 8px;
+`;
+
+export const EducatorAreaHeader = styled.div`
+  position: relative;
+  width: 100%;
 `;

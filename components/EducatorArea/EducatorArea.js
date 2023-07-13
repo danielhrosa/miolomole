@@ -91,10 +91,12 @@ export default function EducatorArea({ publications, publicationsAreas: pubAreas
 
   return (
     <S.EducatorArea>
-      <Jumbotron {...props} page="educatorArea" />
+      <S.EducatorAreaHeader>
+        <Jumbotron {...props} page="educatorArea" />
+        {isLoggedIn && <S.AddButton colors={colors} index={index} className="unselectable" onClick={() => router.push('/blog/novo')}>Novo<span>+</span></S.AddButton>}
+      </S.EducatorAreaHeader>
       <Container>
         {/* <S.SliderContainer colors={colors} index={index}> */}
-          {/* isLoggedIn && <S.AddButton colors={colors} index={index} className="unselectable" onClick={() => router.push('/blog/novo')}>Cadastrar<span>+</span></S.AddButton> */}
           {/* newPublicationsAreas?.length && (
             <Slider {...settings}>
               {newPublicationsAreas.map((item, i) => (
