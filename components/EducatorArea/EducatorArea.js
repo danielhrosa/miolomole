@@ -97,7 +97,7 @@ export default function EducatorArea({ publications, publicationsAreas: pubAreas
       </S.EducatorAreaHeader>
       <Container>
         {/* <S.SliderContainer colors={colors} index={index}> */}
-          {/* newPublicationsAreas?.length && (
+        {/* newPublicationsAreas?.length && (
             <Slider {...settings}>
               {newPublicationsAreas.map((item, i) => (
                 <S.EducatorAreaSliderCard color={item.color} key={i}>
@@ -112,6 +112,7 @@ export default function EducatorArea({ publications, publicationsAreas: pubAreas
             </Slider>
           )*/}
         {/* </S.SliderContainer> */}
+        <h1>Blog</h1>
         <S.EducatorAreaPosts>
           {newPublications?.length
             ? newPublications.map((publication, i) => <EducatorAreaPublication publication={publication} key={i} {...publicationProps} />)

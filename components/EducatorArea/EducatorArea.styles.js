@@ -1,6 +1,18 @@
 import styled, { css } from "styled-components";
 
 export const EducatorArea = styled.div`
+  h1 {
+    text-align: center;
+    color: #333;
+    font-family: Roboto Mono;
+    font-size: 38px;
+    font-style: normal;
+    font-weight: 700;
+    margin-top: 0;
+  }
+  @media (min-width: 768px) {
+    h1 { font-size: 64px; }
+  }
 `;
 
 export const EducatorAreaSliderCard = styled.div`
@@ -17,7 +29,6 @@ export const EducatorAreaSliderCard = styled.div`
   font-size: 24px;
   letter-spacing: -0.011em;
   text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-  padding: 16px;
   div { margin: 0; }
   position: relative;
 
@@ -30,73 +41,15 @@ export const EducatorAreaPosts = styled.div`
   display: flex;
   flex-direction: column;
   position: relative;
-  gap: 50px;
-`;
-
-export const SliderContainer = styled.div`
-  ${({ colors, index }) => css`
-    align-items: center;
-    justify-content: center;
-    height: 100%;
+  gap: 30px;
+  
+  @media (min-width: 768px) {
+    display: grid;
+    grid-auto-rows: max-content;
+    grid-template-columns: 1fr 1fr;
     position: relative;
-    flex-direction: column;
-
-    width: 100%;
-
-    .slick-slide { padding: 10px 30px; }
-
-    .slick-list{
-      height: 220px;
-      padding: 30px 0;
-      @media (min-width: 768px) { height: 230px; }
-    }
-
-    .slick-prev, .slick-next {
-      z-index: 10; 
-      width: 15px;
-      height: 15px;
-      top: 110px;
-      border-bottom: 5px solid ${colors[index]};
-      &::before { display: none; }
-
-      &::after { 
-        position: absolute;
-        top: 200px;
-        background-color: red;
-        width: 40px;
-        height: 100px;
-        z-index: 10;
-      }
-    }
-
-    .slick-prev {
-      border-left: 5px solid ${colors[index]};
-      transform: rotate(45deg);
-      left: 10px;
-    }
-
-    .slick-next {
-      border-right: 5px solid ${colors[index]};
-      transform: rotate(-45deg);
-      right: 10px;
-    }
-    
-    border-bottom: 5px solid ${colors[index]};
-    
-    @media (min-width: 768px) { flex-direction: row; }
-    @media (min-width: 1023px) {
-      border-bottom: 5px solid ${colors[(index + 1) % colors?.length]};
-      .slick-prev, .slick-next { border-bottom: 5px solid ${colors[(index + 1) % colors?.length]} };
-      .slick-prev { border-left: 5px solid ${colors[(index + 1) % colors?.length]}; }
-      .slick-next { border-right: 5px solid ${colors[(index + 1) % colors?.length]}; }
-    }
-    /* @media (min-width: 1250px) {
-      border-bottom: 5px solid ${colors[(index + 2) % colors?.length]};
-      .slick-prev, .slick-next { border-bottom: 5px solid ${colors[(index + 2) % colors?.length]} };
-      .slick-prev { border-left: 5px solid ${colors[(index + 2) % colors?.length]}; }
-      .slick-next { border-right: 5px solid ${colors[(index + 2) % colors?.length]}; }
-    } */
-  `}
+    gap: 50px;
+  }
 `;
 
 export const AddButton = styled.div`
