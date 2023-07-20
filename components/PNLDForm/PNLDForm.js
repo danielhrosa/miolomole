@@ -32,7 +32,7 @@ export default function PNLDForm({ pnld }) {
         if (res.status === 200) {
           toast.success(`PNLD ${_id ? 'salva' : 'criada'}!`)
           setLoading(false);
-          router.push(`/pnld/${res.data.name}`);
+          router.push(`/pnld`);
         } else {
           setLoading(false);
           toast.error(errorMessage)

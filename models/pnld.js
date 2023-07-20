@@ -5,10 +5,11 @@ var pnld = new Schema({
   title: { type: String, required: true },
   color: { type: String, required: true },
   hide: { type: Boolean, required: true, default: false },
+  parentPnld: { type: String, ref: 'PNLD' },
 }, { timestamps: true });
 
 mongoose.models = {};
 
-var Pnld = mongoose.model('Pnld', pnld);
+var PNLD = mongoose.model('PNLD', pnld);
 
-export default Pnld;
+export default PNLD;

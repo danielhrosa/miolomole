@@ -39,6 +39,25 @@ export const PNLDFormFieldsFunction = ({ fields, setFields }) => ({
       })
     }
   },
+  parentPnld: {
+    ...fields.parentPnld,
+    name: 'parentPnld',
+    label: 'PNLD Pai:',
+    type: 'select',
+    loadEmpty: true,
+    isSearchable: true,
+    isCreatable: true,
+    loadOptions: (query, callback) => {
+      axios.get('/api/pnld')
+        .then((res) => res && callback(res.data
+          .filter((option) => option.title
+            ?.toLowerCase()
+            ?.normalize("NFD")
+            ?.includes(query?.toLowerCase()))
+          .map((option) => ({ ...option, instanceId: option._id, label: option.title }))
+        ))
+    },
+  },
   hide: {
     ...fields.hide,
     label: 'Ocultar?',

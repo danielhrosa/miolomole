@@ -7,8 +7,6 @@ export default function EducatorAreaPublication({ isLoggedIn, publication, handl
 
   const router = useRouter();
 
-  console.log(publication);
-
   return (
     <S.EducatorAreaPublication onClick={() => { router.push(`/blog/${name}`) }}>
       {isLoggedIn && (
