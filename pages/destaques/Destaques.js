@@ -1,5 +1,5 @@
-import Highlights from '../../components/Highlights';
+import HighlightsPages from '../../components/HighlightsPages/HighlightsPages';
 
 export default function Destaques(props){
-  return <Highlights {...props} />
+  return <HighlightsPages {...props} />
 }

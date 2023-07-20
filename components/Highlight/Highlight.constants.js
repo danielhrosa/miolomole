@@ -1,10 +1,11 @@
 export const highlightFieldsState = () => ({
   image: { value: '' },
-  isActive: { value: ''},
-  title: { value: ''},
-  description: { value: ''},
+  title: { value: '' },
+  description: { value: '' },
+  page: { value: '' },
+  isActive: { value: false },
 })
-  
+
 export const highlightFieldsFunction = ({ fields }) => ({
   image: {
     ...fields.image,
@@ -21,6 +22,17 @@ export const highlightFieldsFunction = ({ fields }) => ({
     name: 'description',
     label: 'Descrição',
   },
+  page: {
+    ...fields.page,
+    name: 'page',
+    label: 'Page',
+    type: 'select',
+    options: [
+      { id: '1', label: 'Home', value: 'home' },
+      { id: '2', label: 'Livros', value: 'books' },
+      { id: '3', label: 'PNLD', value: 'pnld' },
+    ]
+  },
   isActive: {
     ...fields.isActive,
     name: 'isActive',
@@ -32,26 +44,16 @@ export const highlightFieldsFunction = ({ fields }) => ({
 
 export const gridTemplate = () => {
   return `
-    grid-template: ${`
-      "image"
-      "title"
-      "description"
-      "isActive"
-    `};
-    grid-gap: 15px;
-    grid-template-rows: auto;
-    grid-template-columns: 100%;
-    margin-bottom: 30px;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: repeat(3, 80px) 1fr;
+    grid-column-gap: 0px;
+    grid-row-gap: 0px;
 
-    @media (min-width: 1024px){
-      grid-template: ${`
-        "image title"
-        "image description"
-        "image isActive"
-      `};
-      width: 100%;
-      grid-template-rows: auto;
-      grid-template-columns: 320px 1fr;
-    }
+    [name = "image"] { grid-area: 1 / 1 / 5 / 2; }
+    [name = "title"] { grid-area: 1 / 2 / 2 / 5; }
+    [name = "description"] { grid-area: 2 / 2 / 3 / 5; }
+    [name = "page"] { grid-area: 3 / 2 / 4 / 5; }
+    [name = "isActive"] { grid-area: 4 / 2 / 5 / 5; }
   `
 }
