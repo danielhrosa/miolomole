@@ -3,10 +3,10 @@ import Spinner from '../../components/Spinner';
 import { StyledButtonAction } from './Button.styles';
 
 export const ButtonAction = forwardRef((props, ref) => {
-  const { children, icon, iconRight, loading, disabled, label, variation, ...restProps } = props;
+  const { children, icon, iconRight, loading, disabled, label, variation, className, ...restProps } = props;
 
   return (
-    <StyledButtonAction type="button" {...restProps} className={variation} ref={ref} disabled={disabled || loading}>
+    <StyledButtonAction type="button" {...restProps} className={variation + ' ' + className} ref={ref} disabled={disabled || loading}>
       {loading
         ? <Spinner color="#fff" />
         : children

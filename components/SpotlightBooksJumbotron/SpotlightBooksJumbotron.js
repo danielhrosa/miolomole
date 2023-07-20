@@ -35,7 +35,7 @@ export default function SpotlightJumbotron(props){
   useEffect(() => props.highlights && setHighlight(JSON.parse(props.highlights)), [props]);
   
   return(
-    <S.SpotilightJumbotronContainer>
+    <S.SpotilightJumbotronContainer className={props.className}>
       <Slider {...settings(highlights)}>
         {highlights.map((highlight) => {
           return (

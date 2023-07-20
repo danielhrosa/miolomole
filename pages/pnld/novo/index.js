@@ -1,4 +1,4 @@
-import EducatorAreaForm from '../../../components/EducatorAreaForm/EducatorAreaForm';
+import PNLDForm from '../../../components/PNLDForm/PNLDForm';
 import { useAppProvider } from '../../../store/appProvider';
 import PageJustForAdmin from '../../../components/PageJustForAdmin/PageJustForAdmin'
 import Pages from '../../../models/pages'
@@ -8,7 +8,7 @@ import jwt from 'jsonwebtoken';
 
 export default function NewEducatorPublication({ req, res }) {
   const { isLoggedIn } = useAppProvider();
-  return isLoggedIn ? <EducatorAreaForm /> : <PageJustForAdmin />
+  return isLoggedIn ? <PNLDForm /> : <PageJustForAdmin />
 }
 
 export async function getServerSideProps({ req, res }) {
