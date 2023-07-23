@@ -12,6 +12,7 @@ var book = new Schema({
   genre: [{ type: Object }],
   themes: [{ type: Object }],
   ISBN: { type: Object },
+  pnldCode: { type: String },
   ageIndication: { type: Object },
   synopsis: { type: String },
   price: { type: String },
