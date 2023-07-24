@@ -1,12 +1,12 @@
 import * as S from './PNLDOurWorksBook.styles';
 import Container from '../Container/Container';
 import PNLDBanner from '../PNLDBanner/PNLDBanner';
-import Image from 'next/image';
+import toast from 'react-hot-toast';
 import Editable from '../Editable/Editable';
 import BookRelated from '../BookRelated/BookRelated';
 import Button from '../../Elements/Button/Button';
 
-export default function PNLDOurWorksBook({ pnld, book, ...props }) {
+export default function PNLDOurWorksBook({ pnld, book, isLoggedIn, ...props }) {
   const bannerProps = {
     pnld,
     color: pnld?.color,
@@ -14,14 +14,14 @@ export default function PNLDOurWorksBook({ pnld, book, ...props }) {
     props
   }
 
-  const downloadFile = (link) => {
+  const downloadFile = (link, type) => {
     // TODO: aqui que vai o loading
     fetch(link)
       .then((res) => res.blob())
       .then((blob) => {
         const link = document.createElement("a");
         link.href = URL.createObjectURL(blob);
-        link.download = "Catalogo Miolo Mole";
+        link.download = type;
         link.target = "__blank";
         link.click();
       })
@@ -37,9 +37,9 @@ export default function PNLDOurWorksBook({ pnld, book, ...props }) {
         <S.PNLDOurWorksBookSection>
           <S.PNLDOurWorksBookCover src={book.image} />
           <S.PNLDOurWorksBookSectionButtons>
-            <Button variation="file" label="Visualizar obra" onClick={() => downloadFile(book.seeWork)} />
-            <Button variation="file" label="Manual do professor" onClick={() => downloadFile(book.teacherManual)} />
-            <Button variation="file" label="Vídeo" onClick={() => downloadFile(book.video)} />
+            <Button variation="file" label="Visualizar obra" onClick={() => !book.seeWork ? toast.error("Sem arquivo carregado") : downloadFile(book.seeWork, "Visualizar obra")} />
+            <Button variation="file" label="Manual do professor" onClick={() => !book.teacherManual ? toast.error("Sem arquivo carregado") : downloadFile(book.teacherManual, "Manual do professor")} />
+            <Button variation="file" label="Vídeo" onClick={() => !book.pnldVideo ? toast.error("Sem arquivo carregado") : downloadFile(book.pnldVideo, "Vídeo")} />
           </S.PNLDOurWorksBookSectionButtons>
         </S.PNLDOurWorksBookSection>
         <S.PNLDOurWorksBookDescription>{book.synopsis}</S.PNLDOurWorksBookDescription>
