@@ -94,10 +94,12 @@ export default function PNLDOurWorks({ pnld, ...props }) {
     <S.PNLDOurWorks>
       <PNLDBanner {...bannerProps} />
       <Editable {...props} textKey={`pnldOurWorksTitle`}><S.PNLDOurWorksTitle /></Editable>
-      <S.PNLDOurWorksInput>
-        <Field {...bookFields.books} />
-        <Button label="Salvar obras" variation="primary" onClick={saveBooks} />
-      </S.PNLDOurWorksInput>
+      {isLoggedIn && (
+        <S.PNLDOurWorksInput>
+          <Field {...bookFields.books} />
+          <Button label="Salvar obras" variation="primary" onClick={saveBooks} />
+        </S.PNLDOurWorksInput>
+      )}
       <S.PNLDOurWorksList>
         {books?.length ?
           books.map((book) => (

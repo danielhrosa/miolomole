@@ -45,8 +45,14 @@ export const PNLDOurWorksBookCode = styled.div`
     position: relative;
 
     @media (min-width: 1024px) {
-      height: 110px;
-      font-size: 42px;
+      height: 80px;
+      font-size: 32px;
     }
   `}
+`;
+export const PNLDOurWorksBookSection = styled.section`
+  width: 100%;
+`;
+export const PNLDOurWorksBookCover = styled.div`
+
 `;

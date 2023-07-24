@@ -11,6 +11,7 @@ export const bookInfoFieldsState = () => ({
   genre: { value: '' },
   themes: { value: '' },
   ISBN: { value: '' },
+  pnldCode: { value: '' },
 });
 
 export const priceFieldState = () => ({
@@ -34,7 +35,7 @@ export const priceFieldFunction = ({ price }) => ({
     styledComponent: <S.PriceValue />,
   }
 })
-  
+
 export const bookInfoFieldsFunction = ({ fields, isLoggedIn }) => ({
   title: {
     ...fields.title,
@@ -58,11 +59,13 @@ export const bookInfoFieldsFunction = ({ fields, isLoggedIn }) => ({
     placeholder: 'Autoria...',
     styledLabel: <S.BookItemLabel isLoggedIn={isLoggedIn} />,
     styledItem: <S.BookInfoItemSelect isLoggedIn={isLoggedIn} />,
-    loadOptions: (query, callback) => { axios.get('/api/users')
+    loadOptions: (query, callback) => {
+      axios.get('/api/users')
       .then((res) => res && callback(res.data
         .filter((option) => option.userFullName?.toLowerCase().includes(query?.toLowerCase()))
         .map((option) => ({ instanceId: option._id, label: option.userFullName, value: option._id }))
-      ))}
+      ))
+    }
   },
   illustrators: {
     ...fields.illustrators,
@@ -76,7 +79,8 @@ export const bookInfoFieldsFunction = ({ fields, isLoggedIn }) => ({
     styledItem: <S.BookInfoItemSelect isLoggedIn={isLoggedIn} />,
     styledLabel: <S.BookItemLabel isLoggedIn={isLoggedIn} />,
     styledComponent: <S.BookItemValue isLoggedIn={isLoggedIn} />,
-    loadOptions: (query, callback) => { axios.get('/api/users')
+    loadOptions: (query, callback) => {
+      axios.get('/api/users')
       .then((res) => res && callback(res.data
         .filter((option) => option.userFullName?.toLowerCase().includes(query?.toLowerCase()))
         .map((option) => ({ instanceId: option._id, label: option.userFullName, value: option._id }))
@@ -143,6 +147,16 @@ export const bookInfoFieldsFunction = ({ fields, isLoggedIn }) => ({
     styledLabel: <S.BookItemLabel isLoggedIn={isLoggedIn} />,
     styledComponent: <S.BookItemValue isLoggedIn={isLoggedIn} />,
   },
+  pnldCode: {
+    ...fields.pnldCode,
+    name: 'pnldCode',
+    type: 'editable',
+    label: 'PNLD Code: ',
+    placeholder: 'PNLD Code...',
+    styledItem: <S.BookInfoItem isLoggedIn={isLoggedIn} />,
+    styledLabel: <S.BookItemLabel isLoggedIn={isLoggedIn} />,
+    styledComponent: <S.BookItemValue isLoggedIn={isLoggedIn} />,
+  },
 })
 
 export const gridTemplate = () => {
@@ -157,6 +171,7 @@ export const gridTemplate = () => {
       "genre"
       "themes"
       "ISBN"
+      "pnldCode"
     ;
   `
 }
