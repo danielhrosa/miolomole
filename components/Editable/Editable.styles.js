@@ -23,6 +23,7 @@ export const Editable = styled.div`
 
 export const EditableInput = styled(forwardRef((props, ref) => <TextareaAutosize {...props} ref={ref} />))`
   ${({styles}) => styles };
+  color: #000;
   border: 1px solid #ccc;
   border-radius: 8px;
   width: 100%;

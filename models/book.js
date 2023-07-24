@@ -1,6 +1,6 @@
 import mongoose, { Schema } from 'mongoose';
-import User from './user';
 import Highlight from './highlight';
+import User from './user';
 
 var book = new Schema({
   name: { type: String, unique: true, required: true },

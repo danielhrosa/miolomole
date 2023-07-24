@@ -1,127 +1,58 @@
 import axios from 'axios';
-import debounce from 'lodash.debounce';
 import Link from 'next/link';
-import { useEffect, useMemo, useState } from 'react';
+import { useEffect, useState } from 'react';
+import toast from 'react-hot-toast';
 import Button from '../../Elements/Button/Button';
-import Input from '../../Elements/Input';
-import PnldHomeIcon from '../../images/js/PnldHomeIcon';
+import Field from '../../Elements/Field/Field';
 import { useAppProvider } from '../../store/appProvider';
 import Editable from '../Editable';
+import PNLDBanner from '../PNLDBanner/PNLDBanner';
 import * as S from './PNLDOurWorks.styles';
 import PNLDOurWorksCard from './PNLDOurWorksCard/PNLDOurWorksCard';
-import { readableColor, darken } from "polished";
 
-export default function PNLDOurWorks({ name, color, title, ...props }) {
+const booksDataToField = (books) => books.map((book) => ({ instanceId: book._id, label: book.title, value: book._id }));
+
+export default function PNLDOurWorks({ pnld, ...props }) {
+  const { color } = pnld;
   const { isLoggedIn } = useAppProvider();
-  const [pnlds, setPnlds] = useState([]);
   const [colorState, setColorState] = useState(color);
+  const [fields, setFields] = useState(() => ({ books: { value: [] } }));
+  const [books, setBooks] = useState();
+  
+  const fieldProps = ({ fields, setFields }) => ({
+    books: {
+      ...fields.books,
+      name: 'books',
+      isMulti: true,
+      loadEmpty: true,
+      isSearchable: true,
+      label: 'Obras selecionadas: ',
+      variation: 'simple',
+      type: 'simpleSelect',
+      isMulti: true,
+      isLoggedIn,
+      isSortable: true,
+      placeholder: 'Obras...',
+      setFields,
+      loadOptions: (query, callback) => {
+        axios.get('/api/livros')
+        .then((res) => res && callback(res.data
+          .filter((option) => option.title?.toLowerCase().includes(query?.toLowerCase()))
+          .map((option) => ({ instanceId: option._id, label: option.title, value: option._id }))
+        ))
+      }
+    }
+  })
+
+  const bookFields = fieldProps({ fields, setFields });
 
   useEffect(() => {
-    if (props.pnlds) { setPnlds(props.pnlds) }
     if (color) { setColorState(color) }
-  }, [props.pnlds, color])
-
-  const fakePnldBooks = [
-    {
-      _id: 1,
-      name: 'pnld2022',
-      title: 'PNLD 2022',
-      image: 'https://s3-sa-east-1.amazonaws.com/eurekadigital/dev/mioloMole/38925cca-999a-4438-a5c8-fe90ff0c67c4garoto-avatar-capa-1%201.png',
-      hide: false,
-      color: '#00FFFF',
-      pnldCode: 'S0DJ2H-329DSUL-DSAO9832JID-SDJKDS',
-      authors: [
-        { userFullName: 'Teste da Silva' },
-        { userFullName: 'Teste da Silveira' },
-      ],
-      illustrators: [
-        { userFullName: 'Ilustrador da Silva' },
-        { userFullName: 'Teste da Silveira' },
-      ]
-    },
-    {
-      _id: 2,
-      name: 'pnld2023',
-      title: 'PNLD 2023',
-      image: 'https://s3-sa-east-1.amazonaws.com/eurekadigital/dev/mioloMole/38925cca-999a-4438-a5c8-fe90ff0c67c4garoto-avatar-capa-1%201.png',
-      hide: false,
-      color: '#3C6E',
-      pnldCode: 'S0DJ2H-329DSUL-DSAO9832JID-SDJKDS',
-      authors: [
-        { userFullName: 'Teste da Silva' },
-      ],
-      illustrators: [
-        { userFullName: 'Ilustrador da Silva' },
-        { userFullName: 'Teste da Silveira' },
-      ]
-    },
-    {
-      _id: 3,
-      name: 'pnld2024',
-      title: 'PNLD 2024',
-      image: 'https://s3-sa-east-1.amazonaws.com/eurekadigital/dev/mioloMole/38925cca-999a-4438-a5c8-fe90ff0c67c4garoto-avatar-capa-1%201.png',
-      hide: false,
-      color: '#3C6ED0',
-      pnldCode: 'S0DJ2H-329DSUL-DSAO9832JID-SDJKDS',
-      authors: [
-        { userFullName: 'Teste da Silva' },
-        { userFullName: 'Teste da Silveira' },
-      ],
-      illustrators: [
-        { userFullName: 'Teste da Silveira' },
-      ]
-    },
-    {
-      _id: 5,
-      name: 'pnld2025',
-      title: 'PNLD 2025',
-      image: 'https://s3-sa-east-1.amazonaws.com/eurekadigital/dev/mioloMole/38925cca-999a-4438-a5c8-fe90ff0c67c4garoto-avatar-capa-1%201.png',
-      hide: false,
-      color: '#3C6ED0',
-      pnldCode: 'S0DJ2H-329DSUL-DSAO9832JID-SDJKDS',
-      authors: [
-        { userFullName: 'Teste da Silva' },
-        { userFullName: 'Teste da Silveira' },
-      ],
-      illustrators: [
-        { userFullName: 'Ilustrador da Silva' },
-        { userFullName: 'Teste da Silveira' },
-      ]
-    },
-    {
-      _id: 4,
-      name: 'pnld2026',
-      title: 'PNLD 2026',
-      image: 'https://s3-sa-east-1.amazonaws.com/eurekadigital/dev/mioloMole/38925cca-999a-4438-a5c8-fe90ff0c67c4garoto-avatar-capa-1%201.png',
-      hide: false,
-      color: '#3C6ED0',
-      pnldCode: 'S0DJ2H-329DSUL-DSAO9832JID-SDJKDS',
-      authors: [
-        { userFullName: 'Teste da Silva' },
-      ],
-      illustrators: [
-        { userFullName: 'Ilustrador da Silva' },
-        { userFullName: 'Teste da Silveira' },
-      ]
-    },
-    {
-      _id: 6,
-      name: 'pnld2027',
-      title: 'PNLD 2027',
-      image: 'https://s3-sa-east-1.amazonaws.com/eurekadigital/dev/mioloMole/38925cca-999a-4438-a5c8-fe90ff0c67c4garoto-avatar-capa-1%201.png',
-      hide: false,
-      color: '#F3420F',
-      pnldCode: 'S0DJ2H-329DSUL-DSAO9832JID-SDJKDS',
-      authors: [
-        { userFullName: 'Teste da Silva' },
-        { userFullName: 'Teste da Silveira' },
-      ],
-      illustrators: [
-        { userFullName: 'Ilustrador da Silva' },
-        { userFullName: 'Ilustrador da Silveira' },
-      ]
-    },
-  ]
+    if (pnld?.books?.length) {
+      setBooks(pnld?.books)
+      setFields({ books: { value: booksDataToField(pnld?.books) } });
+    }
+  }, [pnld?.books, pnld?.color])
 
   const handleDeletePnld = async ({ _id, title }) => {
     const confirm = window.confirm(`Tem certeza que deseja deletar "${title}"?`)
@@ -136,42 +67,42 @@ export default function PNLDOurWorks({ name, color, title, ...props }) {
     isLoggedIn
   }
 
-  const debouncedUpdateColor = debounce((newColor) => { setColorState(newColor) }, 100);
-
-  const colorInputProps = {
-    id: 'color',
-    type: 'color',
-    value: colorState,
-    onChange: (event) => {
-      const newColor = event.target.value;
-      // Atualizar a cor usando a função debounced
-      debouncedUpdateColor(newColor);
+  const bannerProps = {
+    pnld,
+    color: colorState,
+    isLoggedIn,
+    setField: setColorState,
+    props
+  }
+ 
+  const saveBooks = async () => {
+    if (bookFields.books?.value?.length) {
+      const booksIds = bookFields.books.value.map(({ value }) => value);
+      const res = await axios.put(`/api/pnld`, { ...pnld, books: booksIds, });
+      if (res.status === 200) {
+        toast.success('PNLD atualizado com sucesso!');
+        setFields({ books: { value: booksDataToField(res.data.books) } });
+        setBooks(res.data.books)
+      } else {
+        toast.error("Erro ao atualizar PNLD. Chamar o Pedro.")
+        console.log(res)
+      }
     }
   }
 
   return (
     <S.PNLDOurWorks>
-      <S.PNLDOurWorksBanner color={colorState}>
-        <S.PNLDOurWorksBannerTitle color={colorState}>{title}</S.PNLDOurWorksBannerTitle>
-        
-        {isLoggedIn && (
-          <S.PNLDOurWorksBannerColor color={readableColor(darken(0.1, colorState))}>
-            <S.PNLDOurWorksBannerColorLabel color={readableColor(darken(0.1, colorState))} htmlFor='color'>
-              Clique para alterar a cor
-              <Input {...colorInputProps} />
-            </S.PNLDOurWorksBannerColorLabel>
-            <Button label="Salvar nova cor" variation="inverse" onClick={() => {}} />
-          </S.PNLDOurWorksBannerColor>
-        )}
-
-        <PnldHomeIcon />
-      </S.PNLDOurWorksBanner>
+      <PNLDBanner {...bannerProps} />
       <Editable {...props} textKey={`pnldOurWorksTitle`}><S.PNLDOurWorksTitle /></Editable>
+      <S.PNLDOurWorksInput>
+        <Field {...bookFields.books} />
+        <Button label="Salvar obras" variation="primary" onClick={saveBooks} />
+      </S.PNLDOurWorksInput>
       <S.PNLDOurWorksList>
-        {fakePnldBooks?.length ?
-          fakePnldBooks?.map((pnld) => (
-            <Link key={pnld._id} href={`/pnld/${pnld.name}`}>
-              <PNLDOurWorksCard pnld={pnld} {...pndlOurWorksCardProps} />
+        {books?.length ?
+          books.map((book) => (
+            <Link key={book._id} href={`/pnld/${pnld.name}/${book.name}`}>
+              <PNLDOurWorksCard book={book} color={color} {...pndlOurWorksCardProps} />
             </Link>
           )) : (
             <p>Sem PNLDs Cadastradas ainda...</p>

@@ -5,10 +5,12 @@ import PNLDOurWorks from '../../../components/PNLDOurWorks/PNLDOurWorks';
 import Pages from '../../../models/pages';
 import PNLD from '../../../models/pnld';
 import Text from '../../../models/text';
+import Book from '../../../models/book';
+import User from '../../../models/user';
 
 export default function EducatorPublication({ pnld, ...props }) {
-  const pnldObj = pnld ? JSON.parse(pnld) : {}
-  return <PNLDOurWorks {...pnldObj} {...props} />
+  const pnldObj = pnld ? JSON.parse(pnld) : {};
+  return <PNLDOurWorks pnld={pnldObj} {...props} />
 }
 
 
@@ -19,7 +21,16 @@ export async function getServerSideProps({ params: { name }, req, res }) {
   const textsArray = await Text.find({ page });
   const texts = textsArray.reduce((object, text) => Object.assign(object, { [text.textKey]: text.text }), {});
   
-  let pnldObj = await PNLD.findOne({ name });
+  let pnldObj = await PNLD.findOne({ name })
+    .populate({ path: 'books', model: Book })
+    .populate({ 
+      path: 'books', 
+      populate: { path: 'authors', model: User } 
+    })
+    .populate({ 
+      path: 'books', 
+      populate: { path: 'illustrators', model: User } 
+    })
   const pnld = pnldObj ? JSON.stringify(pnldObj) : {}
 
   const { TK } = getCookies({ req, res });

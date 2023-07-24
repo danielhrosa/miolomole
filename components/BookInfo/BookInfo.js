@@ -24,7 +24,7 @@ export default function BookInfo({ book }) {
   const [price, setPrice] = useState(priceFieldState);
   const [users, setUsers] = useState([]);
   const priceField = priceFieldFunction({ price, isLoggedIn })
-  const bookFields = bookInfoFieldsFunction({ fields, setFields, users });
+  const bookFields = bookInfoFieldsFunction({ fields, setFields });
   const formProps = { fields: bookFields, setFields, gridTemplate, isLoggedIn, striped: true }
 
   useEffect(() => {

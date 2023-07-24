@@ -1,5 +1,4 @@
-import styled, { css } from "styled-components";
-import { readableColor, darken } from "polished";
+import styled from "styled-components";
 
 export const PNLDOurWorks = styled.div`
   display: flex;
@@ -25,11 +24,14 @@ export const PNLDOurWorks = styled.div`
 export const PNLDOurWorksTitle = styled.h2`
   color: #333;
   font-family: Roboto Mono;
-  font-size: 48px;
+  font-size: 32px;
   font-style: normal;
   font-weight: 700;
   text-align: center;
   margin: 0;
+  @media (min-width: 768px) {
+    font-size: 48px;
+  }
 `;
 export const PNLDText = styled.p`
   color: #000;
@@ -56,48 +58,14 @@ export const PNLDOurWorksList = styled.div`
     justify-content: space-between;
   }
 `;
-export const PNLDOurWorksBanner = styled.div`
-  margin-bottom: 32px;
-  width: 100%;
-  height: 110px;
+export const PNLDOurWorksInput = styled.div`
   display: flex;
-  padding: 0px 47px;
-  justify-content: space-between;
-  align-items: center;
-  border-radius: 8px;
-  background-color: ${({ color, theme: { color: { brand } } }) => color || brand};
-`;
-export const PNLDOurWorksBannerTitle = styled.h1`
-  color: ${({ color }) => readableColor(darken(0.1, color))};
-  font-family: Inter;
-  font-size: 24px;
-  font-style: normal;
-  font-weight: 700;
-  line-height: 150%; /* 36px */
-  letter-spacing: -0.528px;
-`;
-export const PNLDOurWorksBannerColor = styled.div`
-  ${({ color }) => css`
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 16px;
-    button {
-      border: solid 2px ${color} !important;
-      color: ${color} !important;
-    }
-  `}
-`;
-export const PNLDOurWorksBannerColorLabel = styled.label`
-  ${({ color }) => {
-    return css`
-      display: flex;
-      align-items: center;
-      gap: 16px;
-      color: ${color};
-      > div {
-        border: solid 2px ${color} !important;
-        color: ${color} !important;
-      }
-  `}};
+  flex-direction: column;
+  width: 100%;
+  > div { width: 100%; }
+  gap: 16px;
+
+  /* @media (min-width: 768px) {
+    flex-direction: row;
+  } */
 `;

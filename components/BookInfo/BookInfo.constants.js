@@ -35,7 +35,7 @@ export const priceFieldFunction = ({ price }) => ({
   }
 })
   
-export const bookInfoFieldsFunction = ({ fields, isLoggedIn, users }) => ({
+export const bookInfoFieldsFunction = ({ fields, isLoggedIn }) => ({
   title: {
     ...fields.title,
     name: 'title',
