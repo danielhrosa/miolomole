@@ -8,15 +8,18 @@ import PNLD from '../../../../models/pnld';
 import Text from '../../../../models/text';
 import PNLDOurWorksBook from '../../../../components/PNLDOurWorksBook/PNLDOurWorksBook';
 
-export default function OurWorksBookPage({ book, pnld, ...props }) {
+export default function OurWorksBookPage({ book, pnld, books, ...props }) {
   const bookObj = book ? JSON.parse(book) : {};
   const pnldObj = pnld ? JSON.parse(pnld) : {};
+  const booksObj = books ? JSON.parse(books) : {};
 
-  return <PNLDOurWorksBook book={bookObj} pnld={pnldObj} {...props} />
+  return <PNLDOurWorksBook book={bookObj} pnld={pnldObj} books={booksObj} {...props} />
 }
 
 export async function getServerSideProps({ params: { name, bookName }, req, res }) {
   mongoose.connect(process.env.NEXT_PUBLIC_MONGO_DB_URL, { useUnifiedTopology: true, useFindAndModify: false, useCreateIndex: true, useNewUrlParser: true });
+
+  const page = 'PNLDOurWorksBook';
 
   const { TK } = getCookies({ req, res });
   const { _id: token } = jwt.decode(TK, process.env.SECRET_KEY) || { token: undefined };
@@ -37,11 +40,11 @@ export async function getServerSideProps({ params: { name, bookName }, req, res 
   const book = JSON.stringify(pnldObj.books.find(({ name }) => name.includes(bookName)));
   const books = JSON.stringify(pnldObj.books);
 
-  const textsArray = await Text.find({ page: 'book' });
+  const textsArray = await Text.find({ page });
   const texts = textsArray.reduce((object, text) => Object.assign(object, { [text.textKey]: text.text }), {});
 
   const pagesArray = await Pages.find(token ? {} : { isPrivate: { $ne: true } });
   const pages = !!pagesArray?.length ? JSON.stringify(pagesArray) : `[]`;
 
-  return { props: { pnld, book, books, texts, pages } }
+  return { props: { pnld, book, books, texts, page, pages } }
 }

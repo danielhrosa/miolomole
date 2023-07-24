@@ -21,11 +21,14 @@ var book = new Schema({
   video: { type: String },
   type: { type: String },
   isHidden: { type: Boolean },
-  assets: [{ 
+  assets: [{
     assetName: { type: String },
     assetType: { type: String },
     assetUrl: { type: String },
   }],
+  seeWork: { type: String },
+  teacherManual: { type: String },
+  pnldVideo: { type: String },
   highlight: { type: Schema.Types.ObjectId, ref: Highlight }
 }, { timestamps: true });
 

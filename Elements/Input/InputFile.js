@@ -11,7 +11,7 @@ import Button from '../Button';
 import Spinner from '../../components/Spinner';
 import getFileTypeByExtensions from '../../utils/getFileTypeByExtension';
 
-export default function InputFile({ variation, name, onChange, value, setFields, type, className, poster, parentName, i, isLoggedInHandler = true }) {
+export default function InputFile({ variation, name, onChange, value, setFields, type, className, poster, parentName, i, isLoggedInHandler = true, placeholder }) {
   const [loading, setLoading] = useState(false);
   const [progress, setProgress] = useState(0);
   const [fileName, setFileName] = useState(value);
@@ -97,7 +97,7 @@ export default function InputFile({ variation, name, onChange, value, setFields,
         <S.InputFileMini {...getRootProps()} hasFile={!!value} onClick={(e) => { e.stopPropagation() }}>
           <input {...getInputProps()} />
           {loading && <h4>Carregando...{progress}</h4>}
-          {!loading && <p> {fileName ? fileName : 'Insira o catalogo'}</p>}
+          {!loading && <p> {fileName ? fileName : placeholder || 'Insira o catalogo'}</p>}
           {fileName && <Button type="delete" variation="bigIcon" onClick={(e) => { e.stopPropagation(); deleteFile(); }} />}
         </S.InputFileMini>
       )

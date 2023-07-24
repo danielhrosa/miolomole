@@ -77,6 +77,7 @@ export default function Catalog({ catalogs, ...props }) {
   }
 
   const downloadFile = (link) => {
+    // TODO: aqui que vai o loading
     fetch(link)
       .then((res) => res.blob())
       .then((blob) => {
