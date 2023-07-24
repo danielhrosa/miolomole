@@ -1,13 +1,13 @@
 import Button from '../../../Elements/Button/Button';
 import * as S from './PNLDOurWorksCard.styles';
 
-export default function PNLDOurWorksCard({ book, color, isLoggedIn, handleDeletePnld, ...props }) {
+export default function PNLDOurWorksCard({ book, color, isLoggedIn, handleRemoveBookPnld, ...props }) {
 
   return (
     <S.PNLDOuWorksCard {...props}>
       {isLoggedIn && (
         <S.PNLDButtons onClick={(e) => { e.stopPropagation(); }}>
-          <Button onClick={(e) => { e.stopPropagation(); handleDeletePnld(book); }} type="delete" />
+          <Button onClick={(e) => { e.stopPropagation(); handleRemoveBookPnld(book); }} type="delete" />
         </S.PNLDButtons>
       )}
       <S.PNLDOurWorksCardTitle>{book.title}</S.PNLDOurWorksCardTitle>

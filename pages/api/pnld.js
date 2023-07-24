@@ -11,6 +11,8 @@ const pnldHandler = async (req, res) => {
 
   const { body, method } = req;
   let { _id, name, title, color, books } = body;
+  let args = body ? { ...body } : {};
+
   try {
     switch (method) {
       case 'GET':
@@ -28,7 +30,7 @@ const pnldHandler = async (req, res) => {
       case 'PUT':
         try {
           if (!name && !_id) { return res.status(400).json({ errorMessage: 'Parâmetros inválidos' }) };
-          const updatedModel = await updateModel({ _id, name, title, color, books }, PNLD);
+          const updatedModel = await updateModel(args, PNLD);
           await updatedModel.save();
 
           const updatedModelPopulated = await PNLD.findById(_id)

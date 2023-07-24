@@ -5,8 +5,10 @@ import toast from 'react-hot-toast';
 import Editable from '../Editable/Editable';
 import BookRelated from '../BookRelated/BookRelated';
 import Button from '../../Elements/Button/Button';
+import { useRouter } from 'next/router';
 
 export default function PNLDOurWorksBook({ pnld, book, isLoggedIn, ...props }) {
+  const router = useRouter();
   const bannerProps = {
     pnld,
     color: pnld?.color,
@@ -34,6 +36,7 @@ export default function PNLDOurWorksBook({ pnld, book, isLoggedIn, ...props }) {
         <PNLDBanner {...bannerProps} />
         <S.PNLDOurWorksBookTitle>{book.title}</S.PNLDOurWorksBookTitle>
         <S.PNLDOurWorksBookCode color={pnld?.color}>{book?.pnldCode || 'PNLD CODE NÃO CADASTRADO'}</S.PNLDOurWorksBookCode>
+        {isLoggedIn && <Button style={{ marginTop: '32px' }} label="Editar livro" variation="primary" onClick={() => router.push(`/livros/${book.name}`)} />}
         <S.PNLDOurWorksBookSection>
           <S.PNLDOurWorksBookCover src={book.image} />
           <S.PNLDOurWorksBookSectionButtons>

@@ -20,6 +20,7 @@ export const PNLDOuWorksCard = styled.div`
   }
 
   @media (min-width: 1024px) {
+    min-width: 400px;
     width: 48%;
   }
 `;

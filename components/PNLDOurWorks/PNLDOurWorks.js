@@ -18,7 +18,7 @@ export default function PNLDOurWorks({ pnld, ...props }) {
   const [colorState, setColorState] = useState(color);
   const [fields, setFields] = useState(() => ({ books: { value: [] } }));
   const [books, setBooks] = useState();
-  
+
   const fieldProps = ({ fields, setFields }) => ({
     books: {
       ...fields.books,
@@ -36,10 +36,10 @@ export default function PNLDOurWorks({ pnld, ...props }) {
       setFields,
       loadOptions: (query, callback) => {
         axios.get('/api/livros')
-        .then((res) => res && callback(res.data
-          .filter((option) => option.title?.toLowerCase().includes(query?.toLowerCase()))
-          .map((option) => ({ instanceId: option._id, label: option.title, value: option._id }))
-        ))
+          .then((res) => res && callback(res.data
+            .filter((option) => option.title?.toLowerCase().includes(query?.toLowerCase()))
+            .map((option) => ({ instanceId: option._id, label: option.title, value: option._id }))
+          ))
       }
     }
   })
@@ -54,16 +54,18 @@ export default function PNLDOurWorks({ pnld, ...props }) {
     }
   }, [pnld?.books, pnld?.color])
 
-  const handleDeletePnld = async ({ _id, title }) => {
-    const confirm = window.confirm(`Tem certeza que deseja deletar "${title}"?`)
+  const handleRemoveBookPnld = async ({ _id, title }) => {
+    const confirm = window.confirm(`Tem certeza que deseja remove "${title}"?`)
     if (!confirm) { return false };
-    setPnlds((oldPnlds) => [...oldPnlds].filter((pnld) => pnld._id !== _id))
-    await axios.delete(`/api/pnld`, { data: { _id } })
+    const filteredbooks = books.filter((book) => book._id !== _id)
+    setBooks(filteredbooks)
+    const filteredbooksIds = filteredbooks.map((book) => book._id)
+    await axios.put(`/api/pnld`, { ...pnld, books: filteredbooksIds })
       .catch((err) => { toast.error(`Error ${err.response.data.errorMessage || ''}`) })
   }
 
   const pndlOurWorksCardProps = {
-    handleDeletePnld,
+    handleRemoveBookPnld,
     isLoggedIn
   }
 
@@ -74,7 +76,7 @@ export default function PNLDOurWorks({ pnld, ...props }) {
     setField: setColorState,
     props
   }
- 
+
   const saveBooks = async () => {
     if (bookFields.books?.value?.length) {
       const booksIds = bookFields.books.value.map(({ value }) => value);
@@ -97,7 +99,7 @@ export default function PNLDOurWorks({ pnld, ...props }) {
       {isLoggedIn && (
         <S.PNLDOurWorksInput>
           <Field {...bookFields.books} />
-          <Button label="Salvar obras" variation="primary" onClick={saveBooks} />
+          <Button label="Salvar obras" color={colorState} variation="primary" onClick={saveBooks} />
         </S.PNLDOurWorksInput>
       )}
       <S.PNLDOurWorksList>

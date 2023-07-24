@@ -7,13 +7,15 @@ import User from '../../../../models/user';
 import PNLD from '../../../../models/pnld';
 import Text from '../../../../models/text';
 import PNLDOurWorksBook from '../../../../components/PNLDOurWorksBook/PNLDOurWorksBook';
+import { useAppProvider } from '../../../../store/appProvider';
 
 export default function OurWorksBookPage({ book, pnld, books, ...props }) {
+  const { isLoggedIn } = useAppProvider();
   const bookObj = book ? JSON.parse(book) : {};
   const pnldObj = pnld ? JSON.parse(pnld) : {};
   const booksObj = books ? JSON.parse(books) : {};
 
-  return <PNLDOurWorksBook book={bookObj} pnld={pnldObj} books={booksObj} {...props} />
+  return <PNLDOurWorksBook book={bookObj} pnld={pnldObj} books={booksObj} isLoggedIn={isLoggedIn} {...props} />
 }
 
 export async function getServerSideProps({ params: { name, bookName }, req, res }) {
