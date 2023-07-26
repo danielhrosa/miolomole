@@ -58,7 +58,7 @@ export default function PNLDOurWorksBook({ pnld, book, isLoggedIn, ...props }) {
             ))}
           </S.PNLDOurWorksBookUsersList>
         </S.PNLDOurWorksBookUsers>
-        <BookRelated textKey="PNLDOtherWorks" {...props} />
+        <BookRelated pnld={pnld.name} textKey="PNLDOtherWorks" {...props} />
       </Container>
     </S.PNLDOurWorksBook>
   )

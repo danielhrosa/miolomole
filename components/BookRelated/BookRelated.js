@@ -5,11 +5,20 @@ import * as S from './BookRelated.style';
 import Button from '../../Elements/Button';
 import { useEffect, useState } from 'react';
 
-export default function BookRelated({ textKey = "bookRelatedTitle", ...props }) {
+export default function BookRelated({ textKey = "bookRelatedTitle", pnld, ...props }) {
   const [books, setBooks] = useState();
   const router = useRouter();
   const { name } = router.query
+
   useEffect(() => props.books && setBooks(props.books), [props])
+
+  const seeMore = (name) => {
+    if(pnld) {
+      router.push(`/pnld/${pnld}/${name}`);
+    } else {
+      router.push(`/livros/${name}`)
+    }
+  }
 
   return (
     <S.BookRelated>
@@ -20,7 +29,7 @@ export default function BookRelated({ textKey = "bookRelatedTitle", ...props }) 
             <S.BookRelatedCard key={book._id}>
               <S.BookRelatedCover img={book?.image || 'https://placekitten.com/400/400'} />
               <S.BookRelatedItemTitle>{book.title}</S.BookRelatedItemTitle>
-              <Button label='Ver mais' variation="secondary" onClick={() => router.push(`/livros/${book.name}`)} />
+              <Button label='Ver mais' variation="secondary" onClick={() => seeMore(book.name)} />
             </S.BookRelatedCard>
           ))}
         </S.RelatedBooks>
