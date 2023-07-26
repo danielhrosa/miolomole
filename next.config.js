@@ -3,6 +3,9 @@ const withImages = require('next-images');
 module.exports = withImages({
   esModule: true,
   target: "serverless",
+  images: {
+    domains: ['s3-sa-east-1.amazonaws.com'],
+  },
   async headers() {
     return [
       {

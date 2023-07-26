@@ -5,7 +5,7 @@ import * as S from './BookRelated.style';
 import Button from '../../Elements/Button';
 import { useEffect, useState } from 'react';
 
-export default function BookRelated(props) {
+export default function BookRelated({ textKey = "bookRelatedTitle", ...props }) {
   const [books, setBooks] = useState();
   const router = useRouter();
   const { name } = router.query
@@ -14,7 +14,7 @@ export default function BookRelated(props) {
   return (
     <S.BookRelated>
       <Container>
-        <Editable {...props} textKey="bookRelatedTitle"><S.RelatedTitle /></Editable>
+        <Editable {...props} textKey={textKey}><S.RelatedTitle /></Editable>
         <S.RelatedBooks>
           {books?.sort(() => .5 - Math.random()).filter(((book) => book.name !== name)).slice(0, 4).map((book) => (
             <S.BookRelatedCard key={book._id}>

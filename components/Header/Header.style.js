@@ -4,6 +4,7 @@ export const Header = styled.div`
   position: fixed;
   background-color: ${({ theme: { color: { brandWhite }}}) => brandWhite };
   width: 100%;
+  height: 70px;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -38,17 +39,18 @@ export const Header = styled.div`
       }
     }
   }
-  @media screen{
-    @media (min-width: 1024px){
-      > a {
-        position: initial;
-        > svg {
-          position: relative;
-          height: 80px;
-          width: 140px;
-          top: 0;
-          left: 10px;
-        }
+
+  @media (min-width: 1024px){
+  height: 94px;
+
+    > a {
+      position: initial;
+      > svg {
+        position: relative;
+        height: 80px;
+        width: 140px;
+        top: 0;
+        left: 10px;
       }
     }
   }

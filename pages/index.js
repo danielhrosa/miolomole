@@ -40,7 +40,7 @@ export async function getServerSideProps({ req, res }) {
   let itemsArray = await User.find({ hideFromList: { $ne: true } });
   itemsArray = itemsArray.filter((item) => !!item?.occupation?.length && item.occupation?.some((occupation) => ['illustrator', 'writer'].includes(occupation)))
   const items = itemsArray ? JSON.stringify(itemsArray) : {}
-  const highlightsArray = await Highlight.find({ isActive: true });
+  const highlightsArray = await Highlight.find({ isActive: true, page: 'home' });
   const highlights = !!highlightsArray.length ? JSON.stringify(highlightsArray) : '[]';
   const catalogsArray = await CatalogModel.find({});
   const catalogs = !!catalogsArray?.length ? JSON.stringify(catalogsArray) : `[]`;

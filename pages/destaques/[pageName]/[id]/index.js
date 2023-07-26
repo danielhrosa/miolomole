@@ -1,9 +1,9 @@
 import mongoose from 'mongoose';
-import HighlightModel from '../../../models/highlight';
-import Pages from '../../../models/pages';
-import Highlight from '../../../components/Highlight';
-import { useAppProvider } from '../../../store/appProvider';
-import PageJustForAdmin from '../../../components/PageJustForAdmin';
+import HighlightModel from '../../../../models/highlight';
+import Pages from '../../../../models/pages';
+import Highlight from '../../../../components/Highlight';
+import { useAppProvider } from '../../../../store/appProvider';
+import PageJustForAdmin from '../../../../components/PageJustForAdmin';
 import { getCookies } from 'cookies-next';
 import jwt from 'jsonwebtoken';
 

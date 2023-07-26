@@ -10,7 +10,7 @@ import { useAppProvider } from '../../store/appProvider';
 import BookComponent from '../BookComponent';
 import coverDefault from '../../images/coverDefault.svg'
 
-export default function EditableImage({ children, page, texts, textKey, book }) {
+export default function EditableImage({ children, page, texts, textKey, book, pnld }) {
   const { isLoggedIn } = useAppProvider();
   const [edit, setEdit] = useState(false);
   let initialLink = (!!texts && !!textKey) && !!texts[textKey] ? texts[textKey] : coverDefault
@@ -48,7 +48,7 @@ export default function EditableImage({ children, page, texts, textKey, book }) 
 
   const saveImage = async () => {
     if (!!book) {
-      await axios.put(`/api/livros`, { _id: book._id, image: newLink }).catch((err) => console.log(err));
+      await axios.put(`/api/livros`, { _id: book._id, image: newLink, pnld }).catch((err) => console.log(err));
       setLink(newLink);
       setEdit(false);
     } else {

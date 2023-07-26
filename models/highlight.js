@@ -5,6 +5,8 @@ var highlight = new Schema({
   image: { type: String },
   title: { type: String },
   description: { type: String },
+  page: { type: String },
+  color: { type: String }
 }, { timestamps: true });
 
 mongoose.models = {};

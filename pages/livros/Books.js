@@ -1,10 +1,9 @@
-import pt from "../../i18n/pt";
 import { useRouter } from 'next/router';
 import AboutUsSlider from '../../components/AboutUsSlider';
 import LatestArticles from "../../components/LatestArticles";
 import OurProductsList from "../../components/OurProductsList";
-import HomeLatestArticles from "../../components/HomeLatestArticles";
 import SpotlightBooksJumbotron from "../../components/SpotlightBooksJumbotron";
+import pt from "../../i18n/pt";
 import { useAppProvider } from "../../store/appProvider";
 
 export default function BooksList(props) {

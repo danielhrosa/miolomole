@@ -16,16 +16,20 @@ import { bookInfoFieldsFunction, bookInfoFieldsState, priceFieldState, priceFiel
     refact the fields state manipulation removing redundant states and unifying
 */
 
-export default function BookInfo({ book }) {
+export default function BookInfo({ book, pnld }) {
   const router = useRouter();
-  const { name } = router.query;
+  let { name, bookName } = router.query;
   const { isLoggedIn } = useAppProvider();
   const [fields, setFields] = useState(bookInfoFieldsState);
   const [price, setPrice] = useState(priceFieldState);
   const [users, setUsers] = useState([]);
   const priceField = priceFieldFunction({ price, isLoggedIn })
-  const bookFields = bookInfoFieldsFunction({ fields, setFields, users });
+  const bookFields = bookInfoFieldsFunction({ fields, setFields });
   const formProps = { fields: bookFields, setFields, gridTemplate, isLoggedIn, striped: true }
+  
+  if(pnld) {
+    name = bookName;
+  }
 
   useEffect(() => {
     axios.get('/api/users', { params: { filterOccupation: true } })
@@ -56,19 +60,19 @@ export default function BookInfo({ book }) {
         if (variables.title === '') {
           toast.error('Por favor preencha o titulo')
         } else {
-          const res = await axios.post('/api/livros', { ...variables })
+          const res = await axios.post('/api/livros', { ...variables, pnld })
           if (res.status === 200) {
-            router.push(`/livros/${res.data.bookCreated.name}`)
+            router.back()
             toast.success('Cadastro realizado com sucesso!');
           } else { toast.error(res.data.errorMessage); }
         }
       } catch (err) { console.log(err.response.data.errorMessage); toast.error(err.response.data.errorMessage) }
     } else {
       try {
-        const res = await axios.put('/api/livros', { ...variables, name })
+        const res = await axios.put('/api/livros', { ...variables, name, pnld })
         if (res.status === 200) {
           toast.success('Cadastro atualizado com sucesso!');
-          router.push(`/livros/${res.data.name}`)
+          router.back()
         } else { console.log(res) }
       } catch (err) { console.log(err.response) }
     }

@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 
 export const Highlights = styled.div`
+  width: 100%;
   margin-top: 10%;
 `
 
@@ -62,8 +63,7 @@ export const Jumbotron = styled.div`
     right: 15px;
     cursor: pointer;
   }
- 
-`
+`;
 export const Description = styled.div`
   font-family: Montserrat;
   font-weight: 500;
@@ -82,4 +82,14 @@ export const JumboTitle = styled.div`
   color: #FFFFFF;
   margin-left: 30px;
   filter: drop-shadow(2px 4px 6px black);
-`
+`;
+export const BackButton = styled.div`
+  left: 15px;
+  width: 20px;
+  height: 20px;
+  border-bottom: 3px solid #333;
+  border-left: 3px solid #333;
+  transform: rotate(45deg);
+
+  cursor: pointer;
+`;

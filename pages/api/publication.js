@@ -27,7 +27,6 @@ const publicationHandler = async (req, res) => {
               .populate({ path: 'area', model: PublicationArea })
               .populate({ path: 'comments', model: Comment });
 
-            console.log(publication)
             return res.status(200).json(publication);
           }
         } catch (err) { return res.status(500).end() };

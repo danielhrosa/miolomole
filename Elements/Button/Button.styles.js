@@ -245,6 +245,28 @@ const bigIcon = css`
   }
 `
 
+const file = css`
+  display: flex;
+  padding: 16px 32px;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+
+  color: #3C6ED0;
+  text-align: center;
+  font-family: Roboto;
+  font-size: 29px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 33px; /* 113.793% */
+
+  border-radius: 8px;
+  background: #EDF8FF;
+
+  /* ButtonHover */
+  box-shadow: 0px 3px 10px 0px rgba(32, 132, 217, 0.50);
+`
+
 const button = css`
   grid-area: ${({ name }) => name};
   text-transform: uppercase;
@@ -316,6 +338,10 @@ const button = css`
 
   &.rounded {
     ${rounded}
+  }
+
+  &.file {
+    ${file}
   }
 `
 

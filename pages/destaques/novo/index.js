@@ -6,7 +6,7 @@ import mongoose from 'mongoose'
 import { getCookies } from 'cookies-next';
 import jwt from 'jsonwebtoken';
 
-export default function NewHighlight(){
+export default function NewHighlight() {
   const { isLoggedIn } = useAppProvider();
   return isLoggedIn ? <Highlight /> : <PageJustForAdmin />
 }
@@ -16,8 +16,8 @@ export async function getServerSideProps({ req, res }) {
   const { TK } = getCookies({ req, res });
   const { _id: token } = jwt.decode(TK, process.env.SECRET_KEY) || { token: undefined };
 
-  const pagesArray = await Pages.find(token ? {} : { isPrivate: { $ne: true }});
+  const pagesArray = await Pages.find(token ? {} : { isPrivate: { $ne: true } });
   const pages = !!pagesArray?.length ? JSON.stringify(pagesArray) : `[]`;
 
-  return { props: { users, pages} };
+  return { props: { pages } };
 }

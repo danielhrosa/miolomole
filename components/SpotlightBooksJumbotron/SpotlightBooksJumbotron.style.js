@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-export const HomeJumbotronContainer = styled.div`
+export const SpotilightJumbotronContainer = styled.div`
   width: 100%;
   .slick-dots{
     ul{
@@ -37,7 +37,7 @@ export const HomeJumbotronContainer = styled.div`
   }
   
 `
-export const HomeJumbotron = styled.div`
+export const SpotLightJumbotron = styled.div`
   background-image: url(${({ img }) => img });
   height: 400px;
   background-size: cover;

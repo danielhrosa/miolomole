@@ -5,32 +5,33 @@ import Button from '../../Elements/Button';
 import { useAppProvider } from '../../store/appProvider';
 import parser from 'html-react-parser';
 
-export default function Editable({ children, page, texts, textKey, onClick }) {
+export default function Editable({ children, page, texts, textKey, onClick, model, field, value, _id }) {
   const { isLoggedIn } = useAppProvider()
   const [edit, setEdit] = useState(false);
-  const initialText = (!!texts && !!textKey) && !!texts[textKey] ? texts[textKey] : (page !== 'where-to-buy' || isLoggedIn) ? 'Insira um conteúdo' : '';
+  let initialText = (!!texts && !!textKey) && !!texts[textKey] ? texts[textKey] : (page !== 'where-to-buy' || isLoggedIn) ? 'Insira um conteúdo' : '';
+
+  if(model && field && _id) {
+    initialText = value;
+  }
+
   const [text, setText] = useState(initialText);
   const [newText, setNewText] = useState(initialText);
   const ref = useRef();
   useEffect(() => edit && ref.current.focus(), [edit])
 
   const onChange = ({ target }) => setNewText(target.value)
-  const onBlur = (e) => {
-    if (
-      e.relatedTarget?.id !== `${textKey}EditButton` ||
-      e.relatedTarget?.id !== `${textKey}ConfirmButton` ||
-      e.relatedTarget?.id !== `${textKey}CancelButton`
-    ) {
-      if (!confirm('Salvar alteração?')) { setNewText(text); setEdit(false) } else { saveText() }
-    }
-  }
+
   const saveText = async () => {
-    await axios.put(`/api/textos`, { textKey, page, text: newText, editedBy: 'browser' }).catch((err) => console.log(err))
+    if(model && field && _id) {
+      await axios.put(`/api/${model}`, { _id, [field]: newText }).catch((err) => console.log(err))
+    } else {
+      await axios.put(`/api/textos`, { textKey, page, text: newText, editedBy: 'browser' }).catch((err) => console.log(err))
+    }
     setText(newText)
     setEdit(false)
   }
 
-  const inputProps = { value: newText, ref, edit, onChange, /* onBlur, */ styles: children.type.componentStyle.rules }
+  const inputProps = { value: newText, ref, edit, onChange, styles: children.type.componentStyle.rules }
 
   return (
     <S.Editable isLoggedIn={isLoggedIn} onClick={onClick}>
