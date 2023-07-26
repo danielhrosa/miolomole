@@ -29,7 +29,7 @@ export const PNLDFormFieldsFunction = ({ fields, setFields }) => ({
   color: {
     ...fields.color,
     name: 'color',
-    label: 'Cor do botão',
+    label: 'Cor',
     type: 'color',
     onChange: ({ target: { name, value } }) => {
       setFields((oldFields) => {
@@ -38,25 +38,6 @@ export const PNLDFormFieldsFunction = ({ fields, setFields }) => ({
         return newFields;
       })
     }
-  },
-  parentPnld: {
-    ...fields.parentPnld,
-    name: 'parentPnld',
-    label: 'PNLD Pai:',
-    type: 'select',
-    loadEmpty: true,
-    isSearchable: true,
-    isCreatable: true,
-    loadOptions: (query, callback) => {
-      axios.get('/api/pnld')
-        .then((res) => res && callback(res.data
-          .filter((option) => option.title
-            ?.toLowerCase()
-            ?.normalize("NFD")
-            ?.includes(query?.toLowerCase()))
-          .map((option) => ({ ...option, instanceId: option._id, label: option.title }))
-        ))
-    },
   },
   hide: {
     ...fields.hide,

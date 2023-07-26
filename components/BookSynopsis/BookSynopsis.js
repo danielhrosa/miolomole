@@ -11,9 +11,9 @@ import mapFieldsToData from '../../utils/mapFieldsToData';
 import mapDataToFields from '../../utils/mapDataToFields';
 import toast, { Toaster } from 'react-hot-toast';
 
-export default function BookSynopsis({ book, ...props }) {
+export default function BookSynopsis({ book, pnld }) {
   const router = useRouter();
-  const { name } = router.query;
+  const { bookName: name } = router.query;
   const { isLoggedIn } = useAppProvider();
   const [fields, setFields] = useState(bookSinopsisFieldsState);
   const synopsisInput = bookSinopsisFieldsFunction({ fields, isLoggedIn })
@@ -29,11 +29,11 @@ export default function BookSynopsis({ book, ...props }) {
   const saveInfos = async () => {
     const variables = mapFieldsToData(synopsisInput)
     if (!name) {
-      const res = await axios.post('/api/livros', { ...variables, name })
+      const res = await axios.post('/api/livros', { ...variables, name, pnld })
       if (res.status === 200) { toast.success('Cadastro realizado com sucesso!') }
       else { alert(res?.data?.response) }
     } else {
-      const res = await axios.put('/api/livros', { ...variables, name })
+      const res = await axios.put('/api/livros', { ...variables, name, pnld })
       if (res.status === 200) { toast.success('Cadastro atualizado com sucesso!') }
       else { alert(res?.data?.response) }
     }

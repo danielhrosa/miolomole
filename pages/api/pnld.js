@@ -10,7 +10,7 @@ const pnldHandler = async (req, res) => {
   await connectToDatabase();
 
   const { body, method } = req;
-  let { _id, name, title, color, books } = body;
+  let { _id, name, title, hide, color, books } = body;
   let args = body ? { ...body } : {};
 
   try {
@@ -31,7 +31,16 @@ const pnldHandler = async (req, res) => {
         try {
           if (!name && !_id) { return res.status(400).json({ errorMessage: 'Parâmetros inválidos' }) };
           const updatedModel = await updateModel(args, PNLD);
-          await updatedModel.save();
+          await PNLD.findOneAndReplace({ _id }, { 
+            hide: updatedModel.hide,
+            books: updatedModel.books,
+            _id: updatedModel._id,
+            name: updatedModel.name,
+            title: updatedModel.title,
+            color: updatedModel.color,
+            createdAt: updatedModel.createdAt,
+            updatedAt: updatedModel.updatedAt,
+           });
 
           const updatedModelPopulated = await PNLD.findById(_id)
             .populate({ path: 'books', model: Book })
@@ -50,7 +59,7 @@ const pnldHandler = async (req, res) => {
         try {
           const existedPnld = await PNLD.findOne({ name });
           if (!!existedPnld) { return res.status(409).json({ errorMessage: 'PNLD ja existe' }) };
-          const pnld = await createModel({ name, title, color, books }, PNLD);
+          const pnld = await createModel({ name, title, color, hide, books }, PNLD);
           return res.status(200).json(pnld);
         } catch (err) { console.log(err); break };
       case 'DELETE':

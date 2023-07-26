@@ -1,7 +1,7 @@
 import { getCookies } from 'cookies-next';
 import jwt from 'jsonwebtoken';
 import mongoose from 'mongoose';
-import Book from '../../../../models/book';
+import BookPnld from '../../../../models/bookPnld';
 import Pages from '../../../../models/pages';
 import User from '../../../../models/user';
 import PNLD from '../../../../models/pnld';
@@ -27,7 +27,7 @@ export async function getServerSideProps({ params: { name, bookName }, req, res 
   const { _id: token } = jwt.decode(TK, process.env.SECRET_KEY) || { token: undefined };
 
   const pnldObj = await PNLD.findOne({ name })
-    .populate({ path: 'books', model: Book })
+    .populate({ path: 'books', model: BookPnld })
     .populate({
       path: 'books',
       populate: { path: 'authors', model: User }

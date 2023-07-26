@@ -8,7 +8,7 @@ import { useAppProvider } from '../../store/appProvider';
 import axios from 'axios';
 import Button from '../../Elements/Button/Button';
 
-export default function PNLD({ ...props }) {
+export default function PNLD(props) {
   const { isLoggedIn } = useAppProvider();
   const [pnlds, setPnlds] = useState([]);
 
@@ -30,9 +30,9 @@ export default function PNLD({ ...props }) {
       <Editable {...props} textKey="pnldTitle"><S.PNLDTitle /></Editable>
       <Editable {...props} textKey="pnldDescription"><S.PNLDText /></Editable>
       <Editable {...props} textKey="pnldSubtitle"><S.PNLDSubTitle /></Editable>
-      <Link href="/pnld/novo">
+      {isLoggedIn && <Link href="/pnld/novo">
         <S.Button variation="primary" label="+ Adicionar" />
-      </Link>
+      </Link>}
       <S.PNLDList>
         {pnlds?.length ?
           pnlds?.map((pnld) => (

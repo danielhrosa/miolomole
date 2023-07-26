@@ -12,8 +12,8 @@ export default function BookComponent(props){
     <S.BookComponent>
       <BookSection {...props} />
       <BookSynopsis {...props} />
-      {isLoggedIn && <PNLDAssets {...props} />}
-      <BookRelated {...props} />
+      {(isLoggedIn && props?.pnld) && <PNLDAssets {...props} />}
+      {!props?.pnld && <BookRelated {...props} />}
     </S.BookComponent>
   )
 }

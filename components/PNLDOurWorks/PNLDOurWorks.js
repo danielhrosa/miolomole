@@ -59,6 +59,7 @@ export default function PNLDOurWorks({ pnld, ...props }) {
     if (!confirm) { return false };
     const filteredbooks = books.filter((book) => book._id !== _id)
     setBooks(filteredbooks)
+    setFields({ books: { value: booksDataToField(filteredbooks) } });
     const filteredbooksIds = filteredbooks.map((book) => book._id)
     await axios.put(`/api/pnld`, { ...pnld, books: filteredbooksIds })
       .catch((err) => { toast.error(`Error ${err.response.data.errorMessage || ''}`) })

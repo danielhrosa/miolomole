@@ -36,7 +36,7 @@ export default function PNLDOurWorksBook({ pnld, book, isLoggedIn, ...props }) {
         <PNLDBanner {...bannerProps} />
         <S.PNLDOurWorksBookTitle>{book.title}</S.PNLDOurWorksBookTitle>
         <S.PNLDOurWorksBookCode color={pnld?.color}>{book?.pnldCode || 'PNLD CODE NÃO CADASTRADO'}</S.PNLDOurWorksBookCode>
-        {isLoggedIn && <Button style={{ marginTop: '32px' }} label="Editar livro" variation="primary" onClick={() => router.push(`/livros/${book.name}`)} />}
+        {isLoggedIn && <Button style={{ marginTop: '32px' }} label="Editar obra" variation="primary" onClick={() => router.push(`/pnld/${pnld.name}/${book.name}/editar`)} />}
         <S.PNLDOurWorksBookSection>
           <S.PNLDOurWorksBookCover src={book.image} />
           <S.PNLDOurWorksBookSectionButtons>

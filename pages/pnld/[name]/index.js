@@ -5,7 +5,7 @@ import PNLDOurWorks from '../../../components/PNLDOurWorks/PNLDOurWorks';
 import Pages from '../../../models/pages';
 import PNLD from '../../../models/pnld';
 import Text from '../../../models/text';
-import Book from '../../../models/book';
+import BookPnld from '../../../models/bookPnld';
 import User from '../../../models/user';
 
 export default function EducatorPublication({ pnld, ...props }) {
@@ -22,7 +22,7 @@ export async function getServerSideProps({ params: { name }, req, res }) {
   const texts = textsArray.reduce((object, text) => Object.assign(object, { [text.textKey]: text.text }), {});
   
   let pnldObj = await PNLD.findOne({ name })
-    .populate({ path: 'books', model: Book })
+    .populate({ path: 'books', model: BookPnld })
     .populate({ 
       path: 'books', 
       populate: { path: 'authors', model: User } 
