@@ -177,17 +177,12 @@ module.exports = withImages({
         destination: '/livros/flores-sonhadas/audioacessivel',
         permanent: true,
       },
+      {
+        source: '/o-seu-menino-versao-audioacessivel',
+        destination: '/livros/o-seu-menino/audioacessivel',
+        permanent: true,
+      },
     ]
   },
-  // webpack(config, { isServer }) {
-  //   if (!isServer) {
-  //     config.output = {
-  //       ...config.output,
-  //       hashFunction: 'xxhash64', // Substitua pela função de hash desejada
-  //     };
-  //   }
-
-  //   return config;
-  // }
 });
 
