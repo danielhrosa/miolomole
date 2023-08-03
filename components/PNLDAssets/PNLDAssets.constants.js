@@ -25,7 +25,7 @@ export const PNLDAssetsFieldsFunction = ({ fields, isLoggedIn }) => ({
   pnldVideo: {
     ...fields.pnldVideo,
     name: 'pnldVideo',
-    label: 'Videos',
+    label: 'Video',
     placeholder: 'Insira o arquivo',
     type: 'asset',
     variation: 'mini',

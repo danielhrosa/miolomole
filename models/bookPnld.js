@@ -28,7 +28,7 @@ var bookPnld = new Schema({
   }],
   seeWork: { type: String },
   teacherManual: { type: String },
-  pnldVideos: [{ type: String }],
+  pnldVideo: { type: String },
   highlight: { type: Schema.Types.ObjectId, ref: Highlight }
 }, { timestamps: true });
 
