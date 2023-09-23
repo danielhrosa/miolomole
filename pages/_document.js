@@ -1,5 +1,6 @@
 import Document, { Head, Html, Main, NextScript } from 'next/document';
 import { ServerStyleSheet } from 'styled-components';
+import Pixel from '../components/Pixel/facebook/pixel-1';
 
 export default class MyDocument extends Document {
 
@@ -32,6 +33,7 @@ export default class MyDocument extends Document {
           />
           <meta property='og:url' content='https://www.editoramiolomole.com/' />
           <meta property='og:type' content='website' />
+          <Pixel name='FACEBOOK_PIXEL_1' />
         </Head>
         <body>
         {/* <noscript
