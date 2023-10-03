@@ -94,12 +94,12 @@ export default function BookInfo({ book, pnld }) {
     <S.BookInfo>
       <Form {...formProps} />
       <S.BottomWrapper>
-        <S.Price>
+        {!pnld && <S.Price>
           <S.Label>Capa comum</S.Label>
           <S.PriceText><S.PriceLabel>{dynamicText(price.price?.value)}</S.PriceLabel><FieldEditable {...priceField.price} isLoggedIn={isLoggedIn} setFields={setPrice} /></S.PriceText>
           <S.Label>Com experiência digital</S.Label>
           <S.PriceText><S.PriceLabel>{dynamicText(price.digitalExperiencePrice?.value)}</S.PriceLabel><FieldEditable {...priceField.digitalExperiencePrice} isLoggedIn={isLoggedIn} setFields={setPrice} /></S.PriceText>
-        </S.Price>
+        </S.Price>}
         <Button id="save" {...saveButton} />
       </S.BottomWrapper>
       <Toaster position="bottom-right" reverseOrder={false} />
