@@ -53,7 +53,7 @@ export const usuariosFieldsFunction = ({ fields, setFields }) => ({
     loadOptions: (query, callback) => {
       axios.get('/api/users').then((res) => {
         res && callback(res.data
-          .filter((option) => option?.userFullName?.toLowerCase().includes(query.toLowerCase()) || option.userName.toLowerCase().includes(query.toLowerCase()))
+          .filter((option) => option?.userFullName?.toLowerCase()?.normalize("NFD").includes(query.toLowerCase()?.normalize("NFD")) || option.userName.toLowerCase()?.normalize("NFD").includes(query.toLowerCase()?.normalize("NFD")))
           .map((option) => ({ instanceId: option._id, label: option.userFullName + ' já cadastrado!' }))
         )
       })

@@ -45,6 +45,12 @@ export default function PNLDOurWorksBook({ pnld, book, isLoggedIn, ...props }) {
             <Button variation="file" label="Vídeo" onClick={() => !book.pnldVideo ? toast.error("Sem arquivo carregado") : downloadFile(book.pnldVideo, "Vídeo")} />
           </S.PNLDOurWorksBookSectionButtons>
         </S.PNLDOurWorksBookSection>
+        <S.PNLDOurWorksBookInfosSection>
+          <span>Páginas: </span>{book.pages}<br />
+          <span>Indicação etária:</span> {book.ageIndication}<br />
+          <span>Gênero: </span>{book.genre}<br />
+          <span>Temas: </span>{book.themes}<br />
+        </S.PNLDOurWorksBookInfosSection>
         <S.PNLDOurWorksBookDescription>{book.synopsis}</S.PNLDOurWorksBookDescription>
         <Editable {...props} textKey="PNLDOurWorksBookUsersTitle"><S.PNLDOurWorksBookUsersTitle /></Editable>
         <S.PNLDOurWorksBookUsers>

@@ -14,7 +14,7 @@ export async function getServerSideProps({ req, res }) {
   const { TK } = getCookies({ req, res });
   const { _id: token } = jwt.decode(TK, process.env.SECRET_KEY) || { token: undefined };
 
-  const publicationsArray = await Publication.find(token ? {} : { hide: { $ne: true } });
+  const publicationsArray = await Publication.find(token ? {} : { hide: { $ne: true } }).sort({ _id: -1 });
   const publicationsObj = publicationsArray ? JSON.stringify(publicationsArray) : `[]`
   
   const publicationsAreasArray = await PublicationArea.find();

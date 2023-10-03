@@ -17,7 +17,6 @@ export default function Footer() {
             <S.FooterNavItem name="logo"><Logo /></S.FooterNavItem>
             <FooterNav />
             <ContactSocial />
-            <Partners />
           </S.FooterNavList>
         </S.FooterNav>
 

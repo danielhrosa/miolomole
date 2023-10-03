@@ -44,7 +44,7 @@ export const educatorFieldsFunction = ({ fields, setFields }) => ({
         .filter((option) => option.title
           ?.toLowerCase()
           ?.normalize("NFD")
-          ?.includes(query?.toLowerCase()))
+          ?.includes(query?.toLowerCase()?.normalize("NFD")))
         .map((option) => ({ ...option, instanceId: option._id, label: option.title }))
       ))
     }

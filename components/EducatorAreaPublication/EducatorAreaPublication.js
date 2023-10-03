@@ -38,6 +38,7 @@ export default function EducatorAreaPublication({ publication }) {
           <S.EducatorAreaPublicationBackButton onClick={() => router.push('/blog')} />
           {isLoggedIn && <Button type="edit" onClick={() => router.push(`/blog/${publication.name}/editar`)} />}
         </S.EducatorAreaPublicationHeader>
+        <h3>{publication.title}</h3>
         <SunEditor
           readOnly
           hideToolbar

@@ -3,6 +3,8 @@ import { darken } from "polished";
 
 export const PNLDOurWorksBook = styled.div`
   margin-top: 70px;
+
+  font-family: Montserrat;
   
   @media (min-width: 768px) {
     .container { padding: 0; }
@@ -149,4 +151,14 @@ export const PNLDOurWorksBookUsersUserName = styled.h1`
 `;
 export const PNLDOurWorksBookUsersDescription = styled.div`
   grid-area: description;
+`;
+
+export const PNLDOurWorksBookInfosSection = styled.div`
+  border-top: 1px solid #333;
+  border-bottom: 1px solid #333;
+  width: 100%;
+  padding: 32px 0;
+  line-height: 24px;
+
+  span { font-weight: bold; }
 `;

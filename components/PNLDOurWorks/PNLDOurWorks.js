@@ -37,7 +37,10 @@ export default function PNLDOurWorks({ pnld, ...props }) {
       loadOptions: (query, callback) => {
         axios.get('/api/livros')
           .then((res) => res && callback(res.data
-            .filter((option) => option.title?.toLowerCase().includes(query?.toLowerCase()))
+            .filter((option) => option.title
+              ?.toLowerCase()
+              ?.normalize("NFD")
+              ?.includes(query?.toLowerCase()?.normalize("NFD")))
             .map((option) => ({ instanceId: option._id, label: option.title, value: option._id }))
           ))
       }
