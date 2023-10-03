@@ -14,15 +14,15 @@ export const PNLDOurWorksBook = styled.div`
 export const PNLDOurWorksBookTitle = styled.h1`
   color: #333;
   font-family: Roboto Mono;
-  font-size: 42px;
+  font-size: 32px;
   font-style: normal;
   font-weight: 400;
   text-align: center;
   margin: 0 0 32px;
 
   @media (min-width: 1024px) {
-      font-size: 42px;
-    }
+    font-size: 42px;
+  }
 `;
 export const PNLDOurWorksBookCode = styled.div`
   ${({ color }) => css`
