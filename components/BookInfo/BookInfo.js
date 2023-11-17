@@ -29,6 +29,8 @@ export default function BookInfo({ book, pnld }) {
   
   if(pnld) {
     name = bookName;
+  } else {
+    delete formProps.fields.pnldCode;
   }
 
   useEffect(() => {

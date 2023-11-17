@@ -13,7 +13,7 @@ import toast, { Toaster } from 'react-hot-toast';
 
 export default function BookSynopsis({ book, pnld }) {
   const router = useRouter();
-  const { bookName: name } = router.query;
+  const { name } = router.query;
   const { isLoggedIn } = useAppProvider();
   const [fields, setFields] = useState(bookSinopsisFieldsState);
   const synopsisInput = bookSinopsisFieldsFunction({ fields, isLoggedIn })
