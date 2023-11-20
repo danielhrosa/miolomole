@@ -30,3 +30,8 @@ export const audios = [
   'PCM',
   'WAV',
 ]
+
+export const pdfs = [
+  'PDF',
+  'pdf'
+]

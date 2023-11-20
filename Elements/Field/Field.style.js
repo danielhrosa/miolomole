@@ -34,6 +34,7 @@ export const FieldEditable = styled.div`
 
 export const FieldReadOnly = styled.div`
   width: 100%;
+  padding-left: 7px;
   background-color: unset;
 `;
 

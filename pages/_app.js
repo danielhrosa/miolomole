@@ -9,6 +9,7 @@ import { AppProvider } from '../store/appProvider';
 import { mioloMoleAppTheme } from '../styles/global';
 import Head from 'next/head';
 import '../styles/globals.css';
+import VLibras from '@djpfs/react-vlibras';
 
 Router.events.on("routeChangeStart", () => NProgress.start());
 Router.events.on("routeChangeComplete", () => NProgress.done());
@@ -28,6 +29,7 @@ function MyApp({ Component, pageProps }) {
           <LogoutButton />
           <Component {...pageProps} />
           <Toaster position="bottom-right" reverseOrder={false} />
+          <VLibras />
           <Footer />
         </AppProvider>
       </ThemeProvider>

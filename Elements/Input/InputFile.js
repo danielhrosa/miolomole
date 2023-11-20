@@ -10,6 +10,7 @@ import { useAppProvider } from '../../store/appProvider';
 import Button from '../Button';
 import Spinner from '../../components/Spinner';
 import getFileTypeByExtensions from '../../utils/getFileTypeByExtension';
+import PDFViewer from '../../components/PDFReader/PDFReader';
 
 export default function InputFile({ variation, name, onChange, value, setFields, type, className, poster, parentName, i, isLoggedInHandler = true, placeholder }) {
   const [loading, setLoading] = useState(false);
@@ -24,6 +25,7 @@ export default function InputFile({ variation, name, onChange, value, setFields,
       if (string.includes('audio')) { return 'audio' }
       if (string.includes('video')) { return 'video' }
       if (string.includes('image')) { return 'image' }
+      if (string.includes('pdf')) { setFileType('pdf'); return 'pdf' }
       else {
         const fileTypeByExtension = getFileTypeByExtensions(value?.split('.')[value.split('.').length - 1]);
         setFileType(fileTypeByExtension)
@@ -69,6 +71,9 @@ export default function InputFile({ variation, name, onChange, value, setFields,
   const contentRender = () => {
     if (!fileType) getFileType(value);
     if (value) {
+      if (fileType === 'pdf') {
+        return <PDFViewer src={value} />
+      }
       if (fileType !== 'image') { return <Player src={value} poster={poster} /> }
       else { return <img src={value} /> }
     }

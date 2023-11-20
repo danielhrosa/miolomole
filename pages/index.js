@@ -12,7 +12,6 @@ import User from '../models/user';
 import { useAppProvider } from '../store/appProvider';
 import { getCookies } from 'cookies-next';
 import jwt from 'jsonwebtoken';
-import VLibras from '@djpfs/react-vlibras';
 
 export default function Home(props) {
   const { isLoggedIn } = useAppProvider();
@@ -24,7 +23,6 @@ export default function Home(props) {
       {[1, 2, 3, 4].map((i) => <Banner key={i} {...props} i={i} />)}
       <AboutUsSlider {...props} />
       <Catalog {...props} isLoggedIn={isLoggedIn} />
-      <VLibras />
     </>
   )
 }

@@ -267,6 +267,18 @@ const file = css`
   box-shadow: 0px 3px 10px 0px rgba(32, 132, 217, 0.50);
 `
 
+const close = css`
+  color: ${({ theme: { color: { white } } }) => white};
+  cursor: pointer;
+  background-color: transparent;
+  border: none;
+  box-shadow: none;
+  text-shadow: 2px 2px 2px #000;
+  p {
+    font-size: 24px;
+  }
+`
+
 const button = css`
   grid-area: ${({ name }) => name};
   text-transform: uppercase;
@@ -342,6 +354,10 @@ const button = css`
 
   &.file {
     ${file}
+  }
+
+  &.close {
+    ${close}
   }
 `
 

@@ -9,7 +9,7 @@ export default function Field({ label, styledLabel, styledItem, tip, error, erro
 
   return (
     <S.FieldEditable className="field" styles={styledItem && styledItem.type.componentStyle.rules}>
-      {label && <S.NormalLabel styles={styledLabel?.type?.componentStyle?.rules} >{label}</S.NormalLabel>}
+      {label && <S.NormalLabel styles={styledLabel?.type?.componentStyle?.rules}>{label}</S.NormalLabel>}
       <S.LabelEditable {...styledComponent.props} {...inputProps} readOnly={!isLoggedIn} />
     </S.FieldEditable>
   )
