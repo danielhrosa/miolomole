@@ -13,7 +13,7 @@ export const PDFReaderWrapper = styled.div`
   position: relative;
 `;
 
-export const PDFReader = styled.iframe`
+export const PDFReader = styled.object`
   ${({ isFullScrenOn }) => isFullScrenOn 
     ? css`width: 100vw; height: 100vh;`
     : css`width: 100%; height: 50vh;`}
