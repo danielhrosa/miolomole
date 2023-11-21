@@ -13,7 +13,7 @@ export default function PDFReader(props) {
   const { EnterFullScreen } = fullScreenPluginInstance;
 
   return (
-    <S.PDFReaderWrapper>
+    <S.PDFReaderWrapper onContextMenu={(e) => e.preventDefault() }>
       <EnterFullScreen>
         {({ onClick }) => <Button variation="primary" onClick={onClick} label="Acessar obra" />}
       </EnterFullScreen>
