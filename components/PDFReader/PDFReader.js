@@ -13,12 +13,12 @@ export default function PDFReader(props) {
   const { EnterFullScreen } = fullScreenPluginInstance;
 
   return (
-    <S.PDFReaderWrapper onContextMenu={(e) => e.preventDefault() }>
+    <S.PDFReaderWrapper>
       <EnterFullScreen>
         {({ onClick }) => <Button variation="primary" onClick={onClick} label="Acessar obra" />}
       </EnterFullScreen>
       <Worker workerUrl="https://unpkg.com/pdfjs-dist@2.3.200/build/pdf.worker.js">
-        <S.PDFReader>
+        <S.PDFReader onContextMenu={(e) => e.preventDefault() }>
           <Viewer
             fileUrl={props?.src}
             defaultScale={SpecialZoomLevel.PageFit}
