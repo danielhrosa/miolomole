@@ -3,7 +3,7 @@ import Button from "../../Elements/Button";
 
 export const PDFReaderWrapper = styled.div`
   width: 100%;
-  height: 50vh;
+  height: 100%;
   padding: 18px;
   display: flex;
   justify-content: center;
@@ -13,10 +13,9 @@ export const PDFReaderWrapper = styled.div`
   position: relative;
 `;
 
-export const PDFReader = styled.object`
-  ${({ isFullScrenOn }) => isFullScrenOn 
-    ? css`width: 100vw; height: 100vh;`
-    : css`width: 100%; height: 50vh;`}
+export const PDFReader = styled.div`
+  width: 100%; 
+  height: 500px;
 `;
 
 export const PDFReaderFullView = styled.div`
