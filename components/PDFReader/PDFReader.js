@@ -1,19 +1,31 @@
 import { useState } from 'react';
 import Button from '../../Elements/Button';
 import * as S from './PDFReader.styles';
+import { Viewer, Worker, SpecialZoomLevel } from '@react-pdf-viewer/core';
+import { fullScreenPlugin, RenderEnterFullScreenProps } from '@react-pdf-viewer/full-screen';
+
+import '@react-pdf-viewer/core/lib/styles/index.css';
+import '@react-pdf-viewer/full-screen/lib/styles/index.css';
 
 export default function PDFReader(props) {
 
-  const [isFullScrenOn, setIsFullScrenOn] = useState(false);
+  const fullScreenPluginInstance = fullScreenPlugin();
+  const { EnterFullScreen } = fullScreenPluginInstance;
 
   return (
     <S.PDFReaderWrapper>
-      <Button variation="primary" onClick={() => { setIsFullScrenOn(!isFullScrenOn) }} label="Acessar obra" />
-      <S.PDFReader src={props?.src + '#toolbar=0'} />
-      {isFullScrenOn && <S.PDFReaderFullView>
-        <S.ButtonClose variation="close" onClick={() => { setIsFullScrenOn(!isFullScrenOn) }} label="Fechar obra" /> 
-        <S.PDFReader src={props?.src + '#toolbar=0'} isFullScrenOn={isFullScrenOn} />
-      </S.PDFReaderFullView>}
+      <EnterFullScreen>
+        {({ onClick }) => <Button variation="primary" onClick={onClick} label="Acessar obra" />}
+      </EnterFullScreen>
+      <Worker workerUrl="https://unpkg.com/pdfjs-dist@2.3.200/build/pdf.worker.js">
+        <S.PDFReader onContextMenu={(e) => e.preventDefault() }>
+          <Viewer
+            fileUrl={props?.src}
+            defaultScale={SpecialZoomLevel.PageFit}
+            plugins={[fullScreenPluginInstance]}
+          />
+        </S.PDFReader>
+      </Worker>
     </S.PDFReaderWrapper>
   )
 }

@@ -6,6 +6,13 @@ module.exports = withImages({
   images: {
     domains: ['s3-sa-east-1.amazonaws.com'],
   },
+  webpack: (config) => {
+    config.module.rules.push({
+      test: /\.node/,
+      use: "raw-loader",
+    });
+    return config;
+  },
   async headers() {
     return [
       {
@@ -136,7 +143,7 @@ module.exports = withImages({
         destination: '/livros/tres-contos-machado-de-assis/audioacessivel',
         permanent: true,
       },
-      
+
       {
         source: '/do-lado-de-la-audioacessivel',
         destination: '/livros/do-lado-de-la/audioacessivel',
