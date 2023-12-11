@@ -33,4 +33,5 @@ export const Close = styled.div`
   font-size: 36px;
 
   transform: rotate(45deg);
+  z-index: 999999;
 `;

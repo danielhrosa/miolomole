@@ -21,7 +21,7 @@ export default function Home(props) {
       <SpotlightBooksJumbotron {...props} />
       <HomeApresentation {...props} />
       {[1, 2, 3, 4].map((i) => <Banner key={i} {...props} i={i} />)}
-      <AboutUsSlider {...props} />
+      {/* <AboutUsSlider {...props} /> */}
       <Catalog {...props} isLoggedIn={isLoggedIn} />
     </>
   )
