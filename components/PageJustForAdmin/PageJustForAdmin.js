@@ -4,7 +4,7 @@ import * as S from './PageJustForAdmin.styles';
 
 export default function PageJustForAdmin(){
   const defaultOptions = {
-    animationData: animationData,
+    animationData,
     loop: true,
     autoplay: true,
     rendererSettings: {

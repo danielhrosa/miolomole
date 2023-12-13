@@ -1,10 +1,26 @@
 import styled, { css } from "styled-components";
+import ModalComponent from '../../Elements/Modal/Modal';
+
+export const Modal = styled(ModalComponent)`
+  > div {
+    padding: 0 !important;
+    height: auto !important;
+  }
+
+  .close {
+    right: 12px !important;
+  }
+
+  .PDFReader {
+    height: 280px !important;
+  }
+`;
 
 export const Catalog = styled.div`
   button { width: 200px !important; }
 
   width: 100%;
-  min-height: 64vh;
+  /* min-height: 64vh; */
   overflow: hidden;
 
   .container{
@@ -32,6 +48,10 @@ export const CatalogWrapper = styled.div`
   z-index: 1;
   height: 100%;
   width: 100%;
+
+  textarea {
+    color: #fff !important;
+  }
 `;
 
 export const CatalogDropzone = styled.div`
@@ -48,7 +68,7 @@ export const CatalogoTitle = styled.h1`
   font-family: Amatic SC;
   font-size: 32px;
   font-weight: 700;
-  color: #fff;
+  color: #fff !important;
   z-index: 0;
 
   width: 107%;

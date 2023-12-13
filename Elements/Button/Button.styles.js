@@ -246,24 +246,35 @@ const bigIcon = css`
 `
 
 const file = css`
-  display: flex;
-  padding: 16px 32px;
+  display: grid;
+  grid-template-columns: 30% 55%;
+  grid-template-rows: 100%;
   justify-content: center;
   align-items: center;
-  gap: 10px;
 
-  color: #3C6ED0;
-  text-align: center;
-  font-family: Roboto;
-  font-size: 29px;
-  font-style: normal;
-  font-weight: 700;
-  line-height: 33px; /* 113.793% */
+  padding: 18px;
+
+  gap: 24px;
+
+  width: 263px;
+  height: 110px;
+
+  text-transform: unset;
+
+  p {
+    color: #3C6ED0;
+    font-family: Roboto;
+    font-size: 24px;
+    font-style: normal;
+    font-weight: 700;
+    text-align: left;
+    text-wrap: initial;
+  }
 
   border-radius: 8px;
   background: #EDF8FF;
 
-  /* ButtonHover */
+  border: none;
   box-shadow: 0px 3px 10px 0px rgba(32, 132, 217, 0.50);
 `
 

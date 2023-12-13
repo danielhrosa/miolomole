@@ -11,6 +11,7 @@ export const PNLDOurWorksBook = styled.div`
     margin-top: 94px;
   }
 `;
+
 export const PNLDOurWorksBookTitle = styled.h1`
   color: #333;
   font-family: Roboto Mono;
@@ -51,6 +52,7 @@ export const PNLDOurWorksBookCode = styled.div`
     }
   `}
 `;
+
 export const PNLDOurWorksBookSection = styled.section`
   margin: 32px;
   width: 100%;
@@ -66,9 +68,10 @@ export const PNLDOurWorksBookSection = styled.section`
   }
   
   @media (min-width: 768px) {
-    flex-direction: row;
+    /* flex-direction: row; */
   }
 `;
+
 export const PNLDOurWorksBookDescription = styled.div`
   padding: 32px;
   text-align: center;
@@ -77,15 +80,29 @@ export const PNLDOurWorksBookDescription = styled.div`
     text-align: left;
   }
 `;
+
 export const PNLDOurWorksBookSectionButtons = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
   gap: 32px;
+
+  @media (min-width: 1000px) {
+    flex-direction: row;
+  }
 `;
+
+export const ButtonStyle = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+`;
+
 export const PNLDOurWorksBookCover = styled.img`
   width: 60%;
 `;
+
 export const PNLDOurWorksBookUsers = styled.div`
   display: flex;
   align-items: flex-start;
@@ -154,11 +171,23 @@ export const PNLDOurWorksBookUsersDescription = styled.div`
 `;
 
 export const PNLDOurWorksBookInfosSection = styled.div`
-  border-top: 1px solid #333;
-  border-bottom: 1px solid #333;
+  /* border-top: 1px dotted #303030;
+  border-bottom: 1px dotted #303030; */
   width: 100%;
-  padding: 32px 0;
+  padding: 32px;
   line-height: 24px;
+  position: relative;
+  
+  &:before {
+    content: "";
+    position: absolute;
+    border-top: 5px dashed #30303030;
+    border-bottom: 5px dashed #30303030;
+    top: -8px;
+    bottom: -8px;
+    left: 0;
+    right: 0;
+  }
 
   span { font-weight: bold; }
 `;

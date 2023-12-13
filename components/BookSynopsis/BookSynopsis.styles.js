@@ -85,7 +85,7 @@ export const SynopsisVideo = styled.div`
   .Playerstyles__RPlayer-llteo8-0{ padding: 0 }
 
   [type="video"] { height: 100% }
-`
+`;
 
 export const Type = styled.div`
   width: 100%;

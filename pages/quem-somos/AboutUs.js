@@ -13,7 +13,7 @@ export default function AboutUs(props){
       <AboutUsQuote {...props} />
       <AboutUsSectionOne {...props} />
       <AboutUsImagination {...props} />
-      <AboutUsSlider {...props} />
+      {/* <AboutUsSlider {...props} /> */}
     </div>
   )
 }

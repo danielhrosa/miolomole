@@ -1,34 +1,47 @@
-import * as S from './PNLDOurWorksBook.styles';
-import Container from '../Container/Container';
-import PNLDBanner from '../PNLDBanner/PNLDBanner';
-import toast from 'react-hot-toast';
-import Editable from '../Editable/Editable';
-import BookRelated from '../BookRelated/BookRelated';
-import Button from '../../Elements/Button/Button';
 import { useRouter } from 'next/router';
+import { useEffect, useState } from 'react';
+import Button from '../../Elements/Button/Button';
+import Field from '../../Elements/Field';
+import BookIcon from '../../images/js/Book';
+import ManualIcon from '../../images/js/ManualIcon';
+import VideoIcon from '../../images/js/VideoIcon';
+import BookRelated from '../BookRelated/BookRelated';
+import Container from '../Container/Container';
+import Editable from '../Editable/Editable';
+import PNLDBanner from '../PNLDBanner/PNLDBanner';
+import * as S from './PNLDOurWorksBook.styles';
+import axios from 'axios';
+import toast from 'react-hot-toast';
 
 export default function PNLDOurWorksBook({ pnld, book, isLoggedIn, ...props }) {
   const router = useRouter();
-  const bannerProps = {
-    pnld,
-    color: pnld?.color,
-    isLoggedIn: false,
-    props
+  const [fields, setFields] = useState({
+    seeWork: { value: '' },
+    teacherManual: { value: '' }
+  });
+
+  const bannerProps = { pnld, color: pnld?.color, isLoggedIn: false, props };
+
+  useEffect(() => {
+    book && setFields((oldFields) => {
+      const newFields = { ...oldFields };
+      newFields.seeWork.value = book?.seeWork;
+      newFields.teacherManual.value = book?.teacherManual;
+      return newFields;
+    })
+  }, [book])
+
+  const saveLinks = async () => {
+    const variables = { seeWork: fields.seeWork?.value, teacherManual: fields.teacherManual?.value };
+    const res = await axios.put('/api/livros', { ...variables, name: book?.name, pnld })
+    if (res.status === 200) {
+      toast.success('Links salvos com sucesso!')
+    } else {
+      toast.error("Erro ao tentar salvar os Links. Por favor chame o Pedro")
+    }
   }
 
-  const downloadFile = (link, type) => {
-    // TODO: aqui que vai o loading
-    fetch(link)
-      .then((res) => res.blob())
-      .then((blob) => {
-        const link = document.createElement("a");
-        link.href = URL.createObjectURL(blob);
-        link.download = type;
-        link.target = "__blank";
-        link.click();
-      })
-      .catch(console.error);
-  }
+  console.log(book)
 
   return (
     <S.PNLDOurWorksBook>
@@ -36,14 +49,25 @@ export default function PNLDOurWorksBook({ pnld, book, isLoggedIn, ...props }) {
         <PNLDBanner {...bannerProps} />
         <S.PNLDOurWorksBookTitle>{book.title}</S.PNLDOurWorksBookTitle>
         <S.PNLDOurWorksBookCode color={pnld?.color}>{book?.pnldCode || 'PNLD CODE NÃO CADASTRADO'}</S.PNLDOurWorksBookCode>
-        {isLoggedIn && <Button style={{ marginTop: '32px' }} label="Editar obra" variation="primary" onClick={() => router.push(`/pnld/${pnld.name}/${book.name}/editar`)} />}
+        {isLoggedIn && <Button style={{ marginTop: '32px' }} color={pnld?.color} label="Editar obra" variation="primary" onClick={() => router.push(`/pnld/${pnld.name}/${book.name}/editar`)} />}
         <S.PNLDOurWorksBookSection>
           <S.PNLDOurWorksBookCover src={book.image} />
           <S.PNLDOurWorksBookSectionButtons>
-            <Button variation="file" label="Visualizar obra" onClick={() => !book.seeWork ? toast.error("Sem arquivo carregado") : downloadFile(book.seeWork, "Visualizar obra")} />
-            <Button variation="file" label="Manual do professor" onClick={() => !book.teacherManual ? toast.error("Sem arquivo carregado") : downloadFile(book.teacherManual, "Manual do professor")} />
-            <Button variation="file" label="Vídeo" onClick={() => !book.pnldVideo ? toast.error("Sem arquivo carregado") : downloadFile(book.pnldVideo, "Vídeo")} />
+            <S.ButtonStyle>
+              <a href={fields.seeWork?.value} target='_blank'>
+                <Button icon={BookIcon} variation="file" label="Visualizar obra" />
+              </a>
+              {isLoggedIn && <Field {...fields.seeWork} type="text" name="seeWork" label="Link visualizar obra" setFields={setFields} />}
+            </S.ButtonStyle>
+            <S.ButtonStyle>
+              <a href={fields.teacherManual?.value} target='_blank'>
+                <Button icon={ManualIcon} variation="file" label="Manual do professor" />
+              </a>
+              {isLoggedIn && <Field {...fields.teacherManual} type="text" name="teacherManual" label="Link manual do professor" setFields={setFields} />}
+            </S.ButtonStyle>
+            <Button icon={VideoIcon} variation="file" label="Vídeo" onClick={() => router.push(`${router.asPath}/videos`)} />
           </S.PNLDOurWorksBookSectionButtons>
+          {isLoggedIn && <Button variation="primary" color={pnld?.color} label="Salvar Links" onClick={saveLinks} />}
         </S.PNLDOurWorksBookSection>
         <S.PNLDOurWorksBookInfosSection>
           <span>Páginas: </span>{book.pages}<br />

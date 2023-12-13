@@ -21,7 +21,7 @@ export default function Home(props) {
       <SpotlightBooksJumbotron {...props} />
       <HomeApresentation {...props} />
       {[1, 2, 3, 4].map((i) => <Banner key={i} {...props} i={i} />)}
-      <AboutUsSlider {...props} />
+      {/* <AboutUsSlider {...props} /> */}
       <Catalog {...props} isLoggedIn={isLoggedIn} />
     </>
   )
@@ -33,6 +33,7 @@ export async function getServerSideProps({ req, res }) {
   const { _id: token } = jwt.decode(TK, process.env.SECRET_KEY) || { token: undefined };
 
   const page = 'home';
+  const context = page;
   const textsArray = await Text.find({ page });
   const texts = textsArray.reduce((object, text) => Object.assign(object, { [text.textKey]: text.text }), {});
   let itemsArray = await User.find({ hideFromList: { $ne: true } });
@@ -40,9 +41,9 @@ export async function getServerSideProps({ req, res }) {
   const items = itemsArray ? JSON.stringify(itemsArray) : {}
   const highlightsArray = await Highlight.find({ isActive: true, page: 'home' });
   const highlights = !!highlightsArray.length ? JSON.stringify(highlightsArray) : '[]';
-  const catalogsArray = await CatalogModel.find({});
+  const catalogsArray = await CatalogModel.find({ context });
   const catalogs = !!catalogsArray?.length ? JSON.stringify(catalogsArray) : `[]`;
   const pagesArray = await Pages.find(token ? {} : { isPrivate: { $ne: true }});
   const pages = !!pagesArray?.length ? JSON.stringify(pagesArray) : `[]`;
-  return { props: { texts, page, items, highlights, catalogs, pages } }
+  return { props: { texts, page, context, items, highlights, catalogs, pages } }
 }

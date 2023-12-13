@@ -96,7 +96,6 @@ export const PNLDCard = styled.div`
 
     color: #FFF;
     text-align: center;
-    font-family: Inter;
     font-size: 24px;
     font-style: normal;
     font-weight: 700;
