@@ -1,5 +1,6 @@
 import mongoose from 'mongoose';
 import Book from '../../../models/book';
+import Catalog from '../../../models/catalog';
 import Text from '../../../models/text';
 import Pages from '../../../models/pages';
 import { getCookies } from 'cookies-next';
@@ -11,6 +12,8 @@ export async function getServerSideProps({ params: { name }, req, res }) {
   const { TK } = getCookies({ req, res });
   const { _id: token } = jwt.decode(TK, process.env.SECRET_KEY) || { token: undefined };
 
+  const context = name;
+
   const booksArr = await Book.find(token ? {} : { isHidden: { $ne: true } }).populate('authors').populate('illustrators');
   const book = JSON.stringify(booksArr.find((item) => item.name.includes(name)));
   const books = JSON.stringify(booksArr);
@@ -21,7 +24,10 @@ export async function getServerSideProps({ params: { name }, req, res }) {
   const pagesArray = await Pages.find(token ? {} : { isPrivate: { $ne: true }});
   const pages = !!pagesArray?.length ? JSON.stringify(pagesArray) : `[]`;
 
-  return { props: { book, books, texts, page: 'book', pages } }
+  const catalogsArray = await Catalog.find({ context });
+  const catalogs = !!catalogsArray?.length ? JSON.stringify(catalogsArray) : `[]`;
+
+  return { props: { book, books, texts, page: 'book', catalogs, context, pages } }
 }
 
 export { default } from './Book';

@@ -48,6 +48,10 @@ export const CatalogWrapper = styled.div`
   z-index: 1;
   height: 100%;
   width: 100%;
+
+  textarea {
+    color: #fff !important;
+  }
 `;
 
 export const CatalogDropzone = styled.div`
@@ -64,7 +68,7 @@ export const CatalogoTitle = styled.h1`
   font-family: Amatic SC;
   font-size: 32px;
   font-weight: 700;
-  color: #fff;
+  color: #fff !important;
   z-index: 0;
 
   width: 107%;

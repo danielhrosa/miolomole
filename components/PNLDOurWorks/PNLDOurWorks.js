@@ -91,7 +91,6 @@ export default function PNLDOurWorks({ pnld, ...props }) {
         setBooks(res.data.books)
       } else {
         toast.error("Erro ao atualizar PNLD. Chamar o Pedro.")
-        console.log(res)
       }
     }
   }

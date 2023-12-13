@@ -293,7 +293,7 @@ export const CardTitle = styled.div`
   }
 
 `
-;
+  ;
 export const SliderCardContainer = styled.div`
   background-color: #FFFFFF;
   height: 220px;
@@ -316,13 +316,12 @@ export const SliderCardContainer = styled.div`
   }
 
 `
-;
+  ;
 export const CardName = styled.div`
   text-align: left;
   grid-area: cardName;
   width: max-content;
   >b{
-    font-family: 'Inter';
     font-weight: 500;
     font-size: 11px;
     line-height: 1.4 !important;
@@ -338,7 +337,7 @@ export const CardName = styled.div`
   }
 
 `
-;
+  ;
 export const CardInfo = styled.div`
   display: flex;
 `;

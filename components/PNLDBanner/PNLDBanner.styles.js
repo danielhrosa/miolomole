@@ -23,7 +23,6 @@ export const PNLDOurWorksBanner = styled.div`
 `;
 export const PNLDOurWorksBannerTitle = styled.h1`
   color: ${({ color }) => readableColor(darken(0.1, color))};
-  font-family: Inter;
   font-size: 24px;
   font-style: normal;
   font-weight: 700;

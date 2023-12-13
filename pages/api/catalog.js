@@ -9,13 +9,13 @@ export default async function catalogHandler(req, res) {
 
   const { body, method } = req;
   let args = body ? { ...body } : {};
-  let { _id, label, link } = body;
+  let { _id, label, link, context } = body;
 
   try {
     switch (method) {
       case 'GET':
         try {
-          const catalogs = await Catalog.find({});
+          const catalogs = await Catalog.find({ context });
           return res.status(200).json(catalogs);
         } catch (error) {
           return res.status(405).json({ errorMessage: `Error getting catalogs` })

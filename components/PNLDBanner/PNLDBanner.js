@@ -9,7 +9,7 @@ import * as S from './PNLDBanner.styles';
 import axios from 'axios';
 import toast from 'react-hot-toast';
 
-export default function PNLDBanner({ color, pnld, isLoggedIn, setField, ...props }) {
+export default function PNLDBanner({ color = '#00A79D', pnld, isLoggedIn, setField, ...props }) {
   const debouncedUpdateColor = debounce((newColor) => { setField(newColor) }, 100);
 
   const colorInputProps = {
@@ -28,7 +28,6 @@ export default function PNLDBanner({ color, pnld, isLoggedIn, setField, ...props
       toast.success("PNLD atualizado com sucesso!");
     } else {
       toast.error("Erro ao atualizar PNLD. Chamar o Pedro.")
-      console.log(res)
     }
   }
 

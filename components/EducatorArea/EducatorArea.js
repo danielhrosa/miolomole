@@ -1,19 +1,15 @@
+import axios from 'axios';
 import { useRouter } from 'next/router';
 import { useState } from 'react';
-import Slider from "react-slick";
+import toast from 'react-hot-toast';
 import "slick-carousel/slick/slick-theme.css";
 import "slick-carousel/slick/slick.css";
 import { useAppProvider } from '../../store/appProvider';
+import ComingSoon from '../ComingSoon/ComingSoon';
 import Container from '../Container';
 import EducatorAreaPublication from '../EducatorAreaPublicationCard/EducatorAreaPublicationCard';
 import Jumbotron from '../Jumbotron/Jumbotron';
 import * as S from './EducatorArea.styles';
-import animationData from '../../lotties/empty.json';
-import Lottie from 'react-lottie';
-import axios from 'axios';
-import toast from 'react-hot-toast';
-import ComingSoon from '../ComingSoon/ComingSoon';
-import Button from '../../Elements/Button';
 
 export default function EducatorArea({ publications, publicationsAreas: pubAreas, ...props }) {
   const { isLoggedIn } = useAppProvider();
