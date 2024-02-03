@@ -19,7 +19,7 @@ function getDataSelectValue({ newFields, field, data, constant }) {
     } else {
       newFields[field].value = data[field].map((subField) => {
         const constantObj = constant?.options?.find(({ value }) => value === subField)
-        return constantObj ? { ...constantObj } : { ...subField, label: subField?.userFullName }
+        return constantObj ? { ...constantObj } : { ...subField, value: subField._id, label: subField?.userFullName }
       })
     }
   } else {
