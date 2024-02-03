@@ -1,6 +1,6 @@
-import PNLDComponent from '../../components/PNLD/PNLD';
+import PNLDAdminComponent from '../../components/PNLDAdmin/PNLDAdmin';
 
 export default function PNLD({ pnldObj, publicationsAreasObj, ...props }){
   const pndls = pnldObj ? JSON.parse(pnldObj) : []
-  return <PNLDComponent pnlds={pndls} {...props} />
+  return <PNLDAdminComponent pnlds={pndls} {...props} />
 }

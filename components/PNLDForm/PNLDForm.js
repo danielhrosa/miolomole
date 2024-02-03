@@ -20,12 +20,12 @@ export default function PNLDForm({ pnld }) {
   const onSubmit = () => {
     setLoading(true);
     const variables = Object.entries(fields).reduce((obj, [key, { value }]) => ({ ...obj, [key]: (value?.value || value?._id) || value }), {});
-    const errorMessage = `Erro ao ${_id ? 'salvar' : 'criar'} PNLD`;
     if (!variables?.title) {
       setLoading(false);
       toast.error('Por favor preencha todos os campos')
       return;
     }
+    const errorMessage = `Erro ao ${_id ? 'salvar' : 'criar'} PNLD`;
     if(pnld?._id) { variables._id = pnld?._id; }
     axios[_id ? 'put' : 'post']('/api/pnld', variables)
       .then((res) => {

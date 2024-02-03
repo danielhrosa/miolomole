@@ -10,12 +10,9 @@ import PNLDBanner from '../PNLDBanner/PNLDBanner';
 import * as S from './PNLDOurWorks.styles';
 import PNLDOurWorksCard from './PNLDOurWorksCard/PNLDOurWorksCard';
 
-const booksDataToField = (books) => books.map((book) => ({ instanceId: book._id, label: book.title, value: book._id }));
-
 export default function PNLDOurWorks({ pnld, ...props }) {
-  const { color } = pnld;
   const { isLoggedIn } = useAppProvider();
-  const [colorState, setColorState] = useState(color);
+  const [colorState, setColorState] = useState(pnld.color);
   const [fields, setFields] = useState(() => ({ books: { value: [] } }));
   const [books, setBooks] = useState();
 
@@ -49,13 +46,15 @@ export default function PNLDOurWorks({ pnld, ...props }) {
 
   const bookFields = fieldProps({ fields, setFields });
 
+  const booksDataToField = (books) => books.map((book) => ({ instanceId: book._id, label: book.title, value: book._id }));
+
   useEffect(() => {
-    if (color) { setColorState(color) }
-    if (pnld?.books?.length) {
+    setColorState(pnld?.color)
+    if (pnld.books) {
       setBooks(pnld?.books)
       setFields({ books: { value: booksDataToField(pnld?.books) } });
     }
-  }, [pnld?.books, pnld?.color])
+  }, [pnld])
 
   const handleRemoveBookPnld = async ({ _id, title }) => {
     const confirm = window.confirm(`Tem certeza que deseja remove "${title}"?`)
@@ -109,7 +108,7 @@ export default function PNLDOurWorks({ pnld, ...props }) {
         {books?.length ?
           books.map((book) => (
             <Link key={book._id} href={`/pnld/${pnld.name}/${book.name}`}>
-              <PNLDOurWorksCard book={book} color={color} {...pndlOurWorksCardProps} />
+              <PNLDOurWorksCard book={book} color={colorState} {...pndlOurWorksCardProps} />
             </Link>
           )) : (
             <p>Sem PNLDs Cadastradas ainda...</p>

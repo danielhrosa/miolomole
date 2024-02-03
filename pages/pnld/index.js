@@ -16,6 +16,10 @@ export async function getServerSideProps({ req, res }) {
   const { TK } = getCookies({ req, res });
   const { _id: token } = jwt.decode(TK, process.env.SECRET_KEY) || { token: undefined };
 
+  if(!token) {
+    return { redirect: { permanent: false, destination: "/" } }
+  }
+
   const highlightsArray = await Highlight.find({ isActive: true, page });
   const highlights = !!highlightsArray.length ? JSON.stringify(highlightsArray) : '[]';
 

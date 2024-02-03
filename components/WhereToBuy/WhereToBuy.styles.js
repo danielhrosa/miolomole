@@ -8,6 +8,7 @@ export const WhereToBuy = styled.div`
 	gap: 16px;
   button { margin: 0 auto; }
 	@media (min-width: 1024px) {
+    padding: 23px 0;
 		align-items: flex-start;
 	}
 `;

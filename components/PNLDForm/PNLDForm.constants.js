@@ -21,7 +21,7 @@ export const PNLDFormFieldsFunction = ({ fields, setFields }) => ({
       setFields((oldFields) => {
         const newFields = { ...oldFields };
         newFields.title.value = value;
-        newFields.name.value = urlNameFormatter(value);
+        newFields.name.value = urlNameFormatter(value, false);
         return newFields;
       });
     }

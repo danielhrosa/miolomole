@@ -2,6 +2,7 @@ import connectToDatabase from '../../middleware/mongodb';
 import Book from '../../models/book';
 import PNLD from '../../models/pnld';
 import User from '../../models/user';
+import Page from '../../models/pages';
 import createModel from '../../utils/createModel';
 import removeModel from '../../utils/removeModel';
 import updateModel from '../../utils/updateModel';
@@ -53,6 +54,13 @@ const pnldHandler = async (req, res) => {
               populate: { path: 'illustrators', model: User }
             })
 
+          const pagePnld = await Page.findOne({ path: `/pnld/${updatedModelPopulated.name}` });
+          
+          pagePnld.label = updatedModelPopulated.title;
+          pagePnld.name = updatedModelPopulated.name;
+
+          await pagePnld.save();
+
           return await res.status(200).json(updatedModelPopulated);
         } catch (err) { console.log(err); return res.status(500).end() };
       case 'POST':
@@ -60,10 +68,13 @@ const pnldHandler = async (req, res) => {
           const existedPnld = await PNLD.findOne({ name });
           if (!!existedPnld) { return res.status(409).json({ errorMessage: 'PNLD ja existe' }) };
           const pnld = await createModel({ name, title, color, hide, books }, PNLD);
+          await createModel({ path: `/pnld/${name}`, label: title, isPrivate: true }, Page);
           return res.status(200).json(pnld);
         } catch (err) { console.log(err); break };
       case 'DELETE':
         try {
+          const pagePnld = await Page.findOne({ path: `/pnld/${name}` });
+          await removeModel(pagePnld._id, Page);
           await removeModel(_id, PNLD)
           return res.status(200).json({ message: 'PNLD excluído com sucesso!' });
         } catch (err) { return res.status(500).end() };

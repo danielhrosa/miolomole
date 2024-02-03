@@ -6,11 +6,11 @@ import { useAppProvider } from '../../store/appProvider';
 import parser from 'html-react-parser';
 
 export default function Editable({ children, page, texts, textKey, onClick, model, field, value, _id }) {
-  const { isLoggedIn } = useAppProvider()
+  const { isLoggedIn } = useAppProvider();
   const [edit, setEdit] = useState(false);
   let initialText = (!!texts && !!textKey) && !!texts[textKey] ? texts[textKey] : (page !== 'where-to-buy' || isLoggedIn) ? 'Insira um conteúdo' : '';
 
-  if(model && field && _id) {
+  if (model && field && _id) {
     initialText = value;
   }
 
@@ -22,7 +22,7 @@ export default function Editable({ children, page, texts, textKey, onClick, mode
   const onChange = ({ target }) => setNewText(target.value)
 
   const saveText = async () => {
-    if(model && field && _id) {
+    if (model && field && _id) {
       await axios.put(`/api/${model}`, { _id, [field]: newText }).catch((err) => console.log(err))
     } else {
       await axios.put(`/api/textos`, { textKey, page, text: newText, editedBy: 'browser' }).catch((err) => console.log(err))
@@ -32,6 +32,10 @@ export default function Editable({ children, page, texts, textKey, onClick, mode
   }
 
   const inputProps = { value: newText, ref, edit, onChange, styles: children.type.componentStyle.rules }
+
+  useEffect(() => { 
+    if (model && field && _id) { setNewText(value) }
+  }, [model, field, _id, value]);
 
   return (
     <S.Editable isLoggedIn={isLoggedIn} onClick={onClick}>

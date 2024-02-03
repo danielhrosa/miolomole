@@ -16,20 +16,20 @@ export default function EducatorPublication({ pnld, ...props }) {
 
 export async function getServerSideProps({ params: { name }, req, res }) {
   mongoose.connect(process.env.NEXT_PUBLIC_MONGO_DB_URL, { useUnifiedTopology: true, useFindAndModify: false, useCreateIndex: true, useNewUrlParser: true });
-  
+
   const page = "pnld";
   const textsArray = await Text.find({ page });
   const texts = textsArray.reduce((object, text) => Object.assign(object, { [text.textKey]: text.text }), {});
-  
+
   let pnldObj = await PNLD.findOne({ name })
     .populate({ path: 'books', model: BookPnld })
-    .populate({ 
-      path: 'books', 
-      populate: { path: 'authors', model: User } 
+    .populate({
+      path: 'books',
+      populate: { path: 'authors', model: User }
     })
-    .populate({ 
-      path: 'books', 
-      populate: { path: 'illustrators', model: User } 
+    .populate({
+      path: 'books',
+      populate: { path: 'illustrators', model: User }
     })
   const pnld = pnldObj ? JSON.stringify(pnldObj) : {}
 
