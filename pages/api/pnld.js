@@ -39,6 +39,7 @@ const pnldHandler = async (req, res) => {
             name: updatedModel.name,
             title: updatedModel.title,
             color: updatedModel.color,
+            video: updatedModel.video,
             createdAt: updatedModel.createdAt,
             updatedAt: updatedModel.updatedAt,
            });

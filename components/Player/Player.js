@@ -3,7 +3,7 @@ import * as P from 'video-react';
 
 export default function Player({ src, poster, ...props }){
   return(
-    <S.RPlayer>
+    <S.RPlayer id="player">
       <P.Player
         fluid={true}
         width='auto'

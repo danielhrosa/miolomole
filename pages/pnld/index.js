@@ -20,16 +20,13 @@ export async function getServerSideProps({ req, res }) {
     return { redirect: { permanent: false, destination: "/" } }
   }
 
-  const highlightsArray = await Highlight.find({ isActive: true, page });
-  const highlights = !!highlightsArray.length ? JSON.stringify(highlightsArray) : '[]';
-
   const pnldArray = await PNLD.find(token ? {} : { hide: { $ne: true } });
   const pnldObj = pnldArray ? JSON.stringify(pnldArray) : `[]`
 
   const pagesArray = await Pages.find(token ? {} : { isPrivate: { $ne: true } });
   const pages = !!pagesArray?.length ? JSON.stringify(pagesArray) : `[]`;
 
-  return { props: { pnldObj, texts, pages, page, highlights } }
+  return { props: { pnldObj, texts, pages, page } }
 }
 
 export { default } from './PNLD';

@@ -34,8 +34,15 @@ export default function InputFile({ variation, name, onChange, value, setFields,
     }
   }
 
+  const onChangeHandler = (location) => {
+    onChange
+    ? onChange({ target: { name, value: location, i, parentName }, setFields })
+    : inputChange({ target: { name, value: location, i, parentName }, setFields })
+  }
+
   const onDrop = useCallback((acceptedFiles) => {
     setLoading(true);
+    onChangeHandler("")
     const file = acceptedFiles[0];
     const fileName = `dev/mioloMole/${uuidv4() + file.name}`;
     const evaporateConfig = {
@@ -56,9 +63,7 @@ export default function InputFile({ variation, name, onChange, value, setFields,
       progress: progressValue => setProgress((progressValue * 100).toFixed(2)),
       complete: (xhr) => {
         const location = xhr.responseURL.split('?')[0];
-        onChange
-          ? onChange({ target: { name, value: location, i, parentName }, setFields })
-          : inputChange({ target: { name, value: location, i, parentName }, setFields })
+        onChangeHandler(location);
         setLoading(false);
       },
     };
@@ -108,8 +113,8 @@ export default function InputFile({ variation, name, onChange, value, setFields,
       )
     default:
       return (
-        <S.InputFile>
-          <S.InputPreview className={className} type={type} >
+        <S.InputFile id="inputFileCustom">
+          <S.InputPreview id="inputFileCustomPreview" className={className} type={type} >
             {value
               ? contentRender()
               : loading && (
@@ -122,7 +127,7 @@ export default function InputFile({ variation, name, onChange, value, setFields,
             }
           </S.InputPreview>
           {isLoggedIn && (
-            <S.ActionButtonWrapper>
+            <S.ActionButtonWrapper id="inputFileCustomDropArea">
               <S.DropArea {...getRootProps()}>
                 {placeholderTip()}
                 <input {...getInputProps()} />

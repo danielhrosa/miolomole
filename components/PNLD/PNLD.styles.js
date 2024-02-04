@@ -3,12 +3,10 @@ import ButtonComponent from '../../Elements/Button/Button';
 
 export const PNLD = styled.div`
   max-width: 1280px;
-  margin: 0 auto;
+  margin: 0 auto 32px auto;
   padding: 20px;
   
-  @media (min-width: 1024px){
-    padding: 40px;
-  }
+  border-bottom: 5px dashed #30303030;
 
   h2 {
     margin-top: 32px;
@@ -128,4 +126,28 @@ export const PNLDButtons = styled.div`
   display: flex;
   flex-direction: column;
   gap: 8px;
+`;
+export const PNLDInfos = styled.div`
+  display: grid;
+  gap: 16px;
+  grid-template-columns: 3fr 2fr;
+  #inputFileCustomPreview {
+    min-height: unset;
+  }
+
+  #inputFileCustomDropArea {
+    margin: 0;
+  }
+`;
+export const PNLDInfoVideo = styled.div`
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  #player {
+    padding: 0;
+  }
 `;

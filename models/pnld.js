@@ -5,6 +5,7 @@ var pnld = new Schema({
   name: { type: String, unique: true, required: true },
   title: { type: String, required: true },
   color: { type: String, required: true },
+  video: { type: String },
   hide: { type: Boolean, required: true, default: false },
   books: [{ type: Schema.Types.ObjectId, ref: BookPnld }],
 }, { timestamps: true });

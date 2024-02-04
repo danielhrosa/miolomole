@@ -1,55 +1,51 @@
-import Link from 'next/link';
 import { useEffect, useState } from 'react';
+import { useAppProvider } from '../../store/appProvider';
 import Editable from '../Editable';
-import ArrowPnld from '../../images/js/ArrowPnld.js';
 import SpotlightJumbotron from "../SpotlightBooksJumbotron/SpotlightBooksJumbotron";
 import * as S from './PNLD.styles';
-import { useAppProvider } from '../../store/appProvider';
+import Input from '../../Elements/Input';
+import toast from 'react-hot-toast';
 import axios from 'axios';
-import Button from '../../Elements/Button/Button';
 
-export default function PNLD(props) {
+export default function PNLD({ pnld, ...props }) {
   const { isLoggedIn } = useAppProvider();
-  const [pnlds, setPnlds] = useState([]);
+  const [field, setField] = useState({ video: { value: '' } });
+
+  const video = {
+    ...field.video,
+    name: 'video',
+    type: 'asset',
+    isLoggedIn,
+    setFields: setField
+  }
 
   useEffect(() => {
-    if (props.pnlds) { setPnlds(props.pnlds) }
-  }, [props.pnlds])
+    setField({ video: { value: pnld.video } });
+  }, [pnld.video])
 
-  const handleDeletePnld = async ({ _id, title }) => {
-    const confirm = window.confirm(`Tem certeza que deseja deletar "${title}"?`)
-    if (!confirm) { return false };
-    setPnlds((oldPnlds) => [...oldPnlds].filter((pnld) => pnld._id !== _id))
-    await axios.delete(`/api/pnld`, { data: { _id } })
-      .catch((err) => { toast.error(`Error ${err.response.data.errorMessage || ''}`) })
+  const handleSave = async () => {
+    const res = await axios.put(`/api/pnld`, { ...pnld, video: video.value });
+    if (res.status === 200) {
+      toast.success("Video do PNLD atualizado com sucesso!");
+    } else {
+      toast.error("Erro ao atualizar video do PNLD no banco de dados. Chamar o Pedro.")
+    }
   }
 
   return (
     <S.PNLD>
       <SpotlightJumbotron {...props} />
-      <Editable {...props} textKey="pnldTitle"><S.PNLDTitle /></Editable>
-      <Editable {...props} textKey="pnldDescription"><S.PNLDText /></Editable>
-      <Editable {...props} textKey="pnldSubtitle"><S.PNLDSubTitle /></Editable>
-      {isLoggedIn && <Link href="/pnld/novo">
-        <S.Button variation="primary" label="+ Adicionar" />
-      </Link>}
-      <S.PNLDList>
-        {pnlds?.length ?
-          pnlds?.map((pnld) => (
-            <Link href={`/pnld/${pnld.name}`}>
-              <S.PNLDCard color={pnld?.color}>
-                {isLoggedIn && (
-                  <S.PNLDButtons onClick={(e) => { e.stopPropagation(); }}>
-                    <Button onClick={(e) => { e.stopPropagation(); handleDeletePnld(pnld); }} type="delete" />
-                  </S.PNLDButtons>
-                )}
-                {pnld.title}<ArrowPnld />
-              </S.PNLDCard>
-            </Link>
-          )) : (
-            <p>Sem PNLDs Cadastradas ainda...</p>
-          )}
-      </S.PNLDList>
+      <S.PNLDInfos>
+        <div>
+          <Editable {...props} textKey={`${pnld?.name}Title`}><S.PNLDTitle /></Editable>
+          <Editable {...props} textKey={`${pnld?.name}Description`}><S.PNLDText /></Editable>
+          <Editable {...props} textKey={`${pnld?.name}Subtitle`}><S.PNLDSubTitle /></Editable>
+        </div>
+        <S.PNLDInfoVideo>
+          <Input {...video} />
+          {isLoggedIn && <S.Button variation="primary" label="Salvar Video" onClick={handleSave} />}
+        </S.PNLDInfoVideo>
+      </S.PNLDInfos>
     </S.PNLD>
   )
 }

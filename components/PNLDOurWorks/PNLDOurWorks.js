@@ -9,6 +9,7 @@ import Editable from '../Editable';
 import PNLDBanner from '../PNLDBanner/PNLDBanner';
 import * as S from './PNLDOurWorks.styles';
 import PNLDOurWorksCard from './PNLDOurWorksCard/PNLDOurWorksCard';
+import PNLD from '../PNLD/PNLD';
 
 export default function PNLDOurWorks({ pnld, ...props }) {
   const { isLoggedIn } = useAppProvider();
@@ -97,7 +98,8 @@ export default function PNLDOurWorks({ pnld, ...props }) {
   return (
     <S.PNLDOurWorks>
       <PNLDBanner {...bannerProps} />
-      <Editable {...props} textKey={`pnldOurWorksTitle`}><S.PNLDOurWorksTitle /></Editable>
+      <PNLD pnld={pnld} {...props} />
+      <Editable {...props} textKey={`${pnld?.name}OurWorksTitle`}><S.PNLDOurWorksTitle /></Editable>
       {isLoggedIn && (
         <S.PNLDOurWorksInput>
           <Field {...bookFields.books} />

@@ -37,6 +37,10 @@ export default function Editable({ children, page, texts, textKey, onClick, mode
     if (model && field && _id) { setNewText(value) }
   }, [model, field, _id, value]);
 
+  useEffect(() => {
+    setNewText((!!texts && !!textKey) && !!texts[textKey] ? texts[textKey] : (page !== 'where-to-buy' || isLoggedIn) ? 'Insira um conteúdo' : '')
+  }, [texts, textKey, page])
+
   return (
     <S.Editable isLoggedIn={isLoggedIn} onClick={onClick}>
       {isLoggedIn && (
@@ -54,4 +58,3 @@ export default function Editable({ children, page, texts, textKey, onClick, mode
     </S.Editable>
   )
 }
-
