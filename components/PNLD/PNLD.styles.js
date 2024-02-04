@@ -2,7 +2,7 @@ import styled, { css } from "styled-components";
 import ButtonComponent from '../../Elements/Button/Button';
 
 export const PNLD = styled.div`
-  max-width: 1280px;
+  width: 100%;
   margin: 0 auto 32px auto;
   padding: 20px;
   
@@ -128,9 +128,14 @@ export const PNLDButtons = styled.div`
   gap: 8px;
 `;
 export const PNLDInfos = styled.div`
-  display: grid;
-  gap: 16px;
-  grid-template-columns: 3fr 2fr;
+  display: flex;
+  flex-direction: column;
+
+  @media (min-width: 768px) {
+    display: grid;
+    gap: 16px;
+    grid-template-columns: 3fr 2fr;
+  }
   #inputFileCustomPreview {
     min-height: unset;
   }

@@ -33,12 +33,14 @@ export default function Editable({ children, page, texts, textKey, onClick, mode
 
   const inputProps = { value: newText, ref, edit, onChange, styles: children.type.componentStyle.rules }
 
-  useEffect(() => { 
+  useEffect(() => {
     if (model && field && _id) { setNewText(value) }
   }, [model, field, _id, value]);
 
   useEffect(() => {
-    setNewText((!!texts && !!textKey) && !!texts[textKey] ? texts[textKey] : (page !== 'where-to-buy' || isLoggedIn) ? 'Insira um conteúdo' : '')
+    if (!model) {
+      setNewText((!!texts && !!textKey) && !!texts[textKey] ? texts[textKey] : (page !== 'where-to-buy' || isLoggedIn) ? 'Insira um conteúdo' : '')
+    }
   }, [texts, textKey, page])
 
   return (

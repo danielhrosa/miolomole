@@ -31,6 +31,8 @@ export default function PNLDBanner({ color = '#00A79D', pnld, isLoggedIn, setFie
     }
   }
 
+  console.log(pnld?.title)
+
   return (
     <S.PNLDOurWorksBanner color={color}>
       <Editable
@@ -55,7 +57,7 @@ export default function PNLDBanner({ color = '#00A79D', pnld, isLoggedIn, setFie
       )}
 
       <Link href={"/pnld"}>
-        <div><PnldHomeIcon color={color} /></div>
+        <S.PnldHomeIconWrapper><PnldHomeIcon color={color} /></S.PnldHomeIconWrapper>
       </Link>
     </S.PNLDOurWorksBanner>
   )

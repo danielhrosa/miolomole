@@ -28,6 +28,11 @@ export const PNLDOurWorksBannerTitle = styled.h1`
   font-weight: 700;
   line-height: 150%; /* 36px */
   letter-spacing: -0.528px;
+  text-align: center;
+
+  @media (min-width: 768px) {
+    text-align: left; 
+  }
 `;
 export const PNLDOurWorksBannerColor = styled.div`
   ${({ color, readableColor }) => css`
@@ -67,4 +72,8 @@ export const PNLDOurWorksBannerColorLabel = styled.label`
         flex-direction: row;
       }
   `}};
+`;
+export const PnldHomeIconWrapper = styled.div`
+  width: 200px;
+  svg { width: 200px; }
 `;
