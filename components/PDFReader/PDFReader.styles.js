@@ -31,4 +31,30 @@ export const ButtonClose = styled((props) => <Button {...props}/>)`
   position: absolute;
   right: 25px;
   top: 10px;
-`
+`;
+
+export const PDFHeader = styled.div`
+  position: sticky;
+  color: #fff;
+  top: 0;
+  margin-bottom: 80px;
+
+  height: 80px;   
+  width: 100%;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+
+  background-color: ${({ theme: { color: { brand } } }) => brand};
+  z-index: 9999;
+
+  @media (min-width: 1024px) {
+    font-size: 18px;
+  }
+`;
+export const PDFHeaderTitle = styled.h1`
+  font-size: 24px;
+  margin: 2px;
+`;

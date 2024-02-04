@@ -6,9 +6,22 @@ import { fullScreenPlugin } from '@react-pdf-viewer/full-screen';
 import '@react-pdf-viewer/core/lib/styles/index.css';
 import '@react-pdf-viewer/full-screen/lib/styles/index.css';
 
-export default function PDFReader({ src, children }) {
+export default function PDFReader({ catalog, children }) {
 
-  const fullScreenPluginInstance = fullScreenPlugin();
+  const fullScreenPluginInstance = fullScreenPlugin({
+      renderExitFullScreenButton: (props) => {
+        return (
+          <S.PDFHeader>
+            <S.PDFHeaderTitle>{catalog.label}</S.PDFHeaderTitle>
+            <span onClick={props.onClick}>Pressione ESC para sair ou clique aqui</span>
+          </S.PDFHeader>
+        )
+    },
+      getFullScreenTarget: (pagesContainer) => {
+        // Returns the target element in full screen mode
+        return pagesContainer;
+    },
+  });
   const { EnterFullScreen } = fullScreenPluginInstance;
 
   return (
@@ -20,7 +33,7 @@ export default function PDFReader({ src, children }) {
       <Worker workerUrl="https://unpkg.com/pdfjs-dist@2.3.200/build/pdf.worker.js">
         <S.PDFReader className='PDFReader'>
           <Viewer
-            fileUrl={src}
+            fileUrl={catalog.link}
             defaultScale={SpecialZoomLevel.PageFit}
             plugins={[fullScreenPluginInstance, ]}
           />

@@ -22,7 +22,7 @@ export default function Catalog({ catalogs, context = '', book, ...props }) {
   const [fields, setFields] = useState(catalogFieldsState())
   const [isOpen, setIsOpen] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
-  const [catalogLink, setCatalogLink] = useState("");
+  const [catalog, setCatalog] = useState("");
   const [isPDFReaderOpen, setIsPDFReaderOpen] = useState(false);
   const router = useRouter();
 
@@ -107,10 +107,13 @@ export default function Catalog({ catalogs, context = '', book, ...props }) {
       .catch((err) => { console.error(err); setIsLoading(false); });
   }
 
-  const openPdfReader = (link) => {
-    setCatalogLink(link);
+  const openPdfReader = (catalog) => {
+    console.log(catalog)
+    setCatalog(catalog);
     setIsPDFReaderOpen(!isPDFReaderOpen);
   };
+
+  console.log(catalogFields)
 
   return (
     <S.Catalog isLoggedIn={isLoggedIn}>
@@ -135,7 +138,7 @@ export default function Catalog({ catalogs, context = '', book, ...props }) {
               ? (
                 <S.CatalogsList>
                   {catalogsParsed.map((catalog, i) => (
-                    <Button key={i} variation="primary" color={catalog.color} label={catalog.label} onClick={() => openPdfReader(catalog.link)} />
+                    <Button key={i} variation="primary" color={catalog.color} label={catalog.label} onClick={() => openPdfReader(catalog)} />
                   ))}
                 </S.CatalogsList>
               ) : <ComingSoon />
@@ -158,8 +161,8 @@ export default function Catalog({ catalogs, context = '', book, ...props }) {
                 width={300}
               />
             ) : (
-              <PDFReader src={catalogLink}>
-                <Button key="download" variation="primary" label="BAIXAR" onClick={() => downloadFile(catalogLink)} />
+              <PDFReader catalog={catalog}>
+                <Button key="download" variation="primary" label="BAIXAR" onClick={() => downloadFile(`${catalog.link}`)} />
               </PDFReader>
             )
           }
