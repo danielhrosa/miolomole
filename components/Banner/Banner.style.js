@@ -2,20 +2,21 @@ import styled from 'styled-components';
 import templateCover from '../../images/banners/template_cover.png'
 
 export const Banner = styled.div`
+  height: 100%;
   width: 100%;
   height: auto;
   overflow: hidden;
 
   .container{
+    height: 100%;
     align-items: center;
-    height: auto;
     justify-content: space-evenly;
     flex-direction: ${({isPair}) => {
       return isPair ? 'column' : 'column-reverse'}};
 
     @media screen{
       @media (min-width: 1024px){
-        height: 400px;
+        /* height: 400px; */
         flex-direction: ${({isPair}) => {
           return isPair ? 'row' : 'row-reverse'}};
       }
@@ -24,21 +25,19 @@ export const Banner = styled.div`
 `
 export const BannerBgImage = styled.img`
   width: 100%;
-  height: auto;
   object-fit: cover;
   position: absolute;
-  height: 186vw;
-
+  height: 200vh;
 
   @media screen{
     @media (min-width: 1024px){
-      max-height: 400px;
-      height: fit-content;
+      height: auto;
     }
   }
 `;
 
 export const BannerWrapper = styled.div`
+  height: 100%;
   margin: 0 50px;
   z-index: 1;
   width: 100%;
