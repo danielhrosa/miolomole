@@ -10,7 +10,7 @@ export default function ContactChannel(){
     <S.ContactAddressListItem className="contactAddress" name="address">
       <a href={t.ADDRESS.HREF} target="_blank">
         <Icon type={t.ADDRESS.ICON}/>
-        <S.Label>{parser(t.ADDRESS.LABEL)}</S.Label>
+        <S.Label>Rua Vespasiano, 581 - Vila Romana - São Paulo - SP, 05044-050</S.Label>
       </a>
     </S.ContactAddressListItem>
   )
