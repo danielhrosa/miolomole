@@ -8,7 +8,7 @@ export default function ContactChannel(){
   const t = pt;
   return(
     <S.ContactAddressListItem className="contactAddress" name="address">
-      <a href={t.ADDRESS.HREF} target="_blank">
+      <a href="https://maps.app.goo.gl/St3aTec3q1k1yxUdA" target="_blank">
         <Icon type={t.ADDRESS.ICON}/>
         <S.Label>Rua Vespasiano, 581 - Vila Romana - São Paulo - SP, 05044-050</S.Label>
       </a>
