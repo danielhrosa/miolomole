@@ -39,11 +39,13 @@ export const catalogFieldsFunction = ({ fields, setFields, setIsOpen, onSubmit }
     ...fields.link,
     name: 'link',
     type: 'asset',
+    label: 'Arquivo',
     variation: 'mini',
   },
   background: {
     ...fields.background,
     name: 'background',
+    label: 'Fundo do arquivo',
     type: 'asset',
     variation: 'mini',
   },
