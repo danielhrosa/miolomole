@@ -86,6 +86,7 @@ export default function Catalog({ catalogs, context = '', book, ...props }) {
       const newFields = { ...oldFields };
       newFields._id.value = catalog?._id;
       newFields.link.value = catalog?.link;
+      newFields.background.value = catalog?.background;
       newFields.label.value = catalog?.label;
       newFields.color.value = catalog?.color;
       return newFields;
@@ -108,12 +109,9 @@ export default function Catalog({ catalogs, context = '', book, ...props }) {
   }
 
   const openPdfReader = (catalog) => {
-    console.log(catalog)
     setCatalog(catalog);
     setIsPDFReaderOpen(!isPDFReaderOpen);
   };
-
-  console.log(catalogFields)
 
   return (
     <S.Catalog isLoggedIn={isLoggedIn}>

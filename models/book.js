@@ -22,6 +22,7 @@ var book = new Schema({
   isHidden: { type: Boolean },
   assets: [{
     assetName: { type: String },
+    assetBackground: { type: String },
     assetType: { type: String },
     assetUrl: { type: String },
   }],

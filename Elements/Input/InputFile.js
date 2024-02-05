@@ -12,7 +12,7 @@ import Spinner from '../../components/Spinner';
 import getFileTypeByExtensions from '../../utils/getFileTypeByExtension';
 import PDFViewer from '../../components/PDFReader/PDFReader';
 
-export default function InputFile({ variation, name, onChange, value, setFields, type, className, poster, parentName, i, isLoggedInHandler = true, placeholder }) {
+export default function InputFile({ variation, name, onChange, value, setFields, type, className, poster, parentName, i, isLoggedInHandler = true, placeholder, ...props }) {
   const [loading, setLoading] = useState(false);
   const [progress, setProgress] = useState(0);
   const [fileName, setFileName] = useState(value);
@@ -36,8 +36,8 @@ export default function InputFile({ variation, name, onChange, value, setFields,
 
   const onChangeHandler = (location) => {
     onChange
-    ? onChange({ target: { name, value: location, i, parentName }, setFields })
-    : inputChange({ target: { name, value: location, i, parentName }, setFields })
+      ? onChange({ target: { name, value: location, i, parentName }, setFields })
+      : inputChange({ target: { name, value: location, i, parentName }, setFields })
   }
 
   const onDrop = useCallback((acceptedFiles) => {
@@ -77,7 +77,12 @@ export default function InputFile({ variation, name, onChange, value, setFields,
     if (!fileType) getFileType(value);
     if (value) {
       if (fileType === 'pdf') {
-        return <PDFViewer src={value} />
+        if(name === 'assetUrl') {
+          return <PDFViewer catalog={{ link: value, background: props.subfields[i]?.assetBackground?.value, label:props.subfields[i]?.assetName?.value }} />
+        }
+        return (
+          <PDFViewer catalog={{ link: value }} />
+        )
       }
       if (fileType !== 'image') { return <Player src={value} poster={poster} /> }
       else { return <img src={value} /> }
@@ -107,7 +112,7 @@ export default function InputFile({ variation, name, onChange, value, setFields,
         <S.InputFileMini {...getRootProps()} hasFile={!!value} onClick={(e) => { e.stopPropagation() }}>
           <input {...getInputProps()} />
           {loading && <h4>Carregando...{progress}</h4>}
-          {!loading && <p> {fileName ? fileName : placeholder || 'Insira o catalogo'}</p>}
+          {!loading && <p> {fileName ? fileName : placeholder || 'Insira o arquivo'}</p>}
           {fileName && <Button type="delete" variation="bigIcon" onClick={(e) => { e.stopPropagation(); deleteFile(); }} />}
         </S.InputFileMini>
       )

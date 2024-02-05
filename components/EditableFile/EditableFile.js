@@ -69,7 +69,7 @@ export default function EditableFile({ page, link, textKey }) {
       <S.Dropzone {...getRootProps()} hasFile={fileName} ref={ref}>
         <input {...getInputProps()} />
         {loading && <h4>Carregando...{progress}</h4>}
-        {!loading && <p> {fileName ? fileName : 'Insira o catalogo'}</p>}
+        {!loading && <p> {fileName ? fileName : 'Insira o arquivo'}</p>}
         {fileName && <Button label="X" height={height} variation="bigIcon" onClick={(e) => { e.stopPropagation(); deleteFile(); }} />}
       </S.Dropzone>
     </S.Editable>

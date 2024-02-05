@@ -16,6 +16,11 @@ export const PDFReaderWrapper = styled.div`
 export const PDFReader = styled.div`
   width: 100%; 
   height: 500px;
+
+  .rpv-core__inner-page {
+    background-image: url(${({ src }) => src});
+    background-size: cover;
+  }
 `;
 
 export const PDFReaderFullView = styled.div`
@@ -37,7 +42,8 @@ export const PDFHeader = styled.div`
   position: sticky;
   color: #fff;
   top: 0;
-  margin-bottom: 80px;
+
+  cursor: pointer;
 
   height: 80px;   
   width: 100%;

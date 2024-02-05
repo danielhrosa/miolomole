@@ -31,8 +31,6 @@ export default function PNLDBanner({ color = '#00A79D', pnld, isLoggedIn, setFie
     }
   }
 
-  console.log(pnld?.title)
-
   return (
     <S.PNLDOurWorksBanner color={color}>
       <Editable

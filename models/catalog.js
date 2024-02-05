@@ -6,6 +6,7 @@ var catalog = new Schema({
   label: { type: String, required: true },
   link: { type: String, required: true },
   context: { type: String, required: true },
+  background: { type: String, required: true },
 }, { timestamps: true });
 
 mongoose.models = {};

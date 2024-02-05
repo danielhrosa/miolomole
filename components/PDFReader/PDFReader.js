@@ -11,14 +11,14 @@ export default function PDFReader({ catalog, children }) {
   const fullScreenPluginInstance = fullScreenPlugin({
       renderExitFullScreenButton: (props) => {
         return (
-          <S.PDFHeader>
-            <S.PDFHeaderTitle>{catalog.label}</S.PDFHeaderTitle>
-            <span onClick={props.onClick}>Pressione ESC para sair ou clique aqui</span>
+          <S.PDFHeader onClick={props.onClick}>
+            <S.PDFHeaderTitle>{catalog?.label}</S.PDFHeaderTitle>
+            <span>Pressione ESC para sair ou clique aqui</span>
           </S.PDFHeader>
         )
     },
       getFullScreenTarget: (pagesContainer) => {
-        // Returns the target element in full screen mode
+        pagesContainer.style.backgroundColor = "#33dd00";
         return pagesContainer;
     },
   });
@@ -31,11 +31,11 @@ export default function PDFReader({ catalog, children }) {
         {({ onClick }) => <Button variation="primary" onClick={onClick} label={children ? "Ver Em Tela cheia" : "Acessar obra"} />}
       </EnterFullScreen>
       <Worker workerUrl="https://unpkg.com/pdfjs-dist@2.3.200/build/pdf.worker.js">
-        <S.PDFReader className='PDFReader'>
+        <S.PDFReader src={catalog?.background} className='PDFReader'>
           <Viewer
-            fileUrl={catalog.link}
+            fileUrl={catalog?.link}
             defaultScale={SpecialZoomLevel.PageFit}
-            plugins={[fullScreenPluginInstance, ]}
+            plugins={[fullScreenPluginInstance ]}
           />
         </S.PDFReader>
       </Worker>

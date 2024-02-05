@@ -6,14 +6,22 @@ import axios from 'axios';
 import toast from 'react-hot-toast';
 import { useAppProvider } from '../../store/appProvider';
 
-const assetState = () => ({ assetName: { value: '' }, assetUrl: { value: '' } })
+const assetState = () => ({ 
+  assetName: { value: '' }, 
+  assetBackground: { value: '' },
+  assetUrl: { value: '' }
+});
 
 const assetsState = (parsedBook, assetType) => parsedBook?.assets?.length
   ? {
     assets: {
       value: parsedBook?.assets
-        .filter((item) => item.assetType === assetType)
-        .map((item) => ({ assetName: { value: item.assetName }, assetUrl: { value: item.assetUrl } }))
+        .filter((item) => item?.assetType === assetType)
+        .map((item) => ({
+          assetName: { value: item?.assetName }, 
+          assetBackground: { value: item?.assetBackground },
+          assetUrl: { value: item?.assetUrl }
+        }))
     }
   }
   : { assets: { value: [assetState()] } };
@@ -26,8 +34,11 @@ const fieldsFunction = ({ fields, setFields, assetType, poster, name, isLoggedIn
     type: 'mediaUploads',
     isLoggedIn: isLoggedInHandler,
     gridTemplate: () => css`
+      gap: 16px;
+      width: 100%;
       grid-template: ${`
         "assetName"
+        "assetBackground"
         "assetUrl"
         "deleteButton"
       `};
@@ -55,6 +66,16 @@ const fieldsFunction = ({ fields, setFields, assetType, poster, name, isLoggedIn
           i,
           type: 'labelOcutable',
           label: `Coloque o nome de ${assetType}`,
+        },
+        assetBackground: {
+          ...subfield.assetBackground,
+          parentName: 'assets',
+          name: 'assetBackground',
+          isLoggedInHandler,
+          i,
+          type: 'asset',
+          variation: 'mini',
+          label: `Fundo do PDF (só funciona com PDF)`
         },
         assetUrl: {
           ...subfield.assetUrl,
@@ -94,6 +115,7 @@ const fieldsFunction = ({ fields, setFields, assetType, poster, name, isLoggedIn
         assets: fields.assets.value.map((item) => ({
           assetType,
           assetName: item.assetName.value,
+          assetBackground: item.assetBackground.value,
           assetUrl: item.assetUrl.value
         }))
       }

@@ -41,8 +41,6 @@ export default function PNLDOurWorksBook({ pnld, book, isLoggedIn, ...props }) {
     }
   }
 
-  console.log(book)
-
   return (
     <S.PNLDOurWorksBook>
       <Container>

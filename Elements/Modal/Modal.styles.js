@@ -14,8 +14,8 @@ export const ModalWrapper = styled.div`
 `;
 
 export const Modal = styled.div`
-  height: 400px;
-  min-width: 300px;
+  height: auto;
+  min-width: 350px;
   padding: 16px;
   border-radius: 8px;
   background-color: #FFFFFF;

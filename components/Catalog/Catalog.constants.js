@@ -5,6 +5,7 @@ export const catalogFieldsState = () => ({
   _id: { value: '' },
   link: { value: '' },
   label: { value: '' },
+  background: { value: '' },
   color: { value: randomColor() },
 })
 
@@ -40,6 +41,12 @@ export const catalogFieldsFunction = ({ fields, setFields, setIsOpen, onSubmit }
     type: 'asset',
     variation: 'mini',
   },
+  background: {
+    ...fields.background,
+    name: 'background',
+    type: 'asset',
+    variation: 'mini',
+  },
   cancelar: {
     name: 'cancelar',
     label: 'Cancelar',
@@ -61,6 +68,7 @@ export const gridTemplate = () => css`
     "label"
     "color"
     "link"
+    "background"
     "."
     "salvar"
     "cancelar"
