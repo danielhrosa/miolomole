@@ -13,8 +13,6 @@ export const PNLDOurWorksBanner = styled.div`
   border-radius: 6px;
   background-color: ${({ color, theme: { color: { brand } } }) => color || brand};
 
-  svg { cursor: pointer; }
-
   @media (min-width: 768px) {
     padding: 0px 47px;
     height: 110px;

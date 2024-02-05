@@ -54,9 +54,7 @@ export default function PNLDBanner({ color = '#00A79D', pnld, isLoggedIn, setFie
         </S.PNLDOurWorksBannerColor>
       )}
 
-      <Link href={"/pnld"}>
-        <S.PnldHomeIconWrapper><PnldHomeIcon color={color} /></S.PnldHomeIconWrapper>
-      </Link>
+      <S.PnldHomeIconWrapper><PnldHomeIcon color={color} /></S.PnldHomeIconWrapper>
     </S.PNLDOurWorksBanner>
   )
 }
