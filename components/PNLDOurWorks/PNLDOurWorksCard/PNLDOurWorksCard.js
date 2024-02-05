@@ -19,7 +19,7 @@ export default function PNLDOurWorksCard({ book, color, isLoggedIn, handleRemove
         {book?.authors?.length && <S.PNLDOurWorksCardLabel><span>Autoria:</span> {book?.authors[0]?.userFullName}</S.PNLDOurWorksCardLabel>}
         {book?.illustrators?.length && <S.PNLDOurWorksCardLabel><span>Ilustrações:</span> {book?.illustrators[0]?.userFullName}</S.PNLDOurWorksCardLabel>}
       </S.PNLDOurWorksCardInfos>
-      <S.PNLDOurWorksCardCode color={darken(0.4, color)} onClick={(e) => e.stopPropagation()}>
+      <S.PNLDOurWorksCardCode color={darken(0.4, color)} cliclable>
         <span>Saiba mais</span>
       </S.PNLDOurWorksCardCode>
       <S.PNLDOurWorksCardCode color={color} onClick={(e) => e.stopPropagation()}>

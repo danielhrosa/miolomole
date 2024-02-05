@@ -78,9 +78,9 @@ export const PNLDOurWorksCardLabel = styled.p`
   span { font-weight: bold; }
 `;
 export const PNLDOurWorksCardCode = styled.div`
-  ${({ color }) => css`
+  ${({ color, cliclable }) => css`
     background-color: ${darken(0.1, color)};
-    cursor: initial;
+    cursor: ${cliclable ? 'pointer' : 'initial'};
     width: 100%;
     height: 40px;
     border-radius: 4px;
