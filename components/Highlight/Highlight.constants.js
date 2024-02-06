@@ -6,7 +6,7 @@ export const highlightFieldsState = () => ({
   isActive: { value: false },
 })
 
-export const highlightFieldsFunction = ({ fields }) => ({
+export const highlightFieldsFunction = ({ fields, pages }) => ({
   image: {
     ...fields.image,
     name: 'image',
@@ -27,11 +27,7 @@ export const highlightFieldsFunction = ({ fields }) => ({
     name: 'page',
     label: 'Page',
     type: 'select',
-    options: [
-      { id: '1', label: 'Home', value: 'home' },
-      { id: '2', label: 'Livros', value: 'books' },
-      { id: '3', label: 'PNLD', value: 'pnld' },
-    ]
+    options: pages.map((page) => ({ label: page.label, value: page.path?.replace("/pnld/", "") }))
   },
   isActive: {
     ...fields.isActive,

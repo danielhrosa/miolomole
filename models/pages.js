@@ -3,7 +3,7 @@ import mongoose, { Schema } from 'mongoose';
 var pages = new Schema({
   path: { type: String, unique: true, required: true },
   label: { type: String, required: true },
-  isPrivate: { type: Boolean },
+  isPrivate: { type: Boolean }
 }, { timestamps: true });
 
 mongoose.models = {};

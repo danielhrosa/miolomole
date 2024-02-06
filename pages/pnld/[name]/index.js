@@ -6,6 +6,7 @@ import Pages from '../../../models/pages';
 import PNLD from '../../../models/pnld';
 import Text from '../../../models/text';
 import BookPnld from '../../../models/bookPnld';
+import SiteSettings from '../../../models/siteSettings';
 import User from '../../../models/user';
 import Highlight from '../../../models/highlight';
 
@@ -44,5 +45,8 @@ export async function getServerSideProps({ params: { name }, req, res }) {
   const pagesArray = await Pages.find(token ? {} : { isPrivate: { $ne: true } });
   const pages = !!pagesArray?.length ? JSON.stringify(pagesArray) : `[]`;
 
-  return { props: { pnld, page, pages, texts, highlights } }
+  const siteConfigObj = await SiteSettings.findOne({ config: `bannerSpeed${name}` });
+  const siteConfig = siteConfigObj ? JSON.stringify(siteConfigObj) : null;
+
+  return { props: { pnld, page, pages, texts, highlights, siteConfig } }
 }

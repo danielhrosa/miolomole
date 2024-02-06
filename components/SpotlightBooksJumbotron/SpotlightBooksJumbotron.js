@@ -1,9 +1,14 @@
 import Slider from 'react-slick';
 import Container from '../Container';
-import "slick-carousel/slick/slick.css"; 
+import "slick-carousel/slick/slick.css";
 import { useEffect, useState } from 'react';
 import "slick-carousel/slick/slick-theme.css";
 import * as S from './SpotlightBooksJumbotron.style';
+import Input from '../../Elements/Input';
+import { useAppProvider } from '../../store/appProvider';
+import Button from '../../Elements/Button';
+import axios from 'axios';
+import toast from 'react-hot-toast';
 
 const settings = (items) => ({
   dots: true,
@@ -14,29 +19,52 @@ const settings = (items) => ({
   pauseOnHover: true,
   slidesToShow: 1,
   autoplay: true,
-  autoplaySpeed: '30',
   appendDots: (dots) => (
     <div style={{ backgroundColor: "transparent", padding: "10px" }}>
       <ul>{dots}</ul>
     </div>
   ),
   customPaging: (i) => {
-    //  capture domain color from remote image
     return (
       <S.JumbotronSliderTitle key={items[i].title}>
         {items[i].title}
       </S.JumbotronSliderTitle>
     )
   }
-});
+})
 
-export default function SpotlightJumbotron(props){
-  const [highlights, setHighlight] = useState([]);
-  useEffect(() => props.highlights && setHighlight(JSON.parse(props.highlights)), [props]);
-  
-  return(
+export default function SpotlightJumbotron(props) {
+  const { isLoggedIn } = useAppProvider();
+  const [highlights, setHighlights] = useState([]);
+  const siteConfig = props?.siteConfig ? JSON.parse(props.siteConfig) : 3;
+  const [timeState, setTimeState] = useState(Number(siteConfig?.value) || 2);
+
+  const timeField = {
+    value: timeState,
+    name: 'time',
+    label: 'Tempo:',
+    type: 'number',
+    onChange: ({ target: { value } }) => {
+      setTimeState(Number(value));
+    }
+  }
+
+  useEffect(() => props.highlights && setHighlights(JSON.parse(props.highlights)), [props.highlights]);
+
+  const handleSave = async () => {
+    await axios.put('/api/siteSettings', { config: `bannerSpeed${props.page}`, value: timeState })
+      .then((_res) => {
+        toast.success('Sucesso ao salvar configuração')
+      })
+      .catch((err) => {
+        console.log(err)
+        toast.error('Erro ao salvar configuração, por favor chame o Pedro')
+      })
+  }
+
+  return (
     <S.SpotilightJumbotronContainer className={props.className}>
-      <Slider {...settings(highlights)}>
+      <Slider {...settings(highlights)} autoplaySpeed={timeState * 1000}>
         {highlights.map((highlight) => {
           return (
             <S.SpotLightJumbotron img={highlight?.image} key={highlight?.image + "Jumbotron"}>
@@ -45,9 +73,14 @@ export default function SpotlightJumbotron(props){
                 <S.HomeJumboTitle>{highlight?.title}</S.HomeJumboTitle>
               </Container>
             </S.SpotLightJumbotron>
-          )}
-        )}
-        </Slider>
+          )
+        })}
+      </Slider>
+      {isLoggedIn && <S.Time>
+        <span>Tempo de transição do banner em segundos: </span>
+        <Input {...timeField} />
+        <Button label="Salvar tempo" variation="primary" onClick={handleSave} />
+      </S.Time>}
     </S.SpotilightJumbotronContainer>
   )
 }

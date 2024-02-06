@@ -39,7 +39,7 @@ export default function OurProductsList(props) {
         <S.OurProductsApresentation>
           <Editable {...props} textKey="ourProductsTitle"><S.OurProductsTitle /></Editable>
           <Editable {...props} textKey="ourProductsText"><S.OurProductsText /></Editable>
-          {isLoggedIn && <S.AddBookButton onClick={() => router.push('/livros/novo')}>Cadastrar<span>+</span></S.AddBookButton>}
+          {isLoggedIn && <S.AddBookButton onClick={() => router.push('/livros/novo')}>Cadastrar livro<span>+</span></S.AddBookButton>}
         </S.OurProductsApresentation>
         <S.ProductCards>
           <Masonry

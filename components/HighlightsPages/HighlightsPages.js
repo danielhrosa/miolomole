@@ -1,9 +1,8 @@
+import Link from 'next/link';
 import { useRouter } from 'next/router';
 import { useEffect, useState } from 'react';
 import Container from '../Container';
 import * as S from './HighlightsPages.styles';
-import Link from 'next/link';
-import randomColor from '../../utils/randomColor';
 
 export default function HighlightsPages(props) {
   const router = useRouter();
@@ -13,8 +12,6 @@ export default function HighlightsPages(props) {
     if (props.highlightsByPageStringfied) { setHighlightsByPage(JSON.parse(props.highlightsByPageStringfied)) }
   }, [props.highlightsByPageStringfied])
 
-  const color = randomColor();
-  
   return (
     <S.HighlightsPages>
       <Container>
@@ -26,7 +23,7 @@ export default function HighlightsPages(props) {
         <S.List>
           {!!Object.values(highlightsByPage)?.length && Object.entries(highlightsByPage).map(([highlightName]) => (
             <Link href={`/destaques/${highlightName}`}>
-              <S.HighlightsPagesCard color={color}>
+              <S.HighlightsPagesCard color="#00A79D">
                 <h2>{highlightName}</h2>
               </S.HighlightsPagesCard>
             </Link>

@@ -6,9 +6,9 @@ import mongoose from 'mongoose'
 import { getCookies } from 'cookies-next';
 import jwt from 'jsonwebtoken';
 
-export default function NewHighlight() {
+export default function NewHighlight(props) {
   const { isLoggedIn } = useAppProvider();
-  return isLoggedIn ? <Highlight /> : <PageJustForAdmin />
+  return isLoggedIn ? <Highlight {...props} /> : <PageJustForAdmin />
 }
 
 export async function getServerSideProps({ req, res }) {

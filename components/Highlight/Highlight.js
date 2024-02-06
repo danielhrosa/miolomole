@@ -13,7 +13,9 @@ export default function Highlight(props) {
   const router = useRouter();
   const [fields, setFields] = useState(highlightFieldsState);
   const [highlight, setHighlight] = useState();
-  const highlightfields = highlightFieldsFunction({ fields, setFields });
+  const pages = JSON.parse(props.pages);
+  const highlightfields = highlightFieldsFunction({ fields, pages });
+
 
   useEffect(() => {
     if (props.highlight) {
@@ -28,12 +30,27 @@ export default function Highlight(props) {
 
   const onSubmit = async () => {
     let variables = mapFieldsToData(highlightfields);
+    if(!variables.page) {
+      toast.error('Por favor selecione uma página')
+      return;
+    }
+    if(!variables.image) {
+      toast.error('Por favor insria uma iamgem')
+      return;
+    }
     let res;
     try {
-      if (!highlight) { res = await axios.post('/api/destaques', { ...variables }) }
-      else { res = await axios.put('/api/destaques', { ...variables, _id: highlight._id }) }
-      if (res.status === 200) { toast.success(`Cadastrado ${highlight ? 'atualizado' : 'realizado'} com sucesso!`) }
-      else { toast.error(res?.response?.data) }
+      if (!highlight) {
+        res = await axios.post('/api/destaques', { ...variables })
+      } else {
+        res = await axios.put('/api/destaques', { ...variables, _id: highlight._id })
+      }
+      if (res.status === 200) { 
+        toast.success(`Cadastrado ${highlight ? 'atualizado' : 'realizado'} com sucesso!`) 
+        router.back()
+      } else { 
+        toast.error(res?.response?.data)
+      }
     } catch (err) { err?.response?.data ? toast.error(err?.response?.data?.errorMessage) : console.log(err?.response?.data || err) }
   }
 

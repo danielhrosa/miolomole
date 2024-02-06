@@ -1,5 +1,4 @@
 import mongoose from 'mongoose';
-import AboutUsSlider from '../components/AboutUsSlider';
 import Banner from '../components/Banner';
 import Catalog from '../components/Catalog/Catalog';
 import HomeApresentation from '../components/HomeApresentation';
@@ -7,6 +6,7 @@ import SpotlightBooksJumbotron from '../components/SpotlightBooksJumbotron';
 import CatalogModel from '../models/catalog';
 import Highlight from '../models/highlight';
 import Pages from '../models/pages';
+import SiteSettings from '../models/siteSettings';
 import Text from '../models/text';
 import User from '../models/user';
 import { useAppProvider } from '../store/appProvider';
@@ -34,16 +34,25 @@ export async function getServerSideProps({ req, res }) {
 
   const page = 'home';
   const context = page;
+
   const textsArray = await Text.find({ page });
   const texts = textsArray.reduce((object, text) => Object.assign(object, { [text.textKey]: text.text }), {});
+
   let itemsArray = await User.find({ hideFromList: { $ne: true } });
   itemsArray = itemsArray.filter((item) => !!item?.occupation?.length && item.occupation?.some((occupation) => ['illustrator', 'writer'].includes(occupation)))
   const items = itemsArray ? JSON.stringify(itemsArray) : {}
+
   const highlightsArray = await Highlight.find({ isActive: true, page: 'home' });
   const highlights = !!highlightsArray.length ? JSON.stringify(highlightsArray) : '[]';
+  
   const catalogsArray = await CatalogModel.find({ context });
   const catalogs = !!catalogsArray?.length ? JSON.stringify(catalogsArray) : `[]`;
+
   const pagesArray = await Pages.find(token ? {} : { isPrivate: { $ne: true }});
   const pages = !!pagesArray?.length ? JSON.stringify(pagesArray) : `[]`;
-  return { props: { texts, page, context, items, highlights, catalogs, pages } }
+
+  const siteConfigObj = await SiteSettings.findOne({ config: 'bannerSpeedhome' });
+  const siteConfig = siteConfigObj ? JSON.stringify(siteConfigObj) : null;
+
+  return { props: { texts, page, context, items, highlights, catalogs, pages, siteConfig } }
 }

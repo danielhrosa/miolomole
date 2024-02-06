@@ -36,7 +36,7 @@ export const SpotilightJumbotronContainer = styled.div`
     }
   }
   
-`
+`;
 export const SpotLightJumbotron = styled.div`
   background-image: url(${({ img }) => img });
   height: 400px;
@@ -51,7 +51,7 @@ export const SpotLightJumbotron = styled.div`
     align-items: flex-start;
   }
  
-`
+`;
 export const Description = styled.div`
   font-family: Montserrat;
   font-weight: 500;
@@ -61,7 +61,7 @@ export const Description = styled.div`
   margin-bottom: 30px;
   color: #FFFFFF;
   filter: drop-shadow(2px 4px 2px black);
-`
+`;
 export const HomeJumboTitle = styled.div`
   font-family: Arvo;
   font-style: normal;
@@ -70,11 +70,10 @@ export const HomeJumboTitle = styled.div`
   color: #FFFFFF;
   margin-left: 30px;
   filter: drop-shadow(2px 4px 6px black);
-`
+`;
 export const HomeJumbotronNav = styled.div`
   filter: drop-shadow(2px 4px 6px black);
-`
-
+`;
 export const JumbotronSliderTitle = styled.div`
   width: 100%;
   filter: drop-shadow(2px 4px 6px black);
@@ -83,4 +82,24 @@ export const JumbotronSliderTitle = styled.div`
   width: 160px; 
   height: 1.2em; 
   white-space: nowrap;
-`
+`;
+export const Time = styled.div`
+  width: 100%;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 8px;
+
+  input { width: 50px; }
+
+  padding: 0 20px;
+
+  @media (min-width: 768px) {
+    flex-direction: row;
+  }
+`;
+export const TimeText = styled.p`
+  
+`;
