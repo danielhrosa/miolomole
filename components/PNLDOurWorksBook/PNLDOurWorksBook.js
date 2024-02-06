@@ -53,13 +53,13 @@ export default function PNLDOurWorksBook({ pnld, book, isLoggedIn, ...props }) {
           <S.PNLDOurWorksBookSectionButtons>
             <S.ButtonStyle>
               <a href={fields.seeWork?.value} target='_blank'>
-                <Button icon={BookIcon} variation="file" label="Visualizar obra" />
+                <Button icon={BookIcon} variation="file" label="Visualizar <br/> obra" />
               </a>
               {isLoggedIn && <Field {...fields.seeWork} type="text" name="seeWork" label="Link visualizar obra" setFields={setFields} />}
             </S.ButtonStyle>
             <S.ButtonStyle>
               <a href={fields.teacherManual?.value} target='_blank'>
-                <Button icon={ManualIcon} variation="file" label="Manual do professor" />
+                <Button icon={ManualIcon} variation="file" label="Manual do <br/> professor" />
               </a>
               {isLoggedIn && <Field {...fields.teacherManual} type="text" name="teacherManual" label="Link manual do professor" setFields={setFields} />}
             </S.ButtonStyle>
