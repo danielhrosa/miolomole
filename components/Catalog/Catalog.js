@@ -18,7 +18,7 @@ import { useAppProvider } from '../../store/appProvider';
 
 export default function Catalog({ catalogs, context = '', book, ...props }) {
   const { isLoggedIn } = useAppProvider();
-  const catalogsParsed = JSON.parse(catalogs);
+  const catalogsParsed = catalogs ? JSON.parse(catalogs) : [];
   const [fields, setFields] = useState(catalogFieldsState())
   const [isOpen, setIsOpen] = useState(false);
   const [isLoading, setIsLoading] = useState(false);

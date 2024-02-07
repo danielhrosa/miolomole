@@ -14,8 +14,8 @@ export default function mapFieldsToData(fields) {
         if(Array.isArray(item?.value?.value)){
           return { ...obj, [item.name]: item?.value.value.map((subItem) => subItem.value) }
         } else {
-          if(item.isMulti) {
-            return { ...obj, [item.name]: item?.value.map((subItem) => {
+          if(item.isMulti && item?.value) {
+            return { ...obj, [item.name]: item?.value?.map((subItem) => {
               if(Array.isArray(subItem.value)){ return subItem.value[0] }
               else { return subItem.value }
           })}} else {

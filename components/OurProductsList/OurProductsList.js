@@ -50,6 +50,7 @@ export default function OurProductsList(props) {
     const confirm = window.confirm(`Tem certeza que deseja deletar o livro ${book.title}?`)
     if (!confirm) { return false };
     setBooks((oldBook) => [...oldBook].filter((book) => book._id !== _id))
+    setOrder((oldBook) => [...oldBook].filter((book) => book._id !== _id))
     await axios.delete(`/api/livros`, { data: { _id: book._id } })
   }
 
@@ -58,11 +59,12 @@ export default function OurProductsList(props) {
     const confirm = window.confirm(`Tem certeza que deseja ${!!book?.isHidden ? 'desocultar' : 'ocultar'} o livro ${book.title}?`);
     if (!confirm) { return false };
     setBooks((oldBook) => [...oldBook].reduce((books, book) => book._id !== _id ? [...books, book] : [...books, { ...book, isHidden: !book?.isHidden }], []))
+    setOrder((oldBook) => [...oldBook].reduce((books, book) => book._id !== _id ? [...books, book] : [...books, { ...book, isHidden: !book?.isHidden }], []))
     await axios.put(`/api/livros`, { ...book, isHidden: !book?.isHidden })
   }
 
   const handleOrder = async () => {
-    if(!isOrderModeOn) { 
+    if (!isOrderModeOn) {
       setIsOrderModeOn(true)
     } else {
       setIsOrderModeOn(false)
