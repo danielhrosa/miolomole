@@ -31,7 +31,10 @@ export async function getServerSideProps({ req, res }) {
   const siteConfigObj = await SiteSettings.findOne({ config: 'bannerSpeedbooks' });
   const siteConfig = siteConfigObj ? JSON.stringify(siteConfigObj) : null;
 
-  return { props: { texts, books, items, highlights, page, pages, siteConfig } }
+  const bookOrderObj = await SiteSettings.findOne({ config: 'bookOrder' });
+  const bookOrder = bookOrderObj?.value || null;
+
+  return { props: { texts, books, items, highlights, page, pages, siteConfig, bookOrder } }
 }
 
 export { default } from './Books';

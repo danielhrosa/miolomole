@@ -3,7 +3,6 @@ import styled, { css } from 'styled-components';
 export const OurProductsList = styled.div`
   position: relative;
 `;
-
 export const AddBookButton = styled.div`
   top: 0px;
   right: 0px;
@@ -31,11 +30,11 @@ export const AddBookButton = styled.div`
     width: 200px;
     top: -40px;
   }
-`
+`;
 export const OurProductsApresentation = styled.div`
   width: 100%;
   text-align: center;
-`
+`;
 export const OurProductsTitle = styled.h1`
   font-family: Amatic SC;
   font-weight: bold;
@@ -47,7 +46,7 @@ export const OurProductsTitle = styled.h1`
   width: 100%;
   white-space: break-spaces;
 
-`
+`;
 export const OurProductsText = styled.p`
   font-family: Montserrat;
   font-weight: 500;
@@ -61,7 +60,7 @@ export const OurProductsText = styled.p`
   padding: 0;
   resize: none;
   margin-bottom: 30px;
-`
+`;
 export const ProductCards = styled.div`
   .my-masonry-grid {
     display: -webkit-box; /* Not needed if autoprefixing */
@@ -78,8 +77,7 @@ export const ProductCards = styled.div`
   .my-masonry-grid_column > div { /* change div to reference your elements you put in <Masonry> */
     margin-bottom: 30px;
   }
-`
-
+`;
 export const ProductCard = styled.div`
   text-align: center;
   cursor: pointer;
@@ -92,7 +90,6 @@ export const ProductCard = styled.div`
     }
   }
 `;
-
 export const ProductCardButtons = styled.div`
   position: absolute;
   top: 10px;
@@ -100,7 +97,6 @@ export const ProductCardButtons = styled.div`
   display: flex;
   gap: 8px;
 `;
-
 export const ProductCardImage = styled.img`
   width: 250px;
   height: auto;
@@ -109,18 +105,56 @@ export const ProductCardImage = styled.img`
   background-position: center;
   margin-bottom: 10px;
   ${({ isHidden }) => isHidden && css`filter: grayscale(1);`}
-`
+`;
 export const ProductCardTitle = styled.div`
   font-family: Montserrat;
   font-weight: 600;
   font-size: ${({ theme: { fontSize: { fontSizeXS } } }) => fontSizeXS};
   line-height: 26px;
   margin-bottom: 5px;
-`
+`;
 export const ProductCardPrice = styled.div`
   font-family: Montserrat;
   font-weight: bold;
   font-size: 24px;
   line-height: 29px;
   text-align: center;
-`
+`;
+export const BookOrder = styled.div`
+  margin: 30px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  align-items: center;
+  gap: 16px;
+
+`;
+export const Grid = styled.div`
+  display: grid;
+
+  gap: 30px;
+
+  grid-template-columns: 1fr;
+  grid-auto-rows: auto;
+  
+  @media (min-width: 700px) {
+    grid-template-columns: 1fr 1fr;
+  }
+  @media (min-width: 1100px) {
+    grid-template-columns: 1fr 1fr 1fr;
+  }
+  @media (min-width: 1300px) {
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+  }
+`;
+export const ReorderBooks = styled.div`
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  gap: 8px;
+  margin: 30px 0;
+  font-weight: bold;
+  font-size: 40px;
+  font-family: Amatic SC;
+  color: #E2A610;
+`;

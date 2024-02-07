@@ -1,4 +1,3 @@
-import { useState } from 'react';
 import HideIcon from '../../images/js/HideIcon';
 import * as S from './Button.styles';
 

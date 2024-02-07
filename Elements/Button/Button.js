@@ -6,6 +6,7 @@ import ConfirmButton from './ConfirmButton';
 import CancelButton from './CancelButton';
 import DeleteButton from './DeleteButton';
 import ToggleHideButton from './ToggleHideButton';
+import ToggleLockButton from './ToggleLockButton';
 
 export const Button = forwardRef((props, ref) => {
   const { type } = props;
@@ -18,6 +19,7 @@ export const Button = forwardRef((props, ref) => {
     case 'cancel': return <CancelButton {...props} />
     case 'delete': return <DeleteButton {...props} />
     case 'toggleHide': return <ToggleHideButton {...props} />
+    case 'toggleLock': return <ToggleLockButton {...props} />
     default: return buttons[type] || <ButtonAction {...props} ref={ref} />;;
   }
 
