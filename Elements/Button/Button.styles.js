@@ -246,7 +246,7 @@ const bigIcon = css`
 `
 
 const file = css`
-  display: grid;
+display: grid;
   grid-template-columns: 30% 55%;
   grid-template-rows: 100%;
   justify-content: center;
@@ -264,7 +264,7 @@ const file = css`
   p {
     color: #3C6ED0;
     font-family: Roboto;
-    font-size: 24px;
+    font-size: 18px;
     font-style: normal;
     font-weight: 700;
     text-align: left;
@@ -275,6 +275,12 @@ const file = css`
 
   border: none;
   box-shadow: 0px 3px 10px 0px rgba(32, 132, 217, 0.50);
+
+  @media (min-width: 768px) {
+    p {
+      font-size: 24px;
+    }
+  }
 `
 
 const close = css`

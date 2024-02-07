@@ -1,5 +1,6 @@
 import React, { forwardRef } from 'react';
 import Spinner from '../../components/Spinner';
+import parser from 'html-react-parser'
 import { StyledButtonAction } from './Button.styles';
 
 export const ButtonAction = forwardRef((props, ref) => {
@@ -13,7 +14,7 @@ export const ButtonAction = forwardRef((props, ref) => {
           ? children
           : <>
             {props.icon && <props.icon />}
-            {label && <p className="unselectable">{label}</p>}
+            {parser(label) && <p className="unselectable">{parser(label)}</p>}
             {props.iconRight && <props.iconRight />}
           </>
       }

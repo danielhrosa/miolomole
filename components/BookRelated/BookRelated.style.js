@@ -8,6 +8,7 @@ export const RelatedBooks = styled.div`
   width: 100%;
   grid-template-columns: 1fr;
   grid-template-rows: 300px;
+  gap: 16px;
   @media screen{
     @media (min-width: 768px){ grid-template-columns: 1fr 1fr; }
     @media (min-width: 1024px){ grid-template-columns: 1fr 1fr 1fr 1fr; }
@@ -32,10 +33,11 @@ export const BookRelatedCard = styled.div`
 `
 export const BookRelatedCover = styled.div`
   background-image: url(${({ img }) => img });
-  width: 90px;
-  height: 120px;
+  width: 100%;
+  height: 180px;
   background-size: contain;
   background-repeat: no-repeat;
+  background-position-x: center;
   @media (min-width: 1024px){
     width: 150px;
     height: 200px;
