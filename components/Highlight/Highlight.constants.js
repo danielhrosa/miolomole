@@ -27,7 +27,7 @@ export const highlightFieldsFunction = ({ fields, pages }) => ({
     name: 'page',
     label: 'Page',
     type: 'select',
-    options: pages.map((page) => ({ label: page.label, value: page.path?.replace("/pnld/", "") }))
+    options: [{ id: '1', label: 'Home', value: 'home' }, ...pages.map((page) => ({ label: page.label, value: page.path?.replace("/pnld/", "") }))]
   },
   isActive: {
     ...fields.isActive,
