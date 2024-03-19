@@ -99,7 +99,10 @@ const fieldsFunction = ({ fields, setFields, assetType, poster, name, isLoggedIn
           })
         }
       }
-      if (!isLoggedInHandler) delete subFieldsObj.deleteButton
+      if (!isLoggedInHandler) {
+        delete subFieldsObj.deleteButton
+        delete subFieldsObj.assetBackground
+      }
       return subFieldsObj
     }),
   },
