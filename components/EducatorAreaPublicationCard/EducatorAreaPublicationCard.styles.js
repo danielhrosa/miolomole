@@ -37,6 +37,11 @@ export const EducatorAreaPublicationPicture = styled.img`
   object-fit: contain;
   margin-bottom: 28px;
   ${({ hide }) => hide && css`filter: grayscale(1);`}
+  
+  @media (min-width: 768px) {
+    height: 200px;
+    object-fit: cover;
+  }
 `;
 
 
