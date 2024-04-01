@@ -91,7 +91,7 @@ export const gridTemplate = () => {
     gap: 16px;
 
     @media (min-width: 1024px) {
-      display: grid;
+      /* display: grid;
       grid-template-areas:
         "foto title title"
         "foto area area"
@@ -101,7 +101,7 @@ export const gridTemplate = () => {
         ". . submitButton"
       ;
       grid-template-rows: 60px 60px 50px 250px 1fr 50px;
-      grid-template-columns: 300px 1fr 2fr;
+      grid-template-columns: 300px 1fr 2fr; */
       .primary {
         justify-self: right;
       }

@@ -51,10 +51,11 @@ export const EducatorAreaPublicationContainer = styled.div`
 
 export const EducatorAreaPublicationContainerTitle = styled.div`
   color: #333333;
-  font-family: 'Roboto Mono', monospace;
-  font-weight: 700;
+  font-family: 'Montserrat';
+  font-weight: 500;
   letter-spacing: -0.022em;
   font-size: 18px;
+  margin-bottom: 16px;
   
   @media (min-width: 768px) {
     font-size: 28px;

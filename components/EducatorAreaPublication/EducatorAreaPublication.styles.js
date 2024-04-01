@@ -17,11 +17,17 @@ export const EducatorAreaPublication = styled.div`
     left: 0;
   }
 
-  .sun-editor-editable p {
+  .container {
     width: 70vw;
-    text-align: justify;
-    line-height: 2.2;
-    margin: 0 auto 30px !important;
+    
+    p { 
+      text-align: justify;
+      line-height: 2.2;
+    }
+    p:not(.unselectable), ul {
+      font-size: 14px;
+      margin: 0 auto 30px !important;
+    }
     
     @media (min-width: 768px) {
       width: 600px;
