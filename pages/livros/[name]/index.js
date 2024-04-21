@@ -5,6 +5,7 @@ import Text from '../../../models/text';
 import Pages from '../../../models/pages';
 import { getCookies } from 'cookies-next';
 import jwt from 'jsonwebtoken';
+import SiteSettings from '../../../models/siteSettings';
 
 export async function getServerSideProps({ params: { name }, req, res }) {
   mongoose.connect(process.env.NEXT_PUBLIC_MONGO_DB_URL, { useUnifiedTopology: true, useFindAndModify: false, useCreateIndex: true, useNewUrlParser: true });
@@ -27,7 +28,10 @@ export async function getServerSideProps({ params: { name }, req, res }) {
   const catalogsArray = await Catalog.find({ context });
   const catalogs = !!catalogsArray?.length ? JSON.stringify(catalogsArray) : `[]`;
 
-  return { props: { book, books, texts, page: 'book', catalogs, context, pages } }
+  const menuOrderObj = await SiteSettings.findOne({ config: 'menuOrder' });
+  const menuOrder = !!menuOrderObj ? JSON.stringify(menuOrderObj) : null;
+
+  return { props: { book, books, texts, page: 'book', catalogs, context, pages, menuOrder } }
 }
 
 export { default } from './Book';

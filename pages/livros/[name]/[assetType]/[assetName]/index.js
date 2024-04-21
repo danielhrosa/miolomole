@@ -4,6 +4,7 @@ import Pages from '../../../../../models/pages';
 import urlNameFormatter from '../../../../../utils/urlNameFormatter';
 import { getCookies } from 'cookies-next';
 import jwt from 'jsonwebtoken';
+import SiteSettings from '../../../../../models/siteSettings';
 
 export async function getServerSideProps({ params, req, res }) {
   mongoose.connect(process.env.NEXT_PUBLIC_MONGO_DB_URL, { useUnifiedTopology: true, useFindAndModify: false, useCreateIndex: true, useNewUrlParser: true });
@@ -16,7 +17,10 @@ export async function getServerSideProps({ params, req, res }) {
 
   book.assets = book.assets.filter((item) => item.assetType === params.assetType && urlNameFormatter(item.assetName) === urlNameFormatter(params.assetName))
 
-  return { props: { book: JSON.stringify(book), params, pages } }
+  const menuOrderObj = await SiteSettings.findOne({ config: 'menuOrder' });
+  const menuOrder = !!menuOrderObj ? JSON.stringify(menuOrderObj) : null;
+
+  return { props: { book: JSON.stringify(book), params, pages, menuOrder } }
 }
 
 export { default } from '../../../../../components/Assets';

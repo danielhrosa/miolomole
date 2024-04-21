@@ -9,8 +9,8 @@ export default function HighlightsPages(props) {
   const [highlightsByPage, setHighlightsByPage] = useState([]);
 
   useEffect(() => {
-    if (props.highlightsByPageStringfied) { setHighlightsByPage(JSON.parse(props.highlightsByPageStringfied)) }
-  }, [props.highlightsByPageStringfied])
+    if (props.highlightsByPageStringField) { setHighlightsByPage(JSON.parse(props.highlightsByPageStringField)) }
+  }, [props.highlightsByPageStringField])
 
   return (
     <S.HighlightsPages>

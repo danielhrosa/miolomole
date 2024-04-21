@@ -5,6 +5,7 @@ import EducatorAreaPublication from '../../../components/EducatorAreaPublication
 import { getCookies } from 'cookies-next';
 import jwt from 'jsonwebtoken';
 import Comment from '../../../models/comment';
+import SiteSettings from '../../../models/siteSettings';
 
 export default function EducatorPublication({ publication }) {
   const publicationObj = publication ? JSON.parse(publication) : {}
@@ -23,7 +24,11 @@ export async function getServerSideProps({ params: { name }, req, res }) {
     const pages = !!pagesArray?.length ? JSON.stringify(pagesArray) : `[]`;
 
     const publication = publicationObj ? JSON.stringify(publicationObj) : {}
-    return { props: { publication, pages } }
+
+    const menuOrderObj = await SiteSettings.findOne({ config: 'menuOrder' });
+    const menuOrder = !!menuOrderObj ? JSON.stringify(menuOrderObj) : null;
+
+    return { props: { publication, pages, menuOrder } }
 
   } else {
     return { redirect: { permanent: false, destination: "/blog" } }

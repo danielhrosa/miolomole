@@ -6,6 +6,7 @@ import { useAppProvider } from '../../../../store/appProvider';
 import PageJustForAdmin from '../../../../components/PageJustForAdmin';
 import { getCookies } from 'cookies-next';
 import jwt from 'jsonwebtoken';
+import SiteSettings from '../../../../models/siteSettings';
 
 export default function HighlightPage(props) {
   const { highlight: destaque } = props;
@@ -23,6 +24,10 @@ export async function getServerSideProps({ params: { id }, req, res }) {
 
   let highlightObj = await HighlightModel.findById(id);
   const highlight = id && highlightObj ? JSON.stringify(highlightObj) : {}
-  return { props: { highlight, pages } }
+
+  const menuOrderObj = await SiteSettings.findOne({ config: 'menuOrder' });
+  const menuOrder = !!menuOrderObj ? JSON.stringify(menuOrderObj) : null;
+
+  return { props: { highlight, pages, menuOrder } }
   
 }

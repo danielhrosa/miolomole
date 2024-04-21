@@ -7,6 +7,7 @@ import PublicationArea from '../../../../models/publicationArea';
 import { useAppProvider } from '../../../../store/appProvider';
 import { getCookies } from 'cookies-next';
 import jwt from 'jsonwebtoken';
+import SiteSettings from '../../../../models/siteSettings';
 
 export default function NewEducatorPublication({ publication }) {
   const { isLoggedIn } = useAppProvider();
@@ -26,9 +27,12 @@ export async function getServerSideProps({ params: { name }, req, res }) {
     let publicationObj = await Publication.findOne({ name }).populate({ path: 'area', model: PublicationArea });
     const publication = publicationObj ? JSON.stringify(publicationObj) : {}
 
-    return { props: { publication, pages } }
+    const menuOrderObj = await SiteSettings.findOne({ config: 'menuOrder' });
+    const menuOrder = !!menuOrderObj ? JSON.stringify(menuOrderObj) : null;
+
+    return { props: { publication, pages, menuOrder } }
 
   } else {
-    return { props: { publication: {}, pages } }
+    return { props: { publication: {}, pages, menuOrder } }
   }
 }

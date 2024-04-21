@@ -5,6 +5,7 @@ import Pages from '../../../models/pages'
 import mongoose from 'mongoose'
 import { getCookies } from 'cookies-next';
 import jwt from 'jsonwebtoken';
+import SiteSettings from '../../../models/siteSettings';
 
 export default function NewHighlight(props) {
   const { isLoggedIn } = useAppProvider();
@@ -19,5 +20,8 @@ export async function getServerSideProps({ req, res }) {
   const pagesArray = await Pages.find(token ? {} : { isPrivate: { $ne: true } });
   const pages = !!pagesArray?.length ? JSON.stringify(pagesArray) : `[]`;
 
-  return { props: { pages } };
+  const menuOrderObj = await SiteSettings.findOne({ config: 'menuOrder' });
+  const menuOrder = !!menuOrderObj ? JSON.stringify(menuOrderObj) : null;
+
+  return { props: { pages, menuOrder } };
 }

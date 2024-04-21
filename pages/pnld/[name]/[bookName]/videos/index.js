@@ -7,6 +7,7 @@ import Pages from '../../../../../models/pages';
 import PNLD from '../../../../../models/pnld';
 import User from '../../../../../models/user';
 import Text from '../../../../../models/text';
+import SiteSettings from '../../../../../models/siteSettings';
 
 export default function Videos(props) {
   const book = props?.book ? JSON.parse(props.book) : {};
@@ -47,5 +48,8 @@ export async function getServerSideProps({ params, req, res }) {
   const book = JSON.stringify(pnldObj.books.find(({ name }) => name.includes(params?.bookName)));
   const books = JSON.stringify(pnldObj.books);
 
-  return { props: { book, books, texts, pnld, params, pages } }
+  const menuOrderObj = await SiteSettings.findOne({ config: 'menuOrder' });
+  const menuOrder = !!menuOrderObj ? JSON.stringify(menuOrderObj) : null;
+
+  return { props: { book, books, texts, pnld, params, pages, menuOrder } }
 }

@@ -34,7 +34,10 @@ export async function getServerSideProps({ req, res }) {
   const bookOrderObj = await SiteSettings.findOne({ config: 'bookOrder' });
   const bookOrder = bookOrderObj?.value || null;
 
-  return { props: { texts, books, items, highlights, page, pages, siteConfig, bookOrder } }
+  const menuOrderObj = await SiteSettings.findOne({ config: 'menuOrder' });
+  const menuOrder = !!menuOrderObj ? JSON.stringify(menuOrderObj) : null;
+
+  return { props: { texts, books, items, highlights, page, pages, siteConfig, bookOrder, menuOrder } }
 }
 
 export { default } from './Books';

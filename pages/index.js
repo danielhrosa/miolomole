@@ -54,5 +54,8 @@ export async function getServerSideProps({ req, res }) {
   const siteConfigObj = await SiteSettings.findOne({ config: 'bannerSpeedhome' });
   const siteConfig = siteConfigObj ? JSON.stringify(siteConfigObj) : null;
 
-  return { props: { texts, page, context, items, highlights, catalogs, pages, siteConfig } }
+  const menuOrderObj = await SiteSettings.findOne({ config: 'menuOrder' });
+  const menuOrder = !!menuOrderObj ? JSON.stringify(menuOrderObj) : null;
+
+  return { props: { texts, page, context, items, highlights, catalogs, pages, siteConfig, menuOrder } }
 }

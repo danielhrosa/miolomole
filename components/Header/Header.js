@@ -18,6 +18,7 @@ export default function Header(props) {
   const inputSearchObj = { ...fieldsObj.search, setFields: setSearch }
 
   const pages = props.pages && JSON.parse(props.pages)
+  const menuOrder = props.menuOrder ? JSON.parse(props.menuOrder)?.value : `[]`
 
   const searchButton = () => {
     if (fieldsObj.search?.value) { return <Link href={`/livros/${fieldsObj.search?.value?.name}`}><a><SearchIcon /></a></Link> }
@@ -33,7 +34,7 @@ export default function Header(props) {
           <S.HeaderMenuContainer isOpen={menuIsOpen} onClick={(e) => e.stopPropagation()}>
             <Hamburger isOpen={menuIsOpen} toggle={setMenuIsOpen} />
             <Logo />
-            <HeaderNav isOpen={menuIsOpen} toggle={setMenuIsOpen} pages={pages} />
+            <HeaderNav isOpen={menuIsOpen} toggle={setMenuIsOpen} pages={pages} menuOrder={JSON.parse(menuOrder)} />
             <S.SearchField className="searchFieldMobile" isOpen={menuIsOpen}>
               <Input {...inputSearchObj} />
               {searchButton()}
