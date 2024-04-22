@@ -28,7 +28,7 @@ export const Header = styled.div`
 
 export const EditMenuPagesItem = styled.div`
   display: grid;
-  grid-template-columns: 1fr 30px;
+  grid-template-columns: 30px 1fr 30px;
   padding: 8px 16px;
   align-items: center;
   margin-bottom: 15px;

@@ -3,7 +3,7 @@ import { useState } from 'react';
 import Button from '../../Elements/Button';
 import Container from '../Container';
 import * as S from './EditMenuPage.styles';
-import { SortableContainer, SortableElement } from 'react-sortable-hoc';
+import { SortableContainer, SortableElement, sortableHandle } from 'react-sortable-hoc';
 import toast from 'react-hot-toast';
 
 const orderFunc = (list, order) => (
@@ -23,7 +23,7 @@ export default function EditMenuPage({ pages, menuOrder }) {
     const { _id, isPrivate, label } = page;
     const confirm = window.confirm(`Tem certeza que deseja ${!!isPrivate ? 'desocultar' : 'ocultar'} a pagina ${label}?`);
     if (!confirm) { return false };
-    setPages((oldPages) => [...oldPages].reduce((pages, page) => page._id !== _id ? [...pages, page] : [...pages, { ...page, isPrivate: !page?.isPrivate }], []))
+    setOrder((oldPages) => [...oldPages].reduce((pages, page) => page._id !== _id ? [...pages, page] : [...pages, { ...page, isPrivate: !page?.isPrivate }], []))
     await axios.put(`/api/pages`, { ...page, isPrivate: !page?.isPrivate })
   }
 
@@ -36,10 +36,13 @@ export default function EditMenuPage({ pages, menuOrder }) {
     });
   }
 
+  const DragHandle = sortableHandle(() => <span>::</span>);
+
   const SortableItem = SortableElement(({ page }) => (
     <S.EditMenuPagesItem className='unselectable'>
+      <DragHandle />
       {page.label}
-      <Button type="toggleHide" ishidden={page?.isPrivate} onClick={() => { handleHidePage(page); }} />
+      <Button type="toggleHide" ishidden={page?.isPrivate} onClick={(e) => { e.stopPropagation(); handleHidePage(page); }} />
     </S.EditMenuPagesItem>
   ));
 
@@ -61,7 +64,7 @@ export default function EditMenuPage({ pages, menuOrder }) {
           <b>Página</b>
           <b>Visualização</b>
         </S.Header>
-        <SortableList items={order} onSortEnd={handleSort} />
+        <SortableList items={order} onSortEnd={handleSort} useDragHandle />
       </S.EditMenuPage>
     </Container>
   )
