@@ -19,7 +19,7 @@ export default function Pesquisa(props) {
       <Container>
         <Button variation="primary" onClick={() => router.push('/pesquisas')}>Voltar</Button>
         <h1>{pesquisa?.title}</h1>
-        {parser(pesquisa?.iframeCode)}
+        {pesquisa?.iframeCode ? parser(pesquisa?.iframeCode) : "Sem Google Forms vinculado a esta pesquisa"}
       </Container>
     </S.Pesquisa>
   )
