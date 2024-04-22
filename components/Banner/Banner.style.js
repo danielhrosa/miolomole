@@ -7,19 +7,14 @@ export const Banner = styled.div`
   height: auto;
   overflow: hidden;
 
-  .container{
+  .container {
     height: 100%;
     align-items: center;
     justify-content: space-evenly;
-    flex-direction: ${({isPair}) => {
-      return isPair ? 'column' : 'column-reverse'}};
+    flex-direction: ${({ isPair }) => isPair ? 'column' : 'column-reverse'};
 
-    @media screen{
-      @media (min-width: 1024px){
-        /* height: 400px; */
-        flex-direction: ${({isPair}) => {
-          return isPair ? 'row' : 'row-reverse'}};
-      }
+    @media (min-width: 1024px){
+      flex-direction: ${({ isPair }) => isPair ? 'row' : 'row-reverse' };
     }
   }
 `

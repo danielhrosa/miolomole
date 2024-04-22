@@ -62,17 +62,42 @@ export default function SpotlightJumbotron(props) {
       })
   }
 
+  const SpotLightJumbotron = ({ link, children, key, ...props }) => {
+    if (link) {
+      if(!link.includes("http://") && !link.includes("https://")) {
+        link = `http://${link}`;
+      }
+      return (
+        <a href={link} key={key} target="_blank">
+          <S.SpotLightJumbotron {...props} link={link}>
+            {children}
+          </S.SpotLightJumbotron>
+        </a>
+      )
+    } else {
+      return (
+        <S.SpotLightJumbotron {...props} key={key} link={link}>
+          {children}
+        </S.SpotLightJumbotron>
+      )
+    }
+  }
+
   return (
     <S.SpotilightJumbotronContainer className={props.className}>
       <Slider {...settings(highlights)} autoplaySpeed={timeState * 1000}>
         {highlights.map((highlight) => {
           return (
-            <S.SpotLightJumbotron img={highlight?.image} key={highlight?.image + "Jumbotron"}>
+            <SpotLightJumbotron
+              img={highlight?.image}
+              key={highlight?.image + "Jumbotron"}
+              link={highlight?.link}
+            >
               <Container>
                 <S.Description>{highlight?.description}</S.Description>
                 <S.HomeJumboTitle>{highlight?.title}</S.HomeJumboTitle>
               </Container>
-            </S.SpotLightJumbotron>
+            </SpotLightJumbotron>
           )
         })}
       </Slider>

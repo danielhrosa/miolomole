@@ -10,7 +10,7 @@ import Button from '../../Elements/Button/Button';
 export default function Banner({ i, ...props }) {
   const { isLoggedIn } = useAppProvider();
   const isPair = i % 2 === 0;
-  const { texts } = props
+  const { texts } = props;
   const router = useRouter();
 
   return (

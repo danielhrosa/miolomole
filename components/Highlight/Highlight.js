@@ -35,7 +35,11 @@ export default function Highlight(props) {
       return;
     }
     if(!variables.image) {
-      toast.error('Por favor insria uma iamgem')
+      toast.error('Por favor insira uma imagem')
+      return;
+    }
+    if(variables.link && (!variables.link.includes("http://") && !variables.link.includes("https://"))) {
+      toast.error('Por favor preencha o link iniciando com http:// ou https://')
       return;
     }
     let res;

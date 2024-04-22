@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 
 export const SpotilightJumbotronContainer = styled.div`
   width: 100%;
@@ -38,18 +38,21 @@ export const SpotilightJumbotronContainer = styled.div`
   
 `;
 export const SpotLightJumbotron = styled.div`
-  background-image: url(${({ img }) => img });
-  height: 400px;
-  background-size: cover;
-  background-repeat: no-repeat;
-  border-bottom: 3px solid #898F9B;
-  background-position: center;
+  ${({ img, link }) => css`
+    ${link ? css`cursor: pointer;` : ''}
+    background-image: url(${img});
+    height: 400px;
+    background-size: cover;
+    background-repeat: no-repeat;
+    border-bottom: 3px solid #898F9B;
+    background-position: center;
 
 
-  .container{
-    display: flex;
-    align-items: flex-start;
-  }
+    .container{
+      display: flex;
+      align-items: flex-start;
+    }
+  `}
  
 `;
 export const Description = styled.div`
