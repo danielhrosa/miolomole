@@ -21,7 +21,7 @@ export const WhereToBuyHeaderTitle = styled.h1`
 `;
 
 export const WhereToBuyColum = styled.div`
-	width: ${({ isLoggedIn }) => isLoggedIn ? '100%' : '50%' };
+	width: 100%;
 	display: flex;
 	justify-content: center;
 	@media (min-width: 1024px) {

@@ -26,14 +26,12 @@ export default function WhereToBuy(props) {
       <Button label='Voltar' variation="primary" onClick={() => router.back()} />
       <S.WhereToBuyHeaderTitle>Onde Comprar</S.WhereToBuyHeaderTitle>
       <S.WhereToBuyOptions isLoggedIn={isLoggedIn}>
-        {columns.map((column, i) => (
-          <S.WhereToBuyColum key={i} isLoggedIn={isLoggedIn}>
-            <S.WhereToBuyColumWrapper isLoggedIn={isLoggedIn}>
-              <Editable {...column.title}><S.WhereToBuyColumTitle /></Editable>
-              <Editable {...column.text}><S.WhereToBuyColumText /></Editable>
-            </S.WhereToBuyColumWrapper>
-          </S.WhereToBuyColum>
-        ))}
+        <S.WhereToBuyColum isLoggedIn={isLoggedIn}>
+          <S.WhereToBuyColumWrapper isLoggedIn={isLoggedIn}>
+            <Editable textKey="whereToBuy-title-1" {...props}><S.WhereToBuyColumTitle /></Editable>
+            <Editable textKey="whereToBuy-text-1" {...props}><S.WhereToBuyColumText /></Editable>
+          </S.WhereToBuyColumWrapper>
+        </S.WhereToBuyColum>
       </S.WhereToBuyOptions>
     </S.WhereToBuy>
   )
