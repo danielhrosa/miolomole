@@ -1,4 +1,4 @@
-import * as S from './ContactMap.style'
+import * as S from './ContactMap.style.js'
 
 export default function ContactMap(){
 
