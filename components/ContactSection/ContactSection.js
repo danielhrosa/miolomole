@@ -49,7 +49,7 @@ export default function ContactSection(props) {
           </S.TagContact>
         </S.ContactInfoWrapper>
         <S.ContactForm>
-          <TextContactInfo props={props} isLoggedIn={isLoggedIn} textKey="textContactOriginals" textLabel=" " /> {/* Envio de originais: */}
+          {/* <TextContactInfo props={props} isLoggedIn={isLoggedIn} textKey="textContactOriginals" textLabel="Envio de originais: " /> */}
           <TextContactInfo props={props} isLoggedIn={isLoggedIn} textKey="textContctArtistPortfolio" textLabel="Portfólio de artista: " />
           <TextContactInfo props={props} isLoggedIn={isLoggedIn} textKey="textContactOtherSubjects" textLabel="Outros assuntos: " />
           <TextContactInfo props={props} isLoggedIn={isLoggedIn} textKey="textContactWhatsapp" textLabel="Whatsapp: " />
