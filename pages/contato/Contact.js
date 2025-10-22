@@ -1,11 +1,11 @@
-import ContactMap from "../../components/ContactMap";
+// import ContactMap from "../../components/ContactMap";
 import ContactSection from "../../components/ContactSection";
 
 export default function Contact(props) {
   
   return (
     <div>
-      <ContactMap />
+      {/* <ContactMap /> */}
       <ContactSection {...props} />
     </div>
   )
