@@ -1,10 +1,10 @@
-import Contacts from "../../components/Contacts";
+import ContactsComponent from "../../components/Contacts";
 
 export default function Contacts(props) {
 
   return (
     <div>
-      <Contacts />
+      <ContactsComponent />
     </div>
   )
 }
