@@ -20,11 +20,11 @@ export default {
     { name: "Facebook", icon: 'Facebook', link: 'https://www.facebook.com/editoramiolomole' },
     { name: "Instagram", icon: 'Instagram', link: 'https://www.instagram.com/editoramiolomole/' },
   ],
-  ADDRESS: [
+  ADDRESS: {
     ICON: 'Address',
     LABEL: 'Praça Cornélia, 89 - Vila Romana, São Paulo - SP, 05043-030',
     HREF: 'https://maps.google.com/?q=Praça+Cornélia,+89+-+Vila+Romana,+São+Paulo+-+SP,+05043-030',
-  ],
+  },
   COPYRIGHT: 'Copyright © 2021 Editora Miolo Mole. Todos os direitos reservados',
   BLOG_ARTICLES: [
     {
