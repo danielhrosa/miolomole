@@ -40,7 +40,7 @@ export const TextContact = styled.p`
   line-height: 2;
   color: #212121;
   margin-bottom: 20px;
-  width: 10%;
+  width: 100%;
 `
 
 export const TagContact = styled.div`
