@@ -20,11 +20,12 @@ export default {
     { name: "Facebook", icon: 'Facebook', link: 'https://www.facebook.com/editoramiolomole' },
     { name: "Instagram", icon: 'Instagram', link: 'https://www.instagram.com/editoramiolomole/' },
   ],
-  ADDRESS: {
-    ICON: 'Address',
-    LABEL: 'Rua Vergueiro, nº 3307. Conjunto 3 - Vila Mariana',
-    HREF: 'https://goo.gl/maps/acsgVEdezBXKSkQR6',
-  },
+ADDRESS: {
+  ICON: 'Address',
+  LABEL: 'Praça Cornélia, 89 - Vila Romana, São Paulo - SP, 05043-030',
+  HREF: 'https://maps.google.com/?q=Praça+Cornélia,+89+-+Vila+Romana,+São+Paulo+-+SP,+05043-030',
+},
+  
   COPYRIGHT: 'Copyright © 2021 Editora Miolo Mole. Todos os direitos reservados',
   BLOG_ARTICLES: [
     {
