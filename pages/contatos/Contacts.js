@@ -4,7 +4,7 @@ export default function ContactsPage(props) {
 
   return (
     <div>
-      <Contacts />
+      <Contacts/>
     </div>
   );
 }
