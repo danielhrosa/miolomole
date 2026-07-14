@@ -1,10 +1,10 @@
-import ContactsComponent from "../../components/Contacts";
+import Contacts from "../../components/Contacts";
 
-export default function Contacts(props) {
+export default function ContactsPage(props) {
 
   return (
     <div>
-      <ContactsComponent />
+      <Contacts />
     </div>
   )
 }
