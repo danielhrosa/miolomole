@@ -38,7 +38,7 @@ export default function ContactSection(props) {
     <S.ContactSection>
       <Container>
         <S.ContactInfoWrapper>
-          <S.TitleContact>Conto</S.TitleContact>
+          <S.TitleContact>Contato</S.TitleContact>
           <Editable {...props} textKey="textContact"><S.TextContact /></Editable>
           <S.TagContact>
             <S.Logo img={logoContato} />
