@@ -1,5 +1,5 @@
 import Logo from '../Logo';
-//import ContactAddress from '../ContactAddress';
+import ContactAddress from '../ContactAddress';
 import ContactSocial from '../ContactSocial';
 import Copyright from '../Copyright';
 import FooterNav from '../FooterNav';
@@ -26,7 +26,7 @@ export default function Footer(){
           <Copyright/>
          
         </S.FooterBottom>
-       //<ContactAddress/>
+       <ContactAddress/>
       </Container>
     </S.Footer>
     </>
