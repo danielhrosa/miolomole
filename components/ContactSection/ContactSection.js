@@ -33,16 +33,29 @@ export default function ContactSection(props) {
     onClick: submitMessage,
     variation: 'primary',
   }
+  
+  return (
+    <S.ContactSection>
+      <Container>
+        <S.ContactInfoWrapper>
+          <S.TitleContact>Contato</S.TitleContact>
+          <Editable {...props} textKey="textContact"><S.TextContact /></Editable>
+          <S.TagContact>
+            <S.Logo img={logoContato} />
+            <S.ContactAdressWrapper>
+              <S.ContactTitle>Endereço</S.ContactTitle>
+              <Editable {...props} textKey="contactAdress"><S.ContactAdress /></Editable>
+            </S.ContactAdressWrapper>
+          </S.TagContact>
+        </S.ContactInfoWrapper>
+        <S.ContactForm>
+          <Input {...name} setFields={setFields} gridTemplate />
+          <Input {...email} setFields={setFields} gridTemplate />
+          <Input {...message} setFields={setFields} gridTemplate />
+          <Button {...submitButton} />
+        </S.ContactForm>
+      </Container>
 
-
-
-
-
-  return(
-    <S.ContactAddressListItem className="contactAddress" name="address">
-      <a href={t.ADDRESS.HREF} target="_blank">
-        <Icon type={t.ADDRESS.ICON}/>
-        <S.Label>{parser(t.ADDRESS.LABEL)}</S.Label>
-      </a>
-    </S.ContactAddressListItem>
+    </S.ContactSection>
   )
+}
