@@ -16,6 +16,12 @@ export default class MyDocument extends Document {
         <Head>
           {this.props.styleTags}
           <title>Miolo Mole</title>
+   {this.props.styleTags}
+  <title>Miolo Mole</title>
+  <meta charSet="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="icon" href="/favicon.ico" />
+  {/* fontes, analytics, etc. */}
         </Head>
         <body>
           <Main />
