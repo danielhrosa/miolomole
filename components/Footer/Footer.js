@@ -26,7 +26,7 @@ export default function Footer(){
           <Copyright/>
          
         </S.FooterBottom>
-         <ContactAddress/>
+       //  <ContactAddress/>
       </Container>
     </S.Footer>
     </>
