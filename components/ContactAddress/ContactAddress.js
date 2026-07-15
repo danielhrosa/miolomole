@@ -10,7 +10,7 @@ export default function ContactChannel(){
     <S.ContactAddressListItem className="contactAddress" name="address">
       <a href="https://maps.app.goo.gl/St3aTec3q1k1yxUdA" target="_blank">
         <Icon type={t.ADDRESS.ICON}/>
-        <S.Label>Rua Vespasiano, 581 - Vila Romana - São Paulo - SP, 05044-050</S.Label>
+        <S.Label>Praça Cornélia, 89 - Água BrancaSão Paulo - SP, 05043-030</S.Label>
       </a>
     </S.ContactAddressListItem>
   )
