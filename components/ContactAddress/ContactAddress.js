@@ -7,7 +7,7 @@ import Icon from '../Icon';
 export default function ContactChannel(){
   const t = pt;
   return(
-    <S.ContactAddressListItem className="contactAddress" name="address">
+ 
       <a href={t.ADDRESS.HREF} target="_blank">
         <Icon type={t.ADDRESS.ICON}/>
         <S.Label>{parser(t.ADDRESS.LABEL)}</S.Label>
