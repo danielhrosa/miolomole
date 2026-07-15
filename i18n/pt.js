@@ -22,6 +22,8 @@ export default {
   ],
   ADDRESS: {
     ICON: 'Address',
+    LABEL: "<p>Praça Cornélia, 89 - Vila Romana, São Paulo - SP, 05043-030</p>",
+    HREF: 'https://maps.google.com/?q=Praça+Cornélia,+89+-+Vila+Romana,+São+Paulo+-+SP,+05043-030',
 
     
   },
