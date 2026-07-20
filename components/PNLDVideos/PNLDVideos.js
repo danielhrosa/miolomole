@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import Input from '../../Elements/Input';
 import Container from '../Container';
 import PNLDBanner from '../PNLDBanner/PNLDBanner';
-// import { inputFieldsFunction, inputFieldsState } from './PNDLVideos.constants';
+import { inputFieldsFunction, inputFieldsState } from './PNDLVideos.constants';
 import * as S from './PNLDVideos.styles';
 import { useAppProvider } from '../../store/appProvider';
 import Button from '../../Elements/Button';
@@ -59,14 +59,14 @@ export default function PNLDVideos({ pnld, book, ...props }) {
         <S.PNLDVideosWrapper>
           <S.PNLDOurWorksBookTitle>Vídeos</S.PNLDOurWorksBookTitle>
           <S.PNLDVideoPlayer>
-            <S.PNLDOurWorksBookTitle> </S.PNLDOurWorksBookTitle>
+            <S.PNLDOurWorksBookTitle>Vídeo do estudante</S.PNLDOurWorksBookTitle>
             <Input {...videosFields.pnldVideoStudent} {...inputProps} />
           </S.PNLDVideoPlayer>
           <S.Dotted />
           <S.PNLDVideoPlayer>
-            <S.PNLDOurWorksBookTitle> </S.PNLDOurWorksBookTitle>
+            <S.PNLDOurWorksBookTitle>Vídeo do professor</S.PNLDOurWorksBookTitle>
             {(!videosFields.pnldVideoTeacher?.value && !isLoggedIn) ? (
-              <S.PNLDOurWorksBookTitle> </S.PNLDOurWorksBookTitle>
+              <S.PNLDOurWorksBookTitle>Sem vídeo cadastrado</S.PNLDOurWorksBookTitle>
             ) : <Input {...videosFields.pnldVideoTeacher} {...inputProps} />}
           </S.PNLDVideoPlayer>
         </S.PNLDVideosWrapper>
