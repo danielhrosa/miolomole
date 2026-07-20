@@ -63,13 +63,13 @@ export default function PNLDVideos({ pnld, book, ...props }) {
             <Input {...videosFields.pnldVideoStudent} {...inputProps} />
           </S.PNLDVideoPlayer>
   
-      {/*<S.Dotted />  
+      <S.Dotted />  
           <S.PNLDVideoPlayer>
             <S.PNLDOurWorksBookTitle>Vídeo do professor</S.PNLDOurWorksBookTitle>
             {(!videosFields.pnldVideoTeacher?.value && !isLoggedIn) ? (
               <S.PNLDOurWorksBookTitle>Sem vídeo cadastrado</S.PNLDOurWorksBookTitle>
             ) : <Input {...videosFields.pnldVideoTeacher} {...inputProps} />}
-          </S.PNLDVideoPlayer> */}
+          </S.PNLDVideoPlayer>
   
         </S.PNLDVideosWrapper>
         {isLoggedIn && <Button label="Salvar videos" variation="primary" onClick={saveVideos} />}
