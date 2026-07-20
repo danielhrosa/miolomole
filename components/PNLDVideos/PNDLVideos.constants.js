@@ -1,6 +1,6 @@
 export const inputFieldsState = () => ({
   pnldVideoStudent: { value: '' },
-  //pnldVideoTeacher: { value: '' },
+  pnldVideoTeacher: { value: '' },
 });
 
 export const inputFieldsFunction = ({ fields }) => ({
