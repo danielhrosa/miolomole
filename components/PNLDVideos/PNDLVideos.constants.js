@@ -9,9 +9,11 @@ export const inputFieldsFunction = ({ fields }) => ({
     name: 'pnldVideoStudent',
     type: 'asset',
   },
+  {/*
   pnldVideoTeacher: {
     ...fields.pnldVideoTeacher,
     name: 'pnldVideoTeacher',
     type: 'asset',
   },
+  */}
 })
